@@ -1,34 +1,28 @@
-body {
-    font-family: "Fira+Sans+Extra+Condensed", sans-serif;
-    font-size: 16px;
-}
-
-* {
-    box-sizing: border-box;
-    color: #0D0D0D;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 .wrapper {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {     
-    max-width: 1824px;
-    margin: 0 auto; 
-    padding: 0 32px; 
-    @media (max-width: 991.98px) {  
-        padding: 0 32px;  
-    }
-    @media (max-width: 767.98px) {        
-        max-width: none;
-        padding: 0 16px;
-    }  
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media screen and (min-width: 576px) {
+    max-width: $tablet2;
+    padding: 0 40px;
+  }
+
+  @media screen and (min-width: 992px) {
+    max-width: $desktop;
+    padding: 0 60px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: $full;
+    padding: 0 80px;
+  }
 }
