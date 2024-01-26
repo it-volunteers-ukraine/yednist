@@ -44,7 +44,7 @@ function wp_it_volunteers_scripts() {
 }
 /** add fonts */
 function add_google_fonts() {
-  wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto' );
+  wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed' );
 }
  
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );

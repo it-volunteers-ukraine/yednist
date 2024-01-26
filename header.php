@@ -7,8 +7,8 @@
     <?php wp_head(); ?>
     <title>It-volunteers</title>
 </head>
-<body>  
-    <div class="wrapper">    
+<body>
+    <div class="wrapper">
         <header class="header">        
             <div class="header__content _container">
                 <div class="header__menu menu">
