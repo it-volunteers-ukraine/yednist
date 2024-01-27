@@ -13,5 +13,10 @@ $main-dark: rgba(13, 13, 13, 0.3);
 $mobile: 575.98px;
 $tablet1: 767.98px;
 $tablet2: 991.98px;
-$desktop: 1439.98px;
-$full: 1920px;
+$desktop: 1440px;
+$full: 1919.98px;
+
+$bid-border-radius: 40px;
+$small-border-radius: 24px;
+
+$transition-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
