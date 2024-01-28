@@ -1,3 +1,5 @@
+// containers
+
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -8,10 +10,10 @@
 
 .section {
   margin-bottom: 120px;
-  @media screen and (max-width: $full) {
+  @media screen and (max-width: $desktop) {
     margin-bottom: 100px;
   }
-  @media screen and (max-width: $desktop) {
+  @media screen and (max-width: $tablet2) {
     margin-bottom: 60px;
   }
 }
@@ -37,16 +39,18 @@
 .inner-container {
   max-width: 1464px;
   margin: 0 auto;
+  width: 83%;
 
-  @media screen and (max-width: $full) {
+  @media screen and (max-width: $desktop) {
     max-width: 1096px;
   }
 
   @media screen and (max-width: $tablet2) {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
+//buttons
 .button {
   display: flex;
   justify-content: center;
@@ -56,6 +60,7 @@
   min-width: 277px;
   border-radius: $bid-border-radius;
   text-transform: uppercase;
+  transition: all $transition-function;
   @media screen and (max-width: $desktop) {
     min-width: 203px;
   }
@@ -77,4 +82,54 @@
   border: 1px solid $blue;
   background-color: $white;
   color: $blue;
+}
+
+//section title
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 40px;
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    gap: 16px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    height: 2px;
+    display: block;
+    background-color: $violet-grey;
+    @media screen and (max-width: $desktop) {
+      height: 1px;
+    }
+  }
+
+  &::before {
+    width: 6.6%;
+    @media screen and (max-width: $desktop) {
+      width: 6%;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 5.5%;
+    }
+  }
+
+  &::after {
+    flex: 1 1 auto;
+  }
 }
