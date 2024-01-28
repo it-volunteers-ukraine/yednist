@@ -1,4 +1,192 @@
+@import "./variables.scss";
 .header {
+  width: 100%;
+  margin: 0 auto 100px;
+  max-width: 1760px;
   display: flex;
-  color: rgb(101, 75, 219);
+  border-radius: 0px 0px 40px 40px;
+  box-shadow: 0px 4px 7px 0px rgba(140, 142, 208, 0.2);
+  background: #fff;
+  padding: 12px 40px;
+  @media screen and (max-width: $full) {
+    width: auto;
+    margin: 0 60px 100px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin: 0 40px 40px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin: 0 16px 20px;
+  }
+  &__logo {
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+  }
+  &__burger__logo {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: block;
+    }
+  }
+  &__content {
+    display: flex;
+  }
+  &__first__list {
+    display: flex;
+    width: 100%;
+    max-width: 688px;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: $tablet2) {
+      flex-direction: column;
+    }
+  }
+  &__second__list {
+    display: flex;
+    width: 100%;
+    max-width: 616px;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: $tablet2) {
+      flex-direction: column;
+    }
+  }
+  &__button {
+    font-size: 20px;
+    line-height: 30px;
+    background: #1d2087;
+    color: #fff;
+    min-width: 172px;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 24px;
+      min-width: 147px;
+      max-width: 147px;
+    }
+  }
+  &__container {
+    width: 100%;
+  }
+}
+.menu {
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: $tablet2) {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+  }
+  &__container {
+    width: 100%;
+    &.open {
+      position: fixed;
+      display: flex;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      overflow: auto;
+      padding: 0 0;
+    }
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+  }
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    @media screen and (max-width: $tablet2) {
+      background: #fff;
+      box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+      width: 100%;
+      max-width: 557px;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 0px 40px 40px 0px;
+      padding: 80px 40px 36px;
+      position: relative;
+    }
+  }
+  &__close-button {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: block;
+      position: absolute;
+      right: 40px;
+      top: 20px;
+    }
+  }
+  &__icon {
+    width: 40px;
+    height: 40px;
+    fill: $blue;
+  }
+  &-item {
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: uppercase;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+      line-height: 24px; /* 24px */
+    }
+  }
+}
+
+.burger {
+  display: none;
+
+  @media screen and (max-width: $tablet2) {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 36px;
+    justify-content: flex-start;
+    height: 26px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 23px;
+    height: 18px;
+  }
+}
+
+.burger span {
+  height: 2px;
+  width: 50%;
+  transform: scale(1);
+  background-color: black;
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: $blue;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.burger::before {
+  top: 0;
+}
+
+.burger::after {
+  bottom: 0;
+}
+.custom-logo {
+  width: 60px;
+  height: 60px;
 }
