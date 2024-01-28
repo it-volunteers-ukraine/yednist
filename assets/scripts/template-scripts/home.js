@@ -1,1 +1,1 @@
-console.log("home page");
+document.addEventListener("DOMContentLoaded",(function(){new Swiper(".values-section__slider",{slidesPerView:1,spaceBetween:16,lazy:{loadOnTransitionStart:!0,loadPrevNext:!0},pagination:{el:".swiper-pagination",clickable:!0,slideToClickedSlide:!0},breakpoints:{576:{slidesPerView:3,spaceBetween:16,grid:{rows:1}}}})}));

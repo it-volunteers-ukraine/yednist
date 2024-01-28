@@ -6,7 +6,9 @@ get_header();
 ?>
 <main class="front-page__main">
   <section class="hero-section">
+
     <div class="container">
+
       <div class="inner-container hero-inner__container">
         <div class="hero-wrapper__title">
           <h2 class="hero-section__subtitle"><?php the_field('hero_subtitle'); ?></h2>
@@ -39,18 +41,22 @@ get_header();
       <h2 class="section-title"><?php the_field('our_values_title'); ?></h2>
       <div class="inner-container">
 
-        <?php if( have_rows('our_values_photos') ): ?>
-        <ul class="values-section__photos">
-          <?php while( have_rows('our_values_photos') ): the_row(); 
+        <div class="swiper values-section__slider">
+          <?php if( have_rows('our_values_photos') ): ?>
+          <ul class="swiper-wrapper values-section__wrapper">
+            <?php while( have_rows('our_values_photos') ): the_row(); 
           $image = get_sub_field('our_values_img');
           ?>
-          <li>
-            <h3><?php echo get_sub_field('our_values_photo_title'); ?></h3>
-            <?php echo wp_get_attachment_image( $image, 'full' ); ?>
-          </li>
-          <?php endwhile; ?>
-        </ul>
-        <?php endif; ?>
+            <li class="swiper-slide">
+              <h3><?php echo get_sub_field('our_values_photo_title'); ?></h3>
+              <?php echo wp_get_attachment_image( $image, 'full' ); ?>
+            </li>
+            <?php endwhile; ?>
+          </ul>
+          <?php endif; ?>
+
+          <div class="swiper-pagination"></div>
+        </div>
 
         <h3 class=""><?php the_field('our_values_subtitle'); ?></h3>
 

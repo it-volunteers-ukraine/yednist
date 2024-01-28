@@ -150,3 +150,21 @@
     display: block;
   }
 }
+
+//swiper-pagination
+.swiper-pagination {
+  position: static;
+}
+.swiper-pagination-bullet {
+  opacity: 1;
+  border: 1px solid $violet-grey;
+  background: none;
+}
+.swiper-pagination-bullet-active {
+  background-color: $violet-grey;
+}
+
+//digits section
+.digits-section__text {
+  display: flex;
+}
