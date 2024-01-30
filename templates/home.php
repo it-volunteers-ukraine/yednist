@@ -15,7 +15,7 @@ get_header();
           <h1 class="hero-section__title"><?php the_field('hero_title'); ?></h1>
         </div>
 
-        <div class="hero-wrapper__img">
+        <div class="image-wrapper hero-wrapper__img">
           <?php 
             $image = get_field('hero_photo');
             $size = 'large';
@@ -47,9 +47,11 @@ get_header();
             <?php while( have_rows('our_values_photos') ): the_row(); 
           $image = get_sub_field('our_values_img');
           ?>
-            <li class="swiper-slide">
-              <h3><?php echo get_sub_field('our_values_photo_title'); ?></h3>
-              <?php echo wp_get_attachment_image( $image, 'full' ); ?>
+            <li class="swiper-slide values-section__slide">
+              <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
+              <div class="image-wrapper values-section__image">
+                <?php echo wp_get_attachment_image( $image, 'full' ); ?>
+              </div>
             </li>
             <?php endwhile; ?>
           </ul>
@@ -58,12 +60,12 @@ get_header();
           <div class="swiper-pagination"></div>
         </div>
 
-        <h3 class=""><?php the_field('our_values_subtitle'); ?></h3>
+        <h3 class="section-title values-section__subtitle"><?php the_field('our_values_subtitle'); ?></h3>
 
         <?php if( have_rows('our_values_texts') ): ?>
-        <ul class="values-section__text">
+        <ul class="values-section__texts">
           <?php while( have_rows('our_values_texts') ): the_row(); ?>
-          <li>
+          <li class="values-section__text">
             <p><?php echo get_sub_field('our_values_text'); ?></p>
           </li>
           <?php endwhile; ?>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const valuesSwiper = new Swiper(".values-section__slider", {
     slidesPerView: 1,
-    spaceBetween: 16,
+    spaceBetween: 10,
     lazy: {
       loadOnTransitionStart: true,
       loadPrevNext: true,
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     breakpoints: {
       576: {
         slidesPerView: 3,
-        spaceBetween: 16,
         grid: {
           rows: 1,
         },
