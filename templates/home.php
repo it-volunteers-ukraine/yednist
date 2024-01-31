@@ -60,6 +60,28 @@ get_header();
           <div class="swiper-pagination"></div>
         </div>
 
+        <div class="values-section__flex">
+          <?php if( have_rows('our_values_photos') ): ?>
+          <ul class="values-flex__titles">
+            <?php while( have_rows('our_values_photos') ): the_row(); ?>
+            <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
+            <?php endwhile; ?>
+          </ul>
+
+          <ul class="values-flex__wrapper">
+            <?php while( have_rows('our_values_photos') ): the_row(); 
+            $image = get_sub_field('our_values_img');
+          ?>
+            <li class="values-flex__slide">
+              <div class="image-wrapper values-section__image">
+                <?php echo wp_get_attachment_image( $image, 'full' ); ?>
+              </div>
+            </li>
+            <?php endwhile; ?>
+          </ul>
+          <?php endif; ?>
+        </div>
+
         <h3 class="section-title values-section__subtitle"><?php the_field('our_values_subtitle'); ?></h3>
 
         <?php if( have_rows('our_values_texts') ): ?>
@@ -87,8 +109,8 @@ get_header();
         <ul class="digits-section__text">
           <?php while( have_rows('our_digits_blok') ): the_row(); ?>
           <li>
-            <p><?php echo get_sub_field('number'); ?></p>
-            <p><?php echo get_sub_field('caption'); ?></p>
+            <p class="digits-section__number"><?php echo get_sub_field('number'); ?></p>
+            <p class="digits-section__caption"><?php echo get_sub_field('caption'); ?></p>
           </li>
           <?php endwhile; ?>
         </ul>

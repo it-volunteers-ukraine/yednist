@@ -11,13 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
       clickable: true,
       slideToClickedSlide: true,
     },
-    breakpoints: {
-      576: {
-        slidesPerView: 3,
-        grid: {
-          rows: 1,
-        },
-      },
-    },
   });
 });
