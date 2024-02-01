@@ -304,8 +304,7 @@
 .digits-section__number {
   color: $white;
   -webkit-text-stroke: 2px $blue;
-  alignment: outside;
-  font-family: "Fira Sans";
+  font-family: "Fira Sans", sans-serif;
   font-size: 160px;
   font-weight: 900;
   line-height: 1;
