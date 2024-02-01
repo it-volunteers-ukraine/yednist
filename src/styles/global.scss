@@ -84,6 +84,25 @@
   color: $blue;
 }
 
+
+// page-title
+.page-title{
+  font-size: 64px;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  color: $blue;
+
+  @media screen and (max-width: $desktop) {
+    font-size: 40px;
+  }
+
+  @media screen and (max-width: $tablet2) {
+    font-size: 28px;
+  }
+}
+
+
 //section title
 .section-title {
   display: flex;
