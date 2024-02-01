@@ -19,3 +19,23 @@ function closeByBgdClick(e) {
     hideMenu();
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  // Получаем элементы для работы с выпадающим списком
+  const languageDropdown = document.querySelector(".language-dropdown");
+  const languageDropdownContent = document.querySelector(
+    ".language-dropdown-content"
+  );
+
+  // Добавляем обработчик клика для открытия/закрытия выпадающего списка
+  languageDropdown.addEventListener("click", function () {
+    languageDropdownContent.style.display =
+      languageDropdownContent.style.display === "flex" ? "none" : "flex";
+  });
+
+  // Закрываем выпадающий список при клике вне него
+  document.addEventListener("click", function (event) {
+    if (!languageDropdown.contains(event.target)) {
+      languageDropdownContent.style.display = "none";
+    }
+  });
+});

@@ -1,13 +1,11 @@
 @import "./variables.scss";
 .header {
-  width: 100%;
-  margin: 0 auto 100px;
-  max-width: 1760px;
   display: flex;
   border-radius: 0px 0px 40px 40px;
   box-shadow: 0px 4px 7px 0px rgba(140, 142, 208, 0.2);
   background: #fff;
   padding: 12px 40px;
+  margin: 0 60px 100px;
   @media screen and (max-width: $full) {
     width: auto;
     margin: 0 60px 100px;
@@ -35,21 +33,23 @@
   &__first__list {
     display: flex;
     width: 100%;
-    max-width: 688px;
     justify-content: space-between;
     align-items: center;
     @media screen and (max-width: $tablet2) {
       flex-direction: column;
+      height: 100%;
     }
   }
   &__second__list {
     display: flex;
-    width: 100%;
-    max-width: 616px;
     justify-content: space-between;
     align-items: center;
     @media screen and (max-width: $tablet2) {
-      flex-direction: column;
+      flex-direction: row;
+      order: 3;
+      border-top: 1px solid $violet-grey;
+      padding-top: 12px;
+      margin: auto 0 0;
     }
   }
   &__button {
@@ -63,6 +63,10 @@
       line-height: 24px;
       min-width: 147px;
       max-width: 147px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin: 32px 0 0;
+      align-self: flex-start;
     }
   }
   &__container {
@@ -100,18 +104,32 @@
   &__content {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: space-evenly;
     @media screen and (max-width: $tablet2) {
       background: #fff;
       box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
       width: 100%;
       max-width: 557px;
+      gap: 32px;
       flex-direction: column;
       justify-content: flex-start;
       border-radius: 0px 40px 40px 0px;
       padding: 80px 40px 36px;
       position: relative;
+      max-height: 724px;
+    }
+    @media screen and (max-width: $mobile) {
+      background: #fff;
+      box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+      width: 100%;
+      max-width: 228px;
+      gap: 12px;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 0px 40px 40px 0px;
+      padding: 80px 40px 36px;
+      position: relative;
+      max-height: 541px;
     }
   }
   &__close-button {
@@ -121,6 +139,7 @@
       position: absolute;
       right: 40px;
       top: 20px;
+      cursor: pointer;
     }
   }
   &__icon {
@@ -132,17 +151,25 @@
     font-size: 20px;
     line-height: 30px;
     text-transform: uppercase;
-    @media screen and (max-width: $desktop) {
+    transition: all $transition-function;
+    @media screen and (max-width: $tablet2) {
+      width: 100%;
+      text-align: left;
+      padding: 12px 8px;
       font-size: 16px;
       line-height: 24px;
+      border-bottom: 1px solid $violet-grey;
+      color: $blue;
     }
-    @media screen and (max-width: $mobile) {
-      font-size: 16px;
-      line-height: 24px; /* 24px */
+    &:hover,
+    &:focus {
+      color: $blue;
     }
   }
 }
-
+.current_page_item a {
+  color: $blue;
+}
 .burger {
   display: none;
 
@@ -189,4 +216,96 @@
 .custom-logo {
   width: 60px;
   height: 60px;
+}
+.language-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  &:hover {
+    color: #1d2087;
+    text-decoration-line: underline;
+  }
+  @media screen and (max-width: $tablet2) {
+    order: 1;
+    width: 100%;
+    margin: auto 0 0;
+  }
+  & p,
+  & img {
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+  }
+}
+
+.language-dropdown-content {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  border-radius: 24px;
+  top: -20%;
+  left: -50%;
+  border: 1px solid #ccd1ff;
+  padding: 8px 16px;
+  background: #f7f7fc;
+  z-index: 1;
+  gap: 6px;
+  @media screen and (max-width: $tablet2) {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    border-top: 1px solid #8c8ed0;
+    justify-content: space-between;
+  }
+}
+
+.lang-item {
+  display: inline;
+}
+.language-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  & img {
+    display: block;
+  }
+}
+.language-wrapper {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 8px 3px;
+  border-bottom: 1px solid #ccd1ff;
+
+  color: black;
+  font-size: 20px;
+  line-height: 30px;
+  text-decoration: none;
+  & input,
+  & label {
+    cursor: pointer;
+    accent-color: #8c8ed0;
+    mix-blend-mode: multiply;
+  }
+  @media screen and (max-width: $tablet2) {
+    & input {
+      display: none;
+    }
+    &.current {
+      background-color: #ccd1ff;
+      border-radius: 24px;
+      padding: 0 16px;
+    }
+    border: none;
+  }
+}
+.language__current {
+  font-size: 20px;
+  line-height: 30px;
 }
