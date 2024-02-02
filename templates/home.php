@@ -161,6 +161,34 @@ get_header();
     </div>
   </section>
 
+  <section class="section our-partners-section">
+    <div class="container">
+      <h2 class="section-title"><?php the_field('home_our_partners_title'); ?></h2>
+      <div class="inner-container">
+
+        <?php $images = get_field('home_our_partners_gallery'); ?>
+        <div class="swiper our-partners-section__slider">
+          <?php if( $images ): ?>
+          <ul class="swiper-wrapper our-partners-section__wrapper">
+            <?php foreach( $images as $image ): ?>
+            <li class="swiper-slide our-partners-section__photo">
+              <div class="our-partners-section__image">
+                <img class="our-partners-section__img" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
+                  alt="<?php echo esc_attr($image['alt']); ?>">
+              </div>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+          <?php endif; ?>
+
+        </div>
+
+        <a class="button primary-button home_our_partners_btn"
+          href="<?php echo esc_attr(get_field('all_partners_link', 'option') ); ?>"><?php the_field('all_partners_btn', 'option'); ?></a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 

@@ -77,4 +77,24 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     },
   });
+
+  const partnersSwiper = new Swiper(".our-partners-section__slider", {
+    slidesPerView: 2,
+    spaceBetween: 16,
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      576: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+    },
+  });
 });
