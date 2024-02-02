@@ -209,12 +209,34 @@
 //swiper-pagination
 .swiper-pagination {
   position: static;
+  padding-bottom: 3px;
 }
 .swiper-pagination-bullet {
   opacity: 1;
   border: 1px solid $violet-grey;
   background: none;
+  width: 16px;
+  height: 16px;
+  @media screen and (max-width: $tablet2) {
+    width: 12px;
+    height: 12px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 8px;
+    height: 8px;
+  }
 }
+
+.swiper-custom-pagination .swiper-pagination-bullet:not(:last-child) {
+  margin-right: 12px;
+  @media screen and (max-width: $tablet2) {
+    margin-right: 8px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-right: 4px;
+  }
+}
+
 .swiper-pagination-bullet-active {
   background-color: $violet-grey;
 }
@@ -297,16 +319,151 @@
 }
 
 //digits section
+.digits-section__slider {
+  @media screen and (max-width: $mobile) {
+    max-width: 203px;
+  }
+}
+
+.digits-section__wrapper {
+  column-gap: 20px;
+  justify-content: space-between;
+  @media screen and (max-width: $mobile) {
+    column-gap: 0;
+  }
+}
+
 .digits-section__text {
-  display: flex;
+  max-width: 360px;
+  @media screen and (max-width: $desktop) {
+    max-width: 300px;
+  }
+  @media screen and (max-width: 1200px) {
+    max-width: 203px;
+  }
+  @media screen and (max-width: 700px) {
+    max-width: 160px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-width: 100%;
+  }
 }
 
 .digits-section__number {
+  position: relative;
+  margin-bottom: 24px;
   color: $white;
-  -webkit-text-stroke: 2px $blue;
+  text-shadow: 2px 0 2px $blue, 0 2px 2px $blue, -2px 0 2px $blue,
+    0 -2px 2px $blue;
   font-family: "Fira Sans", sans-serif;
   font-size: 160px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 4.8px;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $blue;
+    transition: width 2s ease-in-out;
+  }
+
+  @media screen and (max-width: $desktop) {
+    font-size: 128px;
+  }
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 13px;
+    font-size: 84px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 60px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 84px;
+  }
+}
+
+.digits-section__text:nth-child(2) .digits-section__number::before {
+  transition-delay: 1s;
+}
+.digits-section__text:nth-child(3) .digits-section__number::before {
+  transition-delay: 2s;
+}
+
+.digits-section__number.element-show::before {
+  width: 58%;
+}
+
+.digits-section__caption {
+  font-size: 24px;
+  @media screen and (max-width: $desktop) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 16px;
+  }
+}
+
+//moments section
+
+.moments-section__slider {
+  position: relative;
+}
+
+.moments-section__wrapper {
+  margin-bottom: 20px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 0;
+  }
+}
+
+.moments-section__image {
+  padding-bottom: 81%;
+  @media screen and (max-width: $mobile) {
+    padding-bottom: 78%;
+  }
+}
+
+.swiper-custom-navigation {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  width: 240px;
+  @media screen and (max-width: $tablet2) {
+    display: none;
+  }
+}
+
+.custom-button-next svg,
+.custom-button-prev svg {
+  cursor: pointer;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  fill: $black;
+  transition: $transition-function;
+  &:hover {
+    fill: $blue;
+    border: 1px solid $blue;
+  }
+}
+
+.custom-button-next.swiper-button-disabled svg,
+.custom-button-prev.swiper-button-disabled svg {
+  fill: $grey;
 }
