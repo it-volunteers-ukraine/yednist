@@ -1,1 +1,1 @@
-console.log("footer part"),console.log("header"),console.log("main");
+console.log("footer part");const elList=document.querySelectorAll(".acc-show"),handleAccToggle=e=>{if(window.innerWidth>767.97)return;const n=e.target.nextElementSibling;n.classList.contains("expanded")?n.classList.remove("expanded"):n.classList.add("expanded")};elList.forEach((e=>e.addEventListener("click",handleAccToggle))),console.log("header"),console.log("main");

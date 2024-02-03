@@ -15,12 +15,21 @@ h3 {
 .footer {
   color: pink;
 
-  &-container {
+  &-top-container {
     display: flex;
     gap: 100px;
+    margin-bottom: 60px;
+    @media screen and (max-width: $tablet2) {
+      gap: 38px;
+    }
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+    }
   }
 
   &__list {
+    display: flex;
+    flex-direction: column;
     gap: 16px;
   }
 
@@ -35,10 +44,7 @@ h3 {
       font-size: 32px;
     }
     @media screen and (max-width: $tablet2) {
-      gap: 16px;
-      margin-bottom: 20px;
-      font-size: 20px;
-      line-height: 1.5;
+      display: none;
     }
     @media screen and (max-width: $mobile) {
       font-size: 18px;
@@ -52,6 +58,76 @@ h3 {
   }
 
   &__address-wrapper {
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+    }
+  }
+
+  &-title-tablet {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+      gap: 16px;
+      font-weight: 300;
+      color: $blue;
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+  }
+
+  &-label-tablet {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 54px;
+    }
+  }
+
+  &__logo {
+    margin-bottom: 176px;
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &-icons-mobile {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: flex;
+    }
+  }
+
+  &-about-title-mobile {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: block;
+    }
+  }
+  &-bottom-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.acc-container {
+  height: 0;
+  overflow: hidden;
+
+  &.expanded {
+    height: auto;
   }
 }
