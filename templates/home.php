@@ -59,7 +59,7 @@ get_header();
           </ul>
           <?php endif; ?>
 
-          <div class="swiper-pagination"></div>
+          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
         </div>
 
         <div class="values-section__flex">
@@ -117,7 +117,7 @@ get_header();
             <?php endwhile; ?>
           </ul>
           <?php endif; ?>
-          <div class="swiper-pagination"></div>
+          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
         </div>
       </div>
     </div>
@@ -143,19 +143,8 @@ get_header();
           </ul>
           <?php endif; ?>
 
-          <div class="swiper-pagination swiper-custom-pagination"></div>
-          <div class="swiper-custom-navigation">
-            <div class="custom-button-prev">
-              <svg class="">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
-              </svg>
-            </div>
-            <div class="custom-button-next">
-              <svg class="">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
-              </svg>
-            </div>
-          </div>
+          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
+          <?php get_template_part( 'template-parts/swiper-navigation'); ?>
         </div>
       </div>
     </div>
@@ -185,6 +174,50 @@ get_header();
 
         <a class="button primary-button home_our_partners_btn"
           href="<?php echo esc_attr(get_field('all_partners_link', 'option') ); ?>"><?php the_field('all_partners_btn', 'option'); ?></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title"><?php the_field('common_questions_title'); ?></h2>
+      <div class="inner-container">
+
+        <?php if( have_rows('common_questions_block') ): ?>
+        <ul class="common-questions__wrapper">
+          <?php while( have_rows('common_questions_block') ): the_row(); ?>
+          <li class="common-questions__text ">
+
+            <div class="common-questions__box accordion">
+              <p class="common-questions__question"><?php echo get_sub_field('common_question'); ?></p>
+
+              <svg class="plus-icon" width="40px" height="40px">
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#plus-icon"></use>
+              </svg>
+
+              <svg class="minus-icon" width="40px" height="40px">
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#minus-icon"></use>
+              </svg>
+            </div>
+
+            <p class="common-questions__answer panel"><?php echo get_sub_field('answer'); ?></p>
+
+          </li>
+          <?php endwhile; ?>
+        </ul>
+        <?php endif; ?>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title"><?php the_field('feedbacks_title'); ?></h2>
+      <div class="inner-container">
+
+        <button class="button secondary-button"
+          type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
       </div>
     </div>
   </section>

@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
   let observer = new IntersectionObserver(onEntry);
   let elements = document.querySelectorAll(".digits-js");
   for (let elm of elements) {
@@ -97,4 +96,20 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     },
   });
+
+  // accordion
+  const acc = document.getElementsByClassName("accordion");
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
 });
