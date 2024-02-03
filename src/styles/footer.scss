@@ -1,3 +1,57 @@
+h3 {
+  color: $blue;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  text-transform: uppercase;
+  @media screen and (max-width: $desktop) {
+  }
+  @media screen and (max-width: $tablet2) {
+  }
+  @media screen and (max-width: $mobile) {
+  }
+}
+
 .footer {
-    color: pink;
+  color: pink;
+
+  &-container {
+    display: flex;
+    gap: 100px;
+  }
+
+  &__list {
+    gap: 16px;
+  }
+
+  &-title {
+    margin-bottom: 32px;
+    color: $blue;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    @media screen and (max-width: $desktop) {
+      font-size: 32px;
+    }
+    @media screen and (max-width: $tablet2) {
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+    }
+  }
+
+  &__social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__address-wrapper {
+    gap: 16px;
+  }
 }
