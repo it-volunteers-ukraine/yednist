@@ -1,0 +1,44 @@
+@import "../variables";
+
+.custom-button-next,
+.custom-button-prev {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 41%;
+  @media screen and (max-width: 1200px) {
+    left: 38%;
+  }
+  @media screen and (max-width: $tablet2) {
+    display: none;
+  }
+}
+
+.custom-button-next {
+  left: 59%;
+  @media screen and (max-width: 1200px) {
+    left: 62%;
+  }
+}
+
+.custom-button-next svg,
+.custom-button-prev svg {
+  cursor: pointer;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  fill: $black;
+  transition: $transition-function;
+  &:hover {
+    fill: $blue;
+    border: 1px solid $blue;
+  }
+}
+
+.custom-button-next.swiper-button-disabled svg,
+.custom-button-prev.swiper-button-disabled svg {
+  fill: $grey;
+  cursor: auto;
+  border: none;
+}
