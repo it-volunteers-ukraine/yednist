@@ -194,11 +194,11 @@ get_header();
               class="common-questions__box accordion">
               <p class="common-questions__question"><?php echo get_sub_field('common_question'); ?></p>
 
-              <svg class="plus-icon" width="40px" height="40px">
+              <svg class="plus-icon" width="20px" height="20px">
                 <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#plus-icon"></use>
               </svg>
 
-              <svg class="minus-icon" width="40px" height="40px">
+              <svg class="minus-icon" width="20px" height="20px">
                 <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#minus-icon"></use>
               </svg>
             </div>
@@ -246,6 +246,10 @@ get_header();
           <button class="button secondary-button"
             type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
 
+          <?php
+              $gallery_shortcode = '[simple_masonry id="163" title="Відгуки" sm_post_type="feedbacks" gallery="yes"]';
+              print apply_filters( 'the_content', $gallery_shortcode );
+          ?>
 
         </div>
       </div>

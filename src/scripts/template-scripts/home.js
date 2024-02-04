@@ -116,13 +116,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
-  // const feedbackSwiper = new Swiper(".feedback-section__slider", {
-  //   slidesPerView: 1,
-  //   spaceBetween: 10,
-  //   navigation: {
-  //     nextEl: ".custom-button-next",
-  //     prevEl: ".custom-button-prev",
-  //   },
-  // });
 });

@@ -447,13 +447,15 @@
 .common-questions__wrapper {
   width: 100%;
   padding: 40px 60px;
-  border-radius: 40px;
+  border-radius: $bid-border-radius;
   border: 1px solid $black;
   background-color: $lavender;
+  overflow: hidden;
   @media screen and (max-width: $desktop) {
     padding: 20px 40px;
   }
   @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
     padding: 20px;
   }
   @media screen and (max-width: $mobile) {
@@ -500,7 +502,17 @@
 
 .plus-icon,
 .minus-icon {
+  min-width: 40px;
+  min-height: 40px;
   transition: all $transition-function;
+  @media screen and (max-width: $tablet2) {
+    min-width: 24px;
+    min-height: 24px;
+  }
+  @media screen and (max-width: $mobile) {
+    min-width: 20px;
+    min-height: 20px;
+  }
 }
 
 .panel {
