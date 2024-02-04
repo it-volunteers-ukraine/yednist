@@ -147,6 +147,8 @@
 
 //values section
 
+//values section
+
 .values-section__slider {
   display: none;
   @media screen and (max-width: $mobile) {
@@ -166,7 +168,6 @@
 }
 
 .values-flex__wrapper,
-.values-flex__titles,
 .values-section__texts {
   display: flex;
   justify-content: space-between;
@@ -175,17 +176,14 @@
 
 .values-section__title {
   text-align: center;
+  margin: 0 auto;
   margin-bottom: 20px;
-  width: 425px;
+  width: fit-content;
   @media screen and (max-width: $desktop) {
     margin-bottom: 12px;
-    width: 315px;
   }
   @media screen and (max-width: $tablet2) {
     margin-bottom: 8px;
-  }
-  @media screen and (max-width: 768px) {
-    width: 203px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;
@@ -317,6 +315,7 @@
 .digits-section__number {
   position: relative;
   margin-bottom: 24px;
+  padding-left: 2px;
   color: $white;
   text-shadow: 2px 0 2px $blue, 0 2px 2px $blue, -2px 0 2px $blue,
     0 -2px 2px $blue;
@@ -579,7 +578,7 @@
   width: 100%;
   padding: 40px;
   border-radius: $bid-border-radius;
-  border: $violet-grey;
+  border: 1px solid $violet-grey;
   background: $white;
   @media screen and (max-width: $tablet2) {
     border-radius: $small-border-radius;
