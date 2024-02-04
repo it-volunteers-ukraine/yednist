@@ -1,24 +1,52 @@
 h3 {
   color: $blue;
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   text-transform: uppercase;
+  margin-bottom: 20px;
   @media screen and (max-width: $desktop) {
+    font-size: 16px;
   }
   @media screen and (max-width: $tablet2) {
+    margin-bottom: 16px;
   }
   @media screen and (max-width: $mobile) {
   }
 }
 
-.footer {
-  color: pink;
+.container {
+  border-radius: 40px 40px 0px 0px;
+  background: var(--White, #fff);
+  box-shadow: 0px -4px 7px 0px rgba(140, 142, 208, 0.2);
+  padding: 60px 138px 40px 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+  @media screen and (max-width: $desktop) {
+    padding: 60px 60px 48px 60px;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 40px 20px 34px 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 12px 12px 20px 12px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
 
+.footer {
   &-top-container {
     display: flex;
-    gap: 100px;
+    gap: 160px;
     margin-bottom: 60px;
+    @media screen and (max-width: $desktop) {
+      gap: 106px;
+    }
     @media screen and (max-width: $tablet2) {
       gap: 38px;
     }
@@ -31,6 +59,12 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+    }
   }
 
   &-title {
@@ -40,8 +74,10 @@ h3 {
     font-weight: 300;
     line-height: normal;
     text-transform: uppercase;
+    width: 513px;
     @media screen and (max-width: $desktop) {
       font-size: 32px;
+      width: 450px;
     }
     @media screen and (max-width: $tablet2) {
       display: none;
@@ -51,10 +87,31 @@ h3 {
     }
   }
 
+  &-label {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+  }
+
   &__social-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+    }
   }
 
   &__address-wrapper {
@@ -79,6 +136,21 @@ h3 {
       margin-bottom: 20px;
       font-size: 20px;
       line-height: 1.5;
+      width: 195px;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+      width: 131px;
+    }
+  }
+
+  &__logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (max-width: $tablet2) {
+      align-items: start;
+      justify-content: space-between;
     }
   }
 
@@ -93,14 +165,20 @@ h3 {
       line-height: 1.6;
       margin-bottom: 54px;
     }
+    @media screen and (max-width: $mobile) {
+      display: none;
+    }
   }
 
   &__logo {
     margin-bottom: 176px;
     @media screen and (max-width: $tablet2) {
       display: flex;
-      gap: 16px;
       margin-bottom: 16px;
+    }
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
@@ -108,6 +186,7 @@ h3 {
     display: none;
     @media screen and (max-width: $mobile) {
       display: flex;
+      margin-bottom: 25px;
     }
   }
 
@@ -120,14 +199,32 @@ h3 {
   &-bottom-container {
     display: flex;
     justify-content: space-between;
+    border-top: 2px solid $violet-grey;
+    padding-top: 32px;
   }
 }
 
 .acc-container {
-  height: 0;
-  overflow: hidden;
+  @media screen and (max-width: $mobile) {
+    height: 0;
+    overflow: hidden;
 
-  &.expanded {
-    height: auto;
+    &.expanded {
+      height: auto;
+    }
+  }
+}
+
+img.custom-logo {
+  width: 160px;
+  height: 160px;
+  @media screen and (max-width: $desktop) {
+    width: 120px;
+    height: 120px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 80px;
+    height: 80px;
+    margin-right: 16px;
   }
 }

@@ -3,7 +3,7 @@
         <div class="footer-top-container">
             <div class="footer__logo-wrapper">
                 <div class="footer__logo">
-                    <a href="#">
+                    <a class="footer__logo-img" href="#">
                         <?php if ( has_custom_logo() ) { echo get_custom_logo(); } ?>                
                     </a>
                     <h2 class="footer-title-tablet"><?php the_field('org_title', 'option'); ?></h2>       
@@ -32,6 +32,7 @@
             </div>
             <nav class="footer__nav-wrapper">
                 <h3 class="acc-show"><?php the_field('nav_title', 'option'); ?></h3>
+            
                 <?php wp_nav_menu( [
                     'theme_location'       => 'footer',                          
                     'container'            => false,                           
