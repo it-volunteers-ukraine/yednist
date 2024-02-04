@@ -54,6 +54,10 @@ function wp_it_volunteers_scripts() {
     if (is_singular() && locate_template('template-parts/swiper-pagination.php')) {
       wp_enqueue_style('swiper-pagination-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/swiper-pagination.css', array('main'));
     }
+    
+    if (is_singular() && locate_template('template-parts/feedback-posts.php')) {
+      wp_enqueue_style('feedback-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/feedback-posts.css', array('main'));
+    }
 
 
 }

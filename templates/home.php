@@ -45,18 +45,18 @@ get_header();
 
         <div class="swiper values-section__slider">
           <?php if( have_rows('our_values_photos') ): ?>
-          <ul class="swiper-wrapper values-section__wrapper">
+          <div class="swiper-wrapper values-section__wrapper">
             <?php while( have_rows('our_values_photos') ): the_row(); 
           $image = get_sub_field('our_values_img');
           ?>
-            <li class="swiper-slide values-section__slide">
+            <div class="swiper-slide values-section__slide">
               <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
               <div class="image-wrapper values-section__image">
                 <?php echo wp_get_attachment_image( $image, 'full' ); ?>
               </div>
-            </li>
+            </div>
             <?php endwhile; ?>
-          </ul>
+          </div>
           <?php endif; ?>
 
           <?php get_template_part( 'template-parts/swiper-pagination'); ?>
@@ -66,7 +66,9 @@ get_header();
           <?php if( have_rows('our_values_photos') ): ?>
           <ul class="values-flex__titles">
             <?php while( have_rows('our_values_photos') ): the_row(); ?>
-            <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
+            <li>
+              <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
+            </li>
             <?php endwhile; ?>
           </ul>
 
@@ -108,14 +110,14 @@ get_header();
 
         <div class="swiper digits-section__slider">
           <?php if( have_rows('our_digits_block') ): ?>
-          <ul class="swiper-wrapper digits-section__wrapper">
+          <div class="swiper-wrapper digits-section__wrapper">
             <?php while( have_rows('our_digits_blok') ): the_row(); ?>
-            <li class="swiper-slide digits-section__text">
+            <div class="swiper-slide digits-section__text">
               <p id="digits-js" class="digits-section__number digits-js"><?php echo get_sub_field('number'); ?></p>
               <p class="digits-section__caption"><?php echo get_sub_field('caption'); ?></p>
-            </li>
+            </div>
             <?php endwhile; ?>
-          </ul>
+          </div>
           <?php endif; ?>
           <?php get_template_part( 'template-parts/swiper-pagination'); ?>
         </div>
@@ -131,16 +133,16 @@ get_header();
         <?php $images = get_field('moments_gallery'); ?>
         <div class="swiper moments-section__slider">
           <?php if( $images ): ?>
-          <ul class="swiper-wrapper moments-section__wrapper">
+          <div class="swiper-wrapper moments-section__wrapper">
             <?php foreach( $images as $image ): ?>
-            <li class="swiper-slide moments-section__photo">
+            <div class="swiper-slide moments-section__photo">
               <div class="image-wrapper moments-section__image">
                 <img class="swiper-lazy" loading="lazy" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
                   alt="<?php echo esc_attr($image['alt']); ?>">
               </div>
-            </li>
+            </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
           <?php endif; ?>
 
           <?php get_template_part( 'template-parts/swiper-pagination'); ?>
@@ -158,16 +160,16 @@ get_header();
         <?php $images = get_field('home_our_partners_gallery'); ?>
         <div class="swiper our-partners-section__slider">
           <?php if( $images ): ?>
-          <ul class="swiper-wrapper our-partners-section__wrapper">
+          <div class="swiper-wrapper our-partners-section__wrapper">
             <?php foreach( $images as $image ): ?>
-            <li class="swiper-slide our-partners-section__photo">
+            <div class="swiper-slide our-partners-section__photo">
               <div class="our-partners-section__image">
                 <img class="our-partners-section__img" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
                   alt="<?php echo esc_attr($image['alt']); ?>">
               </div>
-            </li>
+            </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
           <?php endif; ?>
 
         </div>
@@ -188,7 +190,8 @@ get_header();
           <?php while( have_rows('common_questions_block') ): the_row(); ?>
           <li class="common-questions__text ">
 
-            <div class="common-questions__box accordion">
+            <div aria-controls="panel<?php echo get_row_index(); ?>" role="button" aria-expanded="false"
+              class="common-questions__box accordion">
               <p class="common-questions__question"><?php echo get_sub_field('common_question'); ?></p>
 
               <svg class="plus-icon" width="40px" height="40px">
@@ -200,7 +203,8 @@ get_header();
               </svg>
             </div>
 
-            <p class="common-questions__answer panel"><?php echo get_sub_field('answer'); ?></p>
+            <p id="panel<?php echo get_row_index(); ?>" role="region" class="common-questions__answer panel">
+              <?php echo get_sub_field('answer'); ?></p>
 
           </li>
           <?php endwhile; ?>
@@ -216,8 +220,11 @@ get_header();
       <h2 class="section-title"><?php the_field('feedbacks_title'); ?></h2>
       <div class="inner-container">
 
-        <button class="button secondary-button"
-          type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
+        <div class="feedback-section__slide">
+
+
+
+        </div>
       </div>
     </div>
   </section>

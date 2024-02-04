@@ -151,35 +151,3 @@
     flex: 1 1 auto;
   }
 }
-
-//general settings for accordion
-
-.accordion {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.plus-icon,
-.minus-icon {
-  transition: all $transition-function;
-}
-
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height $transition-function;
-}
-
-.minus-icon {
-  display: none;
-}
-
-.accordion.active {
-  & .minus-icon {
-    display: block;
-  }
-  & .plus-icon {
-    display: none;
-  }
-}
