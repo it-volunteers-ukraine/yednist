@@ -222,6 +222,29 @@ get_header();
 
         <div class="feedback-section__slide">
 
+          <?php
+          $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+          $args = [ 
+            'post_type'      => 'feedbacks',
+            'posts_per_page' => 1,
+            'paged'          => $current_page
+          ];
+          
+          query_posts( $args );
+          
+              if ( have_posts() ) : 
+            /* Start the Loop */
+                while ( have_posts() ) : the_post();
+                
+                  get_template_part( 'template-parts/feedback-posts' );
+
+                endwhile;
+                wp_reset_query();
+              endif; ?>
+
+          <button class="button secondary-button"
+            type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
 
 
         </div>
