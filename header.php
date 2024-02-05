@@ -10,8 +10,9 @@
 </head>
 <body>
     <div class="wrapper">
-    <header class="header">
-        <div class="header__container">
+
+    <header class="header" style="">
+    <div class="header__container">
                 <div class="menu__body" id="">
                                <div class="menu__container">
                                     <div class="menu__content">
@@ -19,10 +20,9 @@
                                             <svg class="menu__icon">
                                 <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#close"></use></svg>
                             </div>
-                            <ul class="header__first__list">
                                 <?php
                                 $current_language = pll_current_language('name');
-                                $menu_id = ($current_language == 'EN') ? 'header-menu-english' : 'header-menu';
+                                $menu_id = ($current_language == 'EN') ? 'header-menu-english' : $current_language === 'UK' ? 'header-menu' : 'header-menu-polish';
                                 $menu_items = wp_get_nav_menu_items($menu_id);
                                 $middle_index = ceil(5);
                                 
@@ -30,20 +30,26 @@
                                 $menu_last = array_key_last($menu_items);
                                 $menu_right = array_slice($menu_items, $middle_index);
                                 
+                                echo '<ul class="header__first__list" style="display:flex;align-items: center;
+                                width: 100%;
+                                justify-content: space-between;">';
                                 foreach ($menu_left as $menu_item) {
                                     $current_class = (is_page($menu_item->object_id)) ? 'current_page_item' : '';
                                     echo '<li class="menu-item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                                 }
+                                echo '</ul>';
                                 ?>
-
-                            <li class="header__logo">
+                                 <div class="header__logo" style="justify-self: center;">
                                 <?php
                                 if (has_custom_logo()) {
                                     echo get_custom_logo();
                                 }
                                 ?>
-                            </li>
+                                </div>
                                 <?php
+                                echo '<ul class="header__second__list" style="display:flex;align-items: center;
+                                width: 100%;
+                                justify-content: space-between;">';
                                     foreach ($menu_right as $index => $menu_item) {
                                         if ($index !== 2) {
                                             $current_class = (is_page($menu_item->object_id)) ? 'current_page_item' : '';
@@ -62,7 +68,7 @@
                                                         echo '<div class="language-dropdown-content">';
                                                         foreach ($languages as $language) {
                                                          if($current_language === $language['name']){
-                                                            echo '<div class="language-wrapper current" style="order: -1">';
+                                                            echo '<div class="language-wrapper current"">';
                                                              echo '<input type="radio" style="width: 16px;" checked />';
                                                              echo '<label class="language-label">'. esc_html($language['name']) .' '.$language['flag'].'</label>';
                                                              echo '</div>';
@@ -83,9 +89,10 @@
                                             echo '<li class="button secondary_button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                                         }
                                     }
+                                    echo '</ul>';
                                 ?>
                             </ul>
-                                    </div>
+                            </div>
                                </div>
                                <div class="header__burger__logo">
                                             <?php

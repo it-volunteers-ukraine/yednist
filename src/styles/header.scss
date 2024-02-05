@@ -1,29 +1,32 @@
 @import "./variables.scss";
 .header {
-  display: flex;
   border-radius: 0px 0px 40px 40px;
   box-shadow: 0px 4px 7px 0px rgba(140, 142, 208, 0.2);
   background: #fff;
   padding: 12px 40px;
   margin: 0 60px 100px;
-  @media screen and (max-width: $full) {
-    width: auto;
+  margin: 0 80px 100px;
+  @media screen and (max-width: $desktop) {
     margin: 0 60px 100px;
+    padding: 20px 40px 8px;
   }
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
     margin: 0 40px 40px;
+    padding: 12px 20px;
   }
   @media screen and (max-width: $mobile) {
     margin: 0 16px 20px;
+    padding: 8px 16px;
   }
   &__logo {
-    @media screen and (max-width: $tablet2) {
+    width: 100%;
+    @media screen and (max-width: $desktop1) {
       display: none;
     }
   }
   &__burger__logo {
     display: none;
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       display: block;
     }
   }
@@ -35,38 +38,48 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       flex-direction: column;
-      height: 100%;
     }
   }
   &__second__list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: $tablet2) {
-      flex-direction: row;
+    @media screen and (max-width: $desktop1) {
+      flex-direction: column;
       order: 3;
-      border-top: 1px solid $violet-grey;
-      padding-top: 12px;
       margin: auto 0 0;
+      height: 100%;
     }
   }
   &__button {
-    font-size: 20px;
-    line-height: 30px;
     background: #1d2087;
     color: #fff;
     min-width: 172px;
+    @media screen and (max-width: $full) {
+      font-size: 20px;
+      line-height: 30px;
+      min-width: 189px;
+      max-width: 189px;
+    }
     @media screen and (max-width: $desktop) {
       font-size: 16px;
       line-height: 24px;
-      min-width: 147px;
-      max-width: 147px;
+      min-width: 161px;
+      max-width: 161px;
     }
-    @media screen and (max-width: $tablet2) {
-      margin: 32px 0 0;
+    @media screen and (max-width: $desktop1) {
+      min-width: 203px;
+      max-width: 203px;
+      margin: 40px 0 0;
       align-self: flex-start;
+    }
+    @media screen and (max-width: $mobile) {
+      min-width: 100%;
+      max-width: 100%;
+      margin: 12px 0 0;
+      padding: 8px 24px;
     }
   }
   &__container {
@@ -77,7 +90,7 @@
   &__body {
     display: flex;
     justify-content: space-between;
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       flex-direction: row-reverse;
       align-items: center;
     }
@@ -97,67 +110,81 @@
       overflow: auto;
       padding: 0 0;
     }
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       display: none;
     }
   }
   &__content {
     width: 100%;
-    display: flex;
     justify-content: space-evenly;
-    @media screen and (max-width: $tablet2) {
+    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 40.95%) 21.38% repeat(1, 37.67%);
+    @media screen and (max-width: $desktop) {
+      grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
+    }
+    @media screen and (max-width: $desktop1) {
+      display: flex;
       background: #fff;
       box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
       width: 100%;
-      max-width: 557px;
-      gap: 32px;
+      max-width: 551px;
       flex-direction: column;
       justify-content: flex-start;
       border-radius: 0px 40px 40px 0px;
-      padding: 80px 40px 36px;
+      padding: 80px 40px 40px;
       position: relative;
-      max-height: 724px;
+      max-height: 688px;
     }
     @media screen and (max-width: $mobile) {
       background: #fff;
       box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
       width: 100%;
       max-width: 228px;
-      gap: 12px;
       flex-direction: column;
       justify-content: flex-start;
-      border-radius: 0px 40px 40px 0px;
-      padding: 80px 40px 36px;
+      border-radius: 0px 24px 24px 0px;
+      padding: 60px 16px 16px;
       position: relative;
       max-height: 541px;
     }
   }
   &__close-button {
     display: none;
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       display: block;
       position: absolute;
       right: 40px;
       top: 20px;
       cursor: pointer;
     }
+    @media screen and (max-width: $mobile) {
+      right: 16px;
+      top: 16px;
+    }
   }
   &__icon {
     width: 40px;
     height: 40px;
     fill: $blue;
+    @media screen and (max-width: $mobile) {
+      width: 32px;
+      height: 32px;
+    }
   }
   &-item {
     font-size: 20px;
     line-height: 30px;
     text-transform: uppercase;
     transition: all $transition-function;
-    @media screen and (max-width: $tablet2) {
-      width: 100%;
-      text-align: left;
-      padding: 12px 8px;
+    @media screen and (max-width: $desktop) {
       font-size: 16px;
       line-height: 24px;
+    }
+    @media screen and (max-width: $desktop1) {
+      width: 100%;
+      text-align: left;
+      padding: 12px 8px 11px;
       border-bottom: 1px solid $violet-grey;
       color: $blue;
     }
@@ -173,7 +200,7 @@
 .burger {
   display: none;
 
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
     display: flex;
     position: relative;
     align-items: center;
@@ -183,7 +210,7 @@
     margin-right: 5px;
     cursor: pointer;
   }
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
     width: 23px;
     height: 18px;
   }
@@ -216,25 +243,36 @@
 .custom-logo {
   width: 60px;
   height: 60px;
+  margin-left: 33.98%;
+  @media screen and (max-width: $desktop) {
+    width: 48px;
+    height: 48px;
+    margin-left: 29%;
+  }
+  @media screen and (max-width: $desktop1) {
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+  }
 }
 .language-dropdown {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   cursor: pointer;
   &:hover {
     color: #1d2087;
     text-decoration-line: underline;
   }
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
     order: 1;
     width: 100%;
     margin: auto 0 0;
   }
   & p,
   & img {
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $desktop1) {
       display: none;
     }
   }
@@ -248,11 +286,11 @@
   top: -20%;
   left: -50%;
   border: 1px solid #ccd1ff;
-  padding: 8px 16px;
+  padding: 11px 0 0;
   background: #f7f7fc;
   z-index: 1;
   gap: 6px;
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
     display: flex !important;
     position: static;
     flex-direction: row;
@@ -262,6 +300,11 @@
     width: 100%;
     border-top: 1px solid #8c8ed0;
     justify-content: space-between;
+    padding: 11px 0 0;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 14px;
+    padding: 7px 0 0;
   }
 }
 
@@ -272,6 +315,18 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  font-size: 20px;
+  line-height: 30px;
+  height: max-content;
+  @media screen and (max-width: $desktop) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media screen and (max-width: $mobile) {
+    font-size: 14px;
+    line-height: 21px;
+  }
   & img {
     display: block;
   }
@@ -280,8 +335,10 @@
   display: flex;
   gap: 12px;
   cursor: pointer;
-  padding: 4px 8px 3px;
   border-bottom: 1px solid #ccd1ff;
+  align-items: center;
+  height: max-content;
+  padding: 4px 16px;
 
   color: black;
   font-size: 20px;
@@ -293,19 +350,33 @@
     accent-color: #8c8ed0;
     mix-blend-mode: multiply;
   }
-  @media screen and (max-width: $tablet2) {
+  @media screen and (max-width: $desktop1) {
+    border: none;
     & input {
       display: none;
     }
     &.current {
       background-color: #ccd1ff;
       border-radius: 24px;
-      padding: 0 16px;
+      padding: 4px 16px;
+      @media screen and (max-width: $mobile) {
+        padding: 4px 8px;
+      }
     }
-    border: none;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 4px 8px;
   }
 }
 .language__current {
   font-size: 20px;
   line-height: 30px;
+  @media screen and (max-width: $desktop) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.header__list {
+  height: 100%;
+  height: -webkit-fill-available;
 }
