@@ -6,12 +6,22 @@ const handleAccToggle = (e) => {
   if (window.innerWidth > 767.97) {
     return;
   }
+
   const accContainer = e.target.nextElementSibling;
-  if (accContainer.classList.contains("expanded")) {
-    accContainer.classList.remove("expanded");
+  if (e.target.classList.contains("expanded")) {
+    e.target.classList.remove("expanded");
+    e.target.setAttribute("aria-expanded", "false");
+    accContainer.style.maxHeight = null;
   } else {
-    accContainer.classList.add("expanded");
+    e.target.classList.add("expanded");
+    e.target.setAttribute("aria-expanded", "true");
+    accContainer.style.maxHeight = accContainer.scrollHeight + 16 + "px";
   }
 };
 
-elList.forEach((el) => el.addEventListener("click", handleAccToggle));
+elList.forEach((el) => {
+  if (window.innerWidth < 768) {
+    el.setAttribute("role", "button");
+  }
+  el.addEventListener("click", handleAccToggle);
+});
