@@ -1,5 +1,22 @@
 @import "../variables";
 
+//image-wrapper
+.image-wrapper {
+  border-radius: $bid-border-radius;
+  height: 0;
+  overflow: hidden;
+  @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
+  }
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+//hero-section
 .hero-section {
   padding-top: 82px;
   padding-bottom: 182px;
@@ -122,31 +139,456 @@
 
 .hero-wrapper__img {
   grid-row-end: span 2;
-  border-radius: $bid-border-radius;
   padding-bottom: 71%;
-  height: 0;
-  overflow: hidden;
   @media screen and (max-width: $tablet2) {
-    border-radius: $small-border-radius;
     margin-bottom: 16px;
   }
 }
 
-.hero-wrapper__img img {
-  max-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-}
-
 //values section
 
-.values-section__photos {
+.values-section__slider {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.values-section__flex {
+  margin-bottom: 40px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.values-flex__wrapper,
+.values-flex__titles,
+.values-section__texts {
   display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.values-section__title {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 425px;
+  @media screen and (max-width: $desktop) {
+    margin-bottom: 12px;
+    width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 8px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 203px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 100%;
+  }
+}
+
+.values-section__image {
+  padding-bottom: 77.7%;
+  max-width: 425px;
+  @media screen and (max-width: $desktop) {
+    max-width: 315px;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 203px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-width: 100%;
+  }
+}
+
+.section-title.values-section__subtitle {
+  justify-content: center;
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 16px;
+  }
+  &::before,
+  &::after {
+    content: none;
+  }
+}
+
+// values texts
+.values-section__texts {
+  @media screen and (max-width: $mobile) {
+    display: block;
+  }
 }
 
 .values-section__text {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  width: 425px;
+  height: 330px;
+  border-radius: $bid-border-radius;
+  border: 1px solid $black;
+  background: $yellow;
+  @media screen and (max-width: $desktop) {
+    width: 315px;
+    height: 245px;
+  }
+  @media screen and (max-width: 1020px) {
+    padding: 16px;
+  }
+  @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
+    height: 182px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 203px;
+  }
   @media screen and (max-width: $mobile) {
+    width: 100%;
+    height: 170px;
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.values-section__text:nth-child(2) {
+  background-color: $pink;
+}
+
+.values-section__text:nth-child(3) {
+  background-color: $lavender;
+}
+
+.values-section__text p {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+}
+
+//digits section
+.digits-section__slider {
+  @media screen and (max-width: $mobile) {
+    max-width: 203px;
+  }
+}
+
+.digits-section__wrapper {
+  column-gap: 20px;
+  justify-content: space-between;
+  @media screen and (max-width: $mobile) {
+    column-gap: 0;
+  }
+}
+
+.digits-section__text {
+  max-width: 360px;
+  @media screen and (max-width: $desktop) {
+    max-width: 300px;
+  }
+  @media screen and (max-width: 1200px) {
+    max-width: 203px;
+  }
+  @media screen and (max-width: 700px) {
+    max-width: 160px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-width: 100%;
+  }
+}
+
+.digits-section__number {
+  position: relative;
+  margin-bottom: 24px;
+  color: $white;
+  text-shadow: 2px 0 2px $blue, 0 2px 2px $blue, -2px 0 2px $blue,
+    0 -2px 2px $blue;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 160px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 4.8px;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $blue;
+    transition: width 2s ease-in-out;
+  }
+
+  @media screen and (max-width: $desktop) {
+    font-size: 128px;
+  }
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 13px;
+    font-size: 84px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 60px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 84px;
+  }
+}
+
+.digits-section__text:nth-child(2) .digits-section__number::before {
+  transition-delay: 1s;
+}
+.digits-section__text:nth-child(3) .digits-section__number::before {
+  transition-delay: 2s;
+}
+
+.digits-section__number.element-show::before {
+  width: 58%;
+}
+
+.digits-section__caption {
+  font-size: 24px;
+  @media screen and (max-width: $desktop) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 16px;
+  }
+}
+
+//moments section
+
+.moments-section__slider {
+  position: relative;
+}
+
+.moments-section__wrapper {
+  margin-bottom: 20px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 0;
+  }
+}
+
+.moments-section__image {
+  padding-bottom: 81%;
+  @media screen and (max-width: $mobile) {
+    padding-bottom: 78%;
+  }
+}
+
+//our partners section
+
+.our-partners-section__slider {
+  margin-bottom: 40px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 32px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 16px;
+  }
+}
+
+.our-partners-section__wrapper {
+  align-items: center;
+}
+
+.our-partners-section__image {
+  padding: 12px 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-height: 142px;
+  @media screen and (max-width: $desktop) {
+    max-height: 124px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 12px 24px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-height: 100px;
+  }
+}
+
+.our-partners-section__img {
+  max-height: 120px;
+  @media screen and (max-width: $desktop) {
+    max-height: 100px;
+  }
+}
+
+.home_our_partners_btn {
+  margin: 0 auto;
+}
+
+//common questions section
+.common-questions__wrapper {
+  width: 100%;
+  padding: 40px 60px;
+  border-radius: $bid-border-radius;
+  border: 1px solid $black;
+  background-color: $lavender;
+  overflow: hidden;
+  @media screen and (max-width: $desktop) {
+    padding: 20px 40px;
+  }
+  @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
+    padding: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 12px 0px;
+  }
+}
+
+.common-questions__text {
+  padding: 24px 40px;
+  border-bottom: 1px solid $violet-grey;
+  transition: all $transition-function;
+  @media screen and (max-width: $desktop) {
+    padding: 24px 20px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 16px 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 12px;
+  }
+}
+
+.common-questions__question {
+  font-size: 24px;
+  @media screen and (max-width: $desktop) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 16px;
+  }
+}
+
+//general settings for accordion
+
+.accordion {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plus-icon,
+.minus-icon {
+  min-width: 40px;
+  min-height: 40px;
+  transition: all $transition-function;
+  @media screen and (max-width: $tablet2) {
+    min-width: 24px;
+    min-height: 24px;
+  }
+  @media screen and (max-width: $mobile) {
+    min-width: 20px;
+    min-height: 20px;
+  }
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $transition-function;
+}
+
+.minus-icon {
+  display: none;
+}
+
+.common-questions__answer {
+  font-family: "Fira Sans", sans-serif;
+  @media screen and (max-width: $desktop) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 14px;
+  }
+}
+
+.common-questions__text:hover,
+.common-questions__text:focus {
+  border-left: 8px solid $violet-grey;
+}
+
+.common-questions__box:hover,
+.common-questions__box:focus {
+  .common-questions__question {
+    color: $blue;
+    text-decoration-line: underline;
+  }
+  .plus-icon,
+  .minus-icon {
+    fill: $blue;
+  }
+}
+
+.accordion.active {
+  & .minus-icon {
     display: block;
+  }
+  & .plus-icon {
+    display: none;
+  }
+}
+
+.common-questions__box.active {
+  & .common-questions__box {
+    margin-bottom: 8px;
+  }
+  & .common-questions__question {
+    color: $blue;
+  }
+}
+
+//feedback section
+
+.feedback-section__slide {
+  width: 100%;
+  padding: 40px;
+  border-radius: $bid-border-radius;
+  border: $violet-grey;
+  background: $white;
+  @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
+    padding: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 0;
+    border-radius: 0;
+    border: transparent;
+    background: transparent;
   }
 }
