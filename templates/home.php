@@ -236,11 +236,12 @@ get_header();
                 wp_reset_query();
               endif; ?>
 
-          <button class="button secondary-button"
-            type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
+          <button class="button secondary-button" type="submit"
+            id="js-open-feedback-form"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
 
 
         </div>
+        <?php get_template_part( 'template-parts/feedback-form' ); ?>
       </div>
     </div>
   </section>
