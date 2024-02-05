@@ -1,0 +1,333 @@
+@import "../global.scss";
+@import "../variables.scss";
+
+.icon {
+    fill: $blue;    
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    transition: transform 0.8s ease 0s;   
+    &:hover {
+        fill:$black;
+        transition: ease 0.7s;
+        transform: scale(1.1);  
+    }
+}
+
+.contacts__page {    
+    &-body {
+        display: flex;
+        justify-content: space-between;
+        gap: 11.3%;
+        margin-bottom: 120px;
+        @media (max-width: $desktop) {
+            gap: 12%;
+            margin-bottom: 104px;
+        }
+        @media (max-width: $tablet1) {
+            gap: 5.7%;
+            margin-bottom: 60px;
+        }
+        @media (max-width: $mobile) {
+            flex-direction: column-reverse;
+            gap: 60px;
+        }
+    }    
+    &-image { 
+        border-radius: $bid-border-radius;
+        overflow: hidden;   
+        transition: opacity 0.8s ease 0s;
+        margin-bottom: 20px;
+        @media (max-width: $desktop) {
+            margin-bottom: 16px;
+        }
+        @media (max-width: $tablet1) {
+            margin-bottom: 20px;
+        }
+        @media (max-width: $mobile) {
+            display: none;
+        }
+        img {
+            width: 574px;
+            height: 353px;
+            object-fit: cover;
+            border-radius: $bid-border-radius;
+            transition: transform 0.8s ease 0s;
+            @media (max-width: $desktop) {
+                width: 427px;
+                height: 263px;
+            }
+            @media (max-width: $tablet2) {
+                width: 314px;
+                height: 194px;
+            } 
+            @media (max-width: $tablet1) {
+                width: 220px;
+                height: auto;
+            } 
+            &:hover {               
+                transition: ease 0.7s;
+                transform: scale(1.1);
+            }                       
+        }
+    }
+    &-adress {
+        &-title {
+            color: $blue;
+            font-family: "Fira Sans", sans-serif;  
+            line-height: 150%; 
+            margin-bottom: 8px;
+            @media (max-width: $desktop) {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+            @media (max-width: $tablet1) {
+                margin-bottom: 8px;
+            }
+            @media (max-width: $mobile) {
+                font-size: 14px;
+                line-height: 160%; 
+                margin-bottom: 4px;
+            }
+        }
+        &-list {
+            margin-bottom: 40px;  
+            @media (max-width: $tablet1) {
+                margin-bottom: 28px;
+            } 
+        }
+        &-item:not(:last-child) { 
+            margin-bottom: 12px; 
+            @media (max-width: $desktop) {
+                margin-bottom: 8px; 
+            }
+        }         
+    }
+    &-social {
+        &-list {
+            display: flex;  
+            flex-direction: column;          
+            gap: 24px;
+            @media (max-width: $desktop) {
+                gap: 20px;
+            }
+            @media (max-width: $tablet1) {
+                gap: 18px;
+            }
+            @media (max-width: $mobile) {
+                gap: 16px;
+            } 
+        }        
+        &-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }             
+    }       
+}
+
+/*Form==================================*/
+.contacts__form {    
+    position: relative;
+    font-family: "Fira Sans", sans-serif;   
+    &-label {
+        @media (max-width: $desktop) {             
+            font-size: 18px;
+        }
+        @media (max-width: $tablet1) {
+            font-size: 14px;
+        }
+    }    
+    #contactForm input[type="text"], #contactForm input[type="tel"],
+    #contactForm input[type="email"], #contactForm input[type="email"], 
+    .wpcf7-select, #contactForm textarea[id="message"] {
+        border-radius: $bid-border-radius;
+        border: 1px solid $lavender;
+        background: $white;
+        width: 100%;
+        padding: 12px 32px;
+        margin-bottom: 24px;        
+        @media (max-width: $desktop) {             
+            font-size: 18px;
+        }
+        @media (max-width: $tablet1) {
+            font-size: 14px;
+            margin-bottom: 20px;   
+        }
+    }
+    #contactForm textarea[id="message"] {            
+        height: 228px;
+        margin-bottom: 8px;
+        @media (max-width: $tablet1) {
+            height: 177px;
+            border-radius: $small-border-radius;
+        }
+    }    
+    .select__wrapper {
+        position: relative;
+        z-index: 0;
+    }
+    .select__wrapper::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        right: 22px;
+        width: 40px;
+        height: 40px;
+        z-index: 1;
+        pointer-events: none;
+        background: url(../../../assets/images/select_arrow-up.svg);         
+        background-size:contain;
+        background-position:right;
+        background-repeat: no-repeat;   
+        @media (max-width: $tablet1) {
+            top: 4px;
+        }         
+    }        
+    .wpcf7-select {
+        appearance: none;
+        outline: none;
+    }
+    /*.wpcf7-select:checked {}*/
+    .wpcf7-select:focus {
+        background-color:  $lavender;
+        border-radius: $bid-border-radius $bid-border-radius 0px 0px;
+    }
+    option {
+        background-color: $white;
+        border: 1px solid $lavender;
+        border-radius: $bid-border-radius;
+        padding: 12px 24px;
+        font-size: 18px;
+        @media (max-width: $tablet1) {
+            font-size: 14px;
+        }
+    }
+    /*#contactForm input:focus {}   #contactForm input:focus::-webkit-input-placeholder {}*/
+    .privacy__container p {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-bottom: 26px;   
+        gap: 8px;     
+        @media (max-width: $desktop) {             
+            margin-bottom: 41px;
+        }
+        @media (max-width: $tablet1) {
+            margin-bottom: 20px;
+        }
+        .wpcf7-list-item {  
+            margin: 0;              
+            display: flex;
+            align-self: start;
+        } 
+    }
+    .privacy__text {        
+        font-family: "Fira Sans", sans-serif; 
+        font-size: 16px;
+        line-height: 160%;        
+        @media (max-width: $desktop) {
+            font-size: 12px;
+        }  
+        @media (max-width: $tablet1) {
+            font-size: 10px;
+            line-height: 140%; 
+        }   
+        a {
+            color: $blue;
+            transition: all $transition-function;
+            &:hover {
+                color: $black              
+            }
+        }
+    }
+
+    #contactForm input[id="submit-btn"] {
+        padding: 12px 87px;
+        border-radius: $bid-border-radius; 
+        text-transform: uppercase;
+        @media (max-width: $desktop) {
+            font-size: 16px;            
+        }  
+        @media (max-width: $mobile) {
+            width: 100%;
+        }     
+    }
+}
+
+.wpcf7-response-output {
+    display: none;
+}
+
+.wpcf7-not-valid-tip {    
+    font-size: 14px; 
+}
+
+
+/*Popup=======================*/
+.popup {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;     
+    &__container{
+        color: $blue;
+        text-align: center;
+        font-family: "Fira Sans Extra Condensed";
+        position: absolute;
+        top: 50%;
+        left: 50%;    
+        transform: translate(-50%, -50%);   
+        width: 1167px;
+        padding: 92px 70px 95px 70px;
+        border-radius: $bid-border-radius;
+        border-radius: 40px;
+        background: $yellow;
+        box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);   
+        @media (max-width: $desktop) {
+            width: 900px;
+            padding: 70px 20px;
+        }       
+        @media (max-width: 991.98px) {
+            width: 600px;           
+        }
+        @media (max-width: 767.98px) {
+            width: 90%;
+        }  
+    }    
+    &__close {
+        position: absolute;
+        top: 10px;
+        right: 24px;
+        background: none;
+        border: none;
+        font-size: 42px;
+        padding: 0;  
+        cursor: pointer;      
+    }
+    &__title {        
+        font-size: 64px;       
+        font-weight: 275;       
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        @media (max-width: 991.98px) {
+            font-size: 36px;
+        }       
+    }
+    &__text {    
+        font-size: 40px;
+        font-weight: 300;
+        @media (max-width: 991.98px) {
+            font-size: 18px;
+        }
+    }  
+}
+
+.closen {
+    display: none;
+}
+.opened {
+    display: block;
+}
