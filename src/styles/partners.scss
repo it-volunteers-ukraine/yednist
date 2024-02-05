@@ -1,0 +1,77 @@
+@import "../variables.scss";
+@import "../global.scss";
+
+
+.container {
+  padding: 0 80px;
+
+  @media screen and (max-width: $tablet2) {
+    padding: 0 40px;
+  }
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 16px;
+  }
+
+
+  .wrapper {
+    padding: 0 148px;
+    border-top: 1px solid $blue;
+
+    @media screen and (max-width: $tablet2) {
+      padding: 0;
+    }
+
+
+    @media screen and (max-width: $mobile) {
+      padding: 0 35px;
+    }
+
+
+    .page-title {
+      margin-bottom: 50px;
+      @media screen and (max-width: $tablet2) {
+        margin-bottom: 40px;
+      }
+      @media screen and (max-width: $mobile) {
+        margin-bottom: 25px;
+      }
+    }
+
+
+    .partners {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 40px 20px;
+
+
+      @media screen and (max-width: $mobile) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+
+      @media screen and (max-width: $mobile) {
+        gap: 20px;
+      }
+
+
+      @media screen and (max-width: $tablet2) {
+        gap: 40px 25px;
+      }
+
+      .partners-item {
+        display: flex;
+        padding: 11px 40px;
+        max-height: 142px;
+        @media screen and (max-width: $tablet2) {
+          padding: 0;
+        }
+        @media screen and (max-width: $mobile) {
+          padding: 11px 40px;
+        }
+      }
+    }
+  }
+}

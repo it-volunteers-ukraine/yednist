@@ -10,7 +10,7 @@ get_header();
             <div class="inner-container">
                 <div class="contacts__page-body">                    
                     <div class="contacts__form">
-                       <h2 class="page-title"><?php the_field('contacts-form-title'); ?></h2> 
+                       <h2 class="contacts__page-title page-title"><?php the_field('contacts-form-title'); ?></h2> 
                         <div id="contactForm" name="form-contact" class="form__contacts" method="post">
                             <?php echo do_shortcode('[contact-form-7 id="7ddce3e" title="Contact Form"]') ?>
                             
@@ -25,7 +25,7 @@ get_header();
 
                     </div>
                     <div class="contacts__page-content">
-                        <h2 class="page-title"><?php the_field('contacts-contact-title'); ?></h2> 
+                        <h2 class="contacts__page-title page-title"><?php the_field('contacts-contact-title'); ?></h2> 
                         <div class="contacts__page-image"><img src="<?php the_field('contacts__page-image'); ?>" alt="star"></div>
                         <div class="contacts__page-adress">
                             <h4 class="contacts__page-adress-title"><?php the_field('contacts-adress-title'); ?></h4>

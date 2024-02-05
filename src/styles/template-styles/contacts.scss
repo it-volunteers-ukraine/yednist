@@ -32,7 +32,17 @@
             flex-direction: column-reverse;
             gap: 60px;
         }
-    }    
+    }   
+    &-title {
+        font-family: "Fira Sans Extra Condensed";
+        margin-bottom: 20px;
+        @media (max-width: $desktop) {
+            margin-bottom: 16px;
+        }
+        @media (max-width: $mobile) {
+            margin-bottom: 8px;
+        }
+    }
     &-image { 
         border-radius: $bid-border-radius;
         overflow: hidden;   
