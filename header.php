@@ -22,7 +22,7 @@
                             </div>
                                 <?php
                                 $current_language = pll_current_language('name');
-                                $menu_id = ($current_language == 'EN') ? 'header-menu-english' : $current_language === 'UK' ? 'header-menu' : 'header-menu-polish';
+                                $menu_id = ($current_language == 'EN') ? 'header-menu-english' : 'header-menu';
                                 $menu_items = wp_get_nav_menu_items($menu_id);
                                 $middle_index = ceil(5);
                                 
