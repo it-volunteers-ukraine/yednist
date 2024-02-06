@@ -1,5 +1,5 @@
 <footer>
-    <div class="container">
+    <div class="container footer-container">
         <div class="footer-top-container">
             <div class="footer__logo-wrapper">
                 <div class="footer__logo">
@@ -62,7 +62,7 @@
                 </div>
                 <a class="button primary-button footer-btn-mob"
                     href="<?php echo esc_attr(get_field('support_link', 'option')); ?>">
-                    <?php the_field('btn_text', 'option'); ?>
+                    <?php the_field('support_btn', 'option'); ?>
                 </a>
 
             </div>
