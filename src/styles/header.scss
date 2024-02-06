@@ -69,7 +69,6 @@
         height: 12px;
         transform: rotate(270deg);
         &.open {
-          animation: iconReverseRotate 0.4s;
           transform: rotate(90deg);
         }
       }
@@ -80,8 +79,9 @@
     &__menu {
       display: none;
       flex-direction: column;
-      padding: 24px 0;
-      gap: 6px;
+      width: 310px;
+      padding: 24px 24px;
+      gap: 12px;
       position: absolute;
       top: 51px;
       left: -24px;
@@ -97,23 +97,22 @@
         box-shadow: none;
         background: transparent;
         border-radius: 0;
+        gap: 0px;
+        padding: 0;
       }
       @media screen and (max-width: $mobile) {
         width: 100%;
       }
       &__item {
-        padding: 0 24px;
+        padding: 8px 0;
         font-size: 24px;
         line-height: 36px;
-        text-transform: capitalize;
+        text-transform: none;
         transition: all $transition-function;
         .header__projects__menu & a {
           color: $black;
         }
-
         @media screen and (max-width: $desktop) {
-          font-size: 16px;
-          line-height: 24px;
           &:hover {
             .header__projects__menu & a {
               color: $blue;
@@ -129,6 +128,8 @@
           }
         }
         @media screen and (max-width: $desktop1) {
+          font-size: 16px;
+          line-height: 24px;
           width: 100%;
           text-align: left;
           padding: 12px 8px 11px;
@@ -584,9 +585,9 @@
 }
 @keyframes iconReverseRotate {
   from {
-    transform: rotate(270deg);
+    transform: rotate(-180deg);
   }
   to {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
   }
 }
