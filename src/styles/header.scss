@@ -1,8 +1,8 @@
 @import "./variables.scss";
 .header {
-  border-radius: 0px 0px 40px 40px;
-  box-shadow: 0px 4px 7px 0px rgba(140, 142, 208, 0.2);
-  background: #fff;
+  border-radius: 0px 0px $bid-border-radius $bid-border-radius;
+  box-shadow: 0px 4px 7px 0px $header-box-shadow;
+  background: $white;
   padding: 12px 40px;
   margin: 0 60px 100px;
   margin: 0 80px 100px;
@@ -18,15 +18,15 @@
     margin: 0 16px 20px;
     padding: 8px 16px;
   }
-  &__projects {
-    &__current {
-      .header__projects__content {
-        color: #1d2087;
-        .header__projects__icon {
-          stroke: #1d2087;
-        }
+  &__current__page {
+    .header__projects__content {
+      color: $blue;
+      .header__projects__icon {
+        stroke: $blue;
       }
     }
+  }
+  &__projects {
     &__content {
       position: relative;
       display: flex;
@@ -41,18 +41,21 @@
         font-size: 16px;
         line-height: 24px;
       }
+      @media screen and (max-width: $desktop) {
+        align-items: baseline;
+      }
       &:hover,
       &:focus {
         color: $blue;
         & .header__projects__icon {
-          stroke: #1d2087;
+          stroke: $blue;
         }
       }
     }
     &__icon {
       width: 16px;
       height: 10px;
-      stroke: #0d0d0d;
+      stroke: $black;
       stroke-width: 4.8;
       animation: iconReverseRotate 0.4s;
       transform: rotate(0deg);
@@ -71,7 +74,7 @@
         }
       }
       &:hover {
-        stroke: #1d2087;
+        stroke: $blue;
       }
     }
     &__menu {
@@ -82,11 +85,15 @@
       position: absolute;
       top: 51px;
       left: -24px;
-      box-shadow: 0px 4px 4px 0px #1d20873b;
-      background: #ffffff;
-      border-radius: 0px 0px 40px 40px;
+      box-shadow: 0px 4px 4px 0px $blue;
+      background: $white;
+      border-radius: 0px 0px $bid-border-radius $bid-border-radius;
       @media screen and (max-width: $desktop1) {
         width: 100%;
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        border-radius: 0;
       }
       @media screen and (max-width: $mobile) {
         width: 100%;
@@ -95,17 +102,17 @@
         padding: 0 24px;
         font-size: 24px;
         line-height: 36px;
-        color: #0d0d0d;
+        color: $black;
         text-transform: capitalize;
         transition: all $transition-function;
         &:hover {
-          color: #1d2087;
+          color: $blue;
           padding-bottom: 4px;
-          border-bottom: 4px solid #8c8ed0;
+          border-bottom: 4px solid $violet-grey;
         }
         &:focus {
-          background-color: #ccd1ff;
-          color: #1d2087;
+          background-color: $lavender;
+          color: $blue;
         }
         @media screen and (max-width: $desktop) {
           font-size: 16px;
@@ -134,7 +141,7 @@
       &.open {
         position: fixed;
         display: flex;
-        background: rgba(0, 0, 0, 0.5);
+        background: $header-burger-background;
         width: 100%;
         top: 0;
         bottom: 0;
@@ -158,25 +165,25 @@
       }
       @media screen and (max-width: $desktop1) {
         display: flex;
-        background: #fff;
-        box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+        background: $white;
+        box-shadow: 2px 4px 7px 1px $header-box-shadow;
         width: 100%;
         max-width: 551px;
         flex-direction: column;
         justify-content: flex-start;
-        border-radius: 0px 40px 40px 0px;
+        border-radius: 0px $bid-border-radius $bid-border-radius 0px;
         padding: 80px 40px 40px;
         position: relative;
         max-height: 688px;
       }
       @media screen and (max-width: $mobile) {
-        background: #fff;
-        box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+        background: $white;
+        box-shadow: 2px 4px 7px 1px $header-box-shadow;
         width: 100%;
         max-width: 228px;
         flex-direction: column;
         justify-content: flex-start;
-        border-radius: 0px 24px 24px 0px;
+        border-radius: 0px $small-border-radius $small-border-radius 0px;
         padding: 60px 16px 16px;
         position: relative;
         max-height: 541px;
@@ -251,13 +258,13 @@
           top: 0;
           left: 0;
           display: flex;
-          background: #fff;
-          box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+          background: $white;
+          box-shadow: 2px 4px 7px 1px $header-box-shadow;
           width: 100%;
           max-width: 551px;
           flex-direction: column;
           justify-content: flex-start;
-          border-radius: 0px 40px 40px 0px;
+          border-radius: 0px $bid-border-radius $bid-border-radius 0px;
           padding: 80px 40px 40px;
           height: 688px;
           z-index: 2;
@@ -268,9 +275,9 @@
             width: 100%;
             flex-direction: row-reverse;
             justify-content: flex-end;
-            color: #1d2087;
+            color: $blue;
             & .header__projects__icon {
-              stroke: #1d2087;
+              stroke: $blue;
             }
           }
         }
@@ -278,7 +285,7 @@
       @media screen and (max-width: $mobile) {
         &.open {
           max-width: 228px;
-          border-radius: 0px 24px 24px 0px;
+          border-radius: 0px $small-border-radius $small-border-radius 0px;
           padding: 60px 16px 16px;
           max-height: 541px;
           & .header__projects__content {
@@ -292,7 +299,7 @@
       &:focus {
         color: $blue;
         & .header__projects__icon {
-          stroke: #1d2087;
+          stroke: $blue;
         }
       }
     }
@@ -334,8 +341,8 @@
     }
   }
   &__button {
-    background: #1d2087;
-    color: #fff;
+    background: $blue;
+    color: $white;
     min-width: 172px;
     @media screen and (max-width: $full) {
       font-size: 20px;
@@ -391,7 +398,7 @@
     height: 2px;
     width: 50%;
     transform: scale(1);
-    background-color: black;
+    background-color: $blue;
   }
   &::before,
   &::after {
@@ -432,7 +439,7 @@
     gap: 4px;
     cursor: pointer;
     &:hover {
-      color: #1d2087;
+      color: $blue;
       text-decoration-line: underline;
     }
     @media screen and (max-width: $desktop1) {
@@ -450,12 +457,12 @@
       display: none;
       position: absolute;
       flex-direction: column;
-      border-radius: 24px;
+      border-radius: $small-border-radius;
       top: -20%;
       left: -50%;
-      border: 1px solid #ccd1ff;
+      border: 1px solid $lavender;
       padding: 11px 0 0;
-      background: #f7f7fc;
+      background: $background;
       z-index: 1;
       gap: 6px;
       @media screen and (max-width: $desktop1) {
@@ -466,7 +473,7 @@
         border: none;
         border-radius: 0;
         width: 100%;
-        border-top: 1px solid #8c8ed0;
+        border-top: 1px solid $violet-grey;
         justify-content: space-between;
         padding: 11px 0 0;
       }
@@ -504,19 +511,19 @@
     display: flex;
     gap: 12px;
     cursor: pointer;
-    border-bottom: 1px solid #ccd1ff;
+    border-bottom: 1px solid $lavender;
     align-items: center;
     height: max-content;
     padding: 4px 16px;
 
-    color: black;
+    color: $black;
     font-size: 20px;
     line-height: 30px;
     text-decoration: none;
     & input,
     & label {
       cursor: pointer;
-      accent-color: #8c8ed0;
+      accent-color: $violet-grey;
       mix-blend-mode: multiply;
     }
     @media screen and (max-width: $desktop1) {
@@ -525,8 +532,8 @@
         display: none;
       }
       &.current {
-        background-color: #ccd1ff;
-        border-radius: 24px;
+        background-color: $lavender;
+        border-radius: $small-border-radius;
         padding: 4px 16px;
         @media screen and (max-width: $mobile) {
           padding: 4px 8px;

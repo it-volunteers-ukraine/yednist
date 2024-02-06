@@ -36,7 +36,7 @@
                                 echo '<ul class="header__first__list">';
 
                                 foreach ($menu_left as $index => $menu_item) {
-                                    $current_class = (is_page($menu_item->object_id)) ? 'header__projects__current' : '';
+                                    $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
 
                                     if ($index === 2) {
                                         $inside_projects = true;
