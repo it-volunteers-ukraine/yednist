@@ -82,8 +82,8 @@
       img:hover {
         @media screen and (max-width: $desktop) {
           cursor: zoom-in;
-          transform: scale(2);
-          transition: 1s;
+          transform: scale(150%);
+          transition: 0.5s;
         }
       }
     }
