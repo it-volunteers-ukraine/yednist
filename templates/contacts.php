@@ -30,55 +30,76 @@ get_header();
                         <div class="contacts__page-adress">
                             <h4 class="contacts__page-adress-title"><?php the_field('contacts-adress-title'); ?></h4>
                             <ul class="contacts__page-adress-list">
-                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text">Option field</p></li>
-                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text">Option field</p></li>
-                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text">Option field</p></li>
-                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text">Option field</p></li>
+                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_1', 'option'); ?></p></li>
+                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_2', 'option'); ?></p></li>
+                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_3', 'option'); ?></p></li>
+                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_4', 'option'); ?></p></li>
                             </ul>                            
                         </div>
                         <div class="contacts__page-social">
-                            <ul class="contacts__page-social-list">
+                            <ul class="contacts__page-social-list"> 
                                 <li class="contacts__page-social-item">
-                                    <a href="#" class="contacts__page-social-link">
+                                    <?php
+                                    $link = get_field('social_link_1', 'option');
+                                    if ($link):
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                    ?>
+                                    <a href="<?php echo esc_url($link_url); ?>" target="_blank">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#telegram" alt="telegram"></use>
                                         </svg>
-                                        <p class="contacts__page-social-text">telegram Option field</p>
-                                    </a>                                    
-                                </li>  
-                                <li>  
-                                    <a href="#" class="contacts__page-social-link">
+                                       <?php echo esc_html($link_title); ?>
+                                    </a>
+                                    <?php endif; ?>
+                                </li>
+                                <li class="contacts__page-social-item">
+                                    <?php
+                                    $link = get_field('social_link_2', 'option');
+                                    if ($link):
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                    ?>
+                                    <a href="<?php echo esc_url($link_url); ?>" target="_blank">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#facebook" alt="facebook"></use>
                                         </svg>
-                                        <p class="contacts__page-social-text">facebook Option field</p>
-                                    </a>                                     
-                                </li> 
-                                <li>                                     
-                                    <a href="#" class="contacts__page-social-link">
+                                       <?php echo esc_html($link_title); ?>
+                                    </a>
+                                    <?php endif; ?>
+                                </li>
+                                <li class="contacts__page-social-item">
+                                    <?php
+                                    $link = get_field('social_link_3', 'option');
+                                    if ($link):
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                    ?>
+                                    <a href="<?php echo esc_url($link_url); ?>" target="_blank">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#instagram" alt="instagram"></use>
-                                        </svg> 
-                                        <p class="contacts__page-social-text">instagram Option field</p>
+                                        </svg>
+                                       <?php echo esc_html($link_title); ?>
                                     </a>
-                                </li> 
-                                <li>  
-                                    <a href="#" class="contacts__page-social-link">
+                                    <?php endif; ?>
+                                </li>
+                               <li> 
+                                    <a href="tel:<?php the_field('social_phone', 'option') ?>">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#phone" alt="phone"></use>
                                         </svg>
-                                        <p class="contacts__page-social-text">phone Option field</p>
-                                    </a>                                    
+                                        <?php the_field('social_phone', 'option') ?>
+                                   </a> 
                                 </li>
                                 <li> 
-                                    <a href="#" class="contacts__page-social-link">
+                                    <a href="mailto:<?php the_field('social_mail', 'option') ?>">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#mail" alt="mail"></use>
                                         </svg>
-                                        <p class="contacts__page-social-text">mail Option field</p>
-                                    </a> 
-                                </li>                                
-                            </ul>
+                                        <?php the_field('social_mail', 'option') ?>
+                                   </a> 
+                                </li>
+                            </ul> 
                         </div>
                     </div>
                 </div>
