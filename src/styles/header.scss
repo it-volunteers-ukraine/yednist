@@ -18,6 +18,285 @@
     margin: 0 16px 20px;
     padding: 8px 16px;
   }
+  &__projects {
+    &__current {
+      .header__projects__content {
+        color: #1d2087;
+        .header__projects__icon {
+          stroke: #1d2087;
+        }
+      }
+    }
+    &__content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      cursor: pointer;
+      gap: 8px;
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 24px;
+      }
+      &:hover,
+      &:focus {
+        color: $blue;
+        & .header__projects__icon {
+          stroke: #1d2087;
+        }
+      }
+    }
+    &__icon {
+      width: 16px;
+      height: 10px;
+      stroke: #0d0d0d;
+      stroke-width: 4.8;
+      animation: iconReverseRotate 0.4s;
+      transform: rotate(0deg);
+      &.open {
+        animation: iconRotate 0.4s;
+        transform: rotate(-180deg);
+      }
+      @media screen and (max-width: $desktop1) {
+        stroke-width: 6;
+        width: 12px;
+        height: 12px;
+        transform: rotate(270deg);
+        &.open {
+          animation: iconReverseRotate 0.4s;
+          transform: rotate(90deg);
+        }
+      }
+      &:hover {
+        stroke: #1d2087;
+      }
+    }
+    &__menu {
+      display: none;
+      flex-direction: column;
+      padding: 24px 0;
+      gap: 6px;
+      position: absolute;
+      top: 51px;
+      left: -24px;
+      box-shadow: 0px 4px 4px 0px #1d20873b;
+      background: #ffffff;
+      border-radius: 0px 0px 40px 40px;
+      @media screen and (max-width: $desktop1) {
+        width: 100%;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+      }
+      &__item {
+        padding: 0 24px;
+        font-size: 24px;
+        line-height: 36px;
+        color: #0d0d0d;
+        text-transform: capitalize;
+        transition: all $transition-function;
+        &:hover {
+          color: #1d2087;
+          padding-bottom: 4px;
+          border-bottom: 4px solid #8c8ed0;
+        }
+        &:focus {
+          background-color: #ccd1ff;
+          color: #1d2087;
+        }
+        @media screen and (max-width: $desktop) {
+          font-size: 16px;
+          line-height: 24px;
+        }
+        @media screen and (max-width: $desktop1) {
+          width: 100%;
+          text-align: left;
+          padding: 12px 8px 11px;
+          border-bottom: 1px solid $violet-grey;
+        }
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: $desktop1) {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+  }
+  &__menu {
+    &__container {
+      width: 100%;
+      &.open {
+        position: fixed;
+        display: flex;
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        overflow: auto;
+        padding: 0 0;
+      }
+      @media screen and (max-width: $desktop1) {
+        display: none;
+      }
+    }
+    &__content {
+      width: 100%;
+      justify-content: space-evenly;
+      display: grid;
+      grid-template-columns: repeat(1, 40.95%) 21.38% repeat(1, 37.67%);
+      @media screen and (max-width: $desktop) {
+        grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
+      }
+      @media screen and (max-width: $desktop1) {
+        display: flex;
+        background: #fff;
+        box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+        width: 100%;
+        max-width: 551px;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 0px 40px 40px 0px;
+        padding: 80px 40px 40px;
+        position: relative;
+        max-height: 688px;
+      }
+      @media screen and (max-width: $mobile) {
+        background: #fff;
+        box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+        width: 100%;
+        max-width: 228px;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 0px 24px 24px 0px;
+        padding: 60px 16px 16px;
+        position: relative;
+        max-height: 541px;
+      }
+    }
+    &__close-button {
+      display: none;
+      z-index: 9;
+      @media screen and (max-width: $desktop1) {
+        display: block;
+        position: absolute;
+        right: 40px;
+        top: 20px;
+        cursor: pointer;
+      }
+      @media screen and (max-width: $mobile) {
+        right: 16px;
+        top: 16px;
+      }
+    }
+    &__icon {
+      width: 40px;
+      height: 40px;
+      fill: $blue;
+      @media screen and (max-width: $mobile) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    &__item {
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 24px;
+      }
+      @media screen and (max-width: $desktop1) {
+        width: 100%;
+        text-align: left;
+        padding: 12px 8px 11px;
+        border-bottom: 1px solid $violet-grey;
+      }
+      &:hover,
+      &:focus {
+        color: $blue;
+      }
+    }
+    &__projects {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      cursor: pointer;
+      gap: 8px;
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 24px;
+      }
+      @media screen and (max-width: $desktop1) {
+        position: static;
+        width: 100%;
+        text-align: left;
+        padding: 12px 8px 11px;
+        border-bottom: 1px solid $violet-grey;
+        &.open {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          background: #fff;
+          box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
+          width: 100%;
+          max-width: 551px;
+          flex-direction: column;
+          justify-content: flex-start;
+          border-radius: 0px 40px 40px 0px;
+          padding: 80px 40px 40px;
+          height: 688px;
+          z-index: 2;
+          & .header__projects__content {
+            position: absolute;
+            top: 28px;
+            left: 40px;
+            width: 100%;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            color: #1d2087;
+            & .header__projects__icon {
+              stroke: #1d2087;
+            }
+          }
+        }
+      }
+      @media screen and (max-width: $mobile) {
+        &.open {
+          max-width: 228px;
+          border-radius: 0px 24px 24px 0px;
+          padding: 60px 16px 16px;
+          max-height: 541px;
+          & .header__projects__content {
+            top: 24px;
+            left: 16px;
+            width: 100%;
+          }
+        }
+      }
+      &:hover,
+      &:focus {
+        color: $blue;
+        & .header__projects__icon {
+          stroke: #1d2087;
+        }
+      }
+    }
+  }
   &__logo {
     width: 100%;
     @media screen and (max-width: $desktop1) {
@@ -44,6 +323,7 @@
   }
   &__second__list {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     @media screen and (max-width: $desktop1) {
@@ -85,118 +365,11 @@
   &__container {
     width: 100%;
   }
-}
-.menu {
-  &__body {
-    display: flex;
-    justify-content: space-between;
-    @media screen and (max-width: $desktop1) {
-      flex-direction: row-reverse;
-      align-items: center;
-    }
-  }
-  &__container {
-    width: 100%;
-    &.open {
-      position: fixed;
-      display: flex;
-      background: rgba(0, 0, 0, 0.5);
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      overflow: auto;
-      padding: 0 0;
-    }
-    @media screen and (max-width: $desktop1) {
-      display: none;
-    }
-  }
-  &__content {
-    width: 100%;
-    justify-content: space-evenly;
-    display: flex;
-    display: grid;
-    grid-template-columns: repeat(1, 40.95%) 21.38% repeat(1, 37.67%);
-    @media screen and (max-width: $desktop) {
-      grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
-    }
-    @media screen and (max-width: $desktop1) {
-      display: flex;
-      background: #fff;
-      box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
-      width: 100%;
-      max-width: 551px;
-      flex-direction: column;
-      justify-content: flex-start;
-      border-radius: 0px 40px 40px 0px;
-      padding: 80px 40px 40px;
-      position: relative;
-      max-height: 688px;
-    }
-    @media screen and (max-width: $mobile) {
-      background: #fff;
-      box-shadow: 2px 4px 7px 1px rgba(140, 142, 208, 0.2);
-      width: 100%;
-      max-width: 228px;
-      flex-direction: column;
-      justify-content: flex-start;
-      border-radius: 0px 24px 24px 0px;
-      padding: 60px 16px 16px;
-      position: relative;
-      max-height: 541px;
-    }
-  }
-  &__close-button {
-    display: none;
-    @media screen and (max-width: $desktop1) {
-      display: block;
-      position: absolute;
-      right: 40px;
-      top: 20px;
-      cursor: pointer;
-    }
-    @media screen and (max-width: $mobile) {
-      right: 16px;
-      top: 16px;
-    }
-  }
-  &__icon {
-    width: 40px;
-    height: 40px;
-    fill: $blue;
-    @media screen and (max-width: $mobile) {
-      width: 32px;
-      height: 32px;
-    }
-  }
-  &-item {
-    font-size: 20px;
-    line-height: 30px;
-    text-transform: uppercase;
-    transition: all $transition-function;
-    @media screen and (max-width: $desktop) {
-      font-size: 16px;
-      line-height: 24px;
-    }
-    @media screen and (max-width: $desktop1) {
-      width: 100%;
-      text-align: left;
-      padding: 12px 8px 11px;
-      border-bottom: 1px solid $violet-grey;
-      color: $blue;
-    }
-    &:hover,
-    &:focus {
-      color: $blue;
-    }
+  &__current__page a {
+    color: $blue;
   }
 }
-.current_page_item a {
-  color: $blue;
-}
+
 .burger {
   display: none;
 
@@ -214,31 +387,27 @@
     width: 23px;
     height: 18px;
   }
-}
-
-.burger span {
-  height: 2px;
-  width: 50%;
-  transform: scale(1);
-  background-color: black;
-}
-
-.burger::before,
-.burger::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  background-color: $blue;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.burger::before {
-  top: 0;
-}
-
-.burger::after {
-  bottom: 0;
+  & span {
+    height: 2px;
+    width: 50%;
+    transform: scale(1);
+    background-color: black;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: $blue;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
 }
 .custom-logo {
   width: 60px;
@@ -255,128 +424,144 @@
     margin-left: 0;
   }
 }
-.language-dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  &:hover {
-    color: #1d2087;
-    text-decoration-line: underline;
-  }
-  @media screen and (max-width: $desktop1) {
-    order: 1;
-    width: 100%;
-    margin: auto 0 0;
-  }
-  & p,
-  & img {
-    @media screen and (max-width: $desktop1) {
-      display: none;
-    }
-  }
-}
-
-.language-dropdown-content {
-  display: none;
-  position: absolute;
-  flex-direction: column;
-  border-radius: 24px;
-  top: -20%;
-  left: -50%;
-  border: 1px solid #ccd1ff;
-  padding: 11px 0 0;
-  background: #f7f7fc;
-  z-index: 1;
-  gap: 6px;
-  @media screen and (max-width: $desktop1) {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    width: 100%;
-    border-top: 1px solid #8c8ed0;
-    justify-content: space-between;
-    padding: 11px 0 0;
-  }
-  @media screen and (max-width: $mobile) {
-    font-size: 14px;
-    padding: 7px 0 0;
-  }
-}
-
-.lang-item {
-  display: inline;
-}
-.language-label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 20px;
-  line-height: 30px;
-  height: max-content;
-  @media screen and (max-width: $desktop) {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  @media screen and (max-width: $mobile) {
-    font-size: 14px;
-    line-height: 21px;
-  }
-  & img {
-    display: block;
-  }
-}
-.language-wrapper {
-  display: flex;
-  gap: 12px;
-  cursor: pointer;
-  border-bottom: 1px solid #ccd1ff;
-  align-items: center;
-  height: max-content;
-  padding: 4px 16px;
-
-  color: black;
-  font-size: 20px;
-  line-height: 30px;
-  text-decoration: none;
-  & input,
-  & label {
+.language {
+  &__dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     cursor: pointer;
-    accent-color: #8c8ed0;
-    mix-blend-mode: multiply;
-  }
-  @media screen and (max-width: $desktop1) {
-    border: none;
-    & input {
-      display: none;
+    &:hover {
+      color: #1d2087;
+      text-decoration-line: underline;
     }
-    &.current {
-      background-color: #ccd1ff;
+    @media screen and (max-width: $desktop1) {
+      order: 1;
+      width: 100%;
+      margin: auto 0 0;
+    }
+    & p,
+    & img {
+      @media screen and (max-width: $desktop1) {
+        display: none;
+      }
+    }
+    &__content {
+      display: none;
+      position: absolute;
+      flex-direction: column;
       border-radius: 24px;
-      padding: 4px 16px;
+      top: -20%;
+      left: -50%;
+      border: 1px solid #ccd1ff;
+      padding: 11px 0 0;
+      background: #f7f7fc;
+      z-index: 1;
+      gap: 6px;
+      @media screen and (max-width: $desktop1) {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        border-top: 1px solid #8c8ed0;
+        justify-content: space-between;
+        padding: 11px 0 0;
+      }
       @media screen and (max-width: $mobile) {
-        padding: 4px 8px;
+        font-size: 14px;
+        padding: 7px 0 0;
       }
     }
   }
-  @media screen and (max-width: $mobile) {
-    padding: 4px 8px;
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    line-height: 30px;
+    height: max-content;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    & img {
+      display: block;
+    }
+  }
+  &__input {
+    width: 16px;
+    height: 16px;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccd1ff;
+    align-items: center;
+    height: max-content;
+    padding: 4px 16px;
+
+    color: black;
+    font-size: 20px;
+    line-height: 30px;
+    text-decoration: none;
+    & input,
+    & label {
+      cursor: pointer;
+      accent-color: #8c8ed0;
+      mix-blend-mode: multiply;
+    }
+    @media screen and (max-width: $desktop1) {
+      border: none;
+      & input {
+        display: none;
+      }
+      &.current {
+        background-color: #ccd1ff;
+        border-radius: 24px;
+        padding: 4px 16px;
+        @media screen and (max-width: $mobile) {
+          padding: 4px 8px;
+        }
+      }
+    }
+    @media screen and (max-width: $mobile) {
+      padding: 4px 8px;
+    }
+  }
+  &__current {
+    font-size: 20px;
+    line-height: 30px;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 }
-.language__current {
-  font-size: 20px;
-  line-height: 30px;
-  @media screen and (max-width: $desktop) {
-    font-size: 16px;
-    line-height: 24px;
+.lang-item {
+  display: inline;
+}
+@keyframes iconRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
   }
 }
-.header__list {
-  height: 100%;
-  height: -webkit-fill-available;
+@keyframes iconReverseRotate {
+  from {
+    transform: rotate(270deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
 }
