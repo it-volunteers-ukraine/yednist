@@ -1,5 +1,5 @@
-@import "../variables.scss";
-@import "../global.scss";
+@import "../variables";
+@import "../global";
 
 
 .container {
@@ -45,6 +45,11 @@
       gap: 40px 20px;
 
 
+      @media screen and (max-width: $desktop) {
+        padding-bottom: 30px;
+      }
+
+
       @media screen and (max-width: $mobile) {
         display: flex;
         flex-direction: column;
@@ -65,11 +70,20 @@
         display: flex;
         padding: 11px 40px;
         max-height: 142px;
+
         @media screen and (max-width: $tablet2) {
           padding: 0;
         }
         @media screen and (max-width: $mobile) {
           padding: 11px 40px;
+        }
+      }
+
+      img:hover {
+        @media screen and (max-width: $desktop) {
+          cursor: zoom-in;
+          transform: scale(150%);
+          transition: 0.5s;
         }
       }
     }
