@@ -85,9 +85,12 @@
       position: absolute;
       top: 51px;
       left: -24px;
-      box-shadow: 0px 4px 4px 0px $blue;
+      box-shadow: 0px 4px 4px 0px $dark-blue;
       background: $white;
       border-radius: 0px 0px $bid-border-radius $bid-border-radius;
+      @media screen and (max-width: $desktop) {
+        top: 44px;
+      }
       @media screen and (max-width: $desktop1) {
         width: 100%;
         position: static;
@@ -102,27 +105,42 @@
         padding: 0 24px;
         font-size: 24px;
         line-height: 36px;
-        color: $black;
         text-transform: capitalize;
         transition: all $transition-function;
-        &:hover {
-          color: $blue;
-          padding-bottom: 4px;
-          border-bottom: 4px solid $violet-grey;
+        .header__projects__menu & a {
+          color: $black;
         }
-        &:focus {
-          background-color: $lavender;
-          color: $blue;
-        }
+
         @media screen and (max-width: $desktop) {
           font-size: 16px;
           line-height: 24px;
+          &:hover {
+            .header__projects__menu & a {
+              color: $blue;
+            }
+            padding-bottom: 4px;
+            border-bottom: 4px solid $violet-grey;
+          }
+          &:focus {
+            background-color: $lavender;
+            .header__projects__menu & a {
+              color: $blue;
+            }
+          }
         }
         @media screen and (max-width: $desktop1) {
           width: 100%;
           text-align: left;
           padding: 12px 8px 11px;
           border-bottom: 1px solid $violet-grey;
+          &:hover,
+          &:focus {
+            border-bottom: 1px solid $violet-grey;
+            padding-bottom: 11px;
+            .header__projects__menu & a {
+              color: $blue;
+            }
+          }
         }
       }
     }
