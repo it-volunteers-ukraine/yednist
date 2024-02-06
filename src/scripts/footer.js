@@ -1,1 +1,27 @@
-console.log('footer part');
+console.log("footer part");
+
+const elList = document.querySelectorAll(".acc-show");
+
+const handleAccToggle = (e) => {
+  if (window.innerWidth > 767.97) {
+    return;
+  }
+
+  const accContainer = e.target.nextElementSibling;
+  if (e.target.classList.contains("expanded")) {
+    e.target.classList.remove("expanded");
+    e.target.setAttribute("aria-expanded", "false");
+    accContainer.style.maxHeight = null;
+  } else {
+    e.target.classList.add("expanded");
+    e.target.setAttribute("aria-expanded", "true");
+    accContainer.style.maxHeight = accContainer.scrollHeight + 16 + "px";
+  }
+};
+
+elList.forEach((el) => {
+  if (window.innerWidth < 768) {
+    el.setAttribute("role", "button");
+  }
+  el.addEventListener("click", handleAccToggle);
+});
