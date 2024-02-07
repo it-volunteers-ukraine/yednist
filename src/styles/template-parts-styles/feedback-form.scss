@@ -27,7 +27,7 @@
   transform: translate(-50%, -50%) translateX(0);
   width: 802px;
   padding: 24px 40px;
-  background: $background;
+  background-color: $background;
   border-radius: $bid-border-radius;
   box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
   transition: transform $transition-function;
@@ -94,27 +94,25 @@
   }
 }
 
-.feedback-modal__auth {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.feedback-modal__box {
+  display: flex;
   column-gap: 20px;
-  row-gap: 24px;
-  @media screen and (max-width: $tablet2) {
-    row-gap: 20px;
-  }
   @media screen and (max-width: $mobile) {
-    display: flex;
     flex-direction: column;
     row-gap: 12px;
   }
 }
 
-.feedback-modal__opt,
-.feedback-modal__case,
-.feedback-modal__comment,
-.feedback-modal__privacy,
-.feedback-btn__wrap {
-  grid-column-end: span 2;
+.feedback-modal__auth {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  @media screen and (max-width: $tablet2) {
+    row-gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    row-gap: 12px;
+  }
 }
 
 .feedback-modal__auth label {
@@ -174,12 +172,20 @@ textarea::placeholder {
 
 .feedback-modal__privacy {
   margin-bottom: 30px;
+  display: flex;
+  gap: 8px;
 }
 
 .feedback-privacy__label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.feedback-check__box {
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $mobile) {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .feedback-check {
@@ -188,10 +194,13 @@ textarea::placeholder {
   background-size: contain;
   background-repeat: no-repeat;
   background-origin: border-box;
-  width: 12px;
-  height: 12px;
-  margin-right: 8px;
   transition: 250ms $transition-function;
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $mobile) {
+    width: 16px;
+    height: 16px;
+  }
 
   &:checked {
     background-image: url(../../images/icon-checkbox-check.svg);

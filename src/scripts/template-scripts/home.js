@@ -122,4 +122,36 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  const feedbackSwiper = new Swiper(".feedback-section__slider", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".custom-button-next",
+      prevEl: ".custom-button-prev",
+    },
+    pagination: {
+      el: ".numbers-pagination",
+      type: "fraction",
+    },
+  });
+
+  // masonry
+  if (window.innerWidth > 767.98) {
+    const msnry = new Masonry(".grid", {
+      columnWidth: ".grid-sizer",
+      itemSelector: ".grid-item",
+      columnWidth: 100,
+      percentPosition: true,
+      gutter: 18,
+    });
+  }
+
+  // const screenWidth = window.innerWidth;
+  // function setScreenHWCookie() {
+  //   $.cookie("sw", screenWidth);
+
+  //   return true;
+  // }
+
+  // setScreenHWCookie();
 });

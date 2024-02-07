@@ -3,6 +3,7 @@
 Template Name: home
 */
 get_header();
+
 ?>
 <main class="front-page__main">
 
@@ -213,35 +214,35 @@ get_header();
       <h2 class="section-title"><?php the_field('feedbacks_title'); ?></h2>
       <div class="inner-container">
 
-        <div class="feedback-section__slide">
+        <div class="feedback-section__box">
+          <div class="swiper feedback-section__slider">
+            <div class="swiper-wrapper ">
 
-          <?php
-          $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-          $args = [ 
-            'post_type'      => 'feedbacks',
-            'posts_per_page' => 1,
-            'paged'          => $current_page
-          ];
-          
-          query_posts( $args );
-          
-              if ( have_posts() ) : 
+              <?php if ( have_posts(  ) ) : 
             /* Start the Loop */
-                while ( have_posts() ) : the_post();
-                
-                  get_template_part( 'template-parts/feedback-posts' );
+            
+                while ( have_posts() ) : the_post(); ?>
 
-                endwhile;
-                wp_reset_query();
+              <?php get_template_part( 'template-parts/feedback-posts' );?>
+
+              <?php endwhile;
+
               endif; ?>
 
-          <button class="button secondary-button" type="submit"
-            id="js-open-feedback-form"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
+            </div>
+            <div class="feedback-pagination__block">
+              <button class="button secondary-button feedback-pagination__button" type="submit"
+                id="js-open-feedback-form"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
 
-
+              <div class="numbers-pagination"></div>
+            </div>
+            <div class="swiper-navigation__box">
+              <?php get_template_part( 'template-parts/swiper-navigation'); ?></div>
+          </div>
         </div>
+
         <?php get_template_part( 'template-parts/feedback-form' ); ?>
+
       </div>
     </div>
   </section>

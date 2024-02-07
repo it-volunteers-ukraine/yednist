@@ -439,7 +439,17 @@
 }
 
 .home_our_partners_btn {
+  width: 425px;
   margin: 0 auto;
+  @media screen and (max-width: $desktop) {
+    width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 203px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 100%;
+  }
 }
 
 //common questions section
@@ -574,20 +584,92 @@
 
 //feedback section
 
-.feedback-section__slide {
-  width: 100%;
-  padding: 40px;
+.feedback-section__box {
+  max-width: 1464px;
+  margin: 0 auto;
+  padding: 40px 0 40px 40px;
   border-radius: $bid-border-radius;
   border: 1px solid $violet-grey;
   background: $white;
+  @media screen and (max-width: 1760px) {
+    max-width: 1104px;
+  }
+  @media screen and (max-width: 1350px) {
+    max-width: 750px;
+  }
   @media screen and (max-width: $tablet2) {
     border-radius: $small-border-radius;
-    padding: 20px;
   }
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet1) {
+    width: 300px;
     padding: 0;
     border-radius: 0;
     border: transparent;
     background: transparent;
   }
+}
+
+.grid-sizer {
+  width: 30%;
+  @media screen and (max-width: 1350px) {
+    width: 40%;
+  }
+  @media screen and (max-width: $tablet1) {
+    display: none;
+  }
+}
+
+.feedback-pagination__block {
+  width: 100%;
+  display: grid;
+  padding-right: 40px;
+  grid-template-columns: auto 100px;
+  align-items: center;
+  margin-top: 40px;
+  @media screen and (max-width: $tablet1) {
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.feedback-pagination__button {
+  @media screen and (max-width: $tablet1) {
+    width: 100%;
+  }
+}
+
+.numbers-pagination {
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -5px;
+  @media screen and (max-width: $tablet1) {
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -3px;
+  }
+}
+
+.swiper-navigation__box {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 158px;
+  @media screen and (max-width: $tablet1) {
+    left: 0;
+    bottom: 68px;
+    width: 100%;
+  }
+}
+
+.feedback-section__slider .custom-button-next,
+.feedback-section__slider .custom-button-prev {
+  position: static;
+  transform: none;
+  display: block;
 }
