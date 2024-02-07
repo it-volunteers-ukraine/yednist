@@ -5,6 +5,11 @@
 .container {
   padding: 0 80px;
 
+
+  @media screen and (max-width: $desktop) {
+    padding: 0 16px;
+  }
+
   @media screen and (max-width: $tablet2) {
     padding: 0 40px;
   }
@@ -17,6 +22,12 @@
   .wrapper {
     padding: 0 148px;
     border-top: 1px solid $blue;
+
+    @media screen and (max-width: $desktop) {
+      padding: 0 0;
+    }
+
+
 
     @media screen and (max-width: $tablet2) {
       padding: 0;
