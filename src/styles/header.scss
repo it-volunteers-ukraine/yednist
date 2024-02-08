@@ -284,6 +284,11 @@
       @media screen and (max-width: $desktop) {
         font-size: 16px;
         line-height: 24px;
+        &.open {
+          .header__projects__content {
+            color: $blue;
+          }
+        }
       }
       @media screen and (max-width: $desktop1) {
         position: static;
@@ -313,7 +318,6 @@
             width: 100%;
             flex-direction: row-reverse;
             justify-content: flex-end;
-            color: $blue;
             & .header__projects__icon {
               stroke: $blue;
             }
