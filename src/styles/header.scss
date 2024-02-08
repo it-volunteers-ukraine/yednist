@@ -373,7 +373,7 @@
       height: 100%;
     }
   }
-  &__button {
+  .header__second__list &__button {
     background: $blue;
     color: $white;
     min-width: 172px;
@@ -402,6 +402,7 @@
       padding: 8px 24px;
     }
   }
+
   &__container {
     width: 100%;
   }
