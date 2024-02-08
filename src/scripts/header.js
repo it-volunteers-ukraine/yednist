@@ -68,8 +68,10 @@ function hideMenu() {
   projectsMenu.style.display = "none";
 }
 function closeByBgdClick(e) {
-  console.log(e.target);
   if (e.target === menu) {
     hideMenu();
   }
+}
+function redirectToPage(url) {
+  window.location.href = url;
 }

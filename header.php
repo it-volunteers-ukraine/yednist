@@ -98,7 +98,7 @@
                                                          }
                                                          else{
                                                              echo '<a href="' . esc_url($language['url']) . '" class="language__wrapper">';
-                                                             echo '<input class="language__input" type="radio" />';
+                                                             echo '<input class="language__input" type="radio" onchange="redirectToPage(\'' . esc_url($language['url']) . '\')"/>';
                                                              echo '<label class="language__label">'. esc_html($language['name']) .' '.$language['flag'].'</label>';
                                                              echo '</a>';
                                                          }
