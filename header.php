@@ -37,7 +37,6 @@
 
                                 foreach ($menu_left as $index => $menu_item) {
                                     $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
-
                                     if ($index === 2) {
                                         $inside_projects = true;
                                         echo '<li class="header__menu__projects ' . esc_attr($current_class) . '"><div class="header__projects__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__projects__icon">
@@ -48,7 +47,11 @@
                                     }
 
                                     if ($inside_projects && ($index >= 3 && $index <= 5)) {
-                                        echo '<li class="header__projects__menu__item"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                                        if (is_singular()) {
+                                            $current_post_id = get_queried_object_id();
+                                            $current_class = ($current_post_id == $menu_item->object_id) ? 'header__current__page' : '';
+                                        }
+                                        echo '<li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                                     } elseif ($inside_projects && $index > 5) {
                                         echo '</ul>';
                                         $inside_projects = false;

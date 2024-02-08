@@ -44,6 +44,7 @@
       @media screen and (max-width: $desktop) {
         align-items: baseline;
       }
+
       &:hover,
       &:focus {
         color: $blue;
@@ -67,8 +68,10 @@
         stroke-width: 6;
         width: 12px;
         height: 12px;
+        animation: none;
         transform: rotate(270deg);
         &.open {
+          animation: none;
           transform: rotate(90deg);
         }
       }
@@ -109,8 +112,11 @@
         line-height: 36px;
         text-transform: none;
         transition: all $transition-function;
-        .header__projects__menu & a {
+        & a {
           color: $black;
+        }
+        &.header__current__page a {
+          color: $blue;
         }
         @media screen and (max-width: $desktop) {
           &:hover {
@@ -262,6 +268,14 @@
       transition: all $transition-function;
       cursor: pointer;
       gap: 8px;
+      &:has(.header__current__page) {
+        .header__projects__content {
+          color: $blue;
+        }
+        .header__projects__icon {
+          stroke: $blue;
+        }
+      }
       @media screen and (max-width: $desktop) {
         font-size: 16px;
         line-height: 24px;
@@ -390,9 +404,6 @@
   }
   &__container {
     width: 100%;
-  }
-  &__current__page a {
-    color: $blue;
   }
 }
 
