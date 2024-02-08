@@ -83,7 +83,7 @@
       display: none;
       flex-direction: column;
       width: 310px;
-      padding: 24px 24px;
+      padding: 0 24px 24px;
       gap: 12px;
       position: absolute;
       top: 51px;
@@ -93,6 +93,9 @@
       border-radius: 0px 0px $bid-border-radius $bid-border-radius;
       @media screen and (max-width: $desktop) {
         top: 44px;
+        padding: 8px 16px 8px;
+        gap: 8px;
+        width: 272px;
       }
       @media screen and (max-width: $desktop1) {
         width: 100%;
@@ -119,6 +122,8 @@
           color: $blue;
         }
         @media screen and (max-width: $desktop) {
+          font-size: 20px;
+          line-height: 30px;
           &:hover {
             .header__projects__menu & a {
               color: $blue;
