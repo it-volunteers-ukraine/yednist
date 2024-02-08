@@ -71,11 +71,11 @@
                     <?php the_field('org_title', 'option'); ?>
                 </h2>
                 <h3 class="footer-about-title-mobile acc-show">
-                    <?php the_field('about__title', 'option'); ?><svg class="plus-icon" width="20px" height="20px">
+                    <?php the_field('about__title', 'option'); ?><svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
@@ -86,11 +86,11 @@
             <nav class="footer__nav-wrapper">
                 <h3 class="acc-show">
                     <?php the_field('nav_title', 'option'); ?>
-                    <svg class="plus-icon" width="20px" height="20px">
+                    <svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
@@ -109,11 +109,11 @@
                 <h3 class="acc-show">
                     <?php the_field('social_title', 'option'); ?>
 
-                    <svg class="plus-icon" width="20px" height="20px">
+                    <svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
