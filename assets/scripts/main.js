@@ -1,1 +1,19 @@
-console.log("footer part");const menu=document.querySelector(".header__menu__container"),openButton=document.querySelector(".burger"),closeButton=document.querySelector(".header__menu__close-button"),languageDropdown=document.querySelector(".language__dropdown"),languageDropdownContent=document.querySelector(".language__dropdown__content"),openProjects=document.querySelector(".header__projects__content"),projects=document.querySelector(".header__menu__projects"),projectsMenu=document.querySelector(".header__projects__menu"),projectsIcon=document.querySelector(".header__projects__icon");function hideMenu(){menu.classList.remove("open"),document.body.classList.remove("modal-open"),closeButton.removeEventListener("click",hideMenu),menu.removeEventListener("click",closeByBgdClick),projectsIcon.classList.remove("open"),openProjects.classList.remove("open"),projects.classList.remove("open"),projectsMenu.style.display="none"}function closeByBgdClick(e){console.log(e.target),e.target===menu&&hideMenu()}openButton.addEventListener("click",(function(){menu.classList.toggle("open"),document.body.classList.toggle("modal-open"),menu.addEventListener("click",closeByBgdClick),closeButton.addEventListener("click",hideMenu)})),document.addEventListener("DOMContentLoaded",(function(){languageDropdown.addEventListener("click",(function(){languageDropdownContent.style.display="flex"===languageDropdownContent.style.display?"none":"flex"})),document.addEventListener("click",(function(e){languageDropdown.contains(e.target)||(languageDropdownContent.style.display="none")}))})),document.addEventListener("DOMContentLoaded",(function(){openProjects.addEventListener("click",(function(){projects.classList.contains("open")?projects.classList.remove("open"):projects.classList.add("open"),projectsIcon.classList.contains("open")?projectsIcon.classList.remove("open"):projectsIcon.classList.add("open"),projectsMenu.style.display="flex"===projectsMenu.style.display?"none":"flex"})),closeButton.addEventListener("click",(function(e){openProjects.contains(e.target)||(menu.addEventListener("click",closeByBgdClic),projectsMenu.style.display="none",projectsIcon.classList.remove("open"),projects.classList.remove("open"))}))})),console.log("main");
+console.log("footer part");
+const elList = document.querySelectorAll(".acc-show"),
+  handleAccToggle = (e) => {
+    if (window.innerWidth > 767.97) return;
+    const t = e.target.nextElementSibling;
+    e.target.classList.contains("expanded")
+      ? (e.target.classList.remove("expanded"),
+        e.target.setAttribute("aria-expanded", "false"),
+        (t.style.maxHeight = null))
+      : (e.target.classList.add("expanded"),
+        e.target.setAttribute("aria-expanded", "true"),
+        (t.style.maxHeight = t.scrollHeight + 16 + "px"));
+  };
+elList.forEach((e) => {
+  window.innerWidth < 768 && e.setAttribute("role", "button"),
+    e.addEventListener("click", handleAccToggle);
+}),
+  console.log("header"),
+  console.log("main");
