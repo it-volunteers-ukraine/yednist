@@ -19,6 +19,9 @@
     padding: 8px 16px;
   }
   &__current__page {
+    & a {
+      color: $blue;
+    }
     .header__projects__content {
       color: $blue;
       .header__projects__icon {
@@ -318,6 +321,7 @@
             width: 100%;
             flex-direction: row-reverse;
             justify-content: flex-end;
+            color: $blue;
             & .header__projects__icon {
               stroke: $blue;
             }
