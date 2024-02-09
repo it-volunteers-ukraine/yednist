@@ -158,6 +158,9 @@
             }
           }
         }
+        &__text {
+          text-transform: lowercase;
+        }
       }
     }
   }
