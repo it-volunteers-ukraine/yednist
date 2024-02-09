@@ -125,16 +125,16 @@
         &.header__current__page a {
           color: $blue;
         }
+        &:hover {
+          .header__projects__menu & a {
+            color: $blue;
+          }
+          padding-bottom: 4px;
+          border-bottom: 4px solid $violet-grey;
+        }
         @media screen and (max-width: $desktop) {
           font-size: 20px;
           line-height: 1.5;
-          &:hover {
-            .header__projects__menu & a {
-              color: $blue;
-            }
-            padding-bottom: 4px;
-            border-bottom: 4px solid $violet-grey;
-          }
           &:focus {
             background-color: $lavender;
             .header__projects__menu & a {
@@ -149,14 +149,6 @@
           text-align: left;
           padding: 12px 8px 11px;
           border-bottom: 1px solid $violet-grey;
-          &:hover,
-          &:focus {
-            border-bottom: 1px solid $violet-grey;
-            padding-bottom: 11px;
-            .header__projects__menu & a {
-              color: $blue;
-            }
-          }
         }
         &__text {
           text-transform: lowercase;
@@ -488,7 +480,7 @@
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    @media screen and (max-width: $desktop) {
+    &:hover {
       color: $blue;
       text-decoration-line: underline;
     }
@@ -499,6 +491,10 @@
       & p,
       & img {
         display: none;
+      }
+      &:hover {
+        color: $black;
+        text-decoration-line: none;
       }
     }
     &__content {
