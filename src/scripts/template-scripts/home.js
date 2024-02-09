@@ -59,6 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
       clickable: true,
       slideToClickedSlide: true,
     },
+    preloadImages: false,
+    lazy: {
+      loadOnTransitionStart: true,
+      loadPrevNext: true,
+    },
+    lazyPreloadPrevNext: 1,
     breakpoints: {
       576: {
         slidesPerView: 2,
