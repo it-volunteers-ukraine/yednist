@@ -149,6 +149,13 @@
           text-align: left;
           padding: 12px 8px 11px;
           border-bottom: 1px solid $violet-grey;
+          &:hover {
+            .header__projects__menu & a {
+              color: $blue;
+            }
+            padding-bottom: 11px;
+            border-bottom: 1px solid $violet-grey;
+          }
         }
         &__text {
           text-transform: lowercase;
