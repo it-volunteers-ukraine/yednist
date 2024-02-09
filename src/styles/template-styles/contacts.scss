@@ -105,6 +105,13 @@
             @media (max-width: $tablet2) {
                 margin-bottom: 28px;
             } 
+            a {
+                color: $black;
+                transition: all $transition-function;
+                &:hover {
+                    color: $blue;              
+                }
+            }
         }
         &-item:not(:last-child) { 
             margin-bottom: 12px; 
@@ -112,7 +119,8 @@
                 margin-bottom: 8px; 
             }
         } 
-        &-text {               
+        &-text {  
+            font-family: "Fira Sans", sans-serif;               
             @media (max-width: $desktop) {
                 font-size: 18px;
             }
@@ -215,7 +223,6 @@
         appearance: none;
         outline: none;
     }
-    /*.wpcf7-select:checked {}*/
     .wpcf7-select:focus {
         background-color:  $lavender;
         border-radius: $bid-border-radius $bid-border-radius 0px 0px;

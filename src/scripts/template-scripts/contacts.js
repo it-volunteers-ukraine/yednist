@@ -29,7 +29,7 @@ formContacts.addEventListener( 'wpcf7submit', function( event ) {
       
 }, false );
 
- //wpcf7mailsent + pop-up==========================================
+//wpcf7mailsent + pop-up==========================================
 formContacts.addEventListener( 'wpcf7mailsent', function( event ) {
     popupMessage.classList.add('opened');
     document.body.classList.add('modal-open'); 
