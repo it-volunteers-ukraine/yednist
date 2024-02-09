@@ -286,11 +286,11 @@ footer {
   }
 }
 
-.minus-icon {
+.acc-minus-icon {
   display: none;
   fill: $black;
 }
-.plus-icon {
+.acc-plus-icon {
   display: none;
   fill: $black;
 
@@ -317,11 +317,11 @@ footer {
       & + .acc-container {
         padding: 8px 20px;
       }
-      .minus-icon {
+      .acc-minus-icon {
         fill: $blue;
         display: block;
       }
-      .plus-icon {
+      .acc-plus-icon {
         display: none;
       }
     }
