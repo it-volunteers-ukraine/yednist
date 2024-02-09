@@ -94,6 +94,7 @@
       box-shadow: 0px 4px 4px 0px $dark-blue;
       background: $white;
       border-radius: 0px 0px $bid-border-radius $bid-border-radius;
+      z-index: 999;
       @media screen and (max-width: $desktop) {
         top: 44px;
         padding: 8px 16px 8px;
@@ -124,16 +125,16 @@
         &.header__current__page a {
           color: $blue;
         }
+        &:hover {
+          .header__projects__menu & a {
+            color: $blue;
+          }
+          padding-bottom: 4px;
+          border-bottom: 4px solid $violet-grey;
+        }
         @media screen and (max-width: $desktop) {
           font-size: 20px;
           line-height: 1.5;
-          &:hover {
-            .header__projects__menu & a {
-              color: $blue;
-            }
-            padding-bottom: 4px;
-            border-bottom: 4px solid $violet-grey;
-          }
           &:focus {
             background-color: $lavender;
             .header__projects__menu & a {
@@ -148,14 +149,16 @@
           text-align: left;
           padding: 12px 8px 11px;
           border-bottom: 1px solid $violet-grey;
-          &:hover,
-          &:focus {
-            border-bottom: 1px solid $violet-grey;
-            padding-bottom: 11px;
+          &:hover {
             .header__projects__menu & a {
               color: $blue;
             }
+            padding-bottom: 11px;
+            border-bottom: 1px solid $violet-grey;
           }
+        }
+        &__text {
+          text-transform: lowercase;
         }
       }
     }
@@ -492,11 +495,13 @@
       order: 1;
       width: 100%;
       margin: auto 0 0;
-    }
-    & p,
-    & img {
-      @media screen and (max-width: $desktop1) {
+      & p,
+      & img {
         display: none;
+      }
+      &:hover {
+        color: $black;
+        text-decoration-line: none;
       }
     }
     &__content {

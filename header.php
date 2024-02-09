@@ -22,8 +22,8 @@
                         </svg>
                     </div>
                         <?php
-                            $current_language = pll_current_language('name');
-                            $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu' : 'header-menu-polish');
+                            $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
+                            $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu-ukrainian' : 'header-menu-polski');
                             $menu_items = wp_get_nav_menu_items($menu_id);
                             $middle_index = ceil(8);
                                 
@@ -43,7 +43,7 @@
                                 <use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use>
                                 </svg></div>';
                                 echo '<ul class="header__projects__menu">';
-                                echo '<li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">Усі ' . esc_html($menu_item->title) . '</a></li>';
+                                echo '<li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' <span class="header__projects__menu__item__text">' . esc_html($menu_item->title) . '</span></a></li>';
                             }
 
                             if ($inside_projects && ($index >= 3 && $index <= 5)) {
