@@ -97,9 +97,15 @@
 .feedback-modal__box {
   display: flex;
   column-gap: 20px;
+  & .feedback-modal__wrapper {
+    flex-basis: 50%;
+  }
   @media screen and (max-width: $mobile) {
     flex-direction: column;
     row-gap: 12px;
+    & .feedback-modal__wrapper {
+      flex-basis: 100%;
+    }
   }
 }
 

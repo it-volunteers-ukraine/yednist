@@ -271,6 +271,9 @@
   @media screen and (max-width: $desktop) {
     font-size: 32px;
   }
+  @media screen and (max-width: 1150px) {
+    font-size: 28px;
+  }
   @media screen and (max-width: $tablet2) {
     font-size: 20px;
     line-height: 1.5;
@@ -298,10 +301,10 @@
 
 .digits-section__text {
   max-width: 360px;
-  @media screen and (max-width: $desktop) {
-    max-width: 300px;
+  @media screen and (max-width: 1500px) {
+    max-width: 294px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1260px) {
     max-width: 203px;
   }
   @media screen and (max-width: 700px) {
@@ -335,10 +338,10 @@
     transition: width 2s ease-in-out;
   }
 
-  @media screen and (max-width: $desktop) {
+  @media screen and (max-width: 1500px) {
     font-size: 128px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1260px) {
     margin-bottom: 13px;
     font-size: 84px;
   }
@@ -585,14 +588,14 @@
 //feedback section
 
 .feedback-section__box {
-  max-width: 1464px;
+  position: relative;
   margin: 0 auto;
-  padding: 40px 0 40px 40px;
+  padding: 40px;
   border-radius: $bid-border-radius;
   border: 1px solid $violet-grey;
   background: $white;
   @media screen and (max-width: 1760px) {
-    max-width: 1104px;
+    max-width: 1100px;
   }
   @media screen and (max-width: 1350px) {
     max-width: 750px;
@@ -607,69 +610,4 @@
     border: transparent;
     background: transparent;
   }
-}
-
-.grid-sizer {
-  width: 30%;
-  @media screen and (max-width: 1350px) {
-    width: 40%;
-  }
-  @media screen and (max-width: $tablet1) {
-    display: none;
-  }
-}
-
-.feedback-pagination__block {
-  width: 100%;
-  display: grid;
-  padding-right: 40px;
-  grid-template-columns: auto 100px;
-  align-items: center;
-  margin-top: 40px;
-  @media screen and (max-width: $tablet1) {
-    padding: 0;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column-reverse;
-  }
-}
-
-.feedback-pagination__button {
-  @media screen and (max-width: $tablet1) {
-    width: 100%;
-  }
-}
-
-.numbers-pagination {
-  font-size: 40px;
-  font-weight: 300;
-  letter-spacing: -5px;
-  @media screen and (max-width: $tablet1) {
-    margin-bottom: 16px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: -3px;
-  }
-}
-
-.swiper-navigation__box {
-  position: absolute;
-  bottom: 10px;
-  right: 40px;
-  display: flex;
-  justify-content: space-between;
-  width: 158px;
-  @media screen and (max-width: $tablet1) {
-    left: 0;
-    bottom: 68px;
-    width: 100%;
-  }
-}
-
-.feedback-section__slider .custom-button-next,
-.feedback-section__slider .custom-button-prev {
-  position: static;
-  transform: none;
-  display: block;
 }

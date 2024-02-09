@@ -189,7 +189,7 @@ get_header();
               <p class="common-questions__question"><?php echo get_sub_field('common_question'); ?></p>
 
               <svg class="plus-icon" width="20px" height="20px">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#plus-icon"></use>
+                <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
               </svg>
 
               <svg class="minus-icon" width="20px" height="20px">
@@ -215,35 +215,16 @@ get_header();
       <div class="inner-container">
 
         <div class="feedback-section__box">
-          <div class="swiper feedback-section__slider">
-            <div class="swiper-wrapper ">
 
-              <?php if ( have_posts(  ) ) : 
-            /* Start the Loop */
-            
-                while ( have_posts() ) : the_post(); ?>
+          <?php get_template_part( 'template-parts/feedback-posts' ); ?>
 
-              <?php get_template_part( 'template-parts/feedback-posts' );?>
-
-              <?php endwhile;
-
-              endif; ?>
-
-            </div>
-            <div class="feedback-pagination__block">
-              <button class="button secondary-button feedback-pagination__button" type="submit"
-                id="js-open-feedback-form"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
-
-              <div class="numbers-pagination"></div>
-            </div>
-            <div class="swiper-navigation__box">
-              <?php get_template_part( 'template-parts/swiper-navigation'); ?></div>
-          </div>
         </div>
 
-        <?php get_template_part( 'template-parts/feedback-form' ); ?>
-
       </div>
+
+      <?php get_template_part( 'template-parts/feedback-form' ); ?>
+
+    </div>
     </div>
   </section>
 

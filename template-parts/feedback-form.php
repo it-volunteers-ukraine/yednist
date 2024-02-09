@@ -53,8 +53,9 @@
         </div>
         <label for="contactAgreement" class="feedback-privacy__label">Я погоджуюся надати дані у формі для того, щоб
           зв'язатися з громадською організацією "Єдність". Дані, що
-          містяться у змісті кореспонденції, обробляються відповідно до принципів, описаних у Політиці
-          конфеденційності.<span class="required">*</span>
+          містяться у змісті кореспонденції, обробляються відповідно до принципів, описаних у <a
+            href="https://pdp.nacs.gov.ua/pages/zahyst-pers-dannih" target="_blank">Політиці конфіденційності.</a><span
+            class="required">*</span>
         </label>
       </div>
       <div class="feedback-btn__wrap">
