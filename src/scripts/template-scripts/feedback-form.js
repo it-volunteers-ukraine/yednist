@@ -1,12 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const openFeedbackFormButton = document.getElementById(
-    "js-open-feedback-form"
-  );
-  const closeFeedbackFormButton = document.getElementById(
-    "js-close-feedback-form"
-  );
-  const feedbackBackdrop = document.getElementById("js-feedback-form");
+const openFeedbackFormButton = document.getElementById("js-open-feedback-form");
+const closeFeedbackFormButton = document.getElementById(
+  "js-close-feedback-form"
+);
+const feedbackBackdrop = document.getElementById("js-feedback-form");
 
+if (openFeedbackFormButton && closeFeedbackFormButton && feedbackBackdrop) {
   openFeedbackFormButton.addEventListener("click", showMenu);
 
   function showMenu() {
@@ -26,4 +24,4 @@ document.addEventListener("DOMContentLoaded", function () {
       hideMenu();
     }
   }
-});
+}
