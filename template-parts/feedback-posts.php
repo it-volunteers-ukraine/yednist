@@ -4,19 +4,42 @@
 <?php get_template_part( 'template-parts/feedback-nav' ); ?>
 
 <!-- AJAX -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 jQuery(document).ready(function($) {
 
-  $('.loader').show();
-  var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  var currentPageEl = $(".current-page");
-  var totalPageEl = $(".total-pages");
-  var currentPage = 1;
-  var totalPages = 1;
+  // Початок показу лоадера
+  function showLoader() {
+    $('.loader').show();
+  }
 
+  // Кінець показу лоадера
+  function hideLoader() {
+    $('.loader').hide();
+  }
+
+  // Отримання nonce
+  function getFeedbacksNonce() {
+    return "<?php echo wp_create_nonce("feedbacks_nonce"); ?>";
+  }
+
+  // Оновлення кнопок пагінації
+  function updatePaginationButtons() {
+    var prevButton = $('.feedback-prev');
+    var nextButton = $('.feedback-next');
+
+    // Встановлення стану кнопки "Prev"
+    prevButton.prop('disabled', currentPage === 1);
+
+    // Встановлення стану кнопки "Next"
+    nextButton.prop('disabled', currentPage === totalPages);
+  }
+
+  // Завантаження постів
   function loadPosts(page) {
     var data = {
       action: 'load_feedbacks',
+      nonce: getFeedbacksNonce(),
       width: viewportWidth,
       page: page
     };
@@ -25,65 +48,57 @@ jQuery(document).ready(function($) {
       url: '<?php echo admin_url('admin-ajax.php'); ?>',
       type: 'post',
       data: data,
-      beforeSend: function() {
-        // Показываем лоадер перед отправкой запроса
-        $('.loader').show();
-      },
+      beforeSend: showLoader,
       success: function(response) {
-        $('.loader').hide();
+        hideLoader();
         totalPages = response.totalPages;
         totalPageEl.html(totalPages);
         $('.feedback-section__wrapper').html(response.html);
-        // Проверяем, должны ли кнопки "Next" и "Prev" быть активными или неактивными
         updatePaginationButtons();
       },
       error: function(xhr, status, error) {
-        $('.loader').hide();
+        hideLoader();
         console.error("Request failed: " + error);
       }
     });
   }
 
-  function updatePaginationButtons() {
-    // Если текущая страница равна 1, делаем кнопку "Prev" неактивной
-    if (currentPage === 1) {
-      $('.feedback-prev').prop('disabled', true);
-    } else {
-      $('.feedback-prev').prop('disabled', false);
-    }
+  // Початок скрипту
+  var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+  var currentPageEl = $(".current-page");
+  var totalPageEl = $(".total-pages");
+  var currentPage = 1;
+  var totalPages = 1;
 
-    // Если текущая страница равна общему количеству страниц, делаем кнопку "Next" неактивной
-    if (currentPage === totalPages) {
-      $('.feedback-next').prop('disabled', true);
-    } else {
-      $('.feedback-next').prop('disabled', false);
-    }
+  // Оновлення поточної сторінки
+  function updateCurrentPage() {
+    currentPageEl.html(currentPage);
   }
 
-  currentPageEl.html(currentPage);
-
-  loadPosts(currentPage);
-
+  // Обробник кліку на кнопку "Next"
   $('.feedback-next').click(function() {
     currentPage++;
     if (currentPage > totalPages) {
       currentPage = totalPages;
     }
     loadPosts(currentPage);
-    currentPageEl.html(currentPage);
-    // Проверяем, должны ли кнопки "Next" и "Prev" быть активными или неактивными после перехода на новую страницу
+    updateCurrentPage();
     updatePaginationButtons();
   });
 
+  // Обробник кліку на кнопку "Prev"
   $('.feedback-prev').click(function() {
     currentPage--;
     if (currentPage < 1) {
       currentPage = 1;
     }
     loadPosts(currentPage);
-    currentPageEl.html(currentPage);
-    // Проверяем, должны ли кнопки "Next" и "Prev" быть активными или неактивными после перехода на новую страницу
+    updateCurrentPage();
     updatePaginationButtons();
   });
+
+  // Початкове завантаження постів
+  loadPosts(currentPage);
+  updateCurrentPage();
 });
 </script>

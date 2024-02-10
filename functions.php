@@ -123,44 +123,58 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 
-/*** AJAX feedbacks*/
+/*** AJAX feedbacks */
 add_action('wp_ajax_load_feedbacks', 'load_feedbacks');
 add_action('wp_ajax_nopriv_load_feedbacks', 'load_feedbacks');
 
 function load_feedbacks() {
-    $page = $_POST['page'];
-    $width = $_POST['width'];
-    if ($width > 1349.98) {
-    $number = 6;
-    } elseif ($width > 767.98) {
-        $number = 4;
-    } else {
-        $number = 1;
-    }
-    $total_posts = wp_count_posts ( 'feedbacks' ) -> publish ;
-    $total_pages = ceil($total_posts / $number);
+  // Перевірка nonce
+  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "feedbacks_nonce")) {
+    exit;
+  }
+  
+  // Отримання параметрів з AJAX-запиту
+  $page = $_POST['page'];
+  $width = $_POST['width'];
+  
+  // Визначення кількості постів на сторінку залежно від ширини
+  $number = get_posts_per_page($width);
 
-    $args = array(
-        'post_type' => 'feedbacks',
-        'posts_per_page' => $number,
-        'orderby' => 'modified',
-        'paged' => $page
-    );
+  // Отримання загальної кількості постів та кількості сторінок
+  $total_posts = wp_count_posts('feedbacks')->publish;
+  $total_pages = ceil($total_posts / $number);
 
-    $query = new WP_Query($args);
-    ob_start();
-    if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post(); ?>
+  // Побудова запиту для отримання постів
+  $args = array(
+    'post_type' => 'feedbacks',
+    'posts_per_page' => $number,
+    'orderby' => 'modified',
+    'paged' => $page
+  );
 
-<?php get_template_part( 'template-parts/one-comment' ); ?>
-
+  $query = new WP_Query($args);
+  ob_start();
+  if ($query->have_posts()) :
+    while ($query->have_posts()) : $query->the_post(); ?>
+<?php get_template_part('template-parts/one-comment'); ?>
 <?php endwhile;
-    endif;
+  endif;
 
-    $html = ob_get_clean();
-    wp_reset_postdata();
+  $html = ob_get_clean();
+  wp_reset_postdata();
 
-    wp_send_json(array('html' => $html, 'totalPages' => $total_pages));
+  // Відправка відповіді JSON з HTML та кількістю сторінок
+  wp_send_json(array('html' => $html, 'totalPages' => $total_pages));
+  wp_die();
+}
 
-    wp_die();
+// Визначення кількості постів на сторінку залежно від ширини
+function get_posts_per_page($width) {
+  if ($width > 1349.98) {
+    return 6;
+  } elseif ($width > 767.98) {
+    return 4;
+  } else {
+    return 1;
+  }
 }
