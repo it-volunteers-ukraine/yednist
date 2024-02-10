@@ -32,6 +32,18 @@
   @media screen and (max-width: $desktop) {
     margin-bottom: 20px;
   }
+  &-mobile {
+    display: none;
+    @media screen and (max-width: $tablet1) {
+      min-height: 374px;
+      display: block;
+    }
+  }
+  &-desktop {
+    @media screen and (max-width: $tablet1) {
+      display: none;
+    }
+  }
 }
 
 .feedback-post__excerpt,
@@ -45,11 +57,8 @@
     margin-bottom: 20px;
     font-size: 14px;
   }
-}
-
-.feedback-post__content {
   @media screen and (max-width: $tablet1) {
-    min-height: 250px;
+    margin-bottom: 8px;
   }
 }
 
@@ -87,7 +96,6 @@
   color: $blue;
   font-size: 16px;
   text-transform: uppercase;
-  margin-top: 8px;
 }
 
 .feedback-close__btn.hidden,
