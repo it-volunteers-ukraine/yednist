@@ -36,26 +36,63 @@
 
 .feedback-post__excerpt,
 .feedback-post__content {
+  position: relative;
   font-family: "Fira Sans", sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  overflow: hidden;
   @media screen and (max-width: $desktop) {
     margin-bottom: 20px;
     font-size: 14px;
   }
+}
+
+.feedback-post__content {
   @media screen and (max-width: $tablet1) {
-    min-height: 270px;
-    overflow: hidden;
+    min-height: 250px;
   }
 }
 
-.feedback-post__btn {
+.feedback-post__excerpt::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 247, 252, 0) 0%,
+    rgba(247, 247, 252, 0.7) 51.56%
+  );
+  @media screen and (max-width: $tablet1) {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.7) 51.56%
+    );
+  }
+}
+
+.feedback-post__excerpt.open {
+  height: fit-content;
+  &::after {
+    display: none;
+  }
+}
+
+.feedback-close__btn,
+.feedback-open__btn {
   color: $blue;
   font-size: 16px;
   text-transform: uppercase;
-  @media screen and (max-width: $mobile) {
-    margin-top: 8px;
-  }
+  margin-top: 8px;
+}
+
+.feedback-close__btn.hidden,
+.feedback-open__btn.hidden {
+  display: none;
 }
 
 .feedback-post__author {
