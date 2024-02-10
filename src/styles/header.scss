@@ -97,7 +97,7 @@
       z-index: 999;
       @media screen and (max-width: $desktop) {
         top: 44px;
-        padding: 8px 16px 8px;
+        padding: 0 16px 16px;
         gap: 8px;
         width: 272px;
       }
@@ -129,8 +129,8 @@
           .header__projects__menu & a {
             color: $blue;
           }
-          padding-bottom: 4px;
-          border-bottom: 4px solid $violet-grey;
+          padding-bottom: 3px;
+          border-bottom: 3px solid $violet-grey;
         }
         @media screen and (max-width: $desktop) {
           font-size: 20px;

@@ -49,7 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   closeButton.addEventListener("click", function (event) {
     if (!openProjects.contains(event.target)) {
-      menu.addEventListener("click", closeByBgdClic);
+      menu.addEventListener("click", closeByBgdClick);
+      projectsMenu.style.display = "none";
+      projectsIcon.classList.remove("open");
+      projects.classList.remove("open");
+    }
+  });
+  document.addEventListener("click", function (event) {
+    if (!openProjects.contains(event.target)) {
+      menu.addEventListener("click", closeByBgdClick);
       projectsMenu.style.display = "none";
       projectsIcon.classList.remove("open");
       projects.classList.remove("open");
