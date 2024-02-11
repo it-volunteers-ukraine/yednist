@@ -4,13 +4,13 @@
 
     $content = wp_trim_words($post->post_content, 80);
     $contentMobile = wp_trim_words($post->post_content, 60);
-    $contentDesktop = wp_trim_words($post->post_content, 40);  
+    $contentDesktop = wp_trim_words($post->post_content, 42);  
 
     $excerptMobileLength = strlen($contentMobile);
     $excerptDesktopLength = strlen($contentDesktop);
     $fullContentLength = strlen($content); 
 
-    $randomNumberDesktop = rand(100, 240);?>
+    $randomNumberDesktop = rand(100, 200);?>
 
   <div class="feedback-post__box feedback-post__box-mobile">
     <?php if ($excerptMobileLength < $fullContentLength) { ?>
