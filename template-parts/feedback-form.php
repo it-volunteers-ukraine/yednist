@@ -10,59 +10,25 @@
       </button>
     </div>
 
-    <form class="">
+    <?php
+         if ( have_posts() ) :
+            while(have_posts()): the_post(); 
 
-      <div class="feedback-modal__auth">
 
-        <div class="feedback-modal__box">
-          <div class="feedback-modal__wrapper">
-            <label for="contactName">Ваше ім’я*</label>
-            <input id="contactName" class="feedback-modal__input" type="text" name="name"
-              placeholder="Введіть Ваше ім’я">
-          </div>
+            acf_form(array(
+                  'post_id'       => 'new_post',
+                  'new_post'      => array(
+                      'post_type'     => 'feedbacks',
+                      'post_status'   => 'draft',
+                  ),
+                  'html_submit_button'  => '<input type="submit" class="acf-button button primary-button" value="Відправити" />',
+              )); 
 
-          <div class="feedback-modal__wrapper">
-            <label for="contactEmail">Електронна пошта*</label>
-            <input id='contactEmail' class="feedback-modal__input" type="email" name="mail"
-              placeholder="johndoe@gmail.com" />
-          </div>
-        </div>
 
-        <div class="feedback-modal__opt">
-          <label for="feedbackPrograms">В яких програмах громадської організації “Єдність” ви приймали участь?*</label>
-          <select id='feedbackPrograms' class='feedback-modal__input' placeholder="Виберіть програму..."></select>
-        </div>
-
-        <div class="feedback-modal__case">
-          <label for="yourCase">Ваш варіант взаємодії з нами*</label>
-          <input id='yourCase' class="feedback-modal__input" type="text" name="yourCase"
-            placeholder="Як ми з Вами співпрацювали" />
-        </div>
-
-        <div>
-          <label for="contactFeedback" class="feedback-form__text">Ваш відгук*</label>
-          <textarea class="feedback-modal__input" id='contactFeedback' name="comments" cols="30" rows="10"
-            placeholder="Напишіть Ваше повідомлення..."></textarea>
-        </div>
-      </div>
-
-      <div class="feedback-modal__privacy">
-        <div class="feedback-check__box">
-          <input id="contactAgreement" class="feedback-check" type="checkbox" name="privacy">
-        </div>
-        <label for="contactAgreement" class="feedback-privacy__label">Я погоджуюся надати дані у формі для того, щоб
-          зв'язатися з громадською організацією "Єдність". Дані, що
-          містяться у змісті кореспонденції, обробляються відповідно до принципів, описаних у <a
-            class="feedback-privacy__link" href="https://pdp.nacs.gov.ua/pages/zahyst-pers-dannih"
-            target="_blank">Політиці конфіденційності.</a>*
-        </label>
-      </div>
-      <div class="feedback-btn__wrap">
-        <!-- <div class="feedback-submit-notification" id="submit-notification">Будь-ласка, заповніть усі обов'язкові поля.
-        </div> -->
-        <button class="button primary-button feedback-button" type="submit">Відправити</button>
-      </div>
-    </form>
+              endwhile;     
+             else : ?>
+    <p class="nothing-found"><?php the_field('nothing-found', 'options') ?></p>
+    <?php endif; ?>
 
   </div>
 </div>
