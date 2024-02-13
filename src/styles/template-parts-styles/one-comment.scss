@@ -66,34 +66,9 @@
   }
 }
 
-.feedback-post__excerpt::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 60px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(247, 247, 252, 0) 0%,
-    rgba(247, 247, 252, 0.7) 51.56%
-  );
-  @media screen and (max-width: $tablet1) {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.7) 51.56%
-    );
-  }
-}
-
 .feedback-post__excerpt.hidden,
 .feedback-post__content.hidden {
   display: none;
-  &::after {
-    display: none;
-  }
 }
 
 .feedback-open__btn {

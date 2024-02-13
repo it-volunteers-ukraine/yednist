@@ -1,4 +1,4 @@
-<div class="feedback-backdrop is-hidden" id="js-feedback-form">
+<div class="feedback-backdrop" id="js-feedback-form">
   <div class="feedback-modal">
 
     <div class="feedback-modal__title-wrap">
@@ -27,7 +27,7 @@
 
               endwhile;     
              else : ?>
-    <p class="nothing-found"><?php the_field('nothing-found', 'options') ?></p>
+    <p class="">Nothing found</p>
     <?php endif; ?>
 
   </div>

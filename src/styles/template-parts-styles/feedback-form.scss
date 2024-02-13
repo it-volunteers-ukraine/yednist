@@ -221,6 +221,10 @@
         height: 140px;
       }
     }
+    & select:hover,
+    & select:focus {
+      cursor: pointer;
+    }
     & select option {
       font-family: "Fira Sans", sans-serif;
       color: $black;
