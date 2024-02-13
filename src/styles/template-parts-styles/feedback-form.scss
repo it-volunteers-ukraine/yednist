@@ -115,7 +115,7 @@
 }
 
 .feedback-modal .acf-form {
-  font-family: "Fira Sans", sans-serif;
+  font-family: $secondary-font;
   & .acf-field {
     & .acf-label {
       margin: 0;
@@ -138,6 +138,7 @@
   }
 }
 
+//general settings
 .acf-field.acf-field-group.acf-field-65c9c24452e5e {
   padding: 0;
   margin-bottom: 8px;
@@ -171,7 +172,8 @@
     }
     & input,
     & select,
-    & textarea {
+    & textarea,
+    & .choices__inner {
       position: relative;
       display: flex;
       align-items: center;
@@ -198,7 +200,7 @@
         box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
         cursor: text;
       }
-      &:valid {
+      &:user-valid {
         border-color: $violet-grey;
       }
       &:invalid {
@@ -221,24 +223,112 @@
         height: 140px;
       }
     }
-    & select:hover,
-    & select:focus {
-      cursor: pointer;
+  }
+
+  //select
+  & .acf-field-65c92299c6ba0 {
+    .choices,
+    .choices__inner {
+      overflow: visible;
     }
-    & select option {
-      font-family: "Fira Sans", sans-serif;
-      color: $black;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.5;
-      &:first-child {
-        font-family: "Fira Sans Extra Condensed", sans-serif;
+    .choices__inner {
+      &.valid {
+        border-color: $violet-grey;
+      }
+      &.invalid {
+        border-color: $invalid-input;
+      }
+    }
+    .choices::after {
+      right: 32px;
+      top: 20%;
+      background-image: url(../../../assets/images/check-mark-down.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-origin: border-box;
+      border: none;
+      height: 40px;
+      width: 40px;
+      @media screen and (max-width: $desktop) {
+        top: 10%;
+        right: 24px;
+      }
+      @media screen and (max-width: $tablet2) {
+      }
+      @media screen and (max-width: $mobile) {
+        right: 12px;
+        top: 5%;
+      }
+    }
+    .choices.is-open::after {
+      background-image: url(../../../assets/images/check-mark-up.svg);
+      top: 35%;
+      @media screen and (max-width: $mobile) {
+        top: 30%;
+      }
+    }
+    .choices {
+      & .choices__inner {
+        min-height: fit-content;
+      }
+      & .choices__list {
+        padding: 0;
+      }
+      &.is-open .choices__inner {
+        height: 64px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: $lavender;
+        font-family: $primary-font;
         font-size: 24px;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 18px;
+        }
+        @media screen and (max-width: $mobile) {
+          height: 56px;
+          font-family: $primary-font;
+          font-size: 14px;
+        }
+      }
+      &.is-open .choices__list--dropdown {
+        background-color: $white;
+        border: 1px solid $lavender;
+        border-bottom-left-radius: $bid-border-radius;
+        border-bottom-right-radius: $bid-border-radius;
+        font-family: $secondary-font;
+        font-size: 20px;
+        word-break: normal;
+        @media (max-width: $tablet2) {
+          font-size: 14px;
+          border-bottom-left-radius: $small-border-radius;
+          border-bottom-right-radius: $small-border-radius;
+        }
+        & .choices__item {
+          padding: 12px 32px;
+          @media screen and (max-width: $desktop) {
+            padding: 12px 24px;
+          }
+          @media screen and (max-width: $desktop) {
+            padding: 12px;
+          }
+          &:not(:last-child) {
+            @media screen and (max-width: $desktop) {
+              border-bottom: 1px solid $lavender;
+            }
+          }
+          &:first-child {
+            display: none;
+          }
+        }
       }
     }
   }
 }
 
+//container with name and email
 .acf-field.acf-field-group.acf-field-65c922051068c .acf-fields {
   display: flex;
   flex-direction: row;
@@ -255,6 +345,7 @@
   }
 }
 
+//additional input
 .acf-field.acf-field-text.acf-field-65c923c92be46 {
   display: none;
   &.shown {
@@ -262,6 +353,7 @@
   }
 }
 
+//agreement
 .acf-field.acf-field-checkbox.acf-field-65c9be238b00a {
   margin-bottom: 24px;
 
@@ -288,7 +380,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-origin: border-box;
-    transition: 250ms $transition-function;
+    transition: $transition-function;
     width: 24px;
     height: 24px;
     @media screen and (max-width: $mobile) {

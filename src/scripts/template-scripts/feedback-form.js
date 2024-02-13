@@ -65,3 +65,41 @@ if (openFeedbackFormButton) {
     }
   }
 }
+
+const feedbackForm = document.getElementById(
+  "acf-field_65c9c24452e5e-field_65c92299c6ba0"
+);
+const additionalField = document.querySelector(".acf-field-65c923c92be46");
+const choicesFeedbackForm = new Choices(feedbackForm, {
+  placeholderValue: "Виберіть програму...",
+  searchEnabled: false,
+  allowHTML: false,
+  shouldSort: false,
+  position: "bottom",
+  itemSelectText: "",
+});
+
+const innerChoises = document.querySelector(
+  ".acf-field-65c92299c6ba0 .choices__inner"
+);
+const choicesLength = choicesFeedbackForm.config.choices.length;
+
+choicesFeedbackForm.passedElement.element.addEventListener(
+  "choice",
+  function (event) {
+    // do something creative here...
+    if (event.detail.choice.active) {
+      console.log(innerChoises);
+      innerChoises.classList.add("valid");
+      innerChoises.classList.remove("invalid");
+    } else {
+      innerChoises.classList.add("invalid");
+      innerChoises.classList.remove("valid");
+    }
+
+    if (event.detail.choice.id === choicesLength) {
+      additionalField.classList.add("shown");
+    }
+  },
+  false
+);
