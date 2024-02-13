@@ -1,0 +1,225 @@
+@import "../variables";
+
+.feedback-backdrop {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $transition-function;
+}
+
+.feedback-backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.feedback-backdrop.is-hidden .feedback-modal {
+  transform: translate(-50%, -50%) translateX(-100%);
+}
+
+.feedback-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+  width: 802px;
+  padding: 24px 40px;
+  background-color: $background;
+  border-radius: $bid-border-radius;
+  box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
+  transition: transform $transition-function;
+  @media screen and (max-width: $desktop) {
+    width: 650px;
+    padding: 24px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 560px;
+    border-radius: $small-border-radius;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 288px;
+    padding: 16px 12px;
+  }
+}
+
+.feedback-modal__title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 12px;
+  }
+}
+
+.feedback-modal__title {
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+}
+
+.feedback-modal__btn {
+  cursor: pointer;
+  transition: 250ms $transition-function;
+}
+
+.icon__cross {
+  width: 40px;
+  height: 40px;
+  @media screen and (max-width: $desktop) {
+    width: 32px;
+    height: 32px;
+  }
+  .feedback-modal__btn:hover &,
+  .feedback-modal__btn:hover & {
+    fill: $blue;
+  }
+}
+
+.feedback-modal__box {
+  display: flex;
+  column-gap: 20px;
+  & .feedback-modal__wrapper {
+    flex-basis: 50%;
+  }
+  @media screen and (max-width: $mobile) {
+    flex-direction: column;
+    row-gap: 12px;
+    & .feedback-modal__wrapper {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.feedback-modal__auth {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  @media screen and (max-width: $tablet2) {
+    row-gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    row-gap: 12px;
+  }
+}
+
+.feedback-modal__auth label {
+  display: block;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
+}
+
+.feedback-form__text {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.feedback-modal__input {
+  position: relative;
+  display: flex;
+  width: 100%;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  height: 40px;
+  padding: 12px 42px;
+  transition: 250ms $transition-function;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border-color: $blue;
+  }
+}
+
+.feedback-modal__wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+textarea {
+  display: flex;
+  width: 100%;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  padding: 12px 16px;
+  height: 120px;
+  transition: 250ms $transition-function;
+  margin-bottom: 20px;
+  resize: none;
+}
+
+textarea:hover,
+textarea:focus {
+  border-color: $blue;
+}
+
+textarea::placeholder {
+  color: rgba(117, 117, 117, 0.502);
+}
+
+.feedback-modal__privacy {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 8px;
+}
+
+.feedback-privacy__label {
+}
+
+.feedback-check__box {
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $mobile) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.feedback-check {
+  appearance: none;
+  background-image: url(../../../assets/images/icon-checkbox-blank.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  transition: 250ms $transition-function;
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $mobile) {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:checked {
+    background-image: url(../../images/icon-checkbox-check.svg);
+    background-size: contain;
+    background-origin: border-box;
+  }
+}
+
+.feedback-check:checked + span {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.feedback-privacy__link {
+  color: $blue;
+  text-decoration: underline;
+}
