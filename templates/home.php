@@ -3,6 +3,7 @@
 Template Name: home
 */
 get_header();
+
 ?>
 <main class="front-page__main">
 
@@ -64,19 +65,12 @@ get_header();
 
         <div class="values-section__flex">
           <?php if( have_rows('our_values_photos') ): ?>
-          <ul class="values-flex__titles">
-            <?php while( have_rows('our_values_photos') ): the_row(); ?>
-            <li>
-              <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
-            </li>
-            <?php endwhile; ?>
-          </ul>
-
           <ul class="values-flex__wrapper">
             <?php while( have_rows('our_values_photos') ): the_row(); 
             $image = get_sub_field('our_values_img');
           ?>
             <li class="values-flex__slide">
+              <h3 class="page-title values-section__title"><?php echo get_sub_field('our_values_photo_title'); ?></h3>
               <div class="image-wrapper values-section__image">
                 <?php echo wp_get_attachment_image( $image, 'full' ); ?>
               </div>
@@ -111,9 +105,9 @@ get_header();
         <div class="swiper digits-section__slider">
           <?php if( have_rows('our_digits_block') ): ?>
           <div class="swiper-wrapper digits-section__wrapper">
-            <?php while( have_rows('our_digits_blok') ): the_row(); ?>
+            <?php while( have_rows('our_digits_block') ): the_row(); ?>
             <div class="swiper-slide digits-section__text">
-              <p id="digits-js" class="digits-section__number digits-js"><?php echo get_sub_field('number'); ?></p>
+              <p class="digits-section__number digits-js"><?php echo get_sub_field('number'); ?></p>
               <p class="digits-section__caption"><?php echo get_sub_field('caption'); ?></p>
             </div>
             <?php endwhile; ?>
@@ -195,7 +189,7 @@ get_header();
               <p class="common-questions__question"><?php echo get_sub_field('common_question'); ?></p>
 
               <svg class="plus-icon" width="20px" height="20px">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#plus-icon"></use>
+                <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
               </svg>
 
               <svg class="minus-icon" width="20px" height="20px">
@@ -203,8 +197,8 @@ get_header();
               </svg>
             </div>
 
-            <p id="panel<?php echo get_row_index(); ?>" role="region" class="common-questions__answer panel">
-              <?php echo get_sub_field('answer'); ?></p>
+            <div id="panel<?php echo get_row_index(); ?>" role="region" class="common-questions__answer panel">
+              <?php echo get_sub_field('answer'); ?></div>
 
           </li>
           <?php endwhile; ?>
@@ -220,39 +214,17 @@ get_header();
       <h2 class="section-title"><?php the_field('feedbacks_title'); ?></h2>
       <div class="inner-container">
 
-        <div class="feedback-section__slide">
+        <div class="feedback-section__box">
 
-          <?php
-          $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-          $args = [ 
-            'post_type'      => 'feedbacks',
-            'posts_per_page' => 1,
-            'paged'          => $current_page
-          ];
-          
-          query_posts( $args );
-          
-              if ( have_posts() ) : 
-            /* Start the Loop */
-                while ( have_posts() ) : the_post();
-                
-                  get_template_part( 'template-parts/feedback-posts' );
-
-                endwhile;
-                wp_reset_query();
-              endif; ?>
-
-          <button class="button secondary-button"
-            type="submit"><?php echo esc_attr(get_field('write_down_feedback', 'option') ); ?></button>
-
-          <?php
-              $gallery_shortcode = '[simple_masonry id="163" title="Відгуки" sm_post_type="feedbacks" gallery="yes"]';
-              print apply_filters( 'the_content', $gallery_shortcode );
-          ?>
+          <?php get_template_part( 'template-parts/feedback-posts' ); ?>
 
         </div>
+
       </div>
+
+      <?php get_template_part( 'template-parts/feedback-form' ); ?>
+
+    </div>
     </div>
   </section>
 

@@ -1,6 +1,6 @@
 const popupSuccess = document.getElementById("popup-success");
 const popupMessage = document.querySelector(".popup")
-const closeButton = document.querySelector('.popup__close');
+const closeButtonForm = document.querySelector('.popup__close');
 const errorPhone = document.querySelector('.error-phone');
 const submitButton = document.getElementById("submit-btn");
 const formContacts = document.querySelector(".form__contacts");
@@ -34,7 +34,7 @@ formContacts.addEventListener( 'wpcf7mailsent', function( event ) {
     popupMessage.classList.add('opened');
     document.body.classList.add('modal-open'); 
 
-    closeButton.onclick = () => {  
+    closeButtonForm.onclick = () => {  
         popupMessage.classList.remove('opened');
         popupMessage.classList.add('closen'); 
         document.body.classList.remove('modal-open');   
