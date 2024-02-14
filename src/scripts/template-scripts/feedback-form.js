@@ -6,7 +6,7 @@ const feedbackBackdrop = document.getElementById("js-feedback-form");
 const feedbackModalEl = document.querySelector(".feedback-modal");
 
 if (openFeedbackFormButton) {
-  openFeedbackFormButton.addEventListener("click", showMenu);
+  openFeedbackFormButton.addEventListener("click", showForm);
 
   let screenHeight = window.innerHeight;
   const computedStyle = getComputedStyle(feedbackModalEl);
@@ -25,12 +25,12 @@ if (openFeedbackFormButton) {
     }
   }
 
-  function showMenu() {
+  function showForm() {
     const windowScrollY = window.scrollY;
     feedbackBackdrop.classList.remove("is-hidden");
     screenOrientation(screenHeight);
 
-    closeFeedbackFormButton.addEventListener("click", hideMenu);
+    closeFeedbackFormButton.addEventListener("click", hideForm);
     feedbackBackdrop.addEventListener("click", closeByBgdClick);
     window.addEventListener("keydown", closeByPressEscape);
     window.addEventListener("resize", lookForSizeChanges);
@@ -39,9 +39,9 @@ if (openFeedbackFormButton) {
     document.body.style.top = `-${windowScrollY}px`;
   }
 
-  function hideMenu() {
+  function hideForm() {
     feedbackBackdrop.classList.add("is-hidden");
-    closeFeedbackFormButton.removeEventListener("click", hideMenu);
+    closeFeedbackFormButton.removeEventListener("click", hideForm);
     feedbackBackdrop.removeEventListener("click", closeByBgdClick);
     feedbackModalEl.classList.remove("horizontal");
 
@@ -53,19 +53,20 @@ if (openFeedbackFormButton) {
 
   function closeByBgdClick(e) {
     if (e.target === feedbackBackdrop) {
-      hideMenu();
+      hideForm();
     }
   }
 
   function closeByPressEscape(e) {
     e.preventDefault;
     if (e.code === "Escape") {
-      hideMenu();
+      hideForm();
       window.removeEventListener("keydown", closeByPressEscape);
     }
   }
 }
 
+// select
 const feedbackForm = document.getElementById(
   "acf-field_65c9c24452e5e-field_65c92299c6ba0"
 );
@@ -89,11 +90,8 @@ choicesFeedbackForm.passedElement.element.addEventListener(
   function (event) {
     // do something creative here...
     if (event.detail.choice.active) {
-      console.log(innerChoises);
       innerChoises.classList.add("valid");
-      innerChoises.classList.remove("invalid");
     } else {
-      innerChoises.classList.add("invalid");
       innerChoises.classList.remove("valid");
     }
 
@@ -102,4 +100,17 @@ choicesFeedbackForm.passedElement.element.addEventListener(
     }
   },
   false
+);
+
+//form validation
+const inputNameEl = document.getElementById(
+  "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91dcb08837"
+);
+console.dir(inputNameEl);
+inputNameEl.addEventListener("keyup", function () {
+  inputNameEl.value = inputNameEl.value.replace(/\d/g, "");
+});
+
+const inputEmailEl = document.getElementById(
+  "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91df7fe472"
 );

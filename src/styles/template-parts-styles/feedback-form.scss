@@ -232,6 +232,10 @@
       overflow: visible;
     }
     .choices__inner {
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
       &.valid {
         border-color: $violet-grey;
       }
@@ -326,6 +330,10 @@
       }
     }
   }
+}
+
+input.feedback-submit-btn {
+  font-family: $primary-font;
 }
 
 //container with name and email
