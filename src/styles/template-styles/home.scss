@@ -476,6 +476,7 @@
 }
 
 .common-questions__text {
+  position: relative;
   padding: 24px 40px;
   border-bottom: 1px solid $violet-grey;
   transition: all $transition-function;
@@ -487,6 +488,15 @@
   }
   @media screen and (max-width: $mobile) {
     padding: 12px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 8px;
   }
 }
 
@@ -501,6 +511,10 @@
   @media screen and (max-width: $mobile) {
     font-size: 16px;
   }
+}
+
+.common-questions__link {
+  color: $blue;
 }
 
 //general settings for accordion
@@ -552,7 +566,9 @@
 
 .common-questions__text:hover,
 .common-questions__text:focus {
-  border-left: 8px solid $violet-grey;
+  &::after {
+    background-color: $violet-grey;
+  }
 }
 
 .common-questions__box:hover,
