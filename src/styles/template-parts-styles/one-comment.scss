@@ -28,6 +28,9 @@
 }
 
 .feedback-post__box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 24px;
   @media screen and (max-width: $desktop) {
     margin-bottom: 20px;
@@ -36,7 +39,7 @@
     display: none;
     @media screen and (max-width: $tablet1) {
       min-height: 374px;
-      display: block;
+      display: flex;
     }
   }
   &-desktop {
@@ -48,13 +51,14 @@
 
 .feedback-post__excerpt,
 .feedback-post__content {
+  height: fit-content;
   position: relative;
+  margin-bottom: 20px;
   font-family: "Fira Sans", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow: hidden;
   @media screen and (max-width: $desktop) {
-    margin-bottom: 20px;
     font-size: 14px;
   }
   @media screen and (max-width: $tablet1) {
@@ -62,45 +66,16 @@
   }
 }
 
-.feedback-post__excerpt::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 60px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(247, 247, 252, 0) 0%,
-    rgba(247, 247, 252, 0.7) 51.56%
-  );
-  @media screen and (max-width: $tablet1) {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.7) 51.56%
-    );
-  }
+.feedback-post__excerpt.hidden,
+.feedback-post__content.hidden {
+  display: none;
 }
 
-.feedback-post__excerpt.open {
-  height: fit-content;
-  &::after {
-    display: none;
-  }
-}
-
-.feedback-close__btn,
 .feedback-open__btn {
   color: $blue;
   font-size: 16px;
   text-transform: uppercase;
-}
-
-.feedback-close__btn.hidden,
-.feedback-open__btn.hidden {
-  display: none;
+  order: 3;
 }
 
 .feedback-post__author {
