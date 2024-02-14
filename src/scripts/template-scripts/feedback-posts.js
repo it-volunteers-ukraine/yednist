@@ -11,7 +11,7 @@ jQuery(document).ready(function ($) {
 
   // Отримання nonce
   function getFeedbacksNonce() {
-    return "<?php echo wp_create_nonce('feedbacks_nonce'); ?>";
+    return myAjax.nonce;
   }
 
   // Оновлення кнопок пагінації
@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
     };
 
     $.ajax({
-      url: '<?php echo admin_url("admin-ajax.php"); ?>',
+      url: myAjax.ajaxUrl,
       type: "post",
       data: data,
       beforeSend: showLoader,
