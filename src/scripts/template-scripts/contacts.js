@@ -13,17 +13,17 @@ formContacts.addEventListener( 'wpcf7submit', function( event ) {
     const pattern = /^[\+]?\d{2}[\s|-]?\(?\d{2}?\)?[\s]?\d{3}[\s|-]?\d{2}[\s|-]?\d{2}$/;
     check = pattern.test(value);
     
-    if (!check) {
-        errorPhone.innerHTML = "The phone number must contain 12 digits";
-        errorPhone.classList.add('wpcf7-not-valid-tip'); 
-        telInputEl.classList.add('error'); 
+    if (!check) {   
+        errorPhone.classList.add('opened', 'wpcf7-not-valid-tip'); 
+        telInputEl.classList.add('error', 'wpcf7-not-valid'); 
     }  
 
     telInputEl.onfocus = () => {
         const isErrorField = telInputEl.classList.contains("error");
-        if (isErrorField) {
-            errorPhone.innerHTML = "";
-            errorPhone.classList.remove('error-phone');        
+        if (isErrorField) {            
+            errorPhone.classList.remove('opened', 'error-phone');
+            errorPhone.classList.add('closen');
+            telInputEl.classList.remove('error', 'wpcf7-not-valid');     
         } 
     }  
       

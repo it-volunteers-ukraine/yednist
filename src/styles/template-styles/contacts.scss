@@ -213,6 +213,7 @@
         font-family: "Fira Sans", sans-serif;  
         font-size: 20px;        
         vertical-align: middle;
+        color: rgb(90, 88, 88);
         @media (max-width: $desktop) {             
             font-size: 18px;
         }
@@ -287,17 +288,26 @@
         @media (max-width: $mobile) {
             width: 100%;
         }     
-    }
+    }    
 }
 
 .wpcf7-response-output {
     display: none;
 }
 
-.wpcf7-not-valid-tip {    
+.wpcf7-not-valid-tip, .error-phone {    
     font-size: 14px; 
+    color: #DC1414;
+    margin-bottom: 15px;    
 }
 
+.wpcf7-not-valid {
+    border: 1px solid #DC1414!important;        
+}
+
+.error-phone {
+    display: none;    
+}
 
 /*Popup=======================*/
 .popup {
