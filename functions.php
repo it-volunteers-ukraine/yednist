@@ -24,8 +24,7 @@ function wp_it_volunteers_scripts() {
   wp_enqueue_style( 'wp-it-volunteers-style', get_template_directory_uri() . '/assets/styles/main.css', array('main') );
   wp_enqueue_style('swiper-style', "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css", array('main'));
   wp_enqueue_style('choices-style', "https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css", array('main'));
-  
-  wp_enqueue_script( 'jquery-scripts', 'https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', array(), false, true );
+
   wp_enqueue_script( 'wp-it-volunteers-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), false, true );
   wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10.0.0/swiper-bundle.min.js', array(), false, true);  
   wp_enqueue_script('choices-scripts', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), false, true);
@@ -60,6 +59,12 @@ function wp_it_volunteers_scripts() {
     
     if (is_singular() && locate_template('template-parts/feedback-posts.php')) {
       wp_enqueue_style('feedback-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/feedback-posts.css', array('main'));
+      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+      wp_enqueue_script('feedback-page-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-posts.js', array('jquery-scripts'), false, true);
+      wp_localize_script('feedback-page-scripts', 'myAjax', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('feedbacks_nonce'),
+      ));
     }
 
     if (is_singular() && locate_template('template-parts/address.php')) {
@@ -151,7 +156,8 @@ function load_feedbacks() {
     'post_type' => 'feedbacks',
     'posts_per_page' => $number,
     'orderby' => 'modified',
-    'paged' => $page
+    'paged' => $page,
+    'post_status' => 'publish'
   );
 
   $query = new WP_Query($args);
@@ -179,4 +185,25 @@ function get_posts_per_page($width) {
   } else {
     return 1;
   }
+}
+
+add_action('acf/init', 'my_acf_form_init');
+function my_acf_form_init() {
+
+    // Check function exists.
+    if( function_exists('acf_register_form') ) {
+
+        // Register form.
+        acf_register_form(array(
+            'id'       => 'new-event',
+            'post_id'       => 'new_post',
+                  'new_post'      => array(
+                      'post_type'     => 'feedbacks',
+                      'post_status'   => 'draft',
+                  ),
+                  'html_submit_button'  => '<input type="submit" class="acf-button button primary-button feedback-submit-btn" value="%s" />',
+                  'return' => '',
+                  'submit_value'  => pll__('Відправити')
+        ));
+    }
 }

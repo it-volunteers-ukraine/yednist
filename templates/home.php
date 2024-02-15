@@ -2,6 +2,7 @@
 /*
 Template Name: home
 */
+acf_form_head();
 get_header();
 
 ?>
@@ -209,7 +210,7 @@ get_header();
     </div>
   </section>
 
-  <section class="section">
+  <section class="section feedback-section">
     <div class="container">
       <h2 class="section-title"><?php the_field('feedbacks_title'); ?></h2>
       <div class="inner-container">

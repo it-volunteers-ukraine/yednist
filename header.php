@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <div class="wrapper">
+  <div class="wrapper">
     <header class="header">
-    <div class="header__container">
+      <div class="header__container">
         <div class="header__body" id="">
-            <div class="header__menu__container">
-                <div class="header__menu__content">
-                    <div class="header__menu__close-button">
-                        <svg class="header__menu__icon">
-                            <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#close"></use>
-                        </svg>
-                    </div>
-                        <?php
+          <div class="header__menu__container">
+            <div class="header__menu__content">
+              <div class="header__menu__close-button">
+                <svg class="header__menu__icon">
+                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#close"></use>
+                </svg>
+              </div>
+              <?php
                             $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
                             $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu-ukrainian' : 'header-menu-polski');
                             $menu_items = wp_get_nav_menu_items($menu_id);
@@ -63,14 +63,14 @@
 
                             echo '</ul>';
                         ?>
-                            <div class="header__logo">
-                        <?php
+              <div class="header__logo">
+                <?php
                             if (has_custom_logo()) {
                                 echo get_custom_logo();
                             }
                             ?>
-                            </div>
-                        <?php
+              </div>
+              <?php
                             echo '<ul class="header__second__list">';
                                 foreach ($menu_right as $index => $menu_item) {
                                 if ($index !== 2) {
@@ -113,20 +113,20 @@
                                     }
                                 echo '</ul>';
                         ?>
-                            </ul>
-                        </div>
-                    </div>
-                        <div class="header__burger__logo">
-                            <?php
+              </ul>
+            </div>
+          </div>
+          <div class="header__burger__logo">
+            <?php
                             if (has_custom_logo()) {
                                 echo get_custom_logo();
                             }
                             ?>
-                                    
-                        </div>
-                    <div class="burger">
-                        <span></span>
-                    </div>
-            </div>
+
+          </div>
+          <div class="burger">
+            <span></span>
+          </div>
         </div>
+      </div>
     </header>

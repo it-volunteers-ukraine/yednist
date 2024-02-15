@@ -20,7 +20,7 @@ footer {
 }
 
 .footer {
-  &-container {
+  &-container.container {
     border-radius: 40px 40px 0px 0px;
     background: var(--White, #fff);
     box-shadow: 0px -4px 7px 0px rgba(140, 142, 208, 0.2);
