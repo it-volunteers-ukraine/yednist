@@ -385,8 +385,6 @@
     }
   }
   .header__second__list &__button {
-    background: $blue;
-    color: $white;
     min-width: 172px;
     @media screen and (max-width: $full) {
       font-size: 20px;
