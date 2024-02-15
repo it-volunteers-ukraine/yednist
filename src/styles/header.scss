@@ -505,7 +505,7 @@
       top: -20%;
       left: -50%;
       border: 1px solid $lavender;
-      padding: 11px 0 0;
+      padding: 8px 16px;
       background: $background;
       z-index: 1;
       gap: 6px;
@@ -534,10 +534,6 @@
     font-size: 20px;
     line-height: 1.5;
     height: max-content;
-    @media screen and (max-width: $desktop) {
-      font-size: 16px;
-      line-height: 1.5;
-    }
 
     @media screen and (max-width: $mobile) {
       font-size: 14px;
@@ -558,7 +554,7 @@
     border-bottom: 1px solid $lavender;
     align-items: center;
     height: max-content;
-    padding: 4px 16px;
+    padding: 4px 8px 3px;
 
     color: $black;
     font-size: 20px;
