@@ -147,8 +147,6 @@
 
 //values section
 
-//values section
-
 .values-section__slider {
   display: none;
   @media screen and (max-width: $mobile) {
@@ -279,7 +277,7 @@
     line-height: 1.5;
     text-transform: uppercase;
   }
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: 625px) {
     font-size: 18px;
   }
 }
@@ -294,6 +292,9 @@
 .digits-section__wrapper {
   column-gap: 20px;
   justify-content: space-between;
+  @media screen and (max-width: 585px) {
+    column-gap: 16px;
+  }
   @media screen and (max-width: $mobile) {
     column-gap: 0;
   }

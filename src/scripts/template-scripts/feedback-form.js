@@ -70,10 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // select
-  const feedbackForm = document.getElementById(
-    "acf-field_65c9c24452e5e-field_65c92299c6ba0"
-  );
-  const additionalField = document.querySelector(".acf-field-65c923c92be46");
+  const feedbackForm = document.querySelector(".feedback-select-js");
+  const additionalField = document.getElementById("case-js");
 
   if (feedbackForm) {
     const choicesFeedbackForm = new Choices(feedbackForm, {
@@ -86,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const innerChoises = document.querySelector(
-      ".acf-field-65c92299c6ba0 .choices__inner"
+      ".feedback-modal .choices__inner"
     );
     const choicesLength = choicesFeedbackForm.config.choices.length;
 
@@ -102,22 +100,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (event.detail.choice.id === choicesLength) {
           additionalField.classList.add("shown");
-        }
+        } else additionalField.classList.remove("shown");
       },
       false
     );
 
     //form validation
-    const inputNameEl = document.getElementById(
-      "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91dcb08837"
-    );
+    // const inputNameEl = document.getElementById(
+    //   "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91dcb08837"
+    // );
 
-    inputNameEl.addEventListener("keyup", function () {
-      inputNameEl.value = inputNameEl.value.replace(/\d/g, "");
-    });
+    // inputNameEl.addEventListener("keyup", function () {
+    //   inputNameEl.value = inputNameEl.value.replace(/\d/g, "");
+    // });
 
-    const inputEmailEl = document.getElementById(
-      "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91df7fe472"
-    );
+    // const inputEmailEl = document.getElementById(
+    //   "acf-field_65c9c24452e5e-field_65c922051068c-field_65c91df7fe472"
+    // );
   }
 });

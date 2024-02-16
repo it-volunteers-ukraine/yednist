@@ -187,23 +187,65 @@ function get_posts_per_page($width) {
   }
 }
 
-add_action('acf/init', 'my_acf_form_init');
-function my_acf_form_init() {
+// add_action('acf/init', 'my_acf_form_init');
+// function my_acf_form_init() {
 
-    // Check function exists.
-    if( function_exists('acf_register_form') ) {
+//     // Check function exists.
+//     if( function_exists('acf_register_form') ) {
 
-        // Register form.
-        acf_register_form(array(
-            'id'       => 'new-event',
-            'post_id'       => 'new_post',
-                  'new_post'      => array(
-                      'post_type'     => 'feedbacks',
-                      'post_status'   => 'draft',
-                  ),
-                  'html_submit_button'  => '<input type="submit" class="acf-button button primary-button feedback-submit-btn" value="%s" />',
-                  'return' => '',
-                  'submit_value'  => pll__('Відправити')
-        ));
+//       $btn_name = function_exists('pll__') ? pll__('відправити') : 'відправити';
+//         // Register form.
+//         acf_register_form(array(
+//             'id'       => 'new-event',
+//             'post_id'       => 'new_post',
+//                   'new_post'      => array(
+//                       'post_type'     => 'feedbacks',
+//                       'post_status'   => 'draft',
+//                   ),
+//                   'html_submit_button'  => '<input type="submit" class="acf-button button primary-button feedback-submit-btn" value="%s" />',
+//                   'return' => '',
+//                   'submit_value'  => $btn_name
+//         ));
+//     }
+// }
+
+//add words to translate
+function polylang_translate()
+{
+    pll_register_string('відправити', 'відправити', 'General');
+}
+add_action( 'init', 'polylang_translate' );
+
+
+// Функция для обработки AJAX-запроса
+function do_insert() {
+    if( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_POST['do_insert_nonce'] ) && wp_verify_nonce( $_POST['do_insert_nonce'], 'do_insert_action' ) ) {
+        if (empty($_POST['title']) || empty($_POST['description']) || empty($_POST['email'])) {
+            wp_send_json_error( 'Please enter title, content, and email.' ); // Отправляем ошибку
+        }
+
+        // Создаем пост
+        $post = array(
+            'post_title'    => $_POST['title'],
+            'post_content'  => $_POST['description'],
+            'post_status'   => 'publish',
+            'post_type'     => 'feedbacks'
+        );
+
+        $post_id = wp_insert_post($post);
+
+        if ($post_id) {
+            // Обновляем поле ACF "your_email" в созданном посте
+            update_field('your_email', $_POST['email'], $post_id);
+            
+            // Отправляем успешный результат
+            wp_send_json_success( 'Post added successfully!' );
+        } else {
+            // Отправляем ошибку
+            wp_send_json_error( 'Failed to add post.' );
+        }
     }
 }
+
+add_action('wp_ajax_do_insert', 'do_insert'); // Обработка AJAX-запросов для авторизованных пользователей
+add_action('wp_ajax_nopriv_do_insert', 'do_insert'); // Обработка AJAX-запросов для неавторизованных пользователей
