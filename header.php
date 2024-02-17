@@ -108,7 +108,7 @@
                                             echo '</li>';
                                         }
                                             
-                                            echo '<li class="button secondary_button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                                            echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                                         }
                                     }
                                 echo '</ul>';

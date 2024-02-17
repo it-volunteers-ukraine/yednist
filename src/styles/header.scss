@@ -97,7 +97,7 @@
       z-index: 999;
       @media screen and (max-width: $desktop) {
         top: 44px;
-        padding: 8px 16px 8px;
+        padding: 0 16px 16px;
         gap: 8px;
         width: 272px;
       }
@@ -129,8 +129,8 @@
           .header__projects__menu & a {
             color: $blue;
           }
-          padding-bottom: 4px;
-          border-bottom: 4px solid $violet-grey;
+          padding-bottom: 3px;
+          border-bottom: 3px solid $violet-grey;
         }
         @media screen and (max-width: $desktop) {
           font-size: 20px;
@@ -213,15 +213,10 @@
         max-height: 688px;
       }
       @media screen and (max-width: $mobile) {
-        background: $white;
-        box-shadow: 2px 4px 7px 1px $header-box-shadow;
         width: 100%;
         max-width: 228px;
-        flex-direction: column;
-        justify-content: flex-start;
         border-radius: 0px $small-border-radius $small-border-radius 0px;
         padding: 60px 16px 16px;
-        position: relative;
         max-height: 541px;
       }
     }
@@ -390,8 +385,6 @@
     }
   }
   .header__second__list &__button {
-    background: $blue;
-    color: $white;
     min-width: 172px;
     @media screen and (max-width: $full) {
       font-size: 20px;
@@ -512,7 +505,7 @@
       top: -20%;
       left: -50%;
       border: 1px solid $lavender;
-      padding: 11px 0 0;
+      padding: 8px 16px;
       background: $background;
       z-index: 1;
       gap: 6px;
@@ -541,10 +534,6 @@
     font-size: 20px;
     line-height: 1.5;
     height: max-content;
-    @media screen and (max-width: $desktop) {
-      font-size: 16px;
-      line-height: 1.5;
-    }
 
     @media screen and (max-width: $mobile) {
       font-size: 14px;
@@ -565,7 +554,7 @@
     border-bottom: 1px solid $lavender;
     align-items: center;
     height: max-content;
-    padding: 4px 16px;
+    padding: 4px 8px 3px;
 
     color: $black;
     font-size: 20px;
