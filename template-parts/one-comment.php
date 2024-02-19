@@ -1,10 +1,11 @@
 <article class="grid-item feedback-post">
   <?php 
     $fullContent = $post->post_content;
+    $randomNumber = mt_rand(25, 40);
 
     $content = wp_trim_words($post->post_content, 80);
     $contentMobile = wp_trim_words($post->post_content, 60, "...");
-    $contentDesktop = wp_trim_words($post->post_content, 40, "...");  
+    $contentDesktop = wp_trim_words($post->post_content, $randomNumber, "...");  
 
     $excerptMobileLength = strlen($contentMobile);
     $excerptDesktopLength = strlen($contentDesktop);

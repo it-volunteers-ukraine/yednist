@@ -187,23 +187,54 @@ function get_posts_per_page($width) {
   }
 }
 
-add_action('acf/init', 'my_acf_form_init');
-function my_acf_form_init() {
 
-    // Check function exists.
-    if( function_exists('acf_register_form') ) {
+//add words to translate
+function polylang_translate()
+{
+    pll_register_string('відправити', 'відправити', 'General');
+}
+add_action( 'init', 'polylang_translate' );
 
-        // Register form.
-        acf_register_form(array(
-            'id'       => 'new-event',
-            'post_id'       => 'new_post',
-                  'new_post'      => array(
-                      'post_type'     => 'feedbacks',
-                      'post_status'   => 'draft',
-                  ),
-                  'html_submit_button'  => '<input type="submit" class="acf-button button primary-button feedback-submit-btn" value="%s" />',
-                  'return' => '',
-                  'submit_value'  => pll__('Відправити')
-        ));
+
+// AJAX for writing reviews into CPT "Feedbacks"
+add_action('wp_ajax_do_insert', 'do_insert');
+add_action('wp_ajax_nopriv_do_insert', 'do_insert');
+
+function do_insert() {
+    if( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_POST['do_insert_nonce'] ) && wp_verify_nonce( $_POST['do_insert_nonce'], 'do_insert_action' ) ) {
+
+        if (empty($_POST['title']) || !preg_match('/^[^\d]+$/', $_POST['title'])) {
+            wp_send_json_error( 'Please enter a valid title.' ); 
+        }
+
+        if (empty($_POST['email']) || !preg_match('/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/', $_POST['email'])) {
+            wp_send_json_error( 'Please enter a valid email address.' ); 
+        }
+
+        if (empty($_POST['description']) || empty($_POST['programs'])) {
+            wp_send_json_error( 'Please fill all necessary fields.' ); 
+        }
+        
+
+        $post = array(
+            'post_title'    => $_POST['title'],
+            'post_content'  => $_POST['description'],
+            'post_status'   => 'pending',
+            'post_type'     => 'feedbacks'
+        );
+
+        $post_id = wp_insert_post($post);
+            
+        if ($post_id) {
+
+            update_field('your_email', $_POST['email'], $post_id);
+
+            $author_role = !empty($_POST['case']) ? $_POST['case'] : $_POST['programs'];
+            update_field('author_role', $author_role, $post_id);
+            
+            wp_send_json_success( 'Post added successfully!' );
+        } else {
+            wp_send_json_error( 'Failed to add post.' );
+        }
     }
 }
