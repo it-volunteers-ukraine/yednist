@@ -1,6 +1,7 @@
 @import "../variables";
 
-.feedback-backdrop {
+.feedback-backdrop,
+.feedback-backdrop__notification {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -11,12 +12,14 @@
   transition: opacity $transition-function;
 }
 
-.feedback-backdrop.is-hidden {
+.feedback-backdrop.is-hidden,
+.feedback-backdrop__notification.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-.feedback-backdrop.is-hidden .feedback-modal {
+.feedback-backdrop.is-hidden .feedback-modal,
+.feedback-backdrop__notification.is-hidden .feedback-notification {
   transform: translate(-50%, -50%) translateX(-100%);
   @media screen and (max-width: $mobile) {
     transform: translateX(-100%);
@@ -27,7 +30,8 @@
   transform: translateX(-100%);
 }
 
-.feedback-modal {
+.feedback-modal,
+.feedback-notification {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -172,12 +176,14 @@
       box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
       cursor: text;
     }
-    &:user-valid {
+
+    &.valid {
       border-color: $violet-grey;
     }
-    &:invalid {
+    &.invalid {
       border-color: $invalid-input;
     }
+
     &::placeholder {
       color: $grey;
     }
@@ -206,12 +212,6 @@
       &:hover,
       &:focus {
         cursor: pointer;
-      }
-      &.valid {
-        border-color: $violet-grey;
-      }
-      &.invalid {
-        border-color: $invalid-input;
       }
     }
     .choices::after {
@@ -277,19 +277,19 @@
         border-bottom-left-radius: $bid-border-radius;
         border-bottom-right-radius: $bid-border-radius;
         font-family: $secondary-font;
-        font-size: 20px;
         word-break: normal;
         @media (max-width: $tablet2) {
-          font-size: 14px;
           border-bottom-left-radius: $small-border-radius;
           border-bottom-right-radius: $small-border-radius;
         }
         & .choices__item {
           padding: 12px 32px;
+          font-size: 20px;
           @media screen and (max-width: $desktop) {
             padding: 12px 24px;
+            font-size: 14px;
           }
-          @media screen and (max-width: $desktop) {
+          @media screen and (max-width: $mobile) {
             padding: 12px;
           }
           &:not(:last-child) {
@@ -372,5 +372,84 @@
   }
   & .feedback-privacy__link {
     color: $blue;
+  }
+}
+
+//alert
+
+.feedback-alert.hidden {
+  display: none;
+}
+.feedback-alert {
+  margin-bottom: 16px;
+  display: block;
+  color: $invalid-input;
+  font-size: 14px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+}
+
+//notification
+
+.feedback-notification {
+  position: relative;
+  padding: 92px 208px;
+  @media screen and (max-width: $desktop) {
+    padding: 121px 140px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 98px 145px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 134px 49px;
+  }
+  & .close-notification-btn {
+    position: absolute;
+    top: 24px;
+    right: 40px;
+    @media screen and (max-width: $desktop) {
+      right: 24px;
+    }
+    @media screen and (max-width: $mobile) {
+      top: 12px;
+      right: 12px;
+    }
+  }
+  &__title {
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-size: 64px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $blue;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 20px;
+      text-transform: none;
+      font-size: 40px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 20px;
+    }
+  }
+  &__text {
+    font-weight: 300;
+    font-size: 40px;
+    text-align: center;
+    @media screen and (max-width: $desktop) {
+      font-size: 32px;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 28px;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+      text-transform: uppercase;
+    }
   }
 }

@@ -1,4 +1,5 @@
-<div class="feedback-backdrop" id="js-feedback-form">
+<div class="feedback-backdrop is-hidden" id="js-feedback-form">
+
   <div class="feedback-modal">
 
     <div class="feedback-modal__title-wrap">
@@ -19,82 +20,96 @@
         <div class="feedback-inputs__wrap">
 
           <div class="feedback-name-email__wrapper">
-            <div class="feedback-input__wrapper"><label for="title">Name</label>
-              <input type="text" id="title" value="" tabindex="1" size="20" name="title" />
+
+            <div class="feedback-input__wrapper"><label for="title"><?php the_field('feedback_your_name'); ?></label>
+              <input type="text" id="title" value="" tabindex="1" size="20" name="title" class="input-name" />
             </div>
 
-            <div class="feedback-input__wrapper"><label for="email">email</label>
-              <input type="text" id="email" value="" tabindex="1" size="20" name="email" />
+            <div class="feedback-input__wrapper"><label for="email"><?php the_field('feedback_your_email'); ?></label>
+              <input type="text" id="email" value="" tabindex="1" size="20" name="email" class="input-email" />
             </div>
+
           </div>
 
 
           <div class="feedback-select__wrap">
-            <label for="program-select">В яких програмах громадської організації “Єдність” ви приймали участь?*</label>
+
+            <label for="program-select"><?php the_field('feedback_select_program_name'); ?></label>
             <select class="feedback-select-js" name="programs" id="program-select">
-              <option value="">Виберіть програму...</option>
-              <option>Моя дитина брала участь в освітніх програмах для підлітків</option>
-              <option>Брав(ла) участь в курсах для дорослих</option>
-              <option>Інше</option>
+              <option value=""><?php the_field('feedback_placeholder'); ?></option>
+
+              <?php if( have_rows('feedback_select_program') ):
+
+                while( have_rows('feedback_select_program') ) : the_row();
+
+                    $sub_value = get_sub_field('prorgam_name'); ?>
+              <option><?php echo $sub_value; ?></option>
+
+              <?php endwhile;
+
+              endif; ?>
+
             </select>
+
           </div>
+
 
           <div class="feedback-case" id="case-js">
-            <label for="case">Ваш варіант взаємодії з нами*</label>
-            <input type="text" id="case" value="" tabindex="1" size="20" name="case" />
+
+            <label for="case"><?php the_field('feedback_your_case'); ?></label>
+            <input type="text" id="case" value="" tabindex="1" size="20" name="case" maxlength="350"
+              class="input-case" />
+
           </div>
 
-          <div><label for="description">Ваш відгук*</label>
-            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"
-              placeholder="Введіть текст"></textarea>
+
+          <div>
+
+            <label for="description"><?php the_field('feedback_your_review'); ?></label>
+            <textarea class="input-review" id="description" tabindex="3" name="description" cols="50" rows="6"
+              maxlength="1000" placeholder="Введіть текст"></textarea>
+
           </div>
 
         </div>
 
         <div class="feedback-modal__privacy">
+
           <label class="feedback-privacy__label">
-            <input class="feedback-check" type="checkbox" name="privacy">
-            <span>Я погоджуюся надати дані у формі для того, щоб зв'язатися з громадською організацією "Єдність". Дані,
-              що містяться у змісті кореспонденції, обробляються відповідно до принципів,описаних у <a
-                class="feedback-privacy__link" href="">Політиці конфеденційності.</a>*
+            <input class="feedback-check" type="checkbox" name="privacy" required>
+            <span><?php the_field('feedback_policy_text'); ?><a class="feedback-privacy__link"
+                href="<?php the_field("policy", "options"); ?>"><?php the_field('feedback_policy_name'); ?></a>*
             </span>
           </label>
+
         </div>
 
-        <p><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" class="button primary-button" />
-        </p>
+
+        <div class="feedback__btn--wrap">
+          <div class="feedback-alert hidden"><?php the_field('feedback_alert'); ?></div>
+          <input type="submit" value="<?php the_field('send_btn', 'options'); ?>" tabindex="6" id="submit" name="submit"
+            class="button primary-button" />
+        </div>
 
         <input type="hidden" name="action" value="do_insert" />
         <input type="hidden" name="post_type" value="feedbacks" />
         <?php wp_nonce_field( 'do_insert_action', 'do_insert_nonce' ); ?>
+
       </form>
+
     </div>
   </div>
+
 </div>
 
-<script>
-jQuery(document).ready(function($) {
-  $('#new_post').submit(function(e) {
-    e.preventDefault(); // Предотвращаем отправку формы по умолчанию
-
-    var form = $(this);
-
-    $.ajax({
-      type: form.attr('method'),
-      url: form.attr('action'),
-      data: form.serialize(),
-      success: function(response) {
-        if (response.success) {
-          alert(response.data); // Показываем уведомление в виде alert
-          form.trigger('reset'); // Очищаем форму
-        } else {
-          alert('Error: ' + response.data); // Показываем ошибку в виде alert
-        }
-      },
-      error: function(xhr, status, error) {
-        alert('Error: ' + error); // Показываем ошибку в виде alert
-      }
-    });
-  });
-});
-</script>
+<div class="feedback-backdrop__notification is-hidden feedback-notification-js">
+  <div class="feedback-notification">
+    <button class="feedback-modal__btn close-notification-btn" type="button" aria-label="Close notification">
+      <svg class="icon__cross">
+        <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#cross-icon"></use>
+      </svg>
+    </button>
+    <div class="feedback-notification__title"><?php the_field("feedback_thanks"); ?></div>
+    <div class="feedback-notification__text"><?php the_field("feedback_text"); ?></div>
+  </div>
+</div>
