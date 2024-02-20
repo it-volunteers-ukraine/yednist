@@ -1,4 +1,11 @@
 <footer>
+    <div class="container btn-to-top-container">
+        <button type="button" class="btn-to-top">
+            <svg class="btn-to-top-icon" width="22" height="30">
+                <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#btn-to-top"></use>
+            </svg>
+        </button>
+        </div>
     <div class="container footer-container">
         <div class="footer-top-container">
             <div class="footer__logo-wrapper">

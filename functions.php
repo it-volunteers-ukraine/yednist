@@ -191,7 +191,7 @@ function get_posts_per_page($width) {
 //add words to translate
 function polylang_translate()
 {
-    pll_register_string('відправити', 'відправити', 'General');
+    // pll_register_string('відправити', 'відправити', 'General');
 }
 add_action( 'init', 'polylang_translate' );
 
