@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){console.log(new Swiper(".projects__list__slider"));new Swiper(".projects__list__slider",{slidesPerView:3,spaceBetween:60,lazy:{loadOnTransitionStart:!0,loadPrevNext:!0},pagination:{clickable:!0,renderBullet:function(e,n){return'<span class="'+n+'">'+(e+1)+"</span>"}}})}));
