@@ -1,6 +1,11 @@
 console.log("footer part");
 
 const elList = document.querySelectorAll(".acc-show");
+const btnToTop = document.querySelector(".btn-to-top");
+
+btnToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 const handleAccToggle = (e) => {
   if (window.innerWidth > 767.97) {

@@ -39,5 +39,8 @@
 <symbol id="icon-arrow-down" viewBox="0 0 51 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" d="M2.326 2.665l23.273 26.667 23.273-26.667"></path>
 </symbol>
+<symbol id="btn-to-top" viewBox="0 0 22 30">
+<path d="M11 1L1 9.68966M11 1L21 9.68966M11 1V29" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 </defs>
 </svg>
