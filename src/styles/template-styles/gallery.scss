@@ -1,0 +1,150 @@
+@import "../global.scss";
+@import "../variables.scss";
+
+.gallery {
+    &__border {
+        border-top: 2px solid $violet-grey;        
+    }
+    &__header {
+        margin: 58px 0 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;        
+        column-gap: 16px;
+        @media (max-width: $desktop) {
+            margin: 54px 0 40px; 
+        }
+        @media (max-width: $tablet2) {
+            margin: 54px 0 4px;
+            grid-template-columns: 1fr;
+            row-gap: 16px;            
+        }
+        @media (max-width: $mobile) {
+            margin: 54px 0 0px;
+        }
+    }    
+    &__title-text {
+        font-family: $secondary-font;          
+        line-height: 30px;
+        @media (max-width: $desktop) {
+            font-size: 18px;
+            line-height: 27px;
+        }
+        @media (max-width: $tablet2) {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+    &__body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        row-gap: 56px;
+        column-gap: 95px;
+        @media (max-width: $desktop) {
+            row-gap: 40px;
+            column-gap: 75px;
+        }
+        @media (max-width: $tablet2) {
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: $mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    &__item {
+        border-radius: $small-border-radius;
+        max-width: 425px;
+        @media (max-width: $mobile) {
+            max-width: 100%;
+        }        
+        a {            
+            transition: all $transition-function;
+            &:hover {
+                color: $blue;              
+            }           
+        }    
+        &:nth-child(odd) {
+            background-color: $lavender;
+        }    
+        &:nth-child(even) {
+            background-color: $yellow;
+        }
+        &:nth-child(3n) {
+            background-color: $pink;
+        }
+    }
+    &__post-img {     
+        border-radius: $small-border-radius $small-border-radius 0 0; 
+        overflow: hidden;   
+        transition: opacity 0.8s ease 0s;               
+        img {
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.8s ease 0s;
+            max-width: 425px;
+            height: 300px;
+            @media (max-width: $desktop) {
+                height: 260px;           
+            } 
+            @media (max-width: $tablet2) {
+                height: 206px;
+            }
+            @media (max-width: $mobile) {
+                max-width: 100%;
+            }
+            &:hover {                
+                transition: ease 0.7s;
+                transform: scale(1.1);
+            }
+        }
+    }   
+    &__post-content { 
+        padding: 20px 16px 24px; 
+        @media (max-width: $desktop) {
+            padding: 12px 16px;
+        }
+        @media (max-width: $tablet2) {
+            padding: 12px;
+        }
+    }  
+    &__post-cat {
+        font-family: $secondary-font;  
+        font-size: 16px;
+        line-height: 26px;
+        color: $dark-grey;
+        @media (max-width: $desktop) {
+            font-size: 14px;
+            line-height: 22px;
+        }       
+        &:hover {
+            color: $blue;              
+        }
+    }
+    &__post-title {
+        font-size: 24px;
+        line-height: 36px;
+        margin-bottom: 20px;     
+        @media (max-width: $desktop) {
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: $tablet2) {
+            font-size: 18px;
+            line-height: 27px;            
+        }
+        @media (max-width: $mobile) {
+            font-size: 16px;
+            line-height: 24px; 
+        }
+    }   
+    &__post-date {             
+        font-family: $secondary-font;  
+        font-size: 16px;
+        line-height: 26px;
+        @media (max-width: $desktop) {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+}
