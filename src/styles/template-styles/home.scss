@@ -446,10 +446,11 @@
   width: 425px;
   margin: 0 auto;
   @media screen and (max-width: $desktop) {
+    font-size: 16px;
     width: 315px;
   }
   @media screen and (max-width: $tablet2) {
-    width: 203px;
+    width: 334px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;

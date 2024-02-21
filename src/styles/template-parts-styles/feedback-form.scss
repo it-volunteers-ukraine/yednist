@@ -245,7 +245,9 @@
     .choices {
       & .choices__inner {
         padding-bottom: 12px;
+        padding-right: 60px;
         @media screen and (max-width: $mobile) {
+          padding-right: 50px;
           padding-bottom: 8px;
         }
       }
