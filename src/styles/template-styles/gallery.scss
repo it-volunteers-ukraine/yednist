@@ -52,12 +52,17 @@
         }
     }
     &__item {
+        display: flex;
+        flex-direction: column;  
         border-radius: $small-border-radius;
         max-width: 425px;
         @media (max-width: $mobile) {
             max-width: 100%;
         }        
-        a {            
+        a { 
+            flex: 1 1 auto;    
+            display: flex;
+            flex-direction: column;       
             transition: all $transition-function;
             &:hover {
                 color: $blue;              
@@ -99,6 +104,10 @@
         }
     }   
     &__post-content { 
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         padding: 20px 16px 24px; 
         @media (max-width: $desktop) {
             padding: 12px 16px;

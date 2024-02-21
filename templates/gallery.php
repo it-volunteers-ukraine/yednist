@@ -33,9 +33,13 @@ get_header();
                   <a href="<?php echo $gallery_post_link ?>">                  
                     <div class="gallery__post-img"><img src="<?php echo $gallery_post_img ?>" alt="<?php echo $gallery_img_alt ?>"></div> 
                     <div class="gallery__post-content">
-                      <p class="gallery__post-cat"><?php echo get_the_category()[0]->cat_name; ?></p>
-                      <p class="gallery__post-title"><?php echo $gallery_post_title ?></p> 
-                      <p class="gallery__post-date"><?php echo $gallery_post_date ?></p>
+                      <div class="gallery__post-block">
+                        <p class="gallery__post-cat"><?php echo get_the_category()[0]->cat_name; ?></p>
+                        <p class="gallery__post-title"><?php echo $gallery_post_title ?></p>
+                      </div> 
+                      <div class="gallery__post-block">
+                        <p class="gallery__post-date"><?php echo $gallery_post_date ?></p>
+                      </div>
                     </div> 
                   </a> 
                 </div>        
