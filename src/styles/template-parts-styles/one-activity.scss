@@ -1,0 +1,99 @@
+@import "../variables";
+
+.flip-card {
+  margin: 0 auto;
+  background-color: transparent;
+  width: 425px;
+  height: 635px;
+  border-radius: $small-border-radius;
+  overflow: hidden;
+  @media screen and (max-width: 1750px) {
+    width: 315px;
+    height: 471px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-width: 288px;
+    height: 400px;
+  }
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background-color: $lavender;
+  transform: rotateY(180deg);
+}
+
+.activity__description {
+  width: 289px;
+  font-family: $secondary-font;
+  font-size: 20px;
+  @media screen and (max-width: 1750px) {
+    width: 235px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 216px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.activity__item {
+  display: flex;
+  gap: 8px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.activity__icon {
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $mobile) {
+    width: 20px;
+    height: 20px;
+  }
+  & svg {
+    width: 24px;
+    height: 24px;
+    fill: $blue;
+    @media screen and (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.activity__button {
+  @media screen and (max-width: 1750px) {
+    width: 235px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 100%;
+  }
+}
