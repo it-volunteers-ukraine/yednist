@@ -1,13 +1,14 @@
-<footer>
-    <div class="container btn-to-top-container">
-        <button type="button" class="btn-to-top">
+<footer id="footer" class="footer">
+<div class="btn-to-top-container container">
+        <button type="button" class="btn-to-top" onclick="topFunction()" id="myBtn" title="Go to top">
             <svg class="btn-to-top-icon" width="22" height="30">
                 <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#btn-to-top"></use>
             </svg>
         </button>
-        </div>
-    <div class="container footer-container">
-        <div class="footer-top-container">
+</div>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-top-container">
             <div class="footer__logo-wrapper">
                 <div class="footer__logo">
                     <?php if (has_custom_logo()) {
@@ -191,7 +192,6 @@
                 <span><?php echo date("Y"); ?></span>
                 <span> Fundacja "Jednosc"
             </p>
-            </p>
 
                 <?php
                     $link = get_field('policy', 'option');
@@ -205,6 +205,7 @@
                         </a>
                     <?php endif; ?>
 
+        </div>
         </div>
     </div>
 </footer>
