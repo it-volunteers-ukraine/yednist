@@ -14,20 +14,26 @@ get_header();
 
         <div class="activities__wrapper"></div>
 
+        <?php get_template_part( 'template-parts/loader' ); ?>
 
         <div class="activities-pagination__block">
-          <div class="activities-navigation__box">
-            <button class="custom-button-prev activities-prev" type="button">
-              <svg class="">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
-              </svg>
-            </button>
-            <button class="custom-button-next activities-next" type="button">
-              <svg class="">
-                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
-              </svg>
-            </button>
+          <button class="activities__button-prev activities-prev" type="button">
+            <svg class="">
+              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
+            </svg>
+          </button>
+
+          <div class="bullets">
+            <div class="one-bullet"></div>
+            <div class="one-bullet active"></div>
           </div>
+
+          <button class="activities__button-next activities-next" type="button">
+            <svg class="">
+              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+
         </div>
 
       </div>

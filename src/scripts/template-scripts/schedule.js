@@ -14,8 +14,19 @@ jQuery(document).ready(function ($) {
     return activities.nonce;
   }
 
+  function isPagination() {
+    var paginationBox = $(".activities-pagination__block");
+
+    if (totalPages === 1) {
+      paginationBox.addClass("hidden");
+    }
+  }
+
   // Оновлення кнопок пагінації
   function updatePaginationButtons() {
+    if (totalPages === 1) {
+      return;
+    }
     var prevButton = $(".activities-prev");
     var nextButton = $(".activities-next");
 
@@ -24,6 +35,16 @@ jQuery(document).ready(function ($) {
 
     // Встановлення стану кнопки "Next"
     nextButton.prop("disabled", currentPage === totalPages);
+  }
+
+  function countBullets() {
+    var bulletsBox = $(".bullets");
+    bulletsBox.empty();
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        bulletsBox.append('<div class="one-bullet"></div>');
+      }
+    }
   }
 
   // Завантаження постів
@@ -45,7 +66,9 @@ jQuery(document).ready(function ($) {
         totalPages = response.totalPages;
         totalPageEl.html(totalPages);
         $(".activities__wrapper").html(response.html);
+        isPagination();
         updatePaginationButtons();
+        countBullets();
       },
       error: function (xhr, status, error) {
         hideLoader();
@@ -66,6 +89,13 @@ jQuery(document).ready(function ($) {
     currentPageEl.html(currentPage);
   }
 
+  // Підсвічення активного bullet
+  function currentBullet() {
+    var childrenArray = $(".bullets").children().toArray();
+    console.log(childrenArray[0].addClass("active"));
+    // childrenArray[currentPage - 1].addClass("active");
+  }
+
   // Обробник кліку на кнопку "Next"
   $(".activities-next").click(function () {
     currentPage++;
@@ -75,6 +105,7 @@ jQuery(document).ready(function ($) {
     loadPosts(currentPage);
     updateCurrentPage();
     updatePaginationButtons();
+    currentBullet();
   });
 
   // Обробник кліку на кнопку "Prev"
@@ -86,6 +117,7 @@ jQuery(document).ready(function ($) {
     loadPosts(currentPage);
     updateCurrentPage();
     updatePaginationButtons();
+    currentBullet();
   });
 
   // Початкове завантаження постів
