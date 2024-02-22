@@ -1,0 +1,1 @@
+document.querySelectorAll(".galery-post__img img").forEach((e=>{e.onclick=()=>{document.querySelector(".galery-pop-up").style.display="block",document.querySelector(".galery-pop-up img").src=e.getAttribute("src")}})),document.querySelector(".galery-pop-up span").onclick=()=>{document.querySelector(".galery-pop-up").style.display="none"};
