@@ -45,7 +45,6 @@ function wp_it_volunteers_scripts() {
         wp_enqueue_script( 'contacts-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/contacts.js', array(), false, true );
     }
 
-
     if ( is_page_template('templates/partners.php')) {
         wp_enqueue_style( 'partners-style', get_template_directory_uri() . '/assets/styles/template-styles/partners.css',array('main'));
     }
@@ -95,6 +94,10 @@ function wp_it_volunteers_scripts() {
     
     if (is_singular() && locate_template('template-parts/one-activity.php')) {
       wp_enqueue_style('one-activity', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-activity.css', array('main'));
+    }
+
+    if (is_singular() && locate_template('template-parts/loader.php')) {
+      wp_enqueue_style('loader-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/loader.css', array('main'));
     }
 }
 /** add fonts */
