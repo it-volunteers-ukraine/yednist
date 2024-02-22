@@ -1,48 +1,32 @@
 @import "../variables";
-@import "../global";
 
 
 .container {
   padding: 0 80px;
 
 
-  @media screen and (max-width: $desktop) {
-    padding: 0 16px;
-  }
-
   @media screen and (max-width: $tablet2) {
-    padding: 0 40px;
+    padding: 0 38px;
   }
 
   @media screen and (max-width: $mobile) {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
 
-  .wrapper {
-    padding: 0 148px;
-    border-top: 1px solid $blue;
-
-    @media screen and (max-width: $desktop) {
-      padding: 0 0;
-    }
-
-
-
-    @media screen and (max-width: $tablet2) {
-      padding: 0;
-    }
-
-
-    @media screen and (max-width: $mobile) {
-      padding: 0 35px;
-    }
+  .inner-container {
+    width: 100%;
+    max-width: 1550px;
 
 
     .page-title {
       margin-bottom: 50px;
+      border-top: 1px solid $blue;
+      padding: 0 55px;
+
       @media screen and (max-width: $tablet2) {
         margin-bottom: 40px;
+        padding: 0 0;
       }
       @media screen and (max-width: $mobile) {
         margin-bottom: 25px;
@@ -74,7 +58,8 @@
 
 
       @media screen and (max-width: $tablet2) {
-        gap: 40px 25px;
+        gap: 40px 35px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
       }
 
       .partners-item {
