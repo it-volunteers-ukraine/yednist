@@ -41,7 +41,7 @@
 .inner-container {
   max-width: 1464px;
   margin: 0 auto;
-  width: 84%;
+  width: 83%;
 }
 @media screen and (max-width: 1440px) {
   .inner-container {

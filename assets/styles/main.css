@@ -10,7 +10,6 @@ html {
 }
 html,
 body {
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 html.modal__opened {
@@ -20,6 +19,7 @@ html.modal__opened {
   overflow: hidden;
 }
 body {
+  scroll-behavior: smooth;
   margin: 0;
   background-color: #f7f7fc;
 }
@@ -204,7 +204,7 @@ select {
     max-width: 1352px;
   }
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 768px) {
   .container {
     max-width: 720px;
   }
@@ -1152,54 +1152,27 @@ h3 {
   }
 }
 footer {
-  position: relative;
+  padding: 0 16px;
 }
 .btn-to-top-container.container {
-  width: 100%;
   display: flex;
   justify-content: end;
-  margin-right: 50px;
-  display: none;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99;
-}
-.btn-fixed {
-  position: fixed;
-  bottom: 40px;
+  margin-bottom: 40px;
+  padding: 0;
 }
 @media screen and (max-width: 1440px) {
-  .btn-fixed {
-    bottom: 20px;
+  .btn-to-top-container.container {
+    margin-bottom: 20px;
   }
 }
-@media screen and (max-width: 767.98px) {
-  .btn-fixed {
-    bottom: 28px;
+@media screen and (max-width: 991.98px) {
+  .btn-to-top-container.container {
+    margin-bottom: 28px;
   }
 }
 @media screen and (max-width: 575.98px) {
-  .btn-fixed {
-    bottom: 16px;
-  }
-}
-.btn-absolute {
-  position: absolute;
-  top: -100px;
-}
-@media screen and (max-width: 1440px) {
-  .btn-absolute {
-    top: -80px;
-  }
-}
-@media screen and (max-width: 767.98px) {
-  .btn-absolute {
-    top: -68px;
-  }
-}
-@media screen and (max-width: 575.98px) {
-  .btn-absolute {
-    top: -40px;
+  .btn-to-top-container.container {
+    margin-bottom: 16px;
   }
 }
 .btn-to-top {
@@ -1210,10 +1183,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 991.98px) {
   .btn-to-top {
     border-radius: 10px;
     height: 40px;
@@ -1232,12 +1204,11 @@ footer {
   color: #1d2087;
 }
 .btn-to-top svg {
-  margin: 0 auto;
   width: 22px;
   height: 28px;
   color: #000;
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 991.98px) {
   .btn-to-top svg {
     width: 16px;
     height: 20px;
@@ -1249,24 +1220,24 @@ footer {
     height: 14px;
   }
 }
-.footer-container {
+.footer-container.container {
   border-radius: 40px 40px 0px 0px;
   background: var(--White, #fff);
   box-shadow: 0px -4px 7px 0px rgba(140, 142, 208, 0.2);
   padding: 60px 138px 40px 60px;
 }
 @media screen and (max-width: 1440px) {
-  .footer-container {
+  .footer-container.container {
     padding: 60px 60px 48px 60px;
   }
 }
 @media screen and (max-width: 991.98px) {
-  .footer-container {
+  .footer-container.container {
     padding: 40px 20px 34px 20px;
   }
 }
 @media screen and (max-width: 575.98px) {
-  .footer-container {
+  .footer-container.container {
     padding: 12px 12px 20px 12px;
   }
 }
@@ -1305,7 +1276,7 @@ footer {
     font-size: 16px;
   }
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 768px) {
   .footer__list {
     font-size: 12px;
   }
@@ -1373,7 +1344,7 @@ footer {
     font-size: 16px;
   }
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 768px) {
   .footer__social-list {
     font-size: 12px;
   }
@@ -1414,7 +1385,7 @@ footer {
     width: 195px;
   }
 }
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 768px) {
   .footer-title-tablet {
     font-size: 18px;
     width: 120px;
