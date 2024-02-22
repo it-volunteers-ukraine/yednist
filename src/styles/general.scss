@@ -16,6 +16,7 @@ html {
 
 html,
 body {
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -27,7 +28,6 @@ html.modal__opened {
 }
 
 body {
-  scroll-behavior: smooth;
   margin: 0;
   background-color: $background;
 

@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showForm() {
       const windowScrollY = window.scrollY;
+      document.documentElement.style.scrollBehavior = "auto";
       feedbackBackdrop.classList.remove("is-hidden");
       screenOrientation(screenHeight);
-
       closeFeedbackFormButton.addEventListener("click", hideForm);
       feedbackBackdrop.addEventListener("click", closeByBgdClick);
       window.addEventListener("keydown", closeByPressEscape);
@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const scrollY = parseInt(document.documentElement.style.top || "0");
       document.documentElement.classList.remove("modal__opened");
       window.scrollTo(0, -scrollY);
+      document.documentElement.style.scrollBehavior = "smooth";
     }
 
     function closeByBgdClick(e) {
@@ -194,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
           $("html").removeClass("modal__opened");
           window.scrollTo(0, parseInt(scrollY || "0") * -1);
           $(window).off("keydown", escHandler);
+          $("html").css("scrollBehavior", "smooth");
         }
 
         //form validation
