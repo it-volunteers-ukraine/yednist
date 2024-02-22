@@ -2,8 +2,9 @@
 
 .feedback-section__wrapper {
   column-count: 3;
-  column-gap: 32px;
+  column-gap: 40px;
   @media screen and (max-width: 1350px) {
+    column-gap: 32px;
     column-count: 2;
   }
   @media screen and (max-width: $tablet1) {

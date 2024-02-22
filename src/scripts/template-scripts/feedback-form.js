@@ -106,141 +106,144 @@ document.addEventListener("DOMContentLoaded", function () {
       false
     );
   }
-});
 
-// form sent
-jQuery(document).ready(function ($) {
-  //fields validation
-  const inputNameEl = $(".input-name")[0];
-  const inputEmailEl = $(".input-email")[0];
-  const inputCaseEl = $(".input-case")[0];
-  const inputReviewEl = $(".input-review")[0];
+  // form sent
+  if (openFeedbackFormButton) {
+    jQuery(document).ready(function ($) {
+      //fields validation
+      const inputNameEl = $(".input-name")[0];
+      const inputEmailEl = $(".input-email")[0];
+      const inputCaseEl = $(".input-case")[0];
+      const inputReviewEl = $(".input-review")[0];
 
-  function validateInput(e) {
-    const inputEl = e.target;
-    const value = inputEl.value.trim();
-    let pattern, check;
+      function validateInput(e) {
+        const inputEl = e.target;
+        const value = inputEl.value.trim();
+        let pattern, check;
 
-    switch (inputEl.getAttribute("name")) {
-      case "title":
-        pattern = /^[^\d]+$/;
-        check = pattern.test(value);
-        break;
-      case "email":
-        pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        check = pattern.test(value);
-        break;
-      case "case":
-        check = value.length >= 1;
-        break;
-      case "description":
-        check = value.length >= 1;
-        break;
-      default:
-        break;
-    }
+        switch (inputEl.getAttribute("name")) {
+          case "title":
+            pattern = /^[^\d]+$/;
+            check = pattern.test(value);
+            break;
+          case "email":
+            pattern =
+              /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            check = pattern.test(value);
+            break;
+          case "case":
+            check = value.length >= 1;
+            break;
+          case "description":
+            check = value.length >= 1;
+            break;
+          default:
+            break;
+        }
 
-    if (!check) {
-      inputEl.classList.add("invalid");
-      inputEl.classList.remove("valid");
-    } else {
-      inputEl.classList.add("valid");
-      inputEl.classList.remove("invalid");
-    }
-  }
+        if (!check) {
+          inputEl.classList.add("invalid");
+          inputEl.classList.remove("valid");
+        } else {
+          inputEl.classList.add("valid");
+          inputEl.classList.remove("invalid");
+        }
+      }
 
-  inputNameEl.addEventListener("keyup", validateInput);
-  inputEmailEl.addEventListener("keyup", validateInput);
-  inputCaseEl.addEventListener("keyup", validateInput);
-  inputReviewEl.addEventListener("keyup", validateInput);
+      inputNameEl.addEventListener("keyup", validateInput);
+      inputEmailEl.addEventListener("keyup", validateInput);
+      inputCaseEl.addEventListener("keyup", validateInput);
+      inputReviewEl.addEventListener("keyup", validateInput);
 
-  //form submit
-  $("#new_post").submit(function (e) {
-    e.preventDefault();
-
-    var form = $(this);
-    var notificationBox = $(".feedback-notification-js");
-    var notificationBtn = $(".close-notification-btn");
-    var timerId;
-    var escHandler = function (e) {
-      if (e.key === "Escape") {
+      //form submit
+      $("#new_post").submit(function (e) {
         e.preventDefault();
-        closeNotification();
-      }
-    };
-    var closeBgdClick = function (e) {
-      if ($(e.target).is(notificationBox)) {
-        closeNotification();
-      }
-    };
 
-    function getNotification() {
-      setTimeout(function () {
-        $(".feedback-backdrop").addClass("is-hidden");
-        notificationBox.removeClass("is-hidden");
-        $(window).on("keydown", escHandler);
-        notificationBox.on("click", closeBgdClick);
-        timerId = setTimeout(closeNotification, 5000);
-        notificationBtn.on("click", closeNotification);
-      });
-    }
-
-    function closeNotification() {
-      const scrollY = $("html").css("top");
-      clearTimeout(timerId);
-      notificationBox.addClass("is-hidden");
-      notificationBox.off("click", closeBgdClick);
-      $("html").removeClass("modal__opened");
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      $(window).off("keydown", escHandler);
-    }
-
-    //form validation
-    const inputs = [inputNameEl, inputEmailEl, inputReviewEl];
-    if ($(".feedback-case")[0].classList.contains("shown")) {
-      inputs.push(inputCaseEl);
-    }
-
-    let isFormValid = true;
-    inputs.forEach((inputEl) => {
-      validateInput({ target: inputEl });
-      if (!inputEl.value.trim() || inputEl.classList.contains("invalid")) {
-        inputEl.classList.add("invalid");
-        $(".feedback-alert").removeClass("hidden");
-        isFormValid = false;
-      }
-    });
-
-    const innerChoises = $(".feedback-modal .choices__inner")[0];
-    const placeholderValue = $(
-      ".feedback-modal .choices__inner .choices__item"
-    )[0];
-    if (placeholderValue.classList.contains("choices__placeholder")) {
-      innerChoises.classList.add("invalid");
-      $(".feedback-alert").removeClass("hidden");
-      isFormValid = false;
-    }
-
-    if (isFormValid) {
-      $.ajax({
-        type: form.attr("method"),
-        url: form.attr("action"),
-        data: form.serialize(),
-        success: function (response) {
-          if (response.success) {
-            form.trigger("reset");
-            $(".feedback-alert").addClass("hidden");
-            $(".feedback-backdrop").addClass("is-hidden");
-            getNotification();
-          } else {
-            $(".feedback-alert").removeClass("hidden");
-            console.log("Error: " + response.data);
+        var form = $(this);
+        var notificationBox = $(".feedback-notification-js");
+        var notificationBtn = $(".close-notification-btn");
+        var timerId;
+        var escHandler = function (e) {
+          if (e.key === "Escape") {
+            e.preventDefault();
+            closeNotification();
           }
-        },
-        error: function (xhr, status, error) {
-          console.log("Error: " + error);
-        },
+        };
+        var closeBgdClick = function (e) {
+          if ($(e.target).is(notificationBox)) {
+            closeNotification();
+          }
+        };
+
+        function getNotification() {
+          setTimeout(function () {
+            $(".feedback-backdrop").addClass("is-hidden");
+            notificationBox.removeClass("is-hidden");
+            $(window).on("keydown", escHandler);
+            notificationBox.on("click", closeBgdClick);
+            timerId = setTimeout(closeNotification, 5000);
+            notificationBtn.on("click", closeNotification);
+          });
+        }
+
+        function closeNotification() {
+          const scrollY = $("html").css("top");
+          clearTimeout(timerId);
+          notificationBox.addClass("is-hidden");
+          notificationBox.off("click", closeBgdClick);
+          $("html").removeClass("modal__opened");
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+          $(window).off("keydown", escHandler);
+        }
+
+        //form validation
+        const inputs = [inputNameEl, inputEmailEl, inputReviewEl];
+        if ($(".feedback-case")[0].classList.contains("shown")) {
+          inputs.push(inputCaseEl);
+        }
+
+        let isFormValid = true;
+        inputs.forEach((inputEl) => {
+          validateInput({ target: inputEl });
+          if (!inputEl.value.trim() || inputEl.classList.contains("invalid")) {
+            inputEl.classList.add("invalid");
+            $(".feedback-alert").removeClass("hidden");
+            isFormValid = false;
+          }
+        });
+
+        const innerChoises = $(".feedback-modal .choices__inner")[0];
+        const placeholderValue = $(
+          ".feedback-modal .choices__inner .choices__item"
+        )[0];
+        if (placeholderValue.classList.contains("choices__placeholder")) {
+          innerChoises.classList.add("invalid");
+          $(".feedback-alert").removeClass("hidden");
+          isFormValid = false;
+        }
+
+        if (isFormValid) {
+          $.ajax({
+            type: form.attr("method"),
+            url: form.attr("action"),
+            data: form.serialize(),
+            success: function (response) {
+              if (response.success) {
+                form.trigger("reset");
+                $(".feedback-alert").addClass("hidden");
+                $(".feedback-backdrop").addClass("is-hidden");
+                getNotification();
+              } else {
+                $(".feedback-alert").removeClass("hidden");
+                console.log("Error: " + response.data);
+              }
+            },
+            error: function (xhr, status, error) {
+              console.log("Error: " + error);
+            },
+          });
+        }
       });
-    }
-  });
+    });
+  }
 });

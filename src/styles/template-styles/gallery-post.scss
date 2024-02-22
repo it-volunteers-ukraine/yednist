@@ -25,6 +25,7 @@
             gap: 20px;
         }
         @media (max-width: $mobile) {
+            justify-content: center;
             gap: 16px;
         }
     }
