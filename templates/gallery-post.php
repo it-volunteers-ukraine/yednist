@@ -25,10 +25,12 @@ $gallery_img_alt = get_field('gallery-post-image', $post);
             <?php endwhile; else : ?>
                 Sorry, no posts were found.
             <?php endif; ?>   
-            <div class="galery-pop-up">
-                <span>×</span>
-                <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
-            </div>          
+            <div class="inner-container">
+              <div class="galery-pop-up">                 
+                  <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
+                  <span>×</span>
+              </div> 
+            </div>         
           </div>                  
         </div> 
       </div>      
