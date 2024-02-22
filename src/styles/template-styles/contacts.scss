@@ -13,7 +13,10 @@
     }
 }
 
-.contacts__page {    
+.contacts__page {  
+    &-border {
+        border-top: 2px solid $violet-grey; 
+    }
     &-body {
         display: flex;
         justify-content: space-between;
@@ -34,12 +37,15 @@
     }   
     &-title {
         font-family: "Fira Sans Extra Condensed";
-        margin-bottom: 20px;
+        margin: 48px 0 20px;        
         @media (max-width: $desktop) {
-            margin-bottom: 16px;
+            margin: 40px 0 16px;             
+        }
+        @media (max-width: $tablet2) {
+            margin: 24px 0 16px;             
         }
         @media (max-width: $mobile) {
-            margin-bottom: 8px;
+            margin: 50px 0 8px;            
         }
     }
     &-image { 
