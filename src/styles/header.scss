@@ -4,19 +4,24 @@
   box-shadow: 0px 4px 7px 0px $header-box-shadow;
   background: $white;
   padding: 12px 40px;
-  margin: 0 60px 100px;
   margin: 0 80px 100px;
+  position: fixed;
+  width: calc(100% - 160px);
+  z-index: 9;
   @media screen and (max-width: $desktop) {
     margin: 0 60px 100px;
     padding: 20px 40px 8px;
+    width: calc(100% - 120px);
   }
   @media screen and (max-width: $desktop1) {
     margin: 0 40px 40px;
     padding: 12px 20px;
+    width: calc(100% - 80px);
   }
   @media screen and (max-width: $mobile) {
     margin: 0 16px 20px;
     padding: 8px 16px;
+    width: calc(100% - 40px);
   }
   &__current__page {
     & a {
