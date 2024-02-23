@@ -2,6 +2,61 @@ console.log("footer part");
 
 const elList = document.querySelectorAll(".acc-show");
 
+const myButton = document.querySelector(".btn-to-top-container");
+const heightHeader = document
+  .querySelector(".header")
+  .getBoundingClientRect().height;
+const footer = document.querySelector(".footer");
+const heightFooter = footer.getBoundingClientRect().height;
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    const footerEntry = entries[0];
+    if (footerEntry.isIntersecting) {
+      myButton.classList.add("btn-absolute");
+      myButton.classList.remove("btn-fixed");
+    } else {
+      myButton.classList.add("btn-fixed");
+      myButton.classList.remove("btn-absolute");
+    }
+  },
+  { rootMargin: "40px" }
+);
+
+window.addEventListener("resize", (e) => {
+  if (window.innerWidth >= 1440) {
+    observer.rootMargin = "40px";
+  } else if (window.innerWidth < 1440) {
+    observer.rootMargin = "20px";
+  } else if (window.innerWidth < 768) {
+    observer.rootMargin = "28px";
+  } else if (window.innerWidth < 576) {
+    observer.rootMargin = "16px";
+  }
+});
+
+observer.observe(footer);
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > heightHeader ||
+    document.documentElement.scrollTop > heightHeader
+  ) {
+    myButton.style.display = "flex";
+  } else {
+    myButton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 const handleAccToggle = (e) => {
   if (window.innerWidth > 767.97) {
     return;

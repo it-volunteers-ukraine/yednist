@@ -26,11 +26,11 @@ get_header();
                     </div>
                     <div class="contacts__page-content">
                         <h2 class="contacts__page-title page-title"><?php the_field('contacts-contact-title'); ?></h2> 
-                        <div class="contacts__page-image"><img src="<?php the_field('contacts__page-image'); ?>" alt="star"></div>
+                        <div class="contacts__page-image"><img src="<?php the_field('contacts__page-image'); ?>" alt="hero"></div>
                         <div class="contacts__page-adress">
                             <h4 class="contacts__page-adress-title"><?php the_field('contacts-adress-title'); ?></h4>
                             <ul class="contacts__page-adress-list">
-                                <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_1', 'option'); ?></p></li>
+                                <li class="contacts__page-adress-item"><a href="<?php the_field('contacts-adress-link'); ?>" target="_blank"><p class="contacts__page-adress-text"><?php the_field('address_label_1', 'option'); ?></p></a></li>
                                 <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_2', 'option'); ?></p></li>
                                 <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_3', 'option'); ?></p></li>
                                 <li class="contacts__page-adress-item"><p class="contacts__page-adress-text"><?php the_field('address_label_4', 'option'); ?></p></li>

@@ -1,6 +1,14 @@
-<footer>
-    <div class="container footer-container">
-        <div class="footer-top-container">
+<footer id="footer" class="footer">
+<div class="btn-to-top-container container">
+        <button type="button" class="btn-to-top" onclick="topFunction()" id="myBtn" title="Go to top">
+            <svg class="btn-to-top-icon" width="22" height="30">
+                <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#btn-to-top"></use>
+            </svg>
+        </button>
+</div>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-top-container">
             <div class="footer__logo-wrapper">
                 <div class="footer__logo">
                     <?php if (has_custom_logo()) {
@@ -22,7 +30,7 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php if (get_field('social_icon_1', 'option')): ?>
                                 <img src="<?php the_field('social_icon_1', 'option'); ?>" />
                             <?php endif; ?>
@@ -38,7 +46,7 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php if (get_field('social_icon_2', 'option')): ?>
                                 <img src="<?php the_field('social_icon_2', 'option'); ?>" />
                             <?php endif; ?>
@@ -53,7 +61,7 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php if (get_field('social_icon_3', 'option')): ?>
                                 <img src="<?php the_field('social_icon_3', 'option'); ?>" />
                             <?php endif; ?>
@@ -61,7 +69,7 @@
                     <?php endif; ?>
                 </div>
                 <a class="button primary-button footer-btn-mob"
-                    href="<?php echo esc_attr(get_field('support_link', 'option')); ?>">
+                    href="<?php echo esc_attr(get_field('support_link', 'option')); ?>" rel="noopener noreferrer">
                     <?php the_field('support_btn', 'option'); ?>
                 </a>
 
@@ -71,11 +79,11 @@
                     <?php the_field('org_title', 'option'); ?>
                 </h2>
                 <h3 class="footer-about-title-mobile acc-show">
-                    <?php the_field('about__title', 'option'); ?><svg class="plus-icon" width="20px" height="20px">
+                    <?php the_field('about__title', 'option'); ?><svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
@@ -86,11 +94,11 @@
             <nav class="footer__nav-wrapper">
                 <h3 class="acc-show">
                     <?php the_field('nav_title', 'option'); ?>
-                    <svg class="plus-icon" width="20px" height="20px">
+                    <svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
@@ -109,11 +117,11 @@
                 <h3 class="acc-show">
                     <?php the_field('social_title', 'option'); ?>
 
-                    <svg class="plus-icon" width="20px" height="20px">
+                    <svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
 
-                    <svg class="minus-icon" width="20px" height="20px">
+                    <svg class="acc-minus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#minus-icon"></use>
                     </svg>
                 </h3>
@@ -125,7 +133,7 @@
                         $link_title = $link['title'];
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
-                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>">
+                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
@@ -137,7 +145,7 @@
                         $link_title = $link['title'];
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
-                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>">
+                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer" >
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
@@ -149,16 +157,16 @@
                         $link_title = $link['title'];
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
-                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>">
+                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
 
-                    <a href="mailto:<?php the_field('social_mail', 'option') ?>">
+                    <a href="mailto:<?php the_field('social_mail', 'option') ?>" rel="noopener noreferrer">
                         <?php the_field('social_mail', 'option') ?>
                     </a>
 
-                    <a href="tel:<?php the_field('social_phone', 'option') ?>">
+                    <a href="tel:<?php the_field('social_phone', 'option') ?>" rel="noopener noreferrer">
                         <?php the_field('social_phone', 'option') ?>
                     </a>
                 </div>
@@ -169,7 +177,7 @@
                         $link_title = $link['title'];
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
-                        <a class="footer-policy" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>">
+                        <a class="footer-policy" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
@@ -184,7 +192,6 @@
                 <span><?php echo date("Y"); ?></span>
                 <span> Fundacja "Jednosc"
             </p>
-            </p>
 
                 <?php
                     $link = get_field('policy', 'option');
@@ -193,15 +200,17 @@
                         $link_title = $link['title'];
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
-                        <a class="footer-policy-wrapper" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>">
+                        <a class="footer-policy-wrapper" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
 
         </div>
+        </div>
     </div>
 </footer>
 <?php wp_footer(); ?>
+</div>
 </body>
 
 </html>

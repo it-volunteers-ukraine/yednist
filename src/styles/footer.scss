@@ -16,7 +16,110 @@ h3 {
 }
 
 footer {
-  padding: 0 16px;
+  position: relative;
+}
+
+.btn-to-top-container {
+  &.container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    // margin-bottom: 40px;
+    margin-right: 50px;
+    display: none;
+
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+
+    // @media screen and (max-width: $desktop) {
+    //   margin-bottom: 20px;
+    // }
+    // @media screen and (max-width: $tablet2) {
+    //   margin-bottom: 28px;
+    // }
+    // @media screen and (max-width: $mobile) {
+    //   margin-bottom: 16px;
+    // }
+  }
+}
+
+.btn-fixed {
+  position: fixed;
+  bottom: 40px;
+
+  @media screen and (max-width: $desktop) {
+    bottom: 20px;
+  }
+
+  @media screen and (max-width: $tablet1) {
+    bottom: 28px;
+  }
+  @media screen and (max-width: $mobile) {
+    bottom: 16px;
+  }
+}
+
+.btn-absolute {
+  position: absolute;
+  top: calc(-40px - 60px);
+
+  @media screen and (max-width: $desktop) {
+    top: calc(-20px - 60px);
+  }
+
+  @media screen and (max-width: $tablet1) {
+    top: calc(-28px - 40px);
+  }
+  @media screen and (max-width: $mobile) {
+    top: calc(-16px - 24px);
+  }
+}
+
+.btn-to-top {
+  height: 60px;
+  width: 60px;
+  border-radius: 13px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+  @media screen and (max-width: $tablet1) {
+    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+  }
+  @media screen and (max-width: $mobile) {
+    border-radius: 5px;
+    height: 24px;
+    width: 24px;
+  }
+
+  &:hover,
+  &:focus {
+    & svg {
+      color: #1d2087;
+    }
+  }
+
+  & svg {
+    margin: 0 auto;
+    width: 22px;
+    height: 28px;
+    color: black;
+
+    @media screen and (max-width: $tablet1) {
+      width: 16px;
+      height: 20px;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 12px;
+      height: 14px;
+    }
+  }
 }
 
 .footer {
@@ -286,11 +389,11 @@ footer {
   }
 }
 
-.minus-icon {
+.acc-minus-icon {
   display: none;
   fill: $black;
 }
-.plus-icon {
+.acc-plus-icon {
   display: none;
   fill: $black;
 
@@ -317,11 +420,11 @@ footer {
       & + .acc-container {
         padding: 8px 20px;
       }
-      .minus-icon {
+      .acc-minus-icon {
         fill: $blue;
         display: block;
       }
-      .plus-icon {
+      .acc-plus-icon {
         display: none;
       }
     }

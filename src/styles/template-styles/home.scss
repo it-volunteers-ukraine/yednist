@@ -166,7 +166,6 @@
 }
 
 .values-flex__wrapper,
-.values-flex__titles,
 .values-section__texts {
   display: flex;
   justify-content: space-between;
@@ -175,17 +174,14 @@
 
 .values-section__title {
   text-align: center;
+  margin: 0 auto;
   margin-bottom: 20px;
-  width: 425px;
+  width: fit-content;
   @media screen and (max-width: $desktop) {
     margin-bottom: 12px;
-    width: 315px;
   }
   @media screen and (max-width: $tablet2) {
     margin-bottom: 8px;
-  }
-  @media screen and (max-width: 768px) {
-    width: 203px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;
@@ -273,12 +269,15 @@
   @media screen and (max-width: $desktop) {
     font-size: 32px;
   }
+  @media screen and (max-width: 1150px) {
+    font-size: 28px;
+  }
   @media screen and (max-width: $tablet2) {
     font-size: 20px;
     line-height: 1.5;
     text-transform: uppercase;
   }
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: 625px) {
     font-size: 18px;
   }
 }
@@ -293,6 +292,9 @@
 .digits-section__wrapper {
   column-gap: 20px;
   justify-content: space-between;
+  @media screen and (max-width: 585px) {
+    column-gap: 16px;
+  }
   @media screen and (max-width: $mobile) {
     column-gap: 0;
   }
@@ -300,13 +302,13 @@
 
 .digits-section__text {
   max-width: 360px;
-  @media screen and (max-width: $desktop) {
-    max-width: 300px;
+  @media screen and (max-width: 1500px) {
+    max-width: 294px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1260px) {
     max-width: 203px;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 720px) {
     max-width: 160px;
   }
   @media screen and (max-width: $mobile) {
@@ -317,6 +319,7 @@
 .digits-section__number {
   position: relative;
   margin-bottom: 24px;
+  padding-left: 2px;
   color: $white;
   text-shadow: 2px 0 2px $blue, 0 2px 2px $blue, -2px 0 2px $blue,
     0 -2px 2px $blue;
@@ -336,14 +339,14 @@
     transition: width 2s ease-in-out;
   }
 
-  @media screen and (max-width: $desktop) {
+  @media screen and (max-width: 1500px) {
     font-size: 128px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1260px) {
     margin-bottom: 13px;
     font-size: 84px;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 720px) {
     font-size: 60px;
   }
   @media screen and (max-width: $mobile) {
@@ -440,7 +443,18 @@
 }
 
 .home_our_partners_btn {
+  width: 425px;
   margin: 0 auto;
+  @media screen and (max-width: $desktop) {
+    font-size: 16px;
+    width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 334px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 100%;
+  }
 }
 
 //common questions section
@@ -464,6 +478,7 @@
 }
 
 .common-questions__text {
+  position: relative;
   padding: 24px 40px;
   border-bottom: 1px solid $violet-grey;
   transition: all $transition-function;
@@ -475,6 +490,15 @@
   }
   @media screen and (max-width: $mobile) {
     padding: 12px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 8px;
   }
 }
 
@@ -489,6 +513,10 @@
   @media screen and (max-width: $mobile) {
     font-size: 16px;
   }
+}
+
+.common-questions__link {
+  color: $blue;
 }
 
 //general settings for accordion
@@ -540,7 +568,9 @@
 
 .common-questions__text:hover,
 .common-questions__text:focus {
-  border-left: 8px solid $violet-grey;
+  &::after {
+    background-color: $violet-grey;
+  }
 }
 
 .common-questions__box:hover,
@@ -575,17 +605,24 @@
 
 //feedback section
 
-.feedback-section__slide {
-  width: 100%;
+.feedback-section__box {
+  position: relative;
+  margin: 0 auto;
   padding: 40px;
   border-radius: $bid-border-radius;
-  border: $violet-grey;
+  border: 1px solid $violet-grey;
   background: $white;
+  @media screen and (max-width: 1760px) {
+    max-width: 1100px;
+  }
+  @media screen and (max-width: 1350px) {
+    max-width: 750px;
+  }
   @media screen and (max-width: $tablet2) {
     border-radius: $small-border-radius;
-    padding: 20px;
   }
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet1) {
+    max-width: 300px;
     padding: 0;
     border-radius: 0;
     border: transparent;

@@ -2,17 +2,27 @@ $white: #fff;
 $background: #f7f7fc;
 $black: #0d0d0d;
 $blue: #1d2087;
+$dark-blue: #1d20873b;
 $yellow: #fffdcc;
+$dark-yellow: #eebc3c;
 $pink: #fcc;
+$dark-pink: #a06c6c;
 $lavender: #ccd1ff;
 $violet-grey: #8c8ed0;
 $grey: #b3b3b3;
 $dark-grey: #7d7e8a;
 $main-dark: rgba(13, 13, 13, 0.3);
+$header-box-shadow: rgba(140, 142, 208, 0.2);
+$header-burger-background: rgba(0, 0, 0, 0.5);
+$invalid-input: #dc1414;
+
+$primary-font: "Fira Sans Extra Condensed", sans-serif;
+$secondary-font: "Fira Sans", sans-serif;
 
 $mobile: 575.98px; //320-575
-$tablet1: 767.98px;
+$tablet1: 768px;
 $tablet2: 991.98px; //576-991
+$desktop1: 1150px;
 $desktop: 1440px; //992-1440
 $full: 1920px; //1441-1920
 

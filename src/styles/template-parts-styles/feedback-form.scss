@@ -1,0 +1,457 @@
+@import "../variables";
+
+.feedback-backdrop,
+.feedback-backdrop__notification {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $transition-function;
+}
+
+.feedback-backdrop.is-hidden,
+.feedback-backdrop__notification.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.feedback-backdrop.is-hidden .feedback-modal,
+.feedback-backdrop__notification.is-hidden .feedback-notification {
+  transform: translate(-50%, -50%) translateX(-100%);
+  @media screen and (max-width: $mobile) {
+    transform: translateX(-100%);
+  }
+}
+
+.feedback-backdrop.is-hidden .feedback-modal.horizontal {
+  transform: translateX(-100%);
+}
+
+.feedback-modal,
+.feedback-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+  width: 802px;
+  padding: 24px 40px;
+  overflow: hidden;
+  overflow-y: auto;
+  background-color: $background;
+  border-radius: $bid-border-radius;
+  box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
+  transition: transform $transition-function;
+  @media screen and (max-width: $desktop) {
+    width: 650px;
+    padding: 24px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 560px;
+    border-radius: $small-border-radius;
+  }
+  @media screen and (max-width: $mobile) {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateX(0);
+    padding: 16px 12px;
+  }
+}
+
+.feedback-modal.horizontal {
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateX(0);
+}
+
+.feedback-modal__title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 12px;
+  }
+}
+
+.feedback-modal__title {
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+}
+
+.feedback-modal__btn {
+  cursor: pointer;
+  transition: all $transition-function;
+}
+
+.icon__cross {
+  width: 40px;
+  height: 40px;
+  @media screen and (max-width: $desktop) {
+    width: 32px;
+    height: 32px;
+  }
+  .feedback-modal__btn:hover &,
+  .feedback-modal__btn:hover & {
+    fill: $blue;
+  }
+}
+
+//general settings
+.feedback-inputs__wrap {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  font-family: $secondary-font;
+  @media screen and (max-width: $tablet2) {
+    row-gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    row-gap: 12px;
+  }
+
+  & label {
+    display: block;
+    margin-bottom: 8px;
+    color: $black;
+    font-weight: 400;
+    font-size: 20px;
+    @media screen and (max-width: $desktop) {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 4px;
+    }
+  }
+  & input,
+  & select,
+  & textarea,
+  & .choices__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 32px;
+    border-radius: $bid-border-radius;
+    border: 1px solid $lavender;
+    background: $white;
+    transition: all $transition-function;
+    outline: none;
+    font-size: 20px;
+
+    @media screen and (max-width: $desktop) {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+    @media screen and (max-width: $mobile) {
+      padding: 8px 16px;
+      border-radius: $small-border-radius;
+    }
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
+      cursor: text;
+    }
+
+    &.valid {
+      border-color: $violet-grey;
+    }
+    &.invalid {
+      border-color: $invalid-input;
+    }
+
+    &::placeholder {
+      color: $grey;
+    }
+  }
+  & textarea {
+    resize: none;
+    height: 228px;
+    @media screen and (max-width: $desktop) {
+      height: 180px;
+    }
+    @media screen and (max-width: $tablet2) {
+      height: 170px;
+    }
+    @media screen and (max-width: $mobile) {
+      height: 140px;
+    }
+  }
+
+  //select
+  & .feedback-select__wrap {
+    .choices,
+    .choices__inner {
+      overflow: visible;
+    }
+    .choices__inner {
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+    }
+    .choices::after {
+      right: 32px;
+      top: 20%;
+      background-image: url(../../../assets/images/check-mark-down.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-origin: border-box;
+      border: none;
+      height: 40px;
+      width: 40px;
+      @media screen and (max-width: $desktop) {
+        top: 12%;
+        right: 24px;
+      }
+      @media screen and (max-width: $tablet2) {
+      }
+      @media screen and (max-width: $mobile) {
+        right: 12px;
+        top: 10%;
+      }
+    }
+    .choices.is-open::after {
+      background-image: url(../../../assets/images/check-mark-up.svg);
+      top: 35%;
+      @media screen and (max-width: $mobile) {
+        top: 30%;
+      }
+    }
+    .choices {
+      & .choices__inner {
+        padding-bottom: 12px;
+        padding-right: 60px;
+        @media screen and (max-width: $mobile) {
+          padding-right: 50px;
+          padding-bottom: 8px;
+        }
+      }
+      & .choices__list {
+        padding: 0;
+      }
+      &.is-open .choices__inner {
+        height: 64px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: $lavender;
+        font-family: $primary-font;
+        font-size: 24px;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 18px;
+        }
+        @media screen and (max-width: $mobile) {
+          height: 56px;
+          font-family: $primary-font;
+          font-size: 14px;
+        }
+      }
+      &.is-open .choices__list--dropdown {
+        background-color: $white;
+        border: 1px solid $lavender;
+        border-bottom-left-radius: $bid-border-radius;
+        border-bottom-right-radius: $bid-border-radius;
+        font-family: $secondary-font;
+        word-break: normal;
+        @media (max-width: $tablet2) {
+          border-bottom-left-radius: $small-border-radius;
+          border-bottom-right-radius: $small-border-radius;
+        }
+        & .choices__item {
+          padding: 12px 32px;
+          font-size: 20px;
+          @media screen and (max-width: $desktop) {
+            padding: 12px 24px;
+            font-size: 14px;
+          }
+          @media screen and (max-width: $mobile) {
+            padding: 12px;
+          }
+          &:not(:last-child) {
+            @media screen and (max-width: $desktop) {
+              border-bottom: 1px solid $lavender;
+            }
+          }
+          &:first-child {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+//container with name and email
+.feedback-name-email__wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  & .feedback-input__wrapper {
+    flex-basis: 50%;
+  }
+  @media screen and (max-width: $mobile) {
+    flex-direction: column;
+    row-gap: 12px;
+    & .feedback-input__wrapper {
+      flex-basis: 100%;
+    }
+  }
+}
+
+//additional input
+.feedback-case {
+  display: none;
+  &.shown {
+    display: block;
+  }
+}
+
+//agreement
+.feedback-modal__privacy {
+  margin-bottom: 24px;
+
+  & .feedback-privacy__label {
+    display: flex;
+    gap: 8px;
+    font-family: $secondary-font;
+    font-size: 16px;
+    line-height: 1.6;
+    @media screen and (max-width: $desktop) {
+      font-size: 14px;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 10px;
+    }
+  }
+
+  & .feedback-check {
+    vertical-align: top;
+    appearance: none;
+    background-image: url(../../../assets/images/icon-checkbox-blank.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    transition: $transition-function;
+    min-width: 24px;
+    height: 24px;
+    @media screen and (max-width: $mobile) {
+      min-width: 16px;
+      height: 16px;
+    }
+
+    &:checked {
+      background-image: url(../../images/icon-checkbox-check.svg);
+      background-size: contain;
+      background-origin: border-box;
+    }
+  }
+  & .feedback-privacy__link {
+    color: $blue;
+  }
+}
+
+//alert
+
+.feedback-alert.hidden {
+  display: none;
+}
+.feedback-alert {
+  margin-bottom: 16px;
+  display: block;
+  color: $invalid-input;
+  font-size: 14px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+}
+
+//notification
+
+.feedback-notification {
+  position: relative;
+  padding: 92px 208px;
+  @media screen and (max-width: $desktop) {
+    padding: 121px 140px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 98px 145px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 134px 49px;
+  }
+  & .close-notification-btn {
+    position: absolute;
+    top: 24px;
+    right: 40px;
+    @media screen and (max-width: $desktop) {
+      right: 24px;
+    }
+    @media screen and (max-width: $mobile) {
+      top: 12px;
+      right: 12px;
+    }
+  }
+  &__title {
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-size: 64px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $blue;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 20px;
+      text-transform: none;
+      font-size: 40px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 20px;
+    }
+  }
+  &__text {
+    font-weight: 300;
+    font-size: 40px;
+    text-align: center;
+    @media screen and (max-width: $desktop) {
+      font-size: 32px;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 28px;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,4 +1,614 @@
+@import "./variables.scss";
 .header {
-  display: flex;
-  color: rgb(101, 75, 219);
+  border-radius: 0px 0px $bid-border-radius $bid-border-radius;
+  box-shadow: 0px 4px 7px 0px $header-box-shadow;
+  background: $white;
+  padding: 12px 40px;
+  margin: 0 60px 100px;
+  margin: 0 80px 100px;
+  @media screen and (max-width: $desktop) {
+    margin: 0 60px 100px;
+    padding: 20px 40px 8px;
+  }
+  @media screen and (max-width: $desktop1) {
+    margin: 0 40px 40px;
+    padding: 12px 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin: 0 16px 20px;
+    padding: 8px 16px;
+  }
+  &__current__page {
+    & a {
+      color: $blue;
+    }
+    .header__projects__content {
+      color: $blue;
+      .header__projects__icon {
+        stroke: $blue;
+      }
+    }
+  }
+  &__projects {
+    &__content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      cursor: pointer;
+      gap: 8px;
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      @media screen and (max-width: $desktop) {
+        align-items: baseline;
+      }
+
+      &:hover,
+      &:focus {
+        color: $blue;
+        & .header__projects__icon {
+          stroke: $blue;
+        }
+      }
+    }
+    &__icon {
+      width: 16px;
+      height: 10px;
+      stroke: $black;
+      stroke-width: 4.8;
+      animation: iconReverseRotate 0.4s;
+      transform: rotate(0deg);
+      &.open {
+        animation: iconRotate 0.4s;
+        transform: rotate(-180deg);
+      }
+      @media screen and (max-width: $desktop1) {
+        stroke-width: 6;
+        width: 12px;
+        height: 12px;
+        animation: none;
+        transform: rotate(270deg);
+        &.open {
+          animation: none;
+          transform: rotate(90deg);
+        }
+      }
+      &:hover {
+        stroke: $blue;
+      }
+    }
+    &__menu {
+      display: none;
+      flex-direction: column;
+      width: 310px;
+      padding: 0 24px 24px;
+      gap: 12px;
+      position: absolute;
+      top: 51px;
+      left: -24px;
+      box-shadow: 0px 4px 4px 0px $dark-blue;
+      background: $white;
+      border-radius: 0px 0px $bid-border-radius $bid-border-radius;
+      z-index: 999;
+      @media screen and (max-width: $desktop) {
+        top: 44px;
+        padding: 0 16px 16px;
+        gap: 8px;
+        width: 272px;
+      }
+      @media screen and (max-width: $desktop1) {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        border-radius: 0;
+        gap: 0px;
+        padding: 0;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+      }
+      &__item {
+        padding: 8px 0;
+        font-size: 24px;
+        line-height: 1.5;
+        text-transform: none;
+        transition: all $transition-function;
+        & a {
+          color: $black;
+        }
+        &.header__current__page a {
+          color: $blue;
+        }
+        &:hover {
+          .header__projects__menu & a {
+            color: $blue;
+          }
+          padding-bottom: 3px;
+          border-bottom: 3px solid $violet-grey;
+        }
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+          line-height: 1.5;
+          &:focus {
+            background-color: $lavender;
+            .header__projects__menu & a {
+              color: $blue;
+            }
+          }
+        }
+        @media screen and (max-width: $desktop1) {
+          font-size: 16px;
+          line-height: 1.5;
+          width: 100%;
+          text-align: left;
+          padding: 12px 8px 11px;
+          border-bottom: 1px solid $violet-grey;
+          &:hover {
+            .header__projects__menu & a {
+              color: $blue;
+            }
+            padding-bottom: 11px;
+            border-bottom: 1px solid $violet-grey;
+          }
+        }
+        &__text {
+          text-transform: lowercase;
+        }
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: $desktop1) {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+  }
+  &__menu {
+    &__container {
+      width: 100%;
+      &.open {
+        position: fixed;
+        display: flex;
+        background: $header-burger-background;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        overflow: auto;
+        padding: 0 0;
+      }
+      @media screen and (max-width: $desktop1) {
+        display: none;
+      }
+    }
+    &__content {
+      width: 100%;
+      justify-content: space-evenly;
+      display: grid;
+      grid-template-columns: repeat(1, 40.95%) 21.38% repeat(1, 37.67%);
+      @media screen and (max-width: $desktop) {
+        grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
+      }
+      @media screen and (max-width: $desktop1) {
+        display: flex;
+        background: $white;
+        box-shadow: 2px 4px 7px 1px $header-box-shadow;
+        width: 100%;
+        max-width: 551px;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 0px $bid-border-radius $bid-border-radius 0px;
+        padding: 80px 40px 40px;
+        position: relative;
+        max-height: 688px;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+        max-width: 228px;
+        border-radius: 0px $small-border-radius $small-border-radius 0px;
+        padding: 60px 16px 16px;
+        max-height: 541px;
+      }
+    }
+    &__close-button {
+      display: none;
+      z-index: 9;
+      @media screen and (max-width: $desktop1) {
+        display: block;
+        position: absolute;
+        right: 40px;
+        top: 20px;
+        cursor: pointer;
+      }
+      @media screen and (max-width: $mobile) {
+        right: 16px;
+        top: 16px;
+      }
+    }
+    &__icon {
+      width: 40px;
+      height: 40px;
+      fill: $blue;
+      @media screen and (max-width: $mobile) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    &__item {
+      font-size: 20px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      @media screen and (max-width: $desktop1) {
+        width: 100%;
+        text-align: left;
+        padding: 12px 8px 11px;
+        border-bottom: 1px solid $violet-grey;
+      }
+      &:hover,
+      &:focus {
+        color: $blue;
+      }
+    }
+    &__projects {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transition: all $transition-function;
+      cursor: pointer;
+      gap: 8px;
+      &:has(.header__current__page) {
+        .header__projects__content {
+          color: $blue;
+        }
+        .header__projects__icon {
+          stroke: $blue;
+        }
+      }
+      @media screen and (max-width: $desktop) {
+        font-size: 16px;
+        line-height: 1.5;
+        &.open {
+          .header__projects__content {
+            color: $blue;
+          }
+        }
+      }
+      @media screen and (max-width: $desktop1) {
+        position: static;
+        width: 100%;
+        text-align: left;
+        padding: 12px 8px 11px;
+        border-bottom: 1px solid $violet-grey;
+        &.open {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          background: $white;
+          box-shadow: 2px 4px 7px 1px $header-box-shadow;
+          width: 100%;
+          max-width: 551px;
+          flex-direction: column;
+          justify-content: flex-start;
+          border-radius: 0px $bid-border-radius $bid-border-radius 0px;
+          padding: 80px 40px 40px;
+          height: 688px;
+          z-index: 2;
+          & .header__projects__content {
+            position: absolute;
+            top: 28px;
+            left: 40px;
+            width: 100%;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            color: $blue;
+            & .header__projects__icon {
+              stroke: $blue;
+            }
+          }
+        }
+      }
+      @media screen and (max-width: $mobile) {
+        &.open {
+          max-width: 228px;
+          border-radius: 0px $small-border-radius $small-border-radius 0px;
+          padding: 60px 16px 16px;
+          max-height: 541px;
+          & .header__projects__content {
+            top: 24px;
+            left: 16px;
+            width: 100%;
+          }
+        }
+      }
+      &:hover,
+      &:focus {
+        color: $blue;
+        & .header__projects__icon {
+          stroke: $blue;
+        }
+      }
+    }
+  }
+  &__logo {
+    width: 100%;
+    @media screen and (max-width: $desktop1) {
+      display: none;
+    }
+  }
+  &__burger__logo {
+    display: none;
+    @media screen and (max-width: $desktop1) {
+      display: block;
+    }
+  }
+  &__content {
+    display: flex;
+  }
+  &__first__list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: $desktop1) {
+      flex-direction: column;
+    }
+  }
+  &__second__list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: $desktop1) {
+      flex-direction: column;
+      order: 3;
+      margin: auto 0 0;
+      height: 100%;
+    }
+  }
+  .header__second__list &__button {
+    min-width: 172px;
+    @media screen and (max-width: $full) {
+      font-size: 20px;
+      line-height: 1.5;
+      min-width: 189px;
+      max-width: 189px;
+    }
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 1.5;
+      min-width: 161px;
+      max-width: 161px;
+    }
+    @media screen and (max-width: $desktop1) {
+      min-width: 203px;
+      max-width: 203px;
+      margin: 40px 0 0;
+      align-self: flex-start;
+    }
+    @media screen and (max-width: $mobile) {
+      min-width: 100%;
+      max-width: 100%;
+      margin: 12px 0 0;
+      padding: 8px 24px;
+    }
+  }
+
+  &__container {
+    width: 100%;
+  }
+}
+
+.burger {
+  display: none;
+
+  @media screen and (max-width: $desktop1) {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 36px;
+    justify-content: flex-start;
+    height: 26px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  @media screen and (max-width: $desktop1) {
+    width: 23px;
+    height: 18px;
+  }
+  & span {
+    height: 2px;
+    width: 50%;
+    transform: scale(1);
+    background-color: $blue;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: $blue;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
+}
+.header__burger__logo .custom-logo {
+  @media screen and (max-width: $desktop1) {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+}
+.header__logo .custom-logo {
+  width: 60px;
+  height: 60px;
+  margin-left: 33.98%;
+  @media screen and (max-width: $desktop) {
+    width: 48px;
+    height: 48px;
+    margin-left: 29%;
+  }
+}
+.language {
+  &__dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    &:hover {
+      color: $blue;
+      text-decoration-line: underline;
+    }
+    @media screen and (max-width: $desktop1) {
+      order: 1;
+      width: 100%;
+      margin: auto 0 0;
+      & p,
+      & img {
+        display: none;
+      }
+      &:hover {
+        color: $black;
+        text-decoration-line: none;
+      }
+    }
+    &__content {
+      display: none;
+      position: absolute;
+      flex-direction: column;
+      border-radius: $small-border-radius;
+      top: -20%;
+      left: -50%;
+      border: 1px solid $lavender;
+      padding: 8px 16px;
+      background: $background;
+      z-index: 1;
+      gap: 6px;
+      @media screen and (max-width: $desktop1) {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        border-top: 1px solid $violet-grey;
+        justify-content: space-between;
+        padding: 11px 0 0;
+      }
+      @media screen and (max-width: $mobile) {
+        font-size: 14px;
+        padding: 7px 0 0;
+      }
+    }
+  }
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    line-height: 1.5;
+    height: max-content;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    & img {
+      display: block;
+    }
+  }
+  &__input {
+    width: 16px;
+    height: 16px;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid $lavender;
+    align-items: center;
+    height: max-content;
+    padding: 4px 8px 3px;
+
+    color: $black;
+    font-size: 20px;
+    line-height: 1.5;
+    text-decoration: none;
+    & input,
+    & label {
+      cursor: pointer;
+      accent-color: $violet-grey;
+      mix-blend-mode: multiply;
+    }
+    @media screen and (max-width: $desktop1) {
+      border: none;
+      & input {
+        display: none;
+      }
+      &.current {
+        background-color: $lavender;
+        border-radius: $small-border-radius;
+        padding: 4px 16px;
+        @media screen and (max-width: $mobile) {
+          padding: 4px 8px;
+        }
+      }
+    }
+    @media screen and (max-width: $mobile) {
+      padding: 4px 8px;
+    }
+  }
+  &__current {
+    font-size: 20px;
+    line-height: 1.5;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+}
+.lang-item {
+  display: inline;
+}
+@keyframes iconRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+@keyframes iconReverseRotate {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }

@@ -105,6 +105,13 @@
             @media (max-width: $tablet2) {
                 margin-bottom: 28px;
             } 
+            a {
+                color: $black;
+                transition: all $transition-function;
+                &:hover {
+                    color: $blue;              
+                }
+            }
         }
         &-item:not(:last-child) { 
             margin-bottom: 12px; 
@@ -112,7 +119,8 @@
                 margin-bottom: 8px; 
             }
         } 
-        &-text {               
+        &-text {  
+            font-family: "Fira Sans", sans-serif;               
             @media (max-width: $desktop) {
                 font-size: 18px;
             }
@@ -167,7 +175,7 @@
     }    
     #contactForm input[type="text"], #contactForm input[type="tel"],
     #contactForm input[type="email"], #contactForm input[type="email"], 
-    .wpcf7-select, #contactForm textarea[id="message"] {
+    #contactForm textarea[id="message"] {
         border-radius: $bid-border-radius;
         border: 1px solid $lavender;
         background: $white;
@@ -189,48 +197,50 @@
             height: 177px;
             border-radius: $small-border-radius;
         }
-    }    
-    .select__wrapper {
-        position: relative;
-        z-index: 0;
-    }
-    .select__wrapper::before {
-        content: "";
-        position: absolute;
-        top: 8px;
-        right: 22px;
-        width: 40px;
-        height: 40px;
-        z-index: 1;
-        pointer-events: none;
-        background: url(../../../assets/images/select_arrow-up.svg);         
-        background-size:contain;
-        background-position:right;
-        background-repeat: no-repeat;   
+    } 
+    .choices {
+        margin-bottom: 24px;  
         @media (max-width: $tablet2) {
-            top: 4px;
-        }         
-    }        
-    .wpcf7-select {
-        appearance: none;
-        outline: none;
+            margin-bottom: 20px;   
+        }
     }
-    /*.wpcf7-select:checked {}*/
-    .wpcf7-select:focus {
-        background-color:  $lavender;
-        border-radius: $bid-border-radius $bid-border-radius 0px 0px;
-    }
-    option {
-        background-color: $white;
-        border: 1px solid $lavender;
+    .choices__inner {
         border-radius: $bid-border-radius;
+        border: 1px solid $lavender;
+        background: $white;
+        width: 100%;       
+        padding: 12px 32px;  
+        font-family: "Fira Sans", sans-serif;  
+        font-size: 20px;        
+        vertical-align: middle;
+        color: rgb(90, 88, 88);
+        @media (max-width: $desktop) {             
+            font-size: 18px;
+        }
+        @media (max-width: $tablet2) {
+            font-size: 14px;            
+        }
+    }  
+    .choices[data-type*=select-one]::after {
+        right: 24px;
+    }
+    .is-open .choices__inner {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color:  $lavender;
+    }
+    .is-open .choices__list--dropdown  {
+        background-color: $white;
+        border: 1px solid $lavender;        
+        border-bottom-left-radius: $bid-border-radius;
+        border-bottom-right-radius: $bid-border-radius;
         padding: 12px 24px;
-        font-size: 18px;
+        font-family: "Fira Sans", sans-serif;  
+        font-size: 20px;
         @media (max-width: $tablet2) {
             font-size: 14px;
         }
-    }
-    /*#contactForm input:focus {}   #contactForm input:focus::-webkit-input-placeholder {}*/
+    }  
     .privacy__container p {
         display: flex;
         align-items: flex-start;
@@ -268,7 +278,6 @@
             }
         }
     }
-
     #contactForm input[id="submit-btn"] {
         padding: 12px 87px;
         border-radius: $bid-border-radius; 
@@ -279,17 +288,26 @@
         @media (max-width: $mobile) {
             width: 100%;
         }     
-    }
+    }    
 }
 
 .wpcf7-response-output {
     display: none;
 }
 
-.wpcf7-not-valid-tip {    
+.wpcf7-not-valid-tip, .error-phone {    
     font-size: 14px; 
+    color: #DC1414;
+    margin-bottom: 15px;    
 }
 
+.wpcf7-not-valid {
+    border: 1px solid #DC1414!important;        
+}
+
+.error-phone {
+    display: none;    
+}
 
 /*Popup=======================*/
 .popup {
