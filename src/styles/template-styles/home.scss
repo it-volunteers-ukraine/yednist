@@ -287,6 +287,10 @@
   @media screen and (max-width: $mobile) {
     max-width: 203px;
   }
+  & .custom-button-next,
+  & .custom-button-prev {
+    display: none;
+  }
 }
 
 .digits-section__wrapper {
@@ -375,29 +379,6 @@
   }
   @media screen and (max-width: $mobile) {
     font-size: 16px;
-  }
-}
-
-//moments section
-
-.moments-section__slider {
-  position: relative;
-}
-
-.moments-section__wrapper {
-  margin-bottom: 20px;
-  @media screen and (max-width: $tablet2) {
-    margin-bottom: 12px;
-  }
-  @media screen and (max-width: $mobile) {
-    margin-bottom: 0;
-  }
-}
-
-.moments-section__image {
-  padding-bottom: 81%;
-  @media screen and (max-width: $mobile) {
-    padding-bottom: 78%;
   }
 }
 
