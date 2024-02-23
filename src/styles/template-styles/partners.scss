@@ -4,9 +4,14 @@
 .container {
 
   .partners-title {
+    margin-bottom: 40px;
 
     @media screen and (max-width: $mobile) {
-      margin-bottom: 40px;
+      margin-bottom: 16px;
+    }
+
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 16px;
     }
   }
 
