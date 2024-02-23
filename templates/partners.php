@@ -8,7 +8,7 @@ get_header();
     <section class="section">
         <div class="container">
             <div class="inner-container">
-                <h2 class="page-title"><?php the_title();?></h2>
+                <h2 class="page-title partners-title"><?php the_title();?></h2>
                 <div class="partners">
                     <?php
                     $repeater_data = get_field('partners');
