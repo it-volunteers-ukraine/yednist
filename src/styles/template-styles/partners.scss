@@ -1,101 +1,67 @@
 @import "../variables";
-@import "../global";
 
 
 .container {
-  padding: 0 80px;
 
+  .partners-title {
+    margin-bottom: 40px;
 
-  @media screen and (max-width: $desktop) {
-    padding: 0 16px;
-  }
-
-  @media screen and (max-width: $tablet2) {
-    padding: 0 40px;
-  }
-
-  @media screen and (max-width: $mobile) {
-    padding: 0 16px;
-  }
-
-
-  .wrapper {
-    padding: 0 148px;
-    border-top: 1px solid $blue;
-
-    @media screen and (max-width: $desktop) {
-      padding: 0 0;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 16px;
     }
 
-
-
     @media screen and (max-width: $tablet2) {
-      padding: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+
+  .partners {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 40px 20px;
+
+
+    @media screen and (max-width: $desktop) {
+      padding-bottom: 30px;
     }
 
 
     @media screen and (max-width: $mobile) {
-      padding: 0 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
 
-    .page-title {
-      margin-bottom: 50px;
-      @media screen and (max-width: $tablet2) {
-        margin-bottom: 40px;
-      }
-      @media screen and (max-width: $mobile) {
-        margin-bottom: 25px;
-      }
+    @media screen and (max-width: $mobile) {
+      gap: 20px;
     }
 
 
-    .partners {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      gap: 40px 20px;
+    @media screen and (max-width: $tablet2) {
+      gap: 40px 35px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 
-
-      @media screen and (max-width: $desktop) {
-        padding-bottom: 30px;
-      }
-
-
-      @media screen and (max-width: $mobile) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-
-      @media screen and (max-width: $mobile) {
-        gap: 20px;
-      }
-
+    .partners-item {
+      display: flex;
+      padding: 11px 40px;
+      max-height: 142px;
 
       @media screen and (max-width: $tablet2) {
-        gap: 40px 25px;
+        padding: 0;
       }
-
-      .partners-item {
-        display: flex;
+      @media screen and (max-width: $mobile) {
         padding: 11px 40px;
-        max-height: 142px;
-
-        @media screen and (max-width: $tablet2) {
-          padding: 0;
-        }
-        @media screen and (max-width: $mobile) {
-          padding: 11px 40px;
-        }
       }
+    }
 
-      img:hover {
-        @media screen and (max-width: $desktop) {
-          cursor: zoom-in;
-          transform: scale(150%);
-          transition: 0.5s;
-        }
+    img:hover {
+      @media screen and (max-width: $desktop) {
+        cursor: zoom-in;
+        transform: scale(150%);
+        transition: 0.5s;
       }
     }
   }
