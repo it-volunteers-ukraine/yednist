@@ -15,17 +15,11 @@
     max-width: 288px;
     height: 400px;
   }
-  &:nth-child(3n + 1) .flip-card-back-first {
-    background-color: $lavender;
-  }
   &:nth-child(3n + 2) .flip-card-back-first {
     background-color: $yellow;
   }
   &:nth-child(3n) .flip-card-back-first {
     background-color: $pink;
-  }
-  &:nth-child(3n + 1) .flip-card-back-second {
-    background-color: $blue;
   }
   &:nth-child(3n + 2) .flip-card-back-second {
     background-color: $dark-yellow;
@@ -92,10 +86,12 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
+  background-color: $lavender;
 }
 .flip-card-back-second {
   z-index: -1;
   transform: rotate(6deg);
+  background-color: $blue;
 }
 
 .activity__description {
@@ -136,14 +132,5 @@
       width: 20px;
       height: 20px;
     }
-  }
-}
-
-.activity__button {
-  @media screen and (max-width: 1600px) {
-    min-width: 235px;
-  }
-  @media screen and (max-width: $mobile) {
-    min-width: 248px;
   }
 }

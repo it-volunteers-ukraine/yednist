@@ -7,12 +7,12 @@
     <span class="total-pages"></span>
   </div>
   <div class="feedback-navigation__box">
-    <button class="custom-button-prev feedback-prev" type="button">
+    <button class="custom-button-prev feedback-prev" type="button" aria-label="previous slide">
       <svg class="">
         <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
       </svg>
     </button>
-    <button class="custom-button-next feedback-next" type="button">
+    <button class="custom-button-next feedback-next" type="button" aria-label="next slide">
       <svg class="">
         <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
       </svg>

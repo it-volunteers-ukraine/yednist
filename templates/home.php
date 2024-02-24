@@ -126,7 +126,7 @@ get_header();
       <div class="inner-container">
 
         <?php get_template_part( 'template-parts/slider'); ?>
-        
+
       </div>
     </div>
   </section>
@@ -143,7 +143,8 @@ get_header();
             <?php foreach( $images as $image ): ?>
             <div class="swiper-slide our-partners-section__photo">
               <div class="our-partners-section__image">
-                <img class="our-partners-section__img" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
+                <img class="swiper-lazy our-partners-section__img" loading="lazy"
+                  src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
                   alt="<?php echo esc_attr($image['alt']); ?>">
               </div>
             </div>

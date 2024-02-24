@@ -27,7 +27,7 @@
     max-width: 1352px;
   }
 
-  @media screen and (max-width: $tablet1) {
+  @media screen and (max-width: 768px) {
     max-width: 720px;
   }
 
@@ -58,12 +58,14 @@
   padding: 12px 24px;
   width: fit-content;
   min-width: 277px;
+  height: 54px;
   border-radius: $bid-border-radius;
   text-transform: uppercase;
   transition: all $transition-function;
 
   @media screen and (max-width: $desktop) {
     min-width: 203px;
+    height: 48px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;

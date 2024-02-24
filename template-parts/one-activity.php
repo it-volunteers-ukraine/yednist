@@ -42,32 +42,19 @@
                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_people"></use>
                </svg>
              </div>
-             <div class="activity__text"><?php ?></div>
+             <div class="activity__text">
+               <?php
+              $category = get_the_terms($post->ID, 'activities-target');
+              foreach ($category as $cat) {
+                echo $cat->name;
+              }?>
+             </div>
            </li>
 
          </ul>
 
-         <?php
+         <?php get_template_part( 'template-parts/activity-buttons' ); ?>
 
-      $activity_name = 'activity_registration';
-      if( get_field('select_btn') == 'Перейти в Telegram' ) {
-      $activity_name = 'activity_telegram';
-    }
-      if( get_field('select_btn') == 'Купити квиток' ) {
-      $activity_name = 'activity_buy_ticket';
-    }
-
-      $activity = get_field($activity_name);
-      if( $activity ): ?>
-         <a class="button primary-button activity__button"
-           href="<?php echo esc_url( $activity['link'] ); ?>"><?php echo esc_html( $activity['btn'] ); ?></a>
-         <?php endif; ?>
-
-         <?php $learn_more = get_field('activity_learn_more_btn');
-      if($learn_more) { ?>
-         <a class="button secondary-button activity__button"
-           href="<?php the_permalink(); ?>"><?php  echo $learn_more; ?></a>
-         <?php } ?>
        </div>
      </div>
    </div>
