@@ -164,7 +164,7 @@
     transition: all $transition-function;
     outline: none;
     font-size: 20px;
-
+    font-weight: 400;
     @media screen and (max-width: $desktop) {
       padding: 12px 24px;
       font-size: 14px;
@@ -191,15 +191,13 @@
       color: $grey;
     }
   }
+
+  & .choices__inner .choices__placeholder {
+    color: $grey;
+    opacity: 1;
+  }
   & .textarea-box {
     padding-right: 12px;
-    @media screen and (max-width: $mobile) {
-      padding-right: 8px;
-    }
-  }
-  & textarea {
-    resize: none;
-    width: 100%;
     height: 228px;
     @media screen and (max-width: $desktop) {
       height: 180px;
@@ -209,6 +207,21 @@
     }
     @media screen and (max-width: $mobile) {
       height: 140px;
+      padding-right: 8px;
+    }
+  }
+  & textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 20px;
+    @media screen and (max-width: $desktop) {
+      font-size: 14px;
+    }
+
+    &::placeholder {
+      color: $grey;
     }
     &::-webkit-scrollbar {
       display: block;
@@ -296,7 +309,10 @@
         font-family: $primary-font;
         font-size: 24px;
         & .choices__placeholder {
-          opacity: 1;
+          color: $black;
+          @media screen and (max-width: $mobile) {
+            font-family: $secondary-font;
+          }
         }
         @media screen and (max-width: $desktop) {
           font-size: 20px;
