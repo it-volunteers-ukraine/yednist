@@ -27,6 +27,7 @@ function wp_it_volunteers_scripts() {
 
   wp_enqueue_script( 'wp-it-volunteers-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), false, true );
   wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+  wp_enqueue_script( 'touch-swipe-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js', array(), false, true );
   wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10.0.0/swiper-bundle.min.js', array(), false, true);  
   wp_enqueue_script('choices-scripts', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), false, true);
    
@@ -51,7 +52,7 @@ function wp_it_volunteers_scripts() {
 
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
-        wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('jquery-scripts'), false, true );
+        wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('touch-swipe-scripts'), false, true );
         wp_localize_script('schedule-scripts', 'activities', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('activities_nonce'),
@@ -69,7 +70,7 @@ function wp_it_volunteers_scripts() {
     
     if (is_singular() && locate_template('template-parts/feedback-posts.php')) {
       wp_enqueue_style('feedback-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/feedback-posts.css', array('main'));
-      wp_enqueue_script('feedback-page-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-posts.js', array('jquery-scripts'), false, true);
+      wp_enqueue_script('feedback-page-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-posts.js', array('touch-swipe-scripts'), false, true);
       wp_localize_script('feedback-page-scripts', 'myAjax', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('feedbacks_nonce'),
@@ -99,6 +100,12 @@ function wp_it_volunteers_scripts() {
 
     if (is_singular() && locate_template('template-parts/loader.php')) {
       wp_enqueue_style('loader-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/loader.css', array('main'));
+    }
+    if (is_singular() && locate_template('template-parts/one-activity-row.php')) {
+      wp_enqueue_style('activity-row', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-activity-row.css', array('main'));
+    }
+    if (is_singular() && locate_template('template-parts/activity-buttons.php')) {
+      wp_enqueue_style('activity-buttons', get_template_directory_uri() . '/assets/styles/template-parts-styles/activity-buttons.css', array('main'));
     }
 }
 /** add fonts */

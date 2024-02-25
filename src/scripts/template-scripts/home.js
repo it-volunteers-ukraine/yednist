@@ -55,6 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     slidesPerView: 2,
     spaceBetween: 16,
     loop: true,
+    lazy: {
+      loadOnTransitionStart: true,
+      loadPrevNext: true,
+    },
+    lazyPreloadPrevNext: 1,
     autoplay: {
       delay: 2500,
       disableOnInteraction: false,

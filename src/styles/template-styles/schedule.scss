@@ -91,3 +91,37 @@
 .one-bullet.active {
   background-color: $violet-grey;
 }
+
+.activity__table {
+  border: 1px solid $blue;
+  border-radius: $small-border-radius;
+  overflow: hidden;
+  &:nth-child(3n + 2) .activity__table-title {
+    background-color: $yellow;
+  }
+  &:nth-child(3n) .activity__table-title {
+    background-color: $pink;
+  }
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+}
+
+.activity__table-title {
+  height: 80px;
+  border-bottom: 1px solid $blue;
+  padding: 16px 48px;
+  background: $lavender;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+    height: 70px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    height: 54px;
+  }
+}

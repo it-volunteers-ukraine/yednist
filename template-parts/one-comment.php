@@ -15,7 +15,7 @@
     <?php if ($excerptMobileLength < $fullContentLength) { ?>
     <div class="feedback-post__excerpt"><?php echo $contentMobile; ?></div>
 
-    <button id="read-more-js" class='feedback-open__btn' type='button' onclick='
+    <button id="" class='feedback-open__btn' type='button' onclick='
 
       const fullText = this.nextElementSibling;
       const shortText = this.previousElementSibling;

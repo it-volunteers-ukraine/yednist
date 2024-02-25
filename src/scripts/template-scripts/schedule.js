@@ -37,6 +37,14 @@ jQuery(document).ready(function ($) {
     nextButton.prop("disabled", currentPage === totalPages);
   }
 
+  // Підсвічення активного bullet
+  function currentBullet() {
+    var bulletArray = $(".bullets").children().toArray();
+    var activeIndex = currentPage - 1;
+    var activeBullet = bulletArray[activeIndex];
+    $(activeBullet).addClass("active");
+  }
+
   function countBullets() {
     var bulletsBox = $(".bullets");
     bulletsBox.empty();
@@ -44,6 +52,7 @@ jQuery(document).ready(function ($) {
       for (let i = 1; i <= totalPages; i++) {
         bulletsBox.append('<div class="one-bullet"></div>');
       }
+      currentBullet();
     }
   }
 
@@ -89,13 +98,6 @@ jQuery(document).ready(function ($) {
     currentPageEl.html(currentPage);
   }
 
-  // Підсвічення активного bullet
-  function currentBullet() {
-    var childrenArray = $(".bullets").children().toArray();
-    console.log(childrenArray[0].addClass("active"));
-    // childrenArray[currentPage - 1].addClass("active");
-  }
-
   // Обробник кліку на кнопку "Next"
   $(".activities-next").click(function () {
     currentPage++;
@@ -105,7 +107,6 @@ jQuery(document).ready(function ($) {
     loadPosts(currentPage);
     updateCurrentPage();
     updatePaginationButtons();
-    currentBullet();
   });
 
   // Обробник кліку на кнопку "Prev"
@@ -117,7 +118,39 @@ jQuery(document).ready(function ($) {
     loadPosts(currentPage);
     updateCurrentPage();
     updatePaginationButtons();
+  });
+
+  // Обробник кліку на bullet
+  $(".bullets").on("click", ".one-bullet", function () {
+    $(".active").removeClass("active");
+    var index = $(this).index();
+    currentPage = index + 1;
+    loadPosts(currentPage);
+    updateCurrentPage();
+    updatePaginationButtons();
     currentBullet();
+  });
+
+  $(".activities__wrapper").swipe({
+    swipeLeft: function (e) {
+      // Обробка свайпу вліво
+      if (currentPage < totalPages) {
+        currentPage++;
+        loadPosts(currentPage);
+        updateCurrentPage();
+        updatePaginationButtons();
+      }
+    },
+    swipeRight: function (e) {
+      // Обробка свайпу вправо
+      if (currentPage > 1) {
+        currentPage--;
+        loadPosts(currentPage);
+        updateCurrentPage();
+        updatePaginationButtons();
+      }
+    },
+    threshold: 75, // Мінімальна відстань, яка вважається свайпом
   });
 
   // Початкове завантаження постів

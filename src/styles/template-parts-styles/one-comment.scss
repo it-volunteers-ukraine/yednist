@@ -38,7 +38,8 @@
   &-mobile {
     display: none;
     @media screen and (max-width: $tablet1) {
-      min-height: 374px;
+      height: fit-content;
+      min-height: 300px;
       display: flex;
     }
   }
