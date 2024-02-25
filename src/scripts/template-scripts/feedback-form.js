@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       feedbackBackdrop.classList.remove("is-hidden");
       screenOrientation(screenHeight);
       closeFeedbackFormButton.addEventListener("click", hideForm);
-      feedbackBackdrop.addEventListener("click", closeByBgdClick);
+      feedbackBackdrop.addEventListener("mousedown", closeByBgdClick);
       window.addEventListener("keydown", closeByPressEscape);
       window.addEventListener("resize", lookForSizeChanges);
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideForm() {
       feedbackBackdrop.classList.add("is-hidden");
       closeFeedbackFormButton.removeEventListener("click", hideForm);
-      feedbackBackdrop.removeEventListener("click", closeByBgdClick);
+      feedbackBackdrop.removeEventListener("mousedown", closeByBgdClick);
       feedbackModalEl.classList.remove("horizontal");
 
       const scrollY = parseInt(document.documentElement.style.top || "0");
@@ -149,6 +149,15 @@ document.addEventListener("DOMContentLoaded", function () {
           inputEl.classList.add("valid");
           inputEl.classList.remove("invalid");
         }
+
+        if (inputEl === inputReviewEl) {
+          const textareaBox = $(".textarea-box");
+          if (!check || inputEl.classList.contains("invalid")) {
+            textareaBox.addClass("invalid").removeClass("valid");
+          } else {
+            textareaBox.addClass("valid").removeClass("invalid");
+          }
+        }
       }
 
       inputNameEl.addEventListener("keyup", validateInput);
@@ -181,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(".feedback-backdrop").addClass("is-hidden");
             notificationBox.removeClass("is-hidden");
             $(window).on("keydown", escHandler);
-            notificationBox.on("click", closeBgdClick);
+            notificationBox.on("mousedown", closeBgdClick);
             timerId = setTimeout(closeNotification, 5000);
             notificationBtn.on("click", closeNotification);
           });
@@ -191,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const scrollY = $("html").css("top");
           clearTimeout(timerId);
           notificationBox.addClass("is-hidden");
-          notificationBox.off("click", closeBgdClick);
+          notificationBox.off("mousedown", closeBgdClick);
           $("html").removeClass("modal__opened");
           window.scrollTo(0, parseInt(scrollY || "0") * -1);
           $(window).off("keydown", escHandler);

@@ -65,8 +65,10 @@
           <div>
 
             <label for="description"><?php the_field('feedback_your_review'); ?></label>
-            <textarea class="input-review" id="description" name="description" cols="50" rows="6" maxlength="1000"
-              placeholder="Введіть текст"></textarea>
+            <div class="textarea-box">
+              <textarea class="input-review" id="description" name="description" cols="50" rows="6" maxlength="1000"
+                placeholder="Введіть текст"></textarea>
+            </div>
 
           </div>
 
