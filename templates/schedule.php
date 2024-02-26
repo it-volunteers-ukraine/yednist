@@ -88,9 +88,26 @@ get_header();
             foreach ($activities_by_day as $day_slug => $activities) { ?>
         <div class="activity__table">
           <div class="activity__table-title"><?php the_field($day_slug, 'options'); ?></div>
-          <?php foreach ($activities as $post) {
-                        get_template_part( 'template-parts/one-activity-row' );
-                    } ?>
+          <?php foreach ($activities as $post) { ?>
+          <div class="activity__table-row">
+            <div class="activity__table-time">
+
+              <?php
+                  if( have_rows('activity_time') ):
+
+                      while( have_rows('activity_time') ) : the_row();
+
+                          $day = get_sub_field('day');
+                          if($day==$day_slug){
+                            echo get_sub_field('time');
+                          }
+
+                      endwhile;
+                  endif;?>
+            </div>
+            <?php get_template_part( 'template-parts/one-activity-row' );?>
+          </div>
+          <?php } ?>
         </div>
         <?php } ?>
 
