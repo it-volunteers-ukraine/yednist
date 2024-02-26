@@ -9,7 +9,8 @@ get_header();
         <div class="container">
             <div class="inner-container">       
                 <h2 class="page-title projects__title"><?php $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : ''; echo (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' ' . get_the_title(); ?></h2>
-                <div class='projects__list__slider'>
+                <div class='swiper projects__list'>
+                <div class='swiper-wrapper'>
                 <?php
                 $projects = new WP_Query(array(
                     'post_type' => 'projects',
@@ -26,15 +27,25 @@ get_header();
                         $project_title = get_the_title();
                         $project_link = get_permalink();
 
-                        echo '<div class="">';
+                        echo '<div class="swiper-slide projects__list__item">';
                           echo '<h2>' . $project_title . '</h2>';
                           echo '<p>' . $project_description . '</p>';
                           echo '<a href='. $project_link .'>'. $projects_button .'</a>';
                         echo '</div>';
+
+                        echo '<div class="swiper-slide projects__list__item">';
+                        echo '<h2>' . $project_title . '</h2>';
+                        echo '<p>' . $project_description . '</p>';
+                        echo '<a href='. $project_link .'>'. $projects_button .'</a>';
+                      echo '</div>';
+                      
                     }
                     wp_reset_postdata();
                 }
                 ?>
+                </div>
+                <div class="swiper-pagination"></div>
+                <?php get_template_part( 'template-parts/swiper-navigation'); ?>
                 </div>
             </div> 
         </div> 

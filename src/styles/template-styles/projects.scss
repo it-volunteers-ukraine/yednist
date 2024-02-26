@@ -6,7 +6,7 @@
       margin-bottom: 16px;
     }
   }
-  &__list__slider {
+  &__list {
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -16,5 +16,21 @@
     @media screen and (max-width: $tablet2) {
       gap: 20px;
     }
+
+    &__item {
+      padding: 65px 80px;
+      &.blue {
+        background-color: $lavender;
+      }
+      &.yellow {
+        background-color: $yellow;
+      }
+      &.pink {
+        background-color: $pink;
+      }
+    }
   }
+}
+.swiper-wrapper {
+  max-height: 1962px;
 }
