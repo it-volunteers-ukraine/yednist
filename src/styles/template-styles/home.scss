@@ -350,6 +350,10 @@
     height: 2px;
     background-color: $blue;
     transition: width 2s ease-in-out;
+    max-width: 200px;
+    @media screen and (max-width: 1260px) {
+      max-width: 140px;
+    }
   }
 
   @media screen and (max-width: 1500px) {
@@ -375,7 +379,7 @@
 }
 
 .digits-section__number.element-show::before {
-  width: 200px;
+  width: 58%;
 }
 
 .digits-section__caption {

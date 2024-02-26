@@ -22,12 +22,12 @@
           <div class="feedback-name-email__wrapper">
 
             <div class="feedback-input__wrapper"><label for="title"><?php the_field('feedback_your_name'); ?></label>
-              <input type="text" id="title" value="" size="20" name="title" class="input-name"
+              <input type="text" id="title" value="" size="20" name="title" class="input-name" maxlength="50"
                 placeholder="<?php the_field('feedback_name_placeholder'); ?>" />
             </div>
 
             <div class="feedback-input__wrapper"><label for="email"><?php the_field('feedback_your_email'); ?></label>
-              <input type="text" id="email" value="" size="20" name="email" class="input-email"
+              <input type="text" id="email" value="" size="20" name="email" class="input-email" maxlength="50"
                 placeholder="<?php the_field('feedback_email_placeholder'); ?>" />
             </div>
 
