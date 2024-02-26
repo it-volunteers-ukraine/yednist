@@ -10,14 +10,25 @@ jQuery(document).ready(function ($) {
   }
 
   // Отримання nonce
-  function getFeedbacksNonce() {
-    return myAjax.nonce;
+  function getActivitiesNonce() {
+    return activities.nonce;
+  }
+
+  function isPagination() {
+    var paginationBox = $(".activities-pagination__block");
+
+    if (totalPages === 1) {
+      paginationBox.addClass("hidden");
+    }
   }
 
   // Оновлення кнопок пагінації
   function updatePaginationButtons() {
-    var prevButton = $(".feedback-prev");
-    var nextButton = $(".feedback-next");
+    if (totalPages === 1) {
+      return;
+    }
+    var prevButton = $(".activities-prev");
+    var nextButton = $(".activities-next");
 
     // Встановлення стану кнопки "Prev"
     prevButton.prop("disabled", currentPage === 1);
@@ -26,17 +37,36 @@ jQuery(document).ready(function ($) {
     nextButton.prop("disabled", currentPage === totalPages);
   }
 
+  // Підсвічення активного bullet
+  function currentBullet() {
+    var bulletArray = $(".bullets").children().toArray();
+    var activeIndex = currentPage - 1;
+    var activeBullet = bulletArray[activeIndex];
+    $(activeBullet).addClass("active");
+  }
+
+  function countBullets() {
+    var bulletsBox = $(".bullets");
+    bulletsBox.empty();
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        bulletsBox.append('<div class="one-bullet"></div>');
+      }
+      currentBullet();
+    }
+  }
+
   // Завантаження постів
   function loadPosts(page) {
     var data = {
-      action: "load_feedbacks",
-      nonce: getFeedbacksNonce(),
+      action: "load_activities",
+      nonce: getActivitiesNonce(),
       width: viewportWidth,
       page: page,
     };
 
     $.ajax({
-      url: myAjax.ajaxUrl,
+      url: activities.ajaxUrl,
       type: "post",
       data: data,
       beforeSend: showLoader,
@@ -44,8 +74,10 @@ jQuery(document).ready(function ($) {
         hideLoader();
         totalPages = response.totalPages;
         totalPageEl.html(totalPages);
-        $(".feedback-section__wrapper").html(response.html);
+        $(".activities__wrapper").html(response.html);
+        isPagination();
         updatePaginationButtons();
+        countBullets();
       },
       error: function (xhr, status, error) {
         hideLoader();
@@ -67,7 +99,7 @@ jQuery(document).ready(function ($) {
   }
 
   // Обробник кліку на кнопку "Next"
-  $(".feedback-next").click(function () {
+  $(".activities-next").click(function () {
     currentPage++;
     if (currentPage > totalPages) {
       currentPage = totalPages;
@@ -78,7 +110,7 @@ jQuery(document).ready(function ($) {
   });
 
   // Обробник кліку на кнопку "Prev"
-  $(".feedback-prev").click(function () {
+  $(".activities-prev").click(function () {
     currentPage--;
     if (currentPage < 1) {
       currentPage = 1;
@@ -88,13 +120,25 @@ jQuery(document).ready(function ($) {
     updatePaginationButtons();
   });
 
-  $(".feedback-section__wrapper").swipe({
+  // Обробник кліку на bullet
+  $(".bullets").on("click", ".one-bullet", function () {
+    $(".active").removeClass("active");
+    var index = $(this).index();
+    currentPage = index + 1;
+    loadPosts(currentPage);
+    updateCurrentPage();
+    updatePaginationButtons();
+    currentBullet();
+  });
+
+  $(".activities__wrapper").swipe({
     swipeLeft: function (e) {
       // Обробка свайпу вліво
       if (currentPage < totalPages) {
         currentPage++;
         loadPosts(currentPage);
         updateCurrentPage();
+        updatePaginationButtons();
       }
     },
     swipeRight: function (e) {
@@ -103,6 +147,7 @@ jQuery(document).ready(function ($) {
         currentPage--;
         loadPosts(currentPage);
         updateCurrentPage();
+        updatePaginationButtons();
       }
     },
     threshold: 75, // Мінімальна відстань, яка вважається свайпом
