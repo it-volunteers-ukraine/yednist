@@ -71,12 +71,18 @@ get_header();
             // Выводим активности для каждого дня недели
             foreach ($activities_by_day as $day_slug => $activities) { ?>
         <div class="activity__table">
-          <div class="activity__table-title"><?php the_field($day_slug, 'options'); ?></div>
-          <?php foreach ($activities as $post) { ?>
-          <div class="activity__table-row">
-            <div class="activity__table-time">
+          <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
+            class="activity__table-title schedule-accordion">
+            <p><?php the_field($day_slug, 'options'); ?></p>
+            <div class="activity__table-arrow"></div>
+          </div>
+          <div id="panel-<?php the_field($day_slug, 'options'); ?>" role="region"
+            class="activity__table-box schedule-panel">
+            <?php foreach ($activities as $post) { ?>
+            <div class="activity__table-row">
+              <div class="activity__table-time">
 
-              <?php
+                <?php
                   if( have_rows('activity_time') ):
 
                       while( have_rows('activity_time') ) : the_row();
@@ -88,10 +94,11 @@ get_header();
 
                       endwhile;
                   endif;?>
+              </div>
+              <?php get_template_part( 'template-parts/one-activity-row' );?>
             </div>
-            <?php get_template_part( 'template-parts/one-activity-row' );?>
+            <?php } ?>
           </div>
-          <?php } ?>
         </div>
         <?php } ?>
 
