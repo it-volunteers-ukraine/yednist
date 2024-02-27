@@ -92,7 +92,7 @@
         <div class="feedback__btn--wrap">
           <div class="feedback-alert hidden"><?php the_field('feedback_alert'); ?></div>
           <input type="submit" value="<?php the_field('send_btn', 'options'); ?>" id="submit" name="submit"
-            class="button primary-button" />
+            class="button primary-button form__submit-btn" />
         </div>
 
         <input type="hidden" name="action" value="do_insert" />
