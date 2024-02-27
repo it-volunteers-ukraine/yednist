@@ -1,0 +1,148 @@
+@import "../variables";
+
+
+/* section Our team */
+
+
+.team-title {
+  margin-bottom: 40px;
+}
+
+
+.team-image {
+  margin-bottom: 25px;
+}
+
+
+/* section Team members */
+
+
+.members-title {
+  padding: 0 60px;
+}
+
+.team-members {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px 95px;
+
+  @media screen and (max-width: $desktop) {
+    gap: 60px 76px;
+  }
+
+
+  .team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .team-image {
+      width: 425px;
+      height: 570px;
+      margin-bottom: 16px;
+      position: relative;
+
+
+      @media screen and (max-width: $desktop) {
+        width: 315px;
+        height: 424px;
+      }
+
+
+      img {
+        border-radius: 24px;
+        position: relative;
+      }
+
+      .block {
+        width: 425px;
+        height: 570px;
+        border-radius: 24px;
+        position: absolute;
+        transform: rotate(6deg);
+        bottom: 0;
+
+        .info {
+          padding: 64px 40px;
+          width: 425px;
+          height: 570px;
+          border-radius: 24px;
+          transform: rotate(-6deg);
+          line-height: 50px;
+          font-size: 18px;
+        }
+      }
+
+
+    }
+
+
+    span {
+      font-size: 24px;
+      color: $blue;
+
+      @media screen and (max-width: $desktop) {
+        font-size: 20px;
+      }
+    }
+
+
+  }
+
+
+  .team-member:nth-child(n) {
+    .team-image {
+      &:hover {
+        .block {
+          background-color: $blue;
+
+          .info {
+            background-color: $lavender;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+
+  .team-member:last-child,
+nth-child(2n + 2):not(:nth-child(6)):not(:nth-child(8)){
+  .team-image {
+    &:hover {
+      .block {
+        background-color: #EEBC3C;
+
+        .info {
+          background-color: $yellow;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+  .team-member:nth-child(2n+3):not(:last-child) {
+    .team-image {
+      &:hover {
+        .block {
+          background-color: #A06C6C;
+
+          .info {
+            background-color: $pink;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+
+  .info {
+    display: none;
+  }
+
+
+}
+
