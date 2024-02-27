@@ -79,6 +79,7 @@
             transition: transform 0.8s ease 0s;
             width: 275px;
             height: 220px;
+            cursor: pointer;
             @media (max-width: $desktop) {
                 width: 203px;
                 height: 200px;           
@@ -109,18 +110,28 @@
     height: 100%;
     background-color: $header-burger-background;    
     display: none;
-    img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);  
-        max-width: 88%;        
-        height: auto; 
+    overflow: scroll;
+    &__img {
+        position: relative;
+        margin: 0 auto;
+        padding: 18px 0 24px;
+        max-width: 50%; 
+        @media (max-width: $tablet2) {
+            min-width: 70%;
+        }
+        @media (max-width: $mobile) {
+            min-width: 90%;
+        }
+        img {           
+            object-fit: cover;
+            object-position: top;            
+        }
     }    
     span {
         position: fixed;
-        top: 10px;
-        right: 20px;
+        z-index: 1;
+        top: 48px;
+        right: 27%;
         width: 40px;
         height: 40px;        
         background: #FFFFFF40;
@@ -129,5 +140,12 @@
         text-align: center;
         line-height: 40px;
         cursor: pointer;
-    }
+        @media (max-width: $tablet2) {
+            right: 18%;
+        }
+        @media (max-width: $mobile) {
+            right: 12%;
+            top: 26px;
+        }
+    }    
 }

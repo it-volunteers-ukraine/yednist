@@ -18,3 +18,15 @@ document.querySelector('.galery-pop-up span').onclick = () => {
     document.querySelector('.galery-pop-up').style.display = 'none';
     document.body.classList.remove('modal-open');   
 }
+
+
+//Galery-pop-up__swiper================================//
+const gallerySwiper = new Swiper('.galery-pop-up__swiper', {    
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },    
+    slidesPerView: 1,  
+    spaceBetween: 12,     
+});  
+gallerySwiper.update();

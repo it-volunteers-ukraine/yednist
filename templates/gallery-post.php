@@ -24,14 +24,26 @@ $gallery_img_alt = get_field('gallery-post-image', $post);
             <?php endforeach ?>   
             <?php endwhile; else : ?>
                 Sorry, no posts were found.
-            <?php endif; ?>   
-            <div class="inner-container">
-              <div class="galery-pop-up">                 
-                  <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
-                  <span>×</span>
-              </div> 
-            </div>         
-          </div>                  
+            <?php endif; ?> 
+          </div> 
+
+          <div class="galery-pop-up">   
+            <div class="galery-pop-up__img"> 
+              <div class="galery-pop-up__swiper swiper">                        
+                <div class="swiper-wrapper"> 
+                  <?php foreach ($gallery_post_img as $img_list) :?>
+                    <div class="swiper-slide">                    
+                      <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
+                    </div>                    
+                  <?php endforeach ?> 
+                </div> 
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>                
+              </div>
+
+              <span>×</span>              
+            </div>
+          </div>                 
         </div> 
       </div>      
     </div> 
