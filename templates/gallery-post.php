@@ -11,6 +11,7 @@ $gallery_img_alt = get_field('gallery-post-image', $post);
 
 ?>
 <main> 
+  <?php get_template_part( 'template-parts/breadcrumbs' ); ?>
   <section class="section galery-post"> 
     <div class="container"> 
       <div class="galery-post__border">
@@ -27,7 +28,7 @@ $gallery_img_alt = get_field('gallery-post-image', $post);
                 </a>              
               </div>               
             <?php endforeach ?>  
-             
+
             <?php endwhile; else : ?>
                 Sorry, no posts were found.
             <?php endif; ?> 

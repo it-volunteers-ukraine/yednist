@@ -4,7 +4,8 @@ Template Name: contacts
 */
 get_header();
 ?>
-<main>       
+<main>   
+    <?php get_template_part( 'template-parts/breadcrumbs' ); ?>    
     <section class="section contacts__page"> 
         <div class="container">
             <div class="contacts__page-border">

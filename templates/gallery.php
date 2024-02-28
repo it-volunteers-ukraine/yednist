@@ -5,6 +5,7 @@ Template Name: gallery
 get_header();
 ?>
 <main>    
+    <?php get_template_part( 'template-parts/breadcrumbs' ); ?>
     <section class="section gallery"> 
       <div class="container"> 
         <div class="gallery__border">
