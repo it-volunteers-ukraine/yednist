@@ -58,6 +58,7 @@ function wp_it_volunteers_scripts() {
     if ( is_page_template('templates/gallery-post.php') ) {
       wp_enqueue_style( 'gallery-post-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
       wp_enqueue_script( 'gallery-post-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery-post.js', array(), false, true );
+      wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {

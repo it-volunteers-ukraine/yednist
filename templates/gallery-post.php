@@ -19,31 +19,19 @@ $gallery_img_alt = get_field('gallery-post-image', $post);
           <div class="galery-post__body">
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>   
             <div class="galery-post__content"><p class="galery-post__text"><?php echo $gallery_post_text; ?></p></div>            
+
             <?php foreach ($gallery_post_img as $img_list) :?>
-              <div class="galery-post__img"><img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>"></div>              
-            <?php endforeach ?>   
+              <div class="galery-post__img">
+                <a data-fslightbox="gallery" href="<?php echo $img_list['url'] ?>">    
+                  <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
+                </a>              
+              </div>               
+            <?php endforeach ?>  
+             
             <?php endwhile; else : ?>
                 Sorry, no posts were found.
             <?php endif; ?> 
-          </div> 
-
-          <div class="galery-pop-up">   
-            <div class="galery-pop-up__img"> 
-              <div class="galery-pop-up__swiper swiper">                        
-                <div class="swiper-wrapper"> 
-                  <?php foreach ($gallery_post_img as $img_list) :?>
-                    <div class="swiper-slide">                    
-                      <img src="<?php echo $img_list['sizes']['medium_large'] ?>" alt="<?php echo $img_list['sizes']['medium_large']; ?>">
-                    </div>                    
-                  <?php endforeach ?> 
-                </div> 
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>                
-              </div>
-
-              <span>×</span>              
-            </div>
-          </div>                 
+          </div>
         </div> 
       </div>      
     </div> 
