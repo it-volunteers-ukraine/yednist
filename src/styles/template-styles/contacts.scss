@@ -1,4 +1,3 @@
-@import "../global.scss";
 @import "../variables.scss";
 
 .icon {
@@ -14,7 +13,10 @@
     }
 }
 
-.contacts__page {    
+.contacts__page {  
+    /*&-border {
+        border-top: 2px solid $violet-grey; 
+    }*/
     &-body {
         display: flex;
         justify-content: space-between;
@@ -35,12 +37,15 @@
     }   
     &-title {
         font-family: "Fira Sans Extra Condensed";
-        margin-bottom: 20px;
+        margin: 48px 0 20px;        
         @media (max-width: $desktop) {
-            margin-bottom: 16px;
+            margin: 40px 0 16px;             
+        }
+        @media (max-width: $tablet2) {
+            margin: 24px 0 16px;             
         }
         @media (max-width: $mobile) {
-            margin-bottom: 8px;
+            margin: 50px 0 8px;            
         }
     }
     &-image { 
@@ -173,8 +178,9 @@
             font-size: 14px;
         }
     }    
-    #contactForm input[type="text"], #contactForm input[type="tel"],
-    #contactForm input[type="email"], #contactForm input[type="email"], 
+    #contactForm input[type="text"], 
+    #contactForm input[type="tel"],
+    #contactForm input[type="email"], 
     #contactForm textarea[id="message"] {
         border-radius: $bid-border-radius;
         border: 1px solid $lavender;
@@ -190,6 +196,7 @@
             margin-bottom: 20px;   
         }
     }
+    &-phone {color: rgb(90, 88, 88);}
     #contactForm textarea[id="message"] {            
         height: 228px;
         margin-bottom: 8px;
@@ -221,9 +228,21 @@
             font-size: 14px;            
         }
     }  
-    .choices[data-type*=select-one]::after {
-        right: 24px;
+    .choices::after {
+        top: 20%;
+        right: 24px;       
+        background-image: url(../../../assets/images/check-mark-down.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-origin: border-box;
+        border: none;
+        height: 40px;
+        width: 40px;
     }
+    .choices.is-open::after {
+        background-image: url(../../../assets/images/check-mark-up.svg);
+        top: 35%;
+    }    
     .is-open .choices__inner {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -283,6 +302,7 @@
         border-radius: $bid-border-radius; 
         text-transform: uppercase;
         @media (max-width: $desktop) {
+            padding: 12px 50px;
             font-size: 16px;            
         }  
         @media (max-width: $mobile) {
@@ -295,7 +315,7 @@
     display: none;
 }
 
-.wpcf7-not-valid-tip, .error-phone {    
+.wpcf7-not-valid-tip {    
     font-size: 14px; 
     color: #DC1414;
     margin-bottom: 15px;    
@@ -305,9 +325,6 @@
     border: 1px solid #DC1414!important;        
 }
 
-.error-phone {
-    display: none;    
-}
 
 /*Popup=======================*/
 .popup {

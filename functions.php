@@ -30,7 +30,8 @@ function wp_it_volunteers_scripts() {
   wp_enqueue_script( 'touch-swipe-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js', array(), false, true );
   wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10.0.0/swiper-bundle.min.js', array(), false, true);  
   wp_enqueue_script('choices-scripts', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), false, true);
-   
+  wp_enqueue_script('imask-scripts', 'https://unpkg.com/imask', array(), false, true);
+
     if ( is_page_template('templates/home.php') ) {
         wp_enqueue_style( 'home-style', get_template_directory_uri() . '/assets/styles/template-styles/home.css', array('main') );
         wp_enqueue_script( 'home-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/home.js', array(), false, true );
@@ -50,6 +51,17 @@ function wp_it_volunteers_scripts() {
         wp_enqueue_style( 'partners-style', get_template_directory_uri() . '/assets/styles/template-styles/partners.css',array('main'));
     }
 
+    if ( is_page_template('templates/gallery.php') ) {
+      wp_enqueue_style( 'gallery-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery.css', array('main') );
+      wp_enqueue_script( 'gallery-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery.js', array(), false, true );
+    }
+
+    if ( is_page_template('templates/gallery-post.php') ) {
+      wp_enqueue_style( 'gallery-post-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
+      wp_enqueue_script( 'gallery-post-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery-post.js', array(), false, true );
+      wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
+    }
+      
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
         wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('touch-swipe-scripts'), false, true );
