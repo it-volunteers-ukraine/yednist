@@ -1,0 +1,39 @@
+@import "../variables";
+
+//image-wrapper
+.image-wrapper {
+  border-radius: $bid-border-radius;
+  height: 0;
+  overflow: hidden;
+  @media screen and (max-width: $tablet2) {
+    border-radius: $small-border-radius;
+  }
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+//slider
+.moments-section__slider {
+  position: relative;
+}
+
+.moments-section__wrapper {
+  margin-bottom: 20px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 0;
+  }
+}
+
+.moments-section__image {
+  padding-bottom: 81%;
+  @media screen and (max-width: $mobile) {
+    padding-bottom: 78%;
+  }
+}

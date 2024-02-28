@@ -51,42 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(elm);
   }
 
-  const momentsSwiper = new Swiper(".moments-section__slider", {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      slideToClickedSlide: true,
-    },
-    preloadImages: false,
+  const partnersSwiper = new Swiper(".our-partners-section__slider", {
+    slidesPerView: 2,
+    spaceBetween: 16,
+    loop: true,
     lazy: {
       loadOnTransitionStart: true,
       loadPrevNext: true,
     },
     lazyPreloadPrevNext: 1,
-    breakpoints: {
-      576: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-        slidesPerGroup: 2,
-      },
-      992: {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-        spaceBetween: 40,
-        navigation: {
-          nextEl: ".custom-button-next",
-          prevEl: ".custom-button-prev",
-        },
-      },
-    },
-  });
-
-  const partnersSwiper = new Swiper(".our-partners-section__slider", {
-    slidesPerView: 2,
-    spaceBetween: 16,
-    loop: true,
     autoplay: {
       delay: 2500,
       disableOnInteraction: false,

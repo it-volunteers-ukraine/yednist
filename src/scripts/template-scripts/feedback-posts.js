@@ -88,6 +88,26 @@ jQuery(document).ready(function ($) {
     updatePaginationButtons();
   });
 
+  $(".feedback-section__wrapper").swipe({
+    swipeLeft: function (e) {
+      // Обробка свайпу вліво
+      if (currentPage < totalPages) {
+        currentPage++;
+        loadPosts(currentPage);
+        updateCurrentPage();
+      }
+    },
+    swipeRight: function (e) {
+      // Обробка свайпу вправо
+      if (currentPage > 1) {
+        currentPage--;
+        loadPosts(currentPage);
+        updateCurrentPage();
+      }
+    },
+    threshold: 75, // Мінімальна відстань, яка вважається свайпом
+  });
+
   // Початкове завантаження постів
   loadPosts(currentPage);
   updateCurrentPage();
