@@ -51,7 +51,6 @@
 
       img {
         border-radius: 24px;
-        position: relative;
       }
 
       .block {
@@ -107,7 +106,7 @@
 
 
   .team-member:last-child,
-nth-child(2n + 2):not(:nth-child(6)):not(:nth-child(8)){
+:nth-child(2n + 2):not(:nth-child(6)):not(:nth-child(8)){
   .team-image {
     &:hover {
       .block {

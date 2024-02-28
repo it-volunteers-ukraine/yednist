@@ -1,0 +1,10 @@
+@import "../variables";
+
+.activity__button {
+  @media screen and (max-width: 1600px) {
+    min-width: 235px;
+  }
+  @media screen and (max-width: $mobile) {
+    min-width: 248px;
+  }
+}
