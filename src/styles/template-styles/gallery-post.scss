@@ -1,19 +1,16 @@
 @import "../variables.scss";
 
-.galery-post {
-    /*&__border {
-        border-top: 2px solid $violet-grey;   
-    }*/
+.galery-post {    
     &__title {
-        margin: 20px 0 40px;        
+        margin: 0px 0 40px;        
         @media (max-width: $desktop) {
-            margin: 20px 0 40px; 
+            margin: 0px 0 40px; 
         }
         @media (max-width: $tablet2) {
-            margin: 20px 0 20px;                        
+            margin: 0px 0 20px;                        
         }
         @media (max-width: $mobile) {
-            margin: 20px 0 16px;
+            margin: 0px 0 16px;
         }
     }
     &__body {        
