@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const projectsSwiper = new Swiper(".projects__swiper", {
     slidesPerView: 5,
+    spaceBetween: 20,
     direction: "vertical",
     lazy: {
       loadOnTransitionStart: true,
       loadPrevNext: true,
     },
-    slidesPerGroup: 3,
     pagination: {
       el: ".swiper-pagination",
       type: "fraction",
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
           clickable: true,
           type: "bullets",
           renderBullet: function (index, className) {
-            console.log(index);
             return '<span class="' + className + '">' + (index + 1) + "</span>";
           },
         },
@@ -30,9 +29,30 @@ document.addEventListener("DOMContentLoaded", function () {
           prevEl: ".custom-button-prev",
         },
       },
+      992: {
+        slidesPerView: 5,
+        spaceBetween: 40,
+        pagination: {
+          clickable: true,
+          type: "bullets",
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + "</span>";
+          },
+        },
+      },
+      1440: {
+        slidesPerView: 5,
+        spaceBetween: 60,
+        pagination: {
+          clickable: true,
+          type: "bullets",
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + "</span>";
+          },
+        },
+      },
     },
   });
-  console.log(projectsSwiper);
 
   const slides = projectsSwiper.slides;
   slides.forEach((slide, index) => {

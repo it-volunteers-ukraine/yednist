@@ -26,6 +26,7 @@ get_header();
                         the_row();
                         
                         $project_description = get_sub_field('project_description');
+                        $project_images = (is_array(get_sub_field('project_images')) ? get_sub_field('project_images') : '');
                         $project_title = get_the_title();
                         $project_link = get_permalink();
 
@@ -37,18 +38,19 @@ get_header();
                          echo '</div>';
                          echo '<a class="button secondary-button" href='. $project_link .'>'. $projects_button .'</a>';
                          echo '</div>';
-                         echo '<div class="photo"></div>';
-                        echo '</div>';
-
-                        echo '<div class="swiper-slide projects__swiper__item">';
-                        echo '<div class="projects__swiper__item__content">';
-                        echo '<div class="projects__swiper__item__content__wrapper">';
-                        echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
-                        echo '<p class="projects__swiper__item__description">' . $project_description . '</p>';
-                        echo '</div>';
-                        echo '<a class="button secondary-button" href='. $project_link .'>'. $projects_button .'</a>';
-                        echo '</div>';
-                       echo '</div>';
+                         if (!empty($project_images)) {
+                          echo '<div class="photo">';
+                          if (count($project_images) === 1) {
+                              $image = $project_images[0]; // Получаем единственное изображение
+                              echo '<img class="photo__photo single-image" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
+                          } else {
+                              foreach ($project_images as $index => $image) {
+                                  echo '<img class="photo__photo" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
+                              }
+                          }
+                          echo '</div>';
+                      }
+                        echo '</div>'; 
                       
                     }
                     wp_reset_postdata();

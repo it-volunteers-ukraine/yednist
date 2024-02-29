@@ -9,13 +9,6 @@
   &__swiper {
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    @media screen and (max-width: $desktop) {
-      gap: 40px;
-    }
-    @media screen and (max-width: $tablet2) {
-      gap: 20px;
-    }
 
     &__item {
       border: 1px solid $black;
@@ -23,21 +16,21 @@
       padding: 65px 80px;
       display: flex;
       align-items: center;
-      max-height: 616px;
-      margin-bottom: 0 !important;
+      min-height: 616px;
+      justify-content: space-between;
       @media screen and (max-width: $desktop) {
         padding: 40px 60px;
-        max-height: 564px;
+        min-height: 564px;
       }
       @media screen and (max-width: $tablet2) {
         padding: 39.5px 40px;
         border-radius: 24px;
-        max-height: 440px;
+        min-height: 440px;
       }
       @media screen and (max-width: $mobile) {
         padding: 16px 20px;
         flex-direction: column;
-        max-height: 588px;
+        min-height: 588px;
       }
       &.blue {
         background-color: $lavender;
@@ -149,18 +142,15 @@
   }
 }
 .swiper-wrapper {
-  gap: 60px;
   max-height: 3320px;
   @media screen and (max-width: $desktop) {
     max-height: 2980px;
-    gap: 40px;
   }
   @media screen and (max-width: $desktop1) {
-    max-height: 1360px;
-    gap: 20px;
+    max-height: 2280px;
   }
   @media screen and (max-width: $mobile) {
-    max-height: 1804px;
+    max-height: 3020px;
   }
 }
 .numbers-pagination {
@@ -169,15 +159,18 @@
     display: block;
   }
 }
-.projects__swiper .swiper__nav--box .custom-button-next,
-.custom-button-prev {
+.projects__section .swiper__nav--box .custom-button-next,
+.projects__section .swiper__nav--box .custom-button-prev {
   z-index: 999;
-  display: block !important;
+  @media screen and (max-width: $tablet2) {
+    display: block;
+  }
 }
 .photo {
   width: 516px;
   height: 484px;
-  background-color: azure;
+  overflow: hidden;
+  position: relative;
   @media screen and (max-width: $desktop) {
     width: 479px;
     height: 484px;
@@ -195,4 +188,28 @@
   @media screen and (max-width: $tablet2) {
     display: block;
   }
+}
+.photo__wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+.photo__photo {
+  position: absolute;
+  &:first-child {
+    top: 0;
+    left: 0;
+    object-fit: none;
+    object-position: left top;
+  }
+  &:last-child {
+    bottom: 0;
+    right: 0;
+    object-fit: none;
+    object-position: bottom right;
+  }
+}
+.photo__photo.single-image {
+  object-fit: cover;
+  object-position: center;
+  top: 6.2%;
 }
