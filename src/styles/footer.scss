@@ -15,6 +15,11 @@ h3 {
   }
 }
 
+a:hover,
+a:focus {
+  color: $blue;
+}
+
 footer {
   position: relative;
 }
@@ -31,16 +36,6 @@ footer {
     left: 50%;
     transform: translateX(-50%);
     z-index: 99;
-
-    // @media screen and (max-width: $desktop) {
-    //   margin-bottom: 20px;
-    // }
-    // @media screen and (max-width: $tablet2) {
-    //   margin-bottom: 28px;
-    // }
-    // @media screen and (max-width: $mobile) {
-    //   margin-bottom: 16px;
-    // }
   }
 }
 
@@ -127,31 +122,25 @@ footer {
     border-radius: 40px 40px 0px 0px;
     background: var(--White, #fff);
     box-shadow: 0px -4px 7px 0px rgba(140, 142, 208, 0.2);
-    padding: 60px 138px 40px 60px;
-
-    @media screen and (max-width: $desktop) {
-      padding: 60px 60px 48px 60px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 40px 20px 34px 20px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 12px 12px 20px 12px;
-    }
   }
   &-top-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 60px;
+    margin-bottom: 85px;
+    padding: 60px 138px 0 60px;
     @media screen and (max-width: $desktop) {
       gap: 16px;
+      margin-bottom: 60px;
+      padding: 60px 60px 0 60px;
     }
     @media screen and (max-width: $tablet2) {
       gap: 38px;
+      padding: 40px 20px 0 20px;
     }
     @media screen and (max-width: $mobile) {
       flex-direction: column;
       gap: 4px;
+      padding: 12px 12px 0 12px;
     }
   }
 
@@ -159,12 +148,13 @@ footer {
     display: flex;
     flex-direction: column;
     text-transform: uppercase;
-    gap: 16px;
+    gap: 20px;
     font-size: 20px;
     font-weight: 400;
     line-height: 1.5;
     @media screen and (max-width: $desktop) {
       font-size: 16px;
+      gap: 16px;
     }
     @media screen and (max-width: $tablet1) {
       font-size: 12px;
@@ -215,12 +205,13 @@ footer {
   &__social-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     font-size: 20px;
     font-weight: 400;
     line-height: 1.5;
     @media screen and (max-width: $desktop) {
       font-size: 16px;
+      gap: 16px;
     }
     @media screen and (max-width: $tablet1) {
       font-size: 12px;
@@ -275,9 +266,10 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 0;
+    justify-content: space-between;
     @media screen and (max-width: $tablet2) {
       align-items: normal;
-      justify-content: space-between;
     }
     @media screen and (max-width: $mobile) {
       margin-bottom: 24px;
@@ -326,10 +318,19 @@ footer {
     display: flex;
     justify-content: space-between;
     border-top: 2px solid $violet-grey;
-    padding-top: 32px;
+    padding: 32px 60px 40px 60px;
+
+    @media screen and (max-width: $desktop) {
+      padding: 32px 60px 48px 60px;
+    }
+    @media screen and (max-width: $tablet2) {
+      padding: 32px 20px 34px 20px;
+    }
+
     @media screen and (max-width: $mobile) {
       border-top: none;
-      padding-top: 0;
+      // padding-top: 0;
+      padding: 0 12px 20px 12px;
     }
   }
 
