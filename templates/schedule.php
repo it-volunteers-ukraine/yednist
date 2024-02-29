@@ -68,7 +68,7 @@ get_header();
                 }
             }
 
-            // Выводим активности для каждого дня недели
+            //Активності для кожного дня тижня
             foreach ($activities_by_day as $day_slug => $activities) { ?>
         <div class="activity__table">
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
@@ -96,6 +96,7 @@ get_header();
                   endif;?>
               </div>
               <?php get_template_part( 'template-parts/one-activity-row' );?>
+
             </div>
             <?php } ?>
           </div>
@@ -116,6 +117,15 @@ get_header();
       </div>
     </div>
   </section>
+
+  <div class="activity-backdrop is-hidden" id="js-activity-form">
+
+    <div class="activity-modal">
+      <?php get_template_part( 'template-parts/loader' ); ?>
+    </div>
+
+  </div>
+
 </main>
 
 

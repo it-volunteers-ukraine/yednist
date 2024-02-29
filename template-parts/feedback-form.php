@@ -59,7 +59,7 @@
           <div class="feedback-case" id="case-js">
 
             <label for="case"><?php the_field('feedback_your_case'); ?></label>
-            <input type="text" id="case" value="" size="20" name="case" maxlength="350" class="input-case"
+            <input type="text" id="case" value="" size="20" name="case" maxlength="150" class="input-case"
               placeholder="<?php the_field('feedback_case_placeholder'); ?>" />
 
           </div>

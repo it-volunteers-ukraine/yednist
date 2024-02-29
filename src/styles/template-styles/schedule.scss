@@ -66,6 +66,9 @@
     font-size: 18px;
     &.active {
       border-bottom: 1px solid $black;
+      & .activity__table-arrow {
+        background-image: url(../../../assets/images/check-mark-up.svg);
+      }
     }
   }
 }
@@ -75,7 +78,7 @@
   @media screen and (max-width: $mobile) {
     display: block;
     position: absolute;
-    top: 5px;
+    top: 6px;
     right: 8px;
     width: 32px;
     height: 32px;

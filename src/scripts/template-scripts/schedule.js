@@ -159,6 +159,7 @@ jQuery(document).ready(function ($) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // accordion
   const acc = document.getElementsByClassName("schedule-accordion");
 
   for (let i = 0; i < acc.length; i++) {

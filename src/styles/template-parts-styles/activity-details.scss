@@ -1,0 +1,174 @@
+@import "../variables";
+
+.activity-backdrop {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $transition-function;
+}
+
+.activity-backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.activity-backdrop.is-hidden .activity-modal {
+  transform: translate(-50%, -50%) translateX(-100%);
+  @media screen and (max-width: $mobile) {
+    transform: translateX(-100%);
+  }
+}
+
+.activity-backdrop.is-hidden .activity-modal.horizontal {
+  transform: translateX(-100%);
+}
+
+.activity-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+  width: 922px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background-color: $background;
+  border-radius: $bid-border-radius;
+  border: 1px solid $violet-grey;
+  box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
+  transition: transform $transition-function;
+  @media screen and (max-width: $desktop) {
+    width: 829px;
+    padding: 32px;
+    gap: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 632px;
+    padding: 24px;
+    gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateX(0);
+    padding: 52px 20px 20px;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.activity-modal.horizontal {
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateX(0);
+}
+
+.activity__modal--img-wrap {
+  border-radius: $small-border-radius;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+  margin-bottom: 20px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 16px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 0;
+  }
+}
+
+.activity__modal--img-wrap img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.activity__modal--description {
+  font-family: $secondary-font;
+  font-size: 16px;
+  line-height: 1.6;
+  @media screen and (max-width: $desktop) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: $desktop) {
+    font-size: 12px;
+  }
+}
+
+.activity__modal--item {
+  display: flex;
+  gap: 8px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 16px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.activity__modal--icon {
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $desktop) {
+    width: 20px;
+    height: 20px;
+  }
+  & svg {
+    width: 24px;
+    height: 24px;
+    fill: $blue;
+    @media screen and (max-width: $desktop) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.activity-modal__title {
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+}
+
+.activity-modal__btn {
+  cursor: pointer;
+  transition: all $transition-function;
+}
+
+.icon__cross {
+  width: 40px;
+  height: 40px;
+  @media screen and (max-width: $desktop) {
+    width: 32px;
+    height: 32px;
+  }
+  .activity-modal__btn:hover &,
+  .activity-modal__btn:hover & {
+    fill: $blue;
+  }
+}
