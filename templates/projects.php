@@ -5,7 +5,7 @@ Template Name: about
 get_header();
 ?>
 <main>       
-    <section class="section"> 
+    <section class="section projects__section"> 
         <div class="container">
             <div class="inner-container">       
                 <h2 class="page-title projects__title"><?php $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : ''; echo (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' ' . get_the_title(); ?></h2>

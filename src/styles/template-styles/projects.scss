@@ -191,3 +191,8 @@
     height: 240px;
   }
 }
+.projects__section .custom-button-next {
+  @media screen and (max-width: $tablet2) {
+    display: block;
+  }
+}
