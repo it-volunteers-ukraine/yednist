@@ -4,7 +4,8 @@ Template Name: about
 */
 get_header();
 ?>
-<main>       
+<main>    
+<?php get_template_part( 'template-parts/breadcrumbs' ); ?>   
     <section class="section projects__section"> 
         <div class="container">
             <div class="inner-container">       
