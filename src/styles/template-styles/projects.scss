@@ -6,7 +6,7 @@
       margin-bottom: 16px;
     }
   }
-  &__list {
+  &__swiper {
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -18,7 +18,27 @@
     }
 
     &__item {
+      border: 1px solid $black;
+      border-radius: 40px;
       padding: 65px 80px;
+      display: flex;
+      align-items: center;
+      max-height: 616px;
+      margin-bottom: 0 !important;
+      @media screen and (max-width: $desktop) {
+        padding: 40px 60px;
+        max-height: 564px;
+      }
+      @media screen and (max-width: $tablet2) {
+        padding: 39.5px 40px;
+        border-radius: 24px;
+        max-height: 440px;
+      }
+      @media screen and (max-width: $mobile) {
+        padding: 16px 20px;
+        flex-direction: column;
+        max-height: 588px;
+      }
       &.blue {
         background-color: $lavender;
       }
@@ -28,9 +48,146 @@
       &.pink {
         background-color: $pink;
       }
+      &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        max-width: 658px;
+        @media screen and (max-width: $desktop) {
+          max-width: 477px;
+        }
+        @media screen and (max-width: $tablet2) {
+          gap: 24px;
+          max-width: 286px;
+        }
+        @media screen and (max-width: $mobile) {
+          gap: 16px;
+          max-width: none;
+        }
+        &__wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          @media screen and (max-width: $mobile) {
+            gap: 8px;
+          }
+        }
+      }
+      &__title {
+        font-family: $primary-font;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        color: $blue;
+        @media screen and (max-width: $desktop) {
+          font-size: 32px;
+          line-height: 38px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 20px;
+          line-height: 30px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+      }
+      &__description {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+        @media screen and (max-width: $desktop) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        @media screen and (max-width: $desktop1) {
+          font-size: 14px;
+          line-height: 22px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}
+.projects__swiper .swiper__nav--box .custom-button-next svg,
+.projects__swiper .swiper__nav--box .custom-button-prev svg {
+  @media screen and (max-width: $mobile) {
+    width: 32px;
+    height: 32px;
+  }
+}
+.projects__swiper .swiper__nav--box {
+  @media screen and (max-width: $mobile) {
+    justify-content: space-between;
+  }
+}
+.swiper__nav--box .swiper-pagination {
+  transform: translate3d(0px, 0, 0);
+  display: flex;
+  gap: 16px;
+  font-family: $primary-font;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 48px;
+  @media screen and (max-width: $mobile) {
+    gap: 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+  }
+  & span {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    &.swiper-pagination-bullet-active {
+      color: $blue;
     }
   }
 }
 .swiper-wrapper {
-  max-height: 1962px;
+  gap: 60px;
+  max-height: 3320px;
+  @media screen and (max-width: $desktop) {
+    max-height: 2980px;
+    gap: 40px;
+  }
+  @media screen and (max-width: $desktop1) {
+    max-height: 1360px;
+    gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    max-height: 1804px;
+  }
+}
+.numbers-pagination {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    display: block;
+  }
+}
+.projects__swiper .swiper__nav--box .custom-button-next,
+.custom-button-prev {
+  z-index: 999;
+  display: block !important;
+}
+.photo {
+  width: 516px;
+  height: 484px;
+  background-color: azure;
+  @media screen and (max-width: $desktop) {
+    width: 479px;
+    height: 484px;
+  }
+  @media screen and (max-width: $desktop1) {
+    width: 292px;
+    height: 361px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 248px;
+    height: 240px;
+  }
 }

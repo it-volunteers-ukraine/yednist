@@ -9,12 +9,13 @@ get_header();
         <div class="container">
             <div class="inner-container">       
                 <h2 class="page-title projects__title"><?php $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : ''; echo (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' ' . get_the_title(); ?></h2>
-                <div class='swiper projects__list'>
+                <div class='swiper projects__swiper'>
                 <div class='swiper-wrapper'>
                 <?php
                 $projects = new WP_Query(array(
                     'post_type' => 'projects',
                     'posts_per_page' => -1,
+                    'orderby' => 'date',
                 ));
 
                 if ($projects->have_posts() && have_rows('projects_descriptions')) {
@@ -27,26 +28,47 @@ get_header();
                         $project_title = get_the_title();
                         $project_link = get_permalink();
 
-                        echo '<div class="swiper-slide projects__list__item">';
-                          echo '<h2>' . $project_title . '</h2>';
-                          echo '<p>' . $project_description . '</p>';
-                          echo '<a href='. $project_link .'>'. $projects_button .'</a>';
+                        echo '<div class="swiper-slide projects__swiper__item">';
+                         echo '<div class="projects__swiper__item__content">';
+                         echo '<div class="projects__swiper__item__content__wrapper">';
+                         echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
+                         echo '<p class="projects__swiper__item__description">' . $project_description . '</p>';
+                         echo '</div>';
+                         echo '<a class="button secondary-button" href='. $project_link .'>'. $projects_button .'</a>';
+                         echo '</div>';
+                         echo '<div class="photo"></div>';
                         echo '</div>';
 
-                        echo '<div class="swiper-slide projects__list__item">';
-                        echo '<h2>' . $project_title . '</h2>';
-                        echo '<p>' . $project_description . '</p>';
-                        echo '<a href='. $project_link .'>'. $projects_button .'</a>';
-                      echo '</div>';
+                        echo '<div class="swiper-slide projects__swiper__item">';
+                        echo '<div class="projects__swiper__item__content">';
+                        echo '<div class="projects__swiper__item__content__wrapper">';
+                        echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
+                        echo '<p class="projects__swiper__item__description">' . $project_description . '</p>';
+                        echo '</div>';
+                        echo '<a class="button secondary-button" href='. $project_link .'>'. $projects_button .'</a>';
+                        echo '</div>';
+                       echo '</div>';
                       
                     }
                     wp_reset_postdata();
                 }
                 ?>
                 </div>
-                <div class="swiper-pagination"></div>
-                <?php get_template_part( 'template-parts/swiper-navigation'); ?>
-                </div>
+              </div>
+              <div class="swiper__nav--box">
+               <div class="custom-button-prev">
+                   <svg class="">
+                     <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
+                   </svg>
+               </div>
+               <div class="swiper-pagination projects__swiper__pagination"></div>
+
+               <div class="custom-button-next">
+                   <svg class="">
+                     <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
+                   </svg>
+                 </div>
+              </div>
             </div> 
         </div> 
     </section>
