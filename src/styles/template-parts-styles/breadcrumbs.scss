@@ -1,0 +1,40 @@
+@import "../variables.scss";
+
+.breadcrumbs__section {
+  padding-top: 184px;
+  margin-bottom: 20px;
+  @media screen and (max-width: $desktop) {
+    padding-top: 156px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding-top: 104px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-top: 76px;
+  }
+
+  & .breadcrumbs__line {
+    margin-bottom: 12px;
+    height: 2px;
+    background-color: $violet-grey;
+    @media screen and (max-width: $tablet2) {
+      height: 1px;
+    }
+  }
+
+  & .breadcrumbs > span {
+    font-family: $secondary-font;
+    color: $dark-grey;
+    line-height: 1.6;
+    font-size: 16px;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+    &:last-child {
+      color: $black;
+    }
+    @media screen and (max-width: $desktop) {
+      font-size: 14px;
+    }
+  }
+}
