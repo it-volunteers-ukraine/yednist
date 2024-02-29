@@ -28,9 +28,11 @@
         min-height: 440px;
       }
       @media screen and (max-width: $mobile) {
-        padding: 16px 20px;
-        flex-direction: column;
+        font-family: $secondary-font;
+        padding: 15px 19px;
+        flex-direction: column-reverse;
         min-height: 588px;
+        gap: 8px;
       }
       &.blue {
         background-color: $lavender;
@@ -40,6 +42,16 @@
       }
       &.pink {
         background-color: $pink;
+      }
+      &__button {
+        font-family: $primary-font;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+        @media screen and (max-width: $desktop) {
+          font-size: 16px;
+          line-height: 24px;
+        }
       }
       &__content {
         display: flex;
@@ -79,6 +91,7 @@
         @media screen and (max-width: $tablet2) {
           font-size: 20px;
           line-height: 30px;
+          text-transform: uppercase;
         }
         @media screen and (max-width: $mobile) {
           font-size: 18px;
@@ -167,21 +180,15 @@
   }
 }
 .photo {
-  width: 516px;
-  height: 484px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   position: relative;
-  @media screen and (max-width: $desktop) {
-    width: 479px;
-    height: 484px;
-  }
-  @media screen and (max-width: $desktop1) {
-    width: 292px;
-    height: 361px;
+  @media screen and (max-width: $tablet2) {
+    max-width: 290px;
   }
   @media screen and (max-width: $mobile) {
-    width: 248px;
-    height: 240px;
+    border-radius: 24px;
   }
 }
 .projects__section .custom-button-next {
@@ -200,16 +207,58 @@
     left: 0;
     object-fit: none;
     object-position: left top;
+    @media screen and (max-width: $tablet2) {
+      width: 69%;
+      object-fit: contain;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 64.5%;
+      object-fit: cover;
+    }
   }
   &:last-child {
     bottom: 0;
     right: 0;
     object-fit: none;
     object-position: bottom right;
+    @media screen and (max-width: $tablet2) {
+      width: 83%;
+      object-fit: contain;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 64.5%;
+      object-fit: cover;
+    }
   }
 }
 .photo__photo.single-image {
   object-fit: cover;
   object-position: center;
   top: 6.2%;
+  @media screen and (max-width: $tablet2) {
+    width: 100%;
+    top: 11.5%;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: none;
+  }
+}
+.projects__swiper__item {
+  &:last-child {
+    .photo__photo {
+      &:first-child {
+        @media screen and (max-width: $tablet2) {
+          width: 62.1%;
+        }
+      }
+      &:last-child {
+        @media screen and (max-width: $tablet2) {
+          width: 62.1%;
+        }
+      }
+    }
+  }
 }

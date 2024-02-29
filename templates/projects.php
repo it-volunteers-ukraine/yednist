@@ -36,7 +36,7 @@ get_header();
                          echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
                          echo '<p class="projects__swiper__item__description">' . $project_description . '</p>';
                          echo '</div>';
-                         echo '<a class="button secondary-button" href='. $project_link .'>'. $projects_button .'</a>';
+                         echo '<a class="button secondary-button projects__swiper__item__button" href='. $project_link .'>'. $projects_button .'</a>';
                          echo '</div>';
                          if (!empty($project_images)) {
                           echo '<div class="photo">';
