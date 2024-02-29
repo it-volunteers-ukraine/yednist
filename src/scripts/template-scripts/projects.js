@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         },
       },
-      1440: {
+      1441: {
         slidesPerView: 5,
         spaceBetween: 60,
         pagination: {

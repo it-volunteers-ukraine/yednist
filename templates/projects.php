@@ -50,8 +50,7 @@ get_header();
                           }
                           echo '</div>';
                       }
-                        echo '</div>'; 
-                      
+                        echo '</div>';  
                     }
                     wp_reset_postdata();
                 }
@@ -60,14 +59,14 @@ get_header();
               </div>
               <div class="swiper__nav--box">
                <div class="custom-button-prev">
-                   <svg class="">
+                   <svg>
                      <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
                    </svg>
                </div>
                <div class="swiper-pagination projects__swiper__pagination"></div>
 
                <div class="custom-button-next">
-                   <svg class="">
+                   <svg>
                      <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-right"></use>
                    </svg>
                  </div>
