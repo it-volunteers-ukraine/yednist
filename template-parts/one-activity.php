@@ -26,7 +26,7 @@
                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
                </svg>
              </div>
-             <div class="activity__text"><?php the_field('activity_location'); ?></div>
+             <p class="activity__text"><?php the_field('activity_location'); ?></p>
            </li>
            <li class="activity__item">
              <div class="activity__icon">
@@ -34,7 +34,7 @@
                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_money"></use>
                </svg>
              </div>
-             <div class="activity__text"><?php the_field('activity_price'); ?></div>
+             <p class="activity__text"><?php the_field('activity_price'); ?></p>
            </li>
            <li class="activity__item">
              <div class="activity__icon">
@@ -42,13 +42,13 @@
                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_people"></use>
                </svg>
              </div>
-             <div class="activity__text">
+             <p class="activity__text">
                <?php
               $category = get_the_terms($post->ID, 'activities-target');
               foreach ($category as $cat) {
                 echo $cat->name;
               }?>
-             </div>
+             </p>
            </li>
 
          </ul>

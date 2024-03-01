@@ -23,10 +23,6 @@
   }
 }
 
-.activity-backdrop.is-hidden .activity-modal.horizontal {
-  transform: translateX(-100%);
-}
-
 .activity-modal {
   position: absolute;
   top: 50%;
@@ -35,7 +31,7 @@
   width: 922px;
   overflow: hidden;
   overflow-y: auto;
-  padding: 40px;
+  padding: 40px 120px 40px 40px;
   display: flex;
   gap: 40px;
   align-items: flex-start;
@@ -46,43 +42,61 @@
   transition: transform $transition-function;
   @media screen and (max-width: $desktop) {
     width: 829px;
-    padding: 32px;
+    padding: 32px 84px 32px 32px;
     gap: 32px;
   }
   @media screen and (max-width: $tablet2) {
-    width: 632px;
-    padding: 24px;
+    width: 100%;
+    max-width: 632px;
+    padding: 24px 68px 24px 24px;
     gap: 20px;
   }
   @media screen and (max-width: $mobile) {
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
     transform: translateX(0);
     padding: 52px 20px 20px;
-    flex-direction: column;
-    gap: 24px;
+    display: block;
+    border-radius: $small-border-radius;
   }
 }
 
-.activity-modal.horizontal {
-  top: 0;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) translateX(0);
+.activity__modal--caption {
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 24px;
+  }
+}
+
+.activity__modal--box {
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
 }
 
 .activity__modal--img-wrap {
   border-radius: $small-border-radius;
   height: 0;
   overflow: hidden;
-  padding-bottom: 100%;
+  width: 240px;
+  height: 240px;
   margin-bottom: 20px;
+  @media screen and (max-width: $desktop) {
+    width: 200px;
+    height: 200px;
+  }
   @media screen and (max-width: $tablet2) {
+    width: 140px;
+    height: 140px;
+    border-radius: 16px;
     margin-bottom: 16px;
   }
   @media screen and (max-width: $mobile) {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     margin-bottom: 0;
   }
 }
@@ -100,7 +114,11 @@
   @media screen and (max-width: $desktop) {
     font-size: 14px;
   }
-  @media screen and (max-width: $desktop) {
+  @media screen and (max-width: $tablet2) {
+    width: 200px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: auto;
     font-size: 12px;
   }
 }
@@ -137,11 +155,12 @@
   }
 }
 
-.activity-modal__title {
+.activity__modal--title {
   color: $blue;
   font-size: 40px;
   font-weight: 300;
   line-height: normal;
+  padding-bottom: 12px;
   @media screen and (max-width: $desktop) {
     font-size: 32px;
   }
@@ -151,21 +170,73 @@
     line-height: 1.5;
   }
   @media screen and (max-width: $mobile) {
-    font-size: 18px;
+    display: none;
+  }
+  &-mobile {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: block;
+      color: $blue;
+      font-size: 18px;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
   }
 }
 
-.activity-modal__btn {
+.activity__modal--line {
+  height: 1px;
+  width: 100%;
+  background-color: $violet-grey;
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.activity__modal--detais {
+  padding-top: 12px;
+  font-family: $secondary-font;
+  margin-bottom: 40px;
+  @media screen and (max-width: $desktop) {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.activity__modal--btn {
+  position: absolute;
   cursor: pointer;
   transition: all $transition-function;
+  top: 40px;
+  right: 40px;
+  @media screen and (max-width: $desktop) {
+    top: 32px;
+    right: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    top: 24px;
+    right: 24px;
+  }
+  @media screen and (max-width: $mobile) {
+    top: 20px;
+    right: 20px;
+  }
 }
 
 .icon__cross {
   width: 40px;
   height: 40px;
-  @media screen and (max-width: $desktop) {
-    width: 32px;
-    height: 32px;
+  @media screen and (max-width: $mobile) {
+    width: 24px;
+    height: 24px;
   }
   .activity-modal__btn:hover &,
   .activity-modal__btn:hover & {

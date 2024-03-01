@@ -15,6 +15,7 @@ get_header();
 
         <div class="activities__wrapper"></div>
 
+
         <?php get_template_part( 'template-parts/loader' ); ?>
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
 
@@ -121,7 +122,7 @@ get_header();
   <div class="activity-backdrop is-hidden" id="js-activity-form">
 
     <div class="activity-modal">
-      <?php get_template_part( 'template-parts/loader' ); ?>
+
     </div>
 
   </div>

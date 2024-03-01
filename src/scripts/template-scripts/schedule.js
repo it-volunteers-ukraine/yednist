@@ -78,6 +78,7 @@ jQuery(document).ready(function ($) {
         isPagination();
         updatePaginationButtons();
         countBullets();
+        initActivityForm();
       },
       error: function (xhr, status, error) {
         hideLoader();
