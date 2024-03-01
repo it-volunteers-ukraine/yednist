@@ -1,178 +1,180 @@
 @import "../variables.scss";
 .projects {
-  &__swiper {
-    display: flex;
-    flex-direction: column;
-    margin-left: 0;
-    margin-right: 0;
-    @media screen and (max-width: $tablet2) {
-      margin-bottom: 16px;
-    }
-    @media screen and (max-width: $mobile) {
-      margin-bottom: 0;
-    }
-    &__item {
-      border: 1px solid $black;
-      border-radius: $bid-border-radius;
-      padding: 64px 79px;
+  &__section {
+    &__swiper {
       display: flex;
-      align-items: center;
-      min-height: 614px;
-      max-height: 614px;
-      justify-content: space-between;
-      overflow: hidden;
-      &:last-child {
-        margin-bottom: 0 !important;
-      }
-      @media screen and (max-width: $desktop) {
-        padding: 40px 60px;
-        min-height: 564px;
-      }
+      flex-direction: column;
+      margin-left: 0;
+      margin-right: 0;
       @media screen and (max-width: $tablet2) {
-        padding: 39.5px 40px;
-        border-radius: $small-border-radius;
-        min-height: 440px;
+        margin-bottom: 16px;
       }
       @media screen and (max-width: $mobile) {
-        font-family: $secondary-font;
-        padding: 15px 19px;
-        flex-direction: column-reverse;
-        min-height: 588px;
-        gap: 8px;
+        margin-bottom: 0;
       }
-      &.blue {
-        background-color: $lavender;
-      }
-      &.yellow {
-        background-color: $yellow;
-      }
-      &.pink {
-        background-color: $pink;
-      }
-      &__button {
-        font-family: $primary-font;
-        font-size: 20px;
-        line-height: 30px;
-        @media screen and (max-width: $desktop) {
-          font-size: 16px;
-          line-height: 24px;
-        }
-      }
-      &__mark {
-        position: absolute;
-        transform: rotate(-38deg);
-        top: -12px;
-        left: -113px;
-        width: 353px;
-        height: 135px;
-        background: $blue;
+      &__item {
+        border: 1px solid $black;
+        border-radius: $bid-border-radius;
+        padding: 64px 79px;
         display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        padding-bottom: 10px;
-        z-index: 999;
-        @media screen and (max-width: 1500px) {
-          top: -20px;
-          left: -123px;
-          height: 121px;
+        align-items: center;
+        min-height: 614px;
+        max-height: 614px;
+        justify-content: space-between;
+        overflow: hidden;
+        &:last-child {
+          margin-bottom: 0 !important;
         }
-        @media screen and (max-width: 1235px) {
-          top: -50px;
-          left: -153px;
-          padding-bottom: 3px;
+        @media screen and (max-width: $desktop) {
+          padding: 40px 60px;
+          min-height: 564px;
+        }
+        @media screen and (max-width: $tablet2) {
+          padding: 39.5px 40px;
+          border-radius: $small-border-radius;
+          min-height: 440px;
         }
         @media screen and (max-width: $mobile) {
-          padding-bottom: 6px;
-          top: -46px;
-          left: -158px;
-          width: 354px;
-          height: 108px;
-        }
-        &__message {
-          width: 100%;
-          max-width: 189.37px;
-          text-align: center;
           font-family: $secondary-font;
-          font-size: 16px;
-          line-height: 26px;
-          color: $white;
-          text-transform: uppercase;
+          padding: 15px 19px;
+          flex-direction: column-reverse;
+          min-height: 588px;
+          gap: 8px;
+        }
+        &.blue {
+          background-color: $lavender;
+        }
+        &.yellow {
+          background-color: $yellow;
+        }
+        &.pink {
+          background-color: $pink;
+        }
+        &__button {
+          font-family: $primary-font;
+          font-size: 20px;
+          line-height: 30px;
+          @media screen and (max-width: $desktop) {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+        &__mark {
+          position: absolute;
+          transform: rotate(-38deg);
+          top: -12px;
+          left: -113px;
+          width: 353px;
+          height: 135px;
+          background: $blue;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding-bottom: 10px;
+          z-index: 999;
           @media screen and (max-width: 1500px) {
+            top: -20px;
+            left: -123px;
+            height: 121px;
+          }
+          @media screen and (max-width: 1235px) {
+            top: -50px;
+            left: -153px;
+            padding-bottom: 3px;
+          }
+          @media screen and (max-width: $mobile) {
+            padding-bottom: 6px;
+            top: -46px;
+            left: -158px;
+            width: 354px;
+            height: 108px;
+          }
+          &__message {
+            width: 100%;
+            max-width: 189.37px;
+            text-align: center;
+            font-family: $secondary-font;
+            font-size: 16px;
+            line-height: 26px;
+            color: $white;
+            text-transform: uppercase;
+            @media screen and (max-width: 1500px) {
+              font-size: 14px;
+              line-height: 22px;
+            }
+            @media screen and (max-width: 1235px) {
+              font-size: 10px;
+              line-height: 16px;
+              max-width: 142.37px;
+            }
+            @media screen and (max-width: $mobile) {
+              max-width: 89px;
+              font-size: 8px;
+              line-height: 13px;
+            }
+          }
+        }
+        &__content {
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+          max-width: 658px;
+          @media screen and (max-width: 1500px) {
+            max-width: 477px;
+          }
+          @media screen and (max-width: 1235px) {
+            gap: 24px;
+            max-width: 286px;
+          }
+          @media screen and (max-width: $mobile) {
+            gap: 16px;
+            max-width: none;
+          }
+          &__wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            @media screen and (max-width: $mobile) {
+              gap: 8px;
+            }
+          }
+        }
+        &__title {
+          font-family: $primary-font;
+          font-size: 40px;
+          font-weight: 300;
+          line-height: 48px;
+          color: $blue;
+          @media screen and (max-width: $desktop) {
+            font-size: 32px;
+            line-height: 38px;
+          }
+          @media screen and (max-width: $tablet2) {
+            font-size: 20px;
+            line-height: 30px;
+            text-transform: uppercase;
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 18px;
+            line-height: 27px;
+          }
+        }
+        &__description {
+          font-family: $secondary-font;
+          font-size: 20px;
+          line-height: 30px;
+          @media screen and (max-width: $desktop) {
+            font-size: 18px;
+            line-height: 27px;
+          }
+          @media screen and (max-width: $desktop1) {
             font-size: 14px;
             line-height: 22px;
           }
-          @media screen and (max-width: 1235px) {
-            font-size: 10px;
-            line-height: 16px;
-            max-width: 142.37px;
-          }
           @media screen and (max-width: $mobile) {
-            max-width: 89px;
-            font-size: 8px;
-            line-height: 13px;
+            font-size: 14px;
+            line-height: 22px;
           }
-        }
-      }
-      &__content {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
-        max-width: 658px;
-        @media screen and (max-width: 1500px) {
-          max-width: 477px;
-        }
-        @media screen and (max-width: 1235px) {
-          gap: 24px;
-          max-width: 286px;
-        }
-        @media screen and (max-width: $mobile) {
-          gap: 16px;
-          max-width: none;
-        }
-        &__wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          @media screen and (max-width: $mobile) {
-            gap: 8px;
-          }
-        }
-      }
-      &__title {
-        font-family: $primary-font;
-        font-size: 40px;
-        font-weight: 300;
-        line-height: 48px;
-        color: $blue;
-        @media screen and (max-width: $desktop) {
-          font-size: 32px;
-          line-height: 38px;
-        }
-        @media screen and (max-width: $tablet2) {
-          font-size: 20px;
-          line-height: 30px;
-          text-transform: uppercase;
-        }
-        @media screen and (max-width: $mobile) {
-          font-size: 18px;
-          line-height: 27px;
-        }
-      }
-      &__description {
-        font-family: $secondary-font;
-        font-size: 20px;
-        line-height: 30px;
-        @media screen and (max-width: $desktop) {
-          font-size: 18px;
-          line-height: 27px;
-        }
-        @media screen and (max-width: $desktop1) {
-          font-size: 14px;
-          line-height: 22px;
-        }
-        @media screen and (max-width: $mobile) {
-          font-size: 14px;
-          line-height: 22px;
         }
       }
     }

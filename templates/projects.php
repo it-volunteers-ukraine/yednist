@@ -9,8 +9,8 @@ get_header();
     <section class="section projects__section"> 
         <div class="container">
             <div class="inner-container">       
-                <h2 class="page-title projects__title"><?php $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : ''; echo (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' ' . get_the_title(); ?></h2>
-                <div class='swiper projects__swiper'>
+                <h2 class="page-title projects__section__title"><?php $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : ''; echo (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' ' . get_the_title(); ?></h2>
+                <div class='swiper projects__section__swiper'>
                 <div class='swiper-wrapper'>
                 <?php
                 $projects = new WP_Query(array(
@@ -32,18 +32,18 @@ get_header();
                         $project_id = get_the_ID();
                         $terms = get_the_terms($project_id, 'projects-mark');
 
-                        echo '<div class="swiper-slide projects__swiper__item">';
+                        echo '<div class="swiper-slide projects__section__swiper__item">';
                         if ($terms && !is_wp_error($terms)) {
                             foreach ($terms as $term) {
-                                echo '<div class="projects__swiper__item__mark"><p class="projects__swiper__item__mark__message">' . $term->name . '</p></div>';
+                                echo '<div class="projects__section__swiper__item__mark"><p class="projects__section__swiper__item__mark__message">' . $term->name . '</p></div>';
                             }
                         }
-                         echo '<div class="projects__swiper__item__content">';
-                         echo '<div class="projects__swiper__item__content__wrapper">';
-                         echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
-                         echo '<p class="projects__swiper__item__description">' . $project_description . '</p>';
+                         echo '<div class="projects__section__swiper__item__content">';
+                         echo '<div class="projects__section__swiper__item__content__wrapper">';
+                         echo '<h2 class="projects__section__swiper__item__title">' . $project_title . '</h2>';
+                         echo '<p class="projects__section__swiper__item__description">' . $project_description . '</p>';
                          echo '</div>';
-                         echo '<a class="button secondary-button projects__swiper__item__button" href='. $project_link .'>'. $projects_button .'</a>';
+                         echo '<a class="button secondary-button projects__section__swiper__item__button" href='. $project_link .'>'. $projects_button .'</a>';
                          echo '</div>';
                          if (!empty($project_images)) {
                           echo '<div class="photo">';
@@ -70,7 +70,7 @@ get_header();
                      <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#arrow-left"></use>
                    </svg>
                </div>
-               <div class="swiper-pagination projects__swiper__pagination"></div>
+               <div class="swiper-pagination projects__section__swiper__pagination"></div>
 
                <div class="custom-button-next">
                    <svg>
