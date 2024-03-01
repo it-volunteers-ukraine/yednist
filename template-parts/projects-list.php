@@ -35,7 +35,7 @@
                          if (!empty($project_images)) {
                           echo '<div class="photo">';
                           if (count($project_images) === 1) {
-                              $image = $project_images[0]; // Получаем единственное изображение
+                              $image = $project_images[0];
                               echo '<img class="photo__photo single-image" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
                           } else {
                               foreach ($project_images as $index => $image) {
