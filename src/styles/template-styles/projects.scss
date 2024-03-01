@@ -13,7 +13,7 @@
     }
     &__item {
       border: 1px solid $black;
-      border-radius: 40px;
+      border-radius: $bid-border-radius;
       padding: 64px 79px;
       display: flex;
       align-items: center;
@@ -27,7 +27,7 @@
       }
       @media screen and (max-width: $tablet2) {
         padding: 39.5px 40px;
-        border-radius: 24px;
+        border-radius: $small-border-radius;
         min-height: 440px;
       }
       @media screen and (max-width: $mobile) {
@@ -49,7 +49,6 @@
       &__button {
         font-family: $primary-font;
         font-size: 20px;
-        font-weight: 400;
         line-height: 30px;
         @media screen and (max-width: $desktop) {
           font-size: 16px;
@@ -92,7 +91,6 @@
           text-align: center;
           font-family: $secondary-font;
           font-size: 16px;
-          font-weight: 400;
           line-height: 26px;
           color: $white;
           @media screen and (max-width: 1500px) {
@@ -159,7 +157,6 @@
       &__description {
         font-family: $secondary-font;
         font-size: 20px;
-        font-weight: 400;
         line-height: 30px;
         @media screen and (max-width: $desktop) {
           font-size: 18px;
@@ -204,6 +201,9 @@
   font-weight: 300;
   line-height: 48px;
   padding-top: 0 !important;
+  &.swiper-pagination-lock {
+    display: none;
+  }
   @media screen and (max-width: $mobile) {
     gap: 0;
     font-size: 24px;
@@ -256,7 +256,7 @@
     max-width: 290px;
   }
   @media screen and (max-width: 690px) {
-    border-radius: 24px;
+    border-radius: $small-border-radius;
     max-height: 240px;
   }
 }
