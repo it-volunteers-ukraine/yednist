@@ -96,6 +96,7 @@
           font-size: 16px;
           line-height: 26px;
           color: $white;
+          text-transform: uppercase;
           @media screen and (max-width: 1500px) {
             font-size: 14px;
             line-height: 22px;
@@ -225,7 +226,7 @@
   }
 }
 .swiper-wrapper {
-  max-height: 3320px;
+  max-height: 3310px;
   @media screen and (max-width: $desktop) {
     max-height: 2980px;
   }

@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectsSwiper = new Swiper(".projects__swiper", {
     slidesPerView: 5,
     spaceBetween: 20,
+    slidesPerGroup: 5,
     direction: "vertical",
     lazy: {
       loadOnTransitionStart: true,
@@ -64,4 +65,31 @@ document.addEventListener("DOMContentLoaded", function () {
       slide.classList.add("blue");
     }
   });
+
+  const paginationItems = document.querySelectorAll(
+    ".projects__section .swiper-pagination-bullet"
+  );
+  const prevButton = document.querySelector(
+    ".projects__section .custom-button-prev"
+  );
+  const nextButton = document.querySelector(
+    ".projects__section .custom-button-next"
+  );
+
+  // Добавляем обработчики событий для каждого элемента пагинации
+  paginationItems.forEach((item) => {
+    item.addEventListener("click", scrollToTop);
+  });
+
+  // Добавляем обработчики событий для кнопок навигации
+  prevButton.addEventListener("click", scrollToTop);
+  nextButton.addEventListener("click", scrollToTop);
+
+  // Функция для прокрутки страницы вверх
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Добавляем плавную анимацию прокрутки
+    });
+  }
 });
