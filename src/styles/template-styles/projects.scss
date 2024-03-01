@@ -21,6 +21,9 @@
       max-height: 614px;
       justify-content: space-between;
       overflow: hidden;
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
       @media screen and (max-width: $desktop) {
         padding: 40px 60px;
         min-height: 564px;
@@ -335,4 +338,7 @@
       gap: 16px;
     }
   }
+}
+.swiper__nav--box:has(.swiper-button-lock) {
+  display: none;
 }
