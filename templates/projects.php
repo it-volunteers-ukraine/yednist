@@ -29,8 +29,15 @@ get_header();
                         $project_images = (is_array(get_sub_field('project_images')) ? get_sub_field('project_images') : '');
                         $project_title = get_the_title();
                         $project_link = get_permalink();
+                        $project_id = get_the_ID();
+                        $terms = get_the_terms($project_id, 'projects-mark');
 
                         echo '<div class="swiper-slide projects__swiper__item">';
+                        if ($terms && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<div class="projects__swiper__item__mark"><p class="projects__swiper__item__mark__message">' . $term->name . '</p></div>';
+                            }
+                        }
                          echo '<div class="projects__swiper__item__content">';
                          echo '<div class="projects__swiper__item__content__wrapper">';
                          echo '<h2 class="projects__swiper__item__title">' . $project_title . '</h2>';
