@@ -1,4 +1,5 @@
-<div class='swiper-wrapper'>
+<div class='swiper projects__section__swiper'>
+  <div class='swiper-wrapper'>
                 <?php
                 $projects = new WP_Query(array(
                     'post_type' => 'projects',
@@ -49,4 +50,5 @@
                     wp_reset_postdata();
                 }
                 ?>
-                </div>
+  </div>
+</div>
