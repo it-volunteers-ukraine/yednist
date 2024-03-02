@@ -1,27 +1,22 @@
-h3 {
-  color: $blue;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.5;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  @media screen and (max-width: $desktop) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: $tablet2) {
-    margin-bottom: 16px;
-  }
-  @media screen and (max-width: $mobile) {
-  }
-}
-
-a:hover,
-a:focus {
-  color: $blue;
-}
-
 footer {
   position: relative;
+
+  h3 {
+    color: $blue;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    @media screen and (max-width: $desktop) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 16px;
+    }
+    @media screen and (max-width: $mobile) {
+    }
+  }
 }
 
 .btn-to-top-container {
@@ -167,6 +162,11 @@ footer {
   &__nav-wrapper,
   &__social-wrapper {
     text-transform: uppercase;
+
+    a:hover,
+    a:focus {
+      color: $blue;
+    }
   }
 
   &-title {
@@ -386,6 +386,11 @@ footer {
     }
     @media screen and (max-width: $mobile) {
       display: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: $blue;
     }
   }
 }
