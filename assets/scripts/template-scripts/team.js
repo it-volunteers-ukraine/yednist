@@ -1,0 +1,1 @@
+const teamSwiper=new Swiper(".swiper",{pagination:{el:".swiper-pagination",clickable:!0},spaceBetween:30,loop:!0,breakpoints:{320:{slidesPerView:1,enabled:!0},768:{slidesPerView:2,spaceBetween:28,enabled:!0},1199:{slidesPerView:2,spaceBetween:28,enabled:!0,grid:{rows:3}},1200:{enabled:!1,grid:{rows:3},slidesPerView:3}}});

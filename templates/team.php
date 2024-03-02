@@ -23,20 +23,25 @@ get_header();
             <div class="container">
                 <h2 class="section-title members-title"><?php the_field('title'); ?></h2>
                 <div class="inner-container">
-                    <div class="team-members">
-                        <?php
-                        $teamMembers = get_field('team-members');
-                        foreach ($teamMembers as $row) : ?>
-                            <div class="team-member">
-                                <div class="team-image">
-                                    <img src="<?= $row['image']; ?>" alt="image">
-                                    <div class="block">
-                                        <div class="info"><?= $row['hover-info']; ?></div>
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <?php
+                            $teamMembers = get_field('team-members');
+                            foreach ($teamMembers as $row) : ?>
+                                <div class="swiper-slide">
+                                    <div class="team-member">
+                                        <div class="team-image">
+                                            <img src="<?= $row['image']; ?>" alt="image">
+                                            <div class="block">
+                                                <div class="info"><?= $row['hover-info']; ?></div>
+                                            </div>
+                                        </div>
+                                        <span><?= $row['description']; ?></span>
                                     </div>
                                 </div>
-                                <span><?= $row['description']; ?></span>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php get_template_part('template-parts/swiper-navigation'); ?>
                     </div>
                 </div>
             </div>

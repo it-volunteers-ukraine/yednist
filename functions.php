@@ -54,6 +54,7 @@ function wp_it_volunteers_scripts() {
 
     if ( is_page_template('templates/team.php')) {
         wp_enqueue_style( 'team-style', get_template_directory_uri() . '/assets/styles/template-styles/team.css',array('main'));
+        wp_enqueue_script( 'team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/team.js', array(), false, true );
     }
 
     if ( is_page_template('templates/schedule.php') ) {
