@@ -65,10 +65,6 @@ function wp_it_volunteers_scripts() {
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
         wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('touch-swipe-scripts'), false, true );
-        wp_localize_script('schedule-scripts', 'activities', array(
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('activities_nonce'),
-      ));
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
@@ -288,75 +284,6 @@ function do_insert() {
             wp_send_json_error( 'Failed to add post.' );
         }
     }
-}
-
-/*** AJAX activities */
-add_action('wp_ajax_load_activities', 'load_activities');
-add_action('wp_ajax_nopriv_load_activities', 'load_activities');
-
-function load_activities() {
-  // Перевірка nonce
-  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "activities_nonce")) {
-    exit;
-  }
-  
-  // Отримання параметрів з AJAX-запиту
-  $page = $_POST['page'];
-  $width = $_POST['width'];
-  
-  // Визначення кількості постів на сторінку залежно від ширини
-  $number = get_activities_per_page($width);
-
-  // Отримання загальної кількості постів та кількості сторінок
-  $arguments = array(
-    'post_type' => 'activities',
-    'post_status' => 'publish',
-    'activities-categories' => 'temporal_activities'
-  );
-  $total_posts = count( get_posts( $arguments ) );
-  $total_pages = ceil($total_posts / $number);
-
-  // Побудова запиту для отримання постів
-  $args = array(
-    'post_type' => 'activities',
-    'posts_per_page' => $number,
-    // 'orderby' => 'modified',
-    'paged' => $page,
-    'post_status' => 'publish',
-    'tax_query' => array(
-		array(
-			'taxonomy' => 'activities-categories',
-			'field'    => 'slug',
-			'terms'    => 'temporal_activities'
-		)
-	)
-  );
-
-  $query = new WP_Query($args);
-  ob_start();
-  if ($query->have_posts()) :
-    while ($query->have_posts()) : $query->the_post(); ?>
-<?php get_template_part('template-parts/one-activity'); ?>
-<?php endwhile;
-  endif;
-
-  $html = ob_get_clean();
-  wp_reset_postdata();
-
-  // Відправка відповіді JSON з HTML та кількістю сторінок
-  wp_send_json(array('html' => $html, 'totalPages' => $total_pages));
-  wp_die();
-}
-
-// Визначення кількості заходів на сторінку залежно від ширини
-function get_activities_per_page($width) {
-  if ($width > 1219.98) {
-    return 3;
-  } elseif ($width > 767.98) {
-    return 2;
-  } else {
-    return 1;
-  }
 }
 
 //change the name of home page in the breadcrumbs

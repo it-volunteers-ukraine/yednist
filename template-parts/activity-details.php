@@ -14,7 +14,7 @@ $post = $args['post'];
           echo wp_get_attachment_image( $image, $size );
       } ?>
     </div>
-    <h1 class="activity__modal--title-mobile"><?php echo $post->post_title; ?></h1>
+    <h2 class="activity__modal--title-mobile"><?php echo $post->post_title; ?></h2>
   </div>
   <ul class="activity__modal--description">
     <li class="activity__modal--item">
@@ -62,7 +62,67 @@ $post = $args['post'];
 <div class="activity__modal--content">
   <h1 class="activity__modal--title"><?php echo $post->post_title; ?></h1>
   <div class="activity__modal--line"></div>
-  <div class="activity__modal--detais"><?php the_field('activity_caption'); ?></div>
+
+  <?php $fullContent = get_field('activity_caption');
+  $contentExcerpt = wp_trim_words($fullContent, 12, "..."); ?>
+
+  <div class="activity__modal--detais-box">
+    <div class="activity__modal--detais-short"><?php echo $contentExcerpt?></div>
+
+    <button id="" class='activity__modal--detais-open' type='button' onclick='
+
+      const fullText = this.nextElementSibling;
+      const shortText = this.previousElementSibling;
+
+      if(fullText.classList.contains("hidden")){
+        this.innerHTML = `<?php the_field("hide_btn", "option"); ?>
+        <span class="activity__modal--detais--icon active">
+        <svg>
+          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use></svg></span>`;
+
+        fullText.classList.remove("hidden");
+        shortText.classList.add("hidden");
+      } else {
+        this.innerHTML = `<?php the_field("read_btn", "option"); ?>
+        <span class="activity__modal--detais--icon">
+        <svg>
+          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use>
+        </svg>
+      </span>`;
+        fullText.classList.add("hidden");
+        shortText.classList.remove("hidden");
+      }
+
+    if (fullText) {
+      const activityModalEl = document.querySelector(".activity-modal");
+      const computedStyle = getComputedStyle(activityModalEl);
+      let containerHeight = parseInt(computedStyle.height);
+      screenHeight = window.innerHeight;
+      if (screenHeight < containerHeight) {
+        activityModalEl.style.transition ="none";
+        activityModalEl.classList.add("horizontal");
+      } else {
+        activityModalEl.classList.remove("horizontal");
+        activityModalEl.style.transition ="$transition-function";
+      }
+    }
+
+      '><?php the_field('read_btn', 'option'); ?>
+      <span class="activity__modal--detais--icon">
+        <svg>
+          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use>
+        </svg>
+      </span>
+    </button>
+
+
+    <div class="activity__modal--detais-full hidden">
+      <?php if($fullContent) echo $fullContent; ?>
+    </div>
+
+  </div>
+
+  <div class="activity__modal--detais"><?php echo $fullContent?></div>
 
   <?php
 

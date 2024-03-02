@@ -67,7 +67,7 @@
     &.active {
       border-bottom: 1px solid $black;
       & .activity__table-arrow {
-        background-image: url(../../../assets/images/check-mark-up.svg);
+        transform: rotate(-180deg);
       }
     }
   }
@@ -78,13 +78,19 @@
   @media screen and (max-width: $mobile) {
     display: block;
     position: absolute;
-    top: 6px;
-    right: 8px;
-    width: 32px;
-    height: 32px;
-    background-image: url(../../../assets/images/check-mark-down.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-origin: border-box;
+    top: 16px;
+    right: 20px;
+    width: 16px;
+    height: 10px;
+    transition: $transition-function;
+    & svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      stroke: $black;
+      stroke-width: 1.5;
+      width: 16px;
+      height: 10px;
+    }
   }
 }

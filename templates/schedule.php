@@ -13,10 +13,35 @@ get_header();
       <div class="inner-container">
         <h1 class="page-title"><?php the_field('schedule_page_title'); ?></h1>
 
-        <div class="activities__wrapper"></div>
+        <div class="">
 
+          <?php  $args = array(
+            'post_type' => 'activities',
+            'post_status' => 'publish',
+            'tax_query' => array(
+            array(
+              'taxonomy' => 'activities-categories',
+              'field'    => 'slug',
+              'terms'    => 'temporal_activities'
+            )
+          )
+          );
 
-        <?php get_template_part( 'template-parts/loader' ); ?>
+          $query = new WP_Query($args); ?>
+
+          <?php if ($query->have_posts()) : ?>
+
+          <div class="activities__wrapper">
+            <?php  while ($query->have_posts()) : $query->the_post(); ?>
+
+            <?php get_template_part('template-parts/one-activity'); ?>
+
+            <?php endwhile; ?>
+          </div>
+          <?php   endif; ?>
+
+        </div>
+
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
 
       </div>
@@ -75,7 +100,11 @@ get_header();
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
             class="activity__table-title schedule-accordion">
             <p><?php the_field($day_slug, 'options'); ?></p>
-            <div class="activity__table-arrow"></div>
+            <div class="activity__table-arrow">
+              <svg>
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-arrow-down"></use>
+              </svg>
+            </div>
           </div>
           <div id="panel-<?php the_field($day_slug, 'options'); ?>" role="region"
             class="activity__table-box schedule-panel">

@@ -23,17 +23,21 @@
   }
 }
 
+.activity-backdrop.is-hidden .activity-modal.horizontal {
+  transform: translateX(-100%);
+}
+
 .activity-modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) translateX(0);
   width: 922px;
-  overflow: hidden;
-  overflow-y: auto;
   padding: 40px 120px 40px 40px;
   display: flex;
   gap: 40px;
+  overflow-x: hidden;
+  overflow-y: scroll;
   align-items: flex-start;
   background-color: $background;
   border-radius: $bid-border-radius;
@@ -54,12 +58,18 @@
   @media screen and (max-width: $mobile) {
     top: 0;
     left: 0;
-    right: 0;
     transform: translateX(0);
     padding: 52px 20px 20px;
     display: block;
     border-radius: $small-border-radius;
   }
+}
+
+.activity-modal.horizontal {
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateX(0);
 }
 
 .activity__modal--caption {
@@ -206,8 +216,54 @@
     line-height: 1.6;
   }
   @media screen and (max-width: $mobile) {
-    padding-top: 0;
+    display: none;
+  }
+  &-full,
+  &-short {
+    @media screen and (max-width: $mobile) {
+      display: block;
+      margin-bottom: 8px;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.activity__modal--detais-box {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 20px;
+  }
+}
+
+.activity__modal--detais-open {
+  color: $blue;
+  font-family: $secondary-font;
+  font-size: 14px;
+  line-height: 1.6;
+  order: 3;
+  margin-left: auto;
+}
+
+.activity__modal--detais--icon {
+  width: 12px;
+  height: 6px;
+  margin-left: 12px;
+  &.active svg {
+    transform: rotate(-180deg);
+  }
+  & svg {
+    fill: $blue;
+    width: 12px;
+    height: 6px;
   }
 }
 
