@@ -16,7 +16,6 @@ const projectsIcon = document.querySelector(".header__projects__icon");
 // Burger menu
 openButton.addEventListener("click", function () {
   menu.classList.toggle("open");
-  document.body.classList.toggle("modal-open");
   menu.addEventListener("click", closeByBgdClick);
   closeButton.addEventListener("click", hideMenu);
 });
@@ -67,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function hideMenu() {
   menu.classList.remove("open");
-  document.body.classList.remove("modal-open");
   closeButton.removeEventListener("click", hideMenu);
   menu.removeEventListener("click", closeByBgdClick);
   projectsIcon.classList.remove("open");
