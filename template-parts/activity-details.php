@@ -69,52 +69,13 @@ $post = $args['post'];
   <div class="activity__modal--detais-box">
     <div class="activity__modal--detais-short"><?php echo $contentExcerpt?></div>
 
-    <button id="" class='activity__modal--detais-open' type='button' onclick='
-
-      const fullText = this.nextElementSibling;
-      const shortText = this.previousElementSibling;
-
-      if(fullText.classList.contains("hidden")){
-        this.innerHTML = `<?php the_field("hide_btn", "option"); ?>
-        <span class="activity__modal--detais--icon active">
-        <svg>
-          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use></svg></span>`;
-
-        fullText.classList.remove("hidden");
-        shortText.classList.add("hidden");
-      } else {
-        this.innerHTML = `<?php the_field("read_btn", "option"); ?>
-        <span class="activity__modal--detais--icon">
-        <svg>
-          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use>
-        </svg>
-      </span>`;
-        fullText.classList.add("hidden");
-        shortText.classList.remove("hidden");
-      }
-
-    if (fullText) {
-      const activityModalEl = document.querySelector(".activity-modal");
-      const computedStyle = getComputedStyle(activityModalEl);
-      let containerHeight = parseInt(computedStyle.height);
-      screenHeight = window.innerHeight;
-      if (screenHeight < containerHeight) {
-        activityModalEl.style.transition ="none";
-        activityModalEl.classList.add("horizontal");
-      } else {
-        activityModalEl.classList.remove("horizontal");
-        activityModalEl.style.transition ="$transition-function";
-      }
-    }
-
-      '><?php the_field('read_btn', 'option'); ?>
+    <button id="" class='activity__modal--detais-open' type='button'><?php the_field('read_btn', 'option'); ?>
       <span class="activity__modal--detais--icon">
         <svg>
           <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-small_arrow"></use>
         </svg>
       </span>
     </button>
-
 
     <div class="activity__modal--detais-full hidden">
       <?php if($fullContent) echo $fullContent; ?>

@@ -60,14 +60,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Підсвічення активного bullet
   function currentBullet() {
     const bulletArray = document.querySelector(".bullets").children;
+
     const activeIndex = currentPage - 1;
     const activeBullet = bulletArray[activeIndex];
+    if (activeBullet) {
+      for (let i = 0; i < bulletArray.length; i++) {
+        bulletArray[i].classList.remove("active");
+      }
 
-    for (let i = 0; i < bulletArray.length; i++) {
-      bulletArray[i].classList.remove("active");
+      activeBullet.classList.add("active");
     }
-
-    activeBullet.classList.add("active");
   }
 
   function countBullets() {

@@ -65,6 +65,11 @@ function wp_it_volunteers_scripts() {
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
         wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('touch-swipe-scripts'), false, true );
+        wp_localize_script( 'schedule-scripts', 'uri_object', array( 
+        'theme_directory_uri' => get_template_directory_uri(),
+        'hide_btn'=> get_field("hide_btn", "option"),
+        'read_btn'=> get_field("read_btn", "option")
+));
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
@@ -127,6 +132,14 @@ function wp_it_volunteers_scripts() {
       wp_localize_script('activity-details', 'activity', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('activity_nonce'),
+        ));
+    }
+    if (is_singular() && locate_template('template-parts/one-news.php')) {
+      wp_enqueue_style('one-news-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-news.css', array('main'));
+      wp_enqueue_script( 'one-news-script', get_template_directory_uri() . '/assets/scripts/template-scripts/one-news.js', array('schedule-scripts'), false, true );
+      wp_localize_script('one-news-script', 'news', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('news_nonce'),
         ));
     }
 }
@@ -298,6 +311,7 @@ function my_breadcrumb_title_swapper($title, $type, $id)
 }
 
 
+// ajax activity details
 add_action('wp_ajax_get_post_activity', 'get_post_activity');
 add_action('wp_ajax_nopriv_get_post_activity', 'get_post_activity'); 
 
@@ -330,4 +344,43 @@ function get_post_activity() {
       }}
 
     wp_die();
+}
+
+//ajax latest news
+
+add_action('wp_ajax_load_latest_news', 'load_latest_news');
+add_action('wp_ajax_nopriv_load_latest_news', 'load_latest_news');
+
+function load_latest_news() {
+  // Перевірка nonce
+  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "news_nonce")) {
+    exit;
+  }
+
+  $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
+    $paged++;
+
+  // Побудова запиту для отримання постів
+  $args = array(
+    'post_type' => 'news',
+    'posts_per_page' => 5,
+    'paged' => $paged,
+    // 'orderby' => 'modified',
+    'post_status' => 'publish'
+  );
+
+  $query = new WP_Query($args);
+  ob_start();
+  if ($query->have_posts()) :
+    while ($query->have_posts()) : $query->the_post(); ?>
+<?php get_template_part('template-parts/one-news'); ?>
+<?php endwhile;
+    endif;
+
+  $html = ob_get_clean();
+  wp_reset_postdata();
+
+  // Відправка відповіді JSON з HTML та кількістю сторінок
+  wp_send_json(array('html' => $html, 'paged' => $paged));
+  wp_die();
 }

@@ -43,7 +43,7 @@ get_header();
         </div>
 
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
-
+        <?php wp_reset_postdata(); ?>
       </div>
     </div>
   </section>
@@ -58,10 +58,10 @@ get_header();
                 'post_type'      => 'activities',
                 'numberposts'    => -1,
                 'order'          => 'ASC',  
-                'orderby' => 'meta_value',
-	              'meta_key' => 'activity_time',
-                'tax_query' => array(
-                    array(
+                'orderby'        => 'meta_value',
+	              'meta_key'       => 'activity_time',
+                'tax_query'      => array(
+                        array(
                         'taxonomy' => 'activities-categories',
                         'field'    => 'slug',
                         'terms'    => 'constant_activities'
@@ -143,7 +143,44 @@ get_header();
     <div class="container">
       <h2 class="section-title"><?php the_field('last_news_title'); ?></h2>
       <div class="inner-container">
+        <div class="lastnews__wrapper">
 
+          <?php $args = array(
+          'post_type' => 'news',
+          'posts_per_page' => 5,
+          'orderby' => 'modified',
+          'post_status' => 'publish'
+        );
+
+        $query = new WP_Query($args);
+        if ($query->have_posts()) : ?>
+
+          <?php  while ($query->have_posts()) : $query->the_post(); ?>
+          <?php get_template_part('template-parts/one-news'); ?>
+          <?php endwhile; ?>
+
+          <?php get_template_part('template-parts/loader'); ?>
+
+          <?php 
+          // текущая страница
+          $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+          // максимум страниц
+          $max_pages = $query->max_num_pages;
+          // если текущая страница меньше, чем максимум страниц, то выводим кнопку
+          if( $paged < $max_pages ) { ?>
+
+          <div id="loadmore" style="text-align:center;">
+            <a href="#" data-max_pages="<?php echo $max_pages ?>" data-paged="<?php echo $paged ?>"
+              class="button primary-button loadnews-btn"><?php the_field("last_news_button", "options"); ?></a>
+          </div>
+
+          <?php } ?>
+
+          <?php endif; ?>
+
+          <?php
+        wp_reset_query(); ?>
+        </div>
       </div>
     </div>
   </section>

@@ -94,3 +94,20 @@
     }
   }
 }
+
+.loadnews-btn {
+  margin: 0 auto;
+  margin-top: 40px;
+  min-width: 425px;
+  @media screen and (max-width: $desktop) {
+    min-width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin-top: 32px;
+    min-width: 246px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-top: 16px;
+    width: 100%;
+  }
+}

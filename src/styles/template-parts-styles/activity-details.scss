@@ -245,6 +245,7 @@
 }
 
 .activity__modal--detais-open {
+  display: block;
   color: $blue;
   font-family: $secondary-font;
   font-size: 14px;
