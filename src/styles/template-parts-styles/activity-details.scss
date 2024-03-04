@@ -1,0 +1,302 @@
+@import "../variables";
+
+.activity-backdrop {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $transition-function;
+}
+
+.activity-backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.activity-backdrop.is-hidden .activity-modal {
+  transform: translate(-50%, -50%) translateX(-100%);
+  @media screen and (max-width: $mobile) {
+    transform: translateX(-100%);
+  }
+}
+
+.activity-backdrop.is-hidden .activity-modal.horizontal {
+  transform: translateX(-100%);
+}
+
+.activity-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+  width: 922px;
+  padding: 40px 120px 40px 40px;
+  display: flex;
+  gap: 40px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: flex-start;
+  background-color: $background;
+  border-radius: $bid-border-radius;
+  border: 1px solid $violet-grey;
+  box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
+  transition: transform $transition-function;
+  @media screen and (max-width: $desktop) {
+    width: 829px;
+    padding: 32px 84px 32px 32px;
+    gap: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 100%;
+    max-width: 632px;
+    padding: 24px 68px 24px 24px;
+    gap: 20px;
+  }
+  @media screen and (max-width: $mobile) {
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    padding: 52px 20px 20px;
+    display: block;
+    border-radius: $small-border-radius;
+  }
+}
+
+.activity-modal.horizontal {
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateX(0);
+}
+
+.activity__modal--caption {
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 24px;
+  }
+}
+
+.activity__modal--box {
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+}
+
+.activity__modal--img-wrap {
+  border-radius: $small-border-radius;
+  height: 0;
+  overflow: hidden;
+  width: 240px;
+  height: 240px;
+  margin-bottom: 20px;
+  @media screen and (max-width: $desktop) {
+    width: 200px;
+    height: 200px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 140px;
+    height: 140px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-bottom: 0;
+  }
+}
+
+.activity__modal--img-wrap img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.activity__modal--description {
+  font-family: $secondary-font;
+  font-size: 16px;
+  line-height: 1.6;
+  @media screen and (max-width: $desktop) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: $tablet2) {
+    width: 200px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: auto;
+    font-size: 12px;
+  }
+}
+
+.activity__modal--item {
+  display: flex;
+  gap: 8px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 16px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.activity__modal--icon {
+  width: 24px;
+  height: 24px;
+  @media screen and (max-width: $desktop) {
+    width: 20px;
+    height: 20px;
+  }
+  & svg {
+    width: 24px;
+    height: 24px;
+    fill: $blue;
+    @media screen and (max-width: $desktop) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.activity__modal--title {
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  padding-bottom: 12px;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+  &-mobile {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: block;
+      color: $blue;
+      font-size: 18px;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.activity__modal--line {
+  height: 1px;
+  width: 100%;
+  background-color: $violet-grey;
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.activity__modal--detais {
+  padding-top: 12px;
+  font-family: $secondary-font;
+  margin-bottom: 40px;
+  @media screen and (max-width: $desktop) {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+  &-full,
+  &-short {
+    @media screen and (max-width: $mobile) {
+      display: block;
+      margin-bottom: 8px;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.activity__modal--detais-box {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+}
+
+.activity__modal--detais-open {
+  display: block;
+  color: $blue;
+  font-family: $secondary-font;
+  font-size: 14px;
+  line-height: 1.6;
+  order: 3;
+  margin-left: auto;
+}
+
+.activity__modal--detais--icon {
+  width: 12px;
+  height: 6px;
+  margin-left: 12px;
+  &.active svg {
+    transform: rotate(-180deg);
+  }
+  & svg {
+    fill: $blue;
+    width: 12px;
+    height: 6px;
+  }
+}
+
+.activity__modal--btn {
+  position: absolute;
+  cursor: pointer;
+  transition: all $transition-function;
+  top: 40px;
+  right: 40px;
+  @media screen and (max-width: $desktop) {
+    top: 32px;
+    right: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    top: 24px;
+    right: 24px;
+  }
+  @media screen and (max-width: $mobile) {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.icon__cross {
+  width: 40px;
+  height: 40px;
+  @media screen and (max-width: $mobile) {
+    width: 24px;
+    height: 24px;
+  }
+  .activity-modal__btn:hover &,
+  .activity-modal__btn:hover & {
+    fill: $blue;
+  }
+}

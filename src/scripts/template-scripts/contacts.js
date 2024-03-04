@@ -1,33 +1,18 @@
 const popupSuccess = document.getElementById("popup-success");
 const popupMessage = document.querySelector(".popup")
 const closeButtonForm = document.querySelector('.popup__close');
-const errorPhone = document.querySelector('.error-phone');
 const submitButton = document.getElementById("submit-btn");
 const formContacts = document.querySelector(".form__contacts");
-const telInputEl = document.getElementById("phone");
 
 
-//validate mask-phone==================================
-formContacts.addEventListener( 'wpcf7submit', function( event ) {
-    const value = telInputEl.value;    
-    const pattern = /^[\+]?\d{2}[\s|-]?\(?\d{2}?\)?[\s]?\d{3}[\s|-]?\d{2}[\s|-]?\d{2}$/;
-    check = pattern.test(value);
-    
-    if (!check) {   
-        errorPhone.classList.add('opened', 'wpcf7-not-valid-tip'); 
-        telInputEl.classList.add('error', 'wpcf7-not-valid'); 
-    }  
+//imask-phone==============================================================
+// const formContactsPhone = document.querySelector(".contacts__form-phone");
+// const maskOptions = {  
+//   mask: '+{48} 00 000 00 00',  
+//   lazy: false,
+// };
+// const mask = IMask(formContactsPhone, maskOptions);
 
-    telInputEl.onfocus = () => {
-        const isErrorField = telInputEl.classList.contains("error");
-        if (isErrorField) {            
-            errorPhone.classList.remove('opened', 'error-phone');
-            errorPhone.classList.add('closen');
-            telInputEl.classList.remove('error', 'wpcf7-not-valid');     
-        } 
-    }  
-      
-}, false );
 
 //wpcf7mailsent + pop-up==========================================
 formContacts.addEventListener( 'wpcf7mailsent', function( event ) {

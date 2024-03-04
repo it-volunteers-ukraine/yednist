@@ -4,13 +4,14 @@ Template Name: contacts
 */
 get_header();
 ?>
-<main>       
+<main>   
+    <?php get_template_part( 'template-parts/breadcrumbs' ); ?>    
     <section class="section contacts__page"> 
-        <div class="container">
+        <div class="container">            
             <div class="inner-container">
                 <div class="contacts__page-body">                    
                     <div class="contacts__form">
-                       <h2 class="contacts__page-title page-title"><?php the_field('contacts-form-title'); ?></h2> 
+                    <h2 class="contacts__page-title page-title"><?php the_field('contacts-form-title'); ?></h2> 
                         <div id="contactForm" name="form-contact" class="form__contacts" method="post">
                             <?php echo do_shortcode('[contact-form-7 id="7ddce3e" title="Contact Form"]') ?>
                             
@@ -49,7 +50,7 @@ get_header();
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#telegram" alt="telegram"></use>
                                         </svg>
-                                       <?php echo esc_html($link_title); ?>
+                                    <?php echo esc_html($link_title); ?>
                                     </a>
                                     <?php endif; ?>
                                 </li>
@@ -64,7 +65,7 @@ get_header();
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#facebook" alt="facebook"></use>
                                         </svg>
-                                       <?php echo esc_html($link_title); ?>
+                                    <?php echo esc_html($link_title); ?>
                                     </a>
                                     <?php endif; ?>
                                 </li>
@@ -79,17 +80,17 @@ get_header();
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#instagram" alt="instagram"></use>
                                         </svg>
-                                       <?php echo esc_html($link_title); ?>
+                                    <?php echo esc_html($link_title); ?>
                                     </a>
                                     <?php endif; ?>
                                 </li>
-                               <li> 
+                            <li> 
                                     <a href="tel:<?php the_field('social_phone', 'option') ?>">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#phone" alt="phone"></use>
                                         </svg>
                                         <?php the_field('social_phone', 'option') ?>
-                                   </a> 
+                                    </a> 
                                 </li>
                                 <li> 
                                     <a href="mailto:<?php the_field('social_mail', 'option') ?>">
@@ -97,13 +98,13 @@ get_header();
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#mail" alt="mail"></use>
                                         </svg>
                                         <?php the_field('social_mail', 'option') ?>
-                                   </a> 
+                                    </a> 
                                 </li>
                             </ul> 
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>                 
         </div> 
     </section>
 </main>

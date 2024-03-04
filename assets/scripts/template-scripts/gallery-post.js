@@ -1,0 +1,1 @@
+const galeryPostText=document.querySelector(".galery-post__text");0!=galeryPostText.textContent.trim().length&&(document.querySelector(".galery-post__content").style.display="block");

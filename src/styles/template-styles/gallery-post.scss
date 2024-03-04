@@ -1,0 +1,98 @@
+@import "../variables.scss";
+
+.galery-post {    
+    &__title {
+        margin: 0px 0 40px;        
+        @media (max-width: $desktop) {
+            margin: 0px 0 40px; 
+        }
+        @media (max-width: $tablet2) {
+            margin: 0px 0 20px;                        
+        }
+        @media (max-width: $mobile) {
+            margin: 0px 0 16px;
+        }
+    }
+    &__body {        
+        display: flex; 
+        flex-wrap: wrap;
+        row-gap: 40px;
+        column-gap: 20px;
+        @media (max-width: $tablet2) {
+            gap: 20px;
+        }
+        @media (max-width: $mobile) {
+            justify-content: center;
+            gap: 16px;
+        }
+    }
+    &__content {
+        display: none;
+        width: 574px;
+        height: 220px;  
+        overflow: hidden;      
+        overflow-y: scroll;
+        @media (max-width: $desktop) {
+            width: 648px;
+            height: 200px;
+        }
+        @media (max-width: $tablet2) {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+        }
+        &::-webkit-scrollbar {
+            width: 11px;
+        }
+        
+        &::-webkit-scrollbar-thumb {            
+            background-color: $grey;
+            border-radius: 8px;
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: $dark-grey;
+        }
+    }
+    &__text {
+        font-family: $secondary-font;
+        line-height: 30px;
+        @media (max-width: $desktop) {
+            font-size: 18px;
+            line-height: 27px;
+        }
+        @media (max-width: $tablet2) {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }    
+    &__img {  
+        border-radius: $small-border-radius;           
+        overflow: hidden;   
+        transition: opacity 0.8s ease 0s;               
+        img {
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.8s ease 0s;
+            width: 275px;
+            height: 220px;
+            cursor: pointer;
+            @media (max-width: $desktop) {
+                width: 203px;
+                height: 200px;           
+            } 
+            @media (max-width: $tablet2) {
+                width: 157px;
+                height: 157px;   
+            }
+            @media (max-width: $mobile) {
+                width: 136px;
+                height: 136px; 
+            }
+            &:hover {                
+                transition: ease 0.7s;
+                transform: scale(1.1);
+            }
+        }
+    }    
+}

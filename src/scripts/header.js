@@ -2,6 +2,8 @@
 const menu = document.querySelector(".header__menu__container");
 const openButton = document.querySelector(".burger");
 const closeButton = document.querySelector(".header__menu__close-button");
+const button = document.querySelector(".btn-to-top-container");
+console.log(button);
 // Language menu
 const languageDropdown = document.querySelector(".language__dropdown");
 const languageDropdownContent = document.querySelector(
@@ -16,7 +18,7 @@ const projectsIcon = document.querySelector(".header__projects__icon");
 // Burger menu
 openButton.addEventListener("click", function () {
   menu.classList.toggle("open");
-  document.body.classList.toggle("modal-open");
+  button.style.display = "none";
   menu.addEventListener("click", closeByBgdClick);
   closeButton.addEventListener("click", hideMenu);
 });
@@ -67,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function hideMenu() {
   menu.classList.remove("open");
-  document.body.classList.remove("modal-open");
   closeButton.removeEventListener("click", hideMenu);
   menu.removeEventListener("click", closeByBgdClick);
   projectsIcon.classList.remove("open");
   openProjects.classList.remove("open");
   projects.classList.remove("open");
   projectsMenu.style.display = "none";
+  myButton.style.display = "flex";
 }
 function closeByBgdClick(e) {
   if (e.target === menu) {

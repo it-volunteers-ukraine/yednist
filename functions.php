@@ -26,14 +26,15 @@ function wp_it_volunteers_scripts() {
   wp_enqueue_style('choices-style', "https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css", array('main'));
 
   wp_enqueue_script( 'wp-it-volunteers-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), false, true );
-  wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
-  wp_enqueue_script( 'touch-swipe-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js', array(), false, true );
   wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10.0.0/swiper-bundle.min.js', array(), false, true);
   wp_enqueue_script('choices-scripts', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), false, true);
-   
+  //wp_enqueue_script('imask-scripts', 'https://unpkg.com/imask', array(), false, true);
+
     if ( is_page_template('templates/home.php') ) {
         wp_enqueue_style( 'home-style', get_template_directory_uri() . '/assets/styles/template-styles/home.css', array('main') );
-        wp_enqueue_script( 'home-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/home.js', array(), false, true );
+        wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+        wp_enqueue_script( 'touch-swipe-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js', array(), false, true );
+        wp_enqueue_script( 'home-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/home.js', array('touch-swipe-scripts'), false, true );
     }
 
     if ( is_page_template('templates/about.php') ) {
@@ -46,26 +47,36 @@ function wp_it_volunteers_scripts() {
         wp_enqueue_script( 'contacts-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/contacts.js', array(), false, true );
     }
 
-
     if ( is_page_template('templates/partners.php')) {
         wp_enqueue_style( 'partners-style', get_template_directory_uri() . '/assets/styles/template-styles/partners.css',array('main'));
     }
 
+    if ( is_page_template('templates/projects.php')) {
+      wp_enqueue_style( 'projects-style', get_template_directory_uri() . '/assets/styles/template-styles/projects.css',array('main'));
+      wp_enqueue_script( 'projects-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/projects.js', array(), false, true );
+  }
+    if ( is_page_template('templates/gallery.php') ) {
+      wp_enqueue_style( 'gallery-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery.css', array('main') );
+      wp_enqueue_script( 'gallery-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery.js', array(), false, true );
+    }
 
-    if ( is_page_template('templates/team.php')) {
-        wp_enqueue_style( 'team-style', get_template_directory_uri() . '/assets/styles/template-styles/team.css',array('main'));
-        wp_enqueue_script( 'team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/team.js', array(), false, true );
+    if ( is_page_template('templates/gallery-post.php') ) {
+      wp_enqueue_style( 'gallery-post-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
+      wp_enqueue_script( 'gallery-post-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery-post.js', array(), false, true );
+      wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
     }
 
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
+        wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+        wp_enqueue_script( 'touch-swipe-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js', array(), false, true );
         wp_enqueue_script( 'schedule-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/schedule.js', array('touch-swipe-scripts'), false, true );
-        wp_localize_script('schedule-scripts', 'activities', array(
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('activities_nonce'),
-        ));
+        wp_localize_script( 'schedule-scripts', 'uri_object', array(
+        'theme_directory_uri' => get_template_directory_uri(),
+        'hide_btn'=> get_field("hide_btn", "option"),
+        'read_btn'=> get_field("read_btn", "option")
+));
     }
-
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
     wp_enqueue_style('swiper-navigation-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/swiper-navigation.css', array('main'));
@@ -75,10 +86,16 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style('slider-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/slider.css', array('main'));
       wp_enqueue_script( 'slider-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/slider.js', array(), false, true );
     }
-    
+
+    if (is_singular() && locate_template('template-parts/projects-list.php')) {
+      wp_enqueue_style('projects-list-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/projects-list.css', array('main'));
+      wp_enqueue_script( 'projects-list-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/projects-list.js', array(), false, true );
+
+    }
+
     if (is_singular() && locate_template('template-parts/feedback-posts.php')) {
       wp_enqueue_style('feedback-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/feedback-posts.css', array('main'));
-      wp_enqueue_script('feedback-page-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-posts.js', array('touch-swipe-scripts'), false, true);
+      wp_enqueue_script('feedback-page-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-posts.js', array('home-scripts'), false, true);
       wp_localize_script('feedback-page-scripts', 'myAjax', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('feedbacks_nonce'),
@@ -91,7 +108,7 @@ function wp_it_volunteers_scripts() {
 
     if (is_singular() && locate_template('template-parts/feedback-form.php')) {
       wp_enqueue_style('feedback-form', get_template_directory_uri() . '/assets/styles/template-parts-styles/feedback-form.css', array('main'));
-      wp_enqueue_script( 'feedback-form-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-form.js', array(), false, true );
+      wp_enqueue_script( 'feedback-form-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/feedback-form.js', array('home-scripts'), false, true );
     }
 
     if (is_singular() && locate_template('template-parts/feedback-nav.php')) {
@@ -120,6 +137,22 @@ function wp_it_volunteers_scripts() {
     }
     if (is_singular() && locate_template('template-parts/breadcrumbs.php')) {
       wp_enqueue_style('breadcrumbs', get_template_directory_uri() . '/assets/styles/template-parts-styles/breadcrumbs.css', array('main'));
+    }
+    if (is_singular() && locate_template('template-parts/activity-details.php')) {
+      wp_enqueue_style('activity-details', get_template_directory_uri() . '/assets/styles/template-parts-styles/activity-details.css', array('main'));
+      wp_enqueue_script( 'activity-details', get_template_directory_uri() . '/assets/scripts/template-scripts/activity-details.js', array('schedule-scripts'), false, true );
+      wp_localize_script('activity-details', 'activity', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('activity_nonce'),
+        ));
+    }
+    if (is_singular() && locate_template('template-parts/one-news.php')) {
+      wp_enqueue_style('one-news-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-news.css', array('main'));
+      wp_enqueue_script( 'one-news-script', get_template_directory_uri() . '/assets/scripts/template-scripts/one-news.js', array('schedule-scripts'), false, true );
+      wp_localize_script('one-news-script', 'news', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('news_nonce'),
+        ));
     }
 }
 /** add fonts */
@@ -182,7 +215,7 @@ function load_feedbacks() {
   $width = $_POST['width'];
   
   // Визначення кількості постів на сторінку залежно від ширини
-  $number = get_posts_per_page($width);
+  $number = get_feedbacks_per_page($width);
 
   // Отримання загальної кількості постів та кількості сторінок
   $total_posts = wp_count_posts('feedbacks')->publish;
@@ -278,75 +311,6 @@ function do_insert() {
     }
 }
 
-/*** AJAX activities */
-add_action('wp_ajax_load_activities', 'load_activities');
-add_action('wp_ajax_nopriv_load_activities', 'load_activities');
-
-function load_activities() {
-  // Перевірка nonce
-  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "activities_nonce")) {
-    exit;
-  }
-
-  // Отримання параметрів з AJAX-запиту
-  $page = $_POST['page'];
-  $width = $_POST['width'];
-
-  // Визначення кількості постів на сторінку залежно від ширини
-  $number = get_activities_per_page($width);
-
-  // Отримання загальної кількості постів та кількості сторінок
-  $arguments = array(
-    'post_type' => 'activities',
-    'post_status' => 'publish',
-    'activities-categories' => 'temporal_activities'
-  );
-  $total_posts = count( get_posts( $arguments ) );
-  $total_pages = ceil($total_posts / $number);
-
-  // Побудова запиту для отримання постів
-  $args = array(
-    'post_type' => 'activities',
-    'posts_per_page' => $number,
-    // 'orderby' => 'modified',
-    'paged' => $page,
-    'post_status' => 'publish',
-    'tax_query' => array(
-		array(
-			'taxonomy' => 'activities-categories',
-			'field'    => 'slug',
-			'terms'    => 'temporal_activities'
-		)
-	)
-  );
-
-  $query = new WP_Query($args);
-  ob_start();
-  if ($query->have_posts()) :
-    while ($query->have_posts()) : $query->the_post(); ?>
-<?php get_template_part('template-parts/one-activity'); ?>
-<?php endwhile;
-  endif;
-
-  $html = ob_get_clean();
-  wp_reset_postdata();
-
-  // Відправка відповіді JSON з HTML та кількістю сторінок
-  wp_send_json(array('html' => $html, 'totalPages' => $total_pages));
-  wp_die();
-}
-
-// Визначення кількості заходів на сторінку залежно від ширини
-function get_activities_per_page($width) {
-  if ($width > 1219.98) {
-    return 3;
-  } elseif ($width > 767.98) {
-    return 2;
-  } else {
-    return 1;
-  }
-}
-
 //change the name of home page in the breadcrumbs
 add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
 function my_breadcrumb_title_swapper($title, $type, $id)
@@ -356,4 +320,79 @@ function my_breadcrumb_title_swapper($title, $type, $id)
         $title = pll__('Головна');
     }
     return $title;
+}
+
+
+// ajax activity details
+add_action('wp_ajax_get_post_activity', 'get_post_activity');
+add_action('wp_ajax_nopriv_get_post_activity', 'get_post_activity');
+
+function get_post_activity() {
+
+    if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'activity_nonce' ) ) {
+        wp_send_json_error( 'Nonce verification failed' );
+    }
+
+    if (isset($_POST['postId'])) {
+
+      $post = get_post($_POST['postId']);
+
+      $res = [
+      'status' => false,
+      'html' => ''
+      ];
+
+      if($post){
+      ob_start();
+      get_template_part( 'template-parts/activity-details', null, ['post' => $post]);
+      $html = ob_get_clean();
+
+      $res = [
+      'status' => true,
+      'html' => $html
+      ];
+
+      wp_send_json($res);
+      }}
+
+    wp_die();
+}
+
+//ajax latest news
+
+add_action('wp_ajax_load_latest_news', 'load_latest_news');
+add_action('wp_ajax_nopriv_load_latest_news', 'load_latest_news');
+
+function load_latest_news() {
+  // Перевірка nonce
+  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "news_nonce")) {
+    exit;
+  }
+
+  $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
+    $paged++;
+
+  // Побудова запиту для отримання постів
+  $args = array(
+    'post_type' => 'news',
+    'posts_per_page' => 5,
+    'paged' => $paged,
+    // 'orderby' => 'modified',
+    'post_status' => 'publish'
+  );
+
+  $query = new WP_Query($args);
+  ob_start();
+  if ($query->have_posts()) :
+    while ($query->have_posts()) : $query->the_post(); ?>
+<?php get_template_part('template-parts/one-news'); ?>
+<?php endwhile;
+    endif;
+
+  $html = ob_get_clean();
+  wp_reset_postdata();
+
+  // Відправка відповіді JSON з HTML та кількістю сторінок
+  wp_send_json(array('html' => $html, 'paged' => $paged));
+  wp_die();
 }
