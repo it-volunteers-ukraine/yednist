@@ -1,159 +1,195 @@
-jQuery(document).ready(function ($) {
-  // Початок показу лоадера
-  function showLoader() {
-    $(".loader").show();
+document.addEventListener("DOMContentLoaded", function () {
+  // accordion
+  const acc = document.getElementsByClassName("schedule-accordion");
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+
+      if (this.classList.contains("active")) {
+        this.setAttribute("aria-expanded", "true");
+      } else this.setAttribute("aria-expanded", "false");
+
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   }
 
-  // Кінець показу лоадера
-  function hideLoader() {
-    $(".loader").hide();
+  //slider
+
+  const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
+  const allActivityCards = allActivityCardsArray.length;
+  let currentPage = 1;
+
+  function cardsPerPage() {
+    let cardPerPage = 3;
+    if (window.innerWidth < 1220) {
+      cardPerPage = 2;
+    }
+    if (window.innerWidth < 768) {
+      cardPerPage = 1;
+    }
+    return cardPerPage;
   }
 
-  // Отримання nonce
-  function getActivitiesNonce() {
-    return activities.nonce;
-  }
+  const totalPages = Math.ceil(allActivityCards / cardsPerPage());
 
   function isPagination() {
-    var paginationBox = $(".activities-pagination__block");
+    const paginationBox = document.querySelector(
+      ".activities-pagination__block"
+    );
 
     if (totalPages === 1) {
-      paginationBox.addClass("hidden");
+      paginationBox.classList.add("hidden");
     }
   }
 
   // Оновлення кнопок пагінації
   function updatePaginationButtons() {
-    if (totalPages === 1) {
-      return;
-    }
-    var prevButton = $(".activities-prev");
-    var nextButton = $(".activities-next");
+    const prevButton = document.querySelector(".activities-prev");
+    const nextButton = document.querySelector(".activities-next");
 
-    // Встановлення стану кнопки "Prev"
-    prevButton.prop("disabled", currentPage === 1);
-
-    // Встановлення стану кнопки "Next"
-    nextButton.prop("disabled", currentPage === totalPages);
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
   }
 
   // Підсвічення активного bullet
   function currentBullet() {
-    var bulletArray = $(".bullets").children().toArray();
-    var activeIndex = currentPage - 1;
-    var activeBullet = bulletArray[activeIndex];
-    $(activeBullet).addClass("active");
+    const bulletArray = document.querySelector(".bullets").children;
+
+    const activeIndex = currentPage - 1;
+    const activeBullet = bulletArray[activeIndex];
+    if (activeBullet) {
+      for (let i = 0; i < bulletArray.length; i++) {
+        bulletArray[i].classList.remove("active");
+      }
+
+      activeBullet.classList.add("active");
+    }
   }
 
   function countBullets() {
-    var bulletsBox = $(".bullets");
-    bulletsBox.empty();
+    const bulletsBox = document.querySelector(".bullets");
+    bulletsBox.innerHTML = "";
     if (totalPages > 1) {
       for (let i = 1; i <= totalPages; i++) {
-        bulletsBox.append('<div class="one-bullet"></div>');
+        const bullet = document.createElement("div");
+        bullet.classList.add("one-bullet");
+        bulletsBox.appendChild(bullet);
       }
       currentBullet();
     }
   }
 
-  // Завантаження постів
-  function loadPosts(page) {
-    var data = {
-      action: "load_activities",
-      nonce: getActivitiesNonce(),
-      width: viewportWidth,
-      page: page,
-    };
+  updateSlider();
+  isPagination();
+  updatePaginationButtons();
+  countBullets();
+  currentBullet();
 
-    $.ajax({
-      url: activities.ajaxUrl,
-      type: "post",
-      data: data,
-      beforeSend: showLoader,
-      success: function (response) {
-        hideLoader();
-        totalPages = response.totalPages;
-        totalPageEl.html(totalPages);
-        $(".activities__wrapper").html(response.html);
-        isPagination();
-        updatePaginationButtons();
-        countBullets();
-      },
-      error: function (xhr, status, error) {
-        hideLoader();
-        console.error("Request failed: " + error);
-      },
+  // slider update
+  function updateSlider() {
+    allActivityCardsArray.forEach((slide, index) => {
+      if (
+        index >= (currentPage - 1) * cardsPerPage() &&
+        index < currentPage * cardsPerPage()
+      ) {
+        slide.style.display = "block";
+      } else {
+        slide.style.display = "none";
+      }
     });
   }
 
-  // Початок скрипту
-  var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  var currentPageEl = $(".current-page");
-  var totalPageEl = $(".total-pages");
-  var currentPage = 1;
-  var totalPages = 1;
+  const nextButton = document.querySelector(".activities-next");
+  const prevButton = document.querySelector(".activities-prev");
 
-  // Оновлення поточної сторінки
-  function updateCurrentPage() {
-    currentPageEl.html(currentPage);
-  }
-
-  // Обробник кліку на кнопку "Next"
-  $(".activities-next").click(function () {
+  // "Next"
+  nextButton.addEventListener("click", function () {
     currentPage++;
     if (currentPage > totalPages) {
       currentPage = totalPages;
     }
-    loadPosts(currentPage);
-    updateCurrentPage();
+    updateSlider();
+    currentBullet();
     updatePaginationButtons();
   });
 
-  // Обробник кліку на кнопку "Prev"
-  $(".activities-prev").click(function () {
+  // "Prev"
+  prevButton.addEventListener("click", function () {
     currentPage--;
     if (currentPage < 1) {
       currentPage = 1;
     }
-    loadPosts(currentPage);
-    updateCurrentPage();
+    updateSlider();
+    currentBullet();
     updatePaginationButtons();
   });
 
   // Обробник кліку на bullet
-  $(".bullets").on("click", ".one-bullet", function () {
-    $(".active").removeClass("active");
-    var index = $(this).index();
-    currentPage = index + 1;
-    loadPosts(currentPage);
-    updateCurrentPage();
-    updatePaginationButtons();
-    currentBullet();
-  });
+  document
+    .querySelector(".bullets")
+    .addEventListener("click", function (event) {
+      if (event.target.classList.contains("one-bullet")) {
+        document.querySelector(".one-bullet.active").classList.remove("active");
+        const index = Array.from(this.children).indexOf(event.target);
+        currentPage = index + 1;
+        updateSlider();
+        updatePaginationButtons();
+        currentBullet();
+      }
+    });
 
-  $(".activities__wrapper").swipe({
-    swipeLeft: function (e) {
-      // Обробка свайпу вліво
+  const activitiesWrapper = document.querySelector(".activities__wrapper");
+  // Swipe
+  activitiesWrapper.addEventListener("touchstart", handleTouchStart, false);
+  activitiesWrapper.addEventListener("touchmove", handleTouchMove, false);
+
+  let xDown = null;
+
+  function handleTouchStart(event) {
+    const firstTouch = event.touches[0];
+    xDown = firstTouch.clientX;
+  }
+
+  function handleTouchMove(event) {
+    if (!xDown) {
+      return;
+    }
+
+    let xUp = event.touches[0].clientX;
+    let xDiff = xDown - xUp;
+
+    // Swipe left
+    if (xDiff > 0) {
       if (currentPage < totalPages) {
         currentPage++;
-        loadPosts(currentPage);
-        updateCurrentPage();
+        updateSlider();
+        currentBullet();
         updatePaginationButtons();
       }
-    },
-    swipeRight: function (e) {
-      // Обробка свайпу вправо
+    }
+    // Swipe right
+    else {
       if (currentPage > 1) {
         currentPage--;
-        loadPosts(currentPage);
-        updateCurrentPage();
+        updateSlider();
+        currentBullet();
         updatePaginationButtons();
       }
-    },
-    threshold: 75, // Мінімальна відстань, яка вважається свайпом
-  });
+    }
+    xDown = null;
+  }
 
-  // Початкове завантаження постів
-  loadPosts(currentPage);
-  updateCurrentPage();
+  // flip
+
+  function handleTouch(event) {
+    var card = event.currentTarget;
+    var flipCardInner = card.querySelector(".activity__flip-card-inner");
+    flipCardInner.classList.toggle("flipped");
+  }
 });

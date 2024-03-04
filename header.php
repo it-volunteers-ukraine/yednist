@@ -74,7 +74,7 @@
                             echo '<ul class="header__second__list">';
                                 foreach ($menu_right as $index => $menu_item) {
                                 if ($index !== 2) {
-                                    $current_class = (is_page($menu_item->object_id)) ? 'current_page_item' : '';
+                                    $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
                                     echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                                 } else {
                                     if (function_exists('pll_the_languages')) {

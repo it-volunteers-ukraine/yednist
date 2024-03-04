@@ -29,8 +29,6 @@
   </div>
 
   <div class="activity__table--buttons">
-
     <?php get_template_part( 'template-parts/activity-buttons' ); ?>
-
   </div>
 </div>

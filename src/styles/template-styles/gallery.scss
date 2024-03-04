@@ -1,24 +1,21 @@
 @import "../variables.scss";
 
-.gallery {
-    /*&__border {
-        border-top: 2px solid $violet-grey;        
-    }*/
+.gallery {    
     &__header {
-        margin: 20px 0 40px;
+        margin: 0px 0 40px;
         display: grid;
         grid-template-columns: 1fr 1fr;        
         column-gap: 16px;
         @media (max-width: $desktop) {
-            margin: 20px 0 40px; 
+            margin: 0px 0 40px; 
         }
         @media (max-width: $tablet2) {
-            margin: 20px 0 4px;
+            margin: 0px 0 4px;
             grid-template-columns: 1fr;
             row-gap: 16px;            
         }
         @media (max-width: $mobile) {
-            margin: 20px 0 0px;
+            margin: 0px;
         }
     }    
     &__title-text {
