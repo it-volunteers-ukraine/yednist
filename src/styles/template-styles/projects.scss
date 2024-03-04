@@ -1,347 +1,59 @@
 @import "../variables.scss";
 .projects {
   &__section {
-    &__swiper {
-      display: flex;
-      flex-direction: column;
-      margin-left: 0;
-      margin-right: 0;
-      @media screen and (max-width: $tablet2) {
-        margin-bottom: 16px;
+    .swiper__nav--box {
+      &:has(.swiper-button-lock) {
+        display: none;
       }
-      @media screen and (max-width: $mobile) {
-        margin-bottom: 0;
-      }
-      &__item {
-        border: 1px solid $black;
-        border-radius: $bid-border-radius;
-        padding: 64px 79px;
+      .swiper-pagination {
+        transform: translate3d(0px, 0, 0);
         display: flex;
-        align-items: center;
-        min-height: 614px;
-        max-height: 614px;
-        justify-content: space-between;
-        overflow: hidden;
-        &:last-child {
-          margin-bottom: 0 !important;
-        }
-        @media screen and (max-width: $desktop) {
-          padding: 40px 60px;
-          min-height: 564px;
-        }
-        @media screen and (max-width: $tablet2) {
-          padding: 39.5px 40px;
-          border-radius: $small-border-radius;
-          min-height: 440px;
+        gap: 16px;
+        font-family: $primary-font;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        padding-top: 0 !important;
+        &.swiper-pagination-lock {
+          display: none;
         }
         @media screen and (max-width: $mobile) {
-          font-family: $secondary-font;
-          padding: 15px 19px;
-          flex-direction: column-reverse;
-          min-height: 588px;
-          gap: 8px;
+          gap: 0;
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 36px;
         }
-        &.blue {
-          background-color: $lavender;
-        }
-        &.yellow {
-          background-color: $yellow;
-        }
-        &.pink {
-          background-color: $pink;
-        }
-        &__button {
-          font-family: $primary-font;
-          font-size: 20px;
-          line-height: 30px;
-          @media screen and (max-width: $desktop) {
-            font-size: 16px;
-            line-height: 24px;
-          }
-        }
-        &__mark {
-          position: absolute;
-          transform: rotate(-38deg);
-          top: -12px;
-          left: -113px;
-          width: 353px;
-          height: 135px;
-          background: $blue;
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-          padding-bottom: 10px;
-          z-index: 999;
-          @media screen and (max-width: 1500px) {
-            top: -20px;
-            left: -123px;
-            height: 121px;
-          }
-          @media screen and (max-width: 1235px) {
-            top: -50px;
-            left: -153px;
-            padding-bottom: 3px;
-          }
-          @media screen and (max-width: $mobile) {
-            padding-bottom: 6px;
-            top: -46px;
-            left: -158px;
-            width: 354px;
-            height: 108px;
-          }
-          &__message {
-            width: 100%;
-            max-width: 189.37px;
-            text-align: center;
-            font-family: $secondary-font;
-            font-size: 16px;
-            line-height: 26px;
-            color: $white;
-            text-transform: uppercase;
-            @media screen and (max-width: 1500px) {
-              font-size: 14px;
-              line-height: 22px;
-            }
-            @media screen and (max-width: 1235px) {
-              font-size: 10px;
-              line-height: 16px;
-              max-width: 142.37px;
-            }
-            @media screen and (max-width: $mobile) {
-              max-width: 89px;
-              font-size: 8px;
-              line-height: 13px;
-            }
-          }
-        }
-        &__content {
-          display: flex;
-          flex-direction: column;
-          gap: 48px;
-          max-width: 658px;
-          @media screen and (max-width: 1500px) {
-            max-width: 477px;
-          }
-          @media screen and (max-width: 1235px) {
-            gap: 24px;
-            max-width: 286px;
-          }
-          @media screen and (max-width: $mobile) {
-            gap: 16px;
-            max-width: none;
-          }
-          &__wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            @media screen and (max-width: $mobile) {
-              gap: 8px;
-            }
-          }
-        }
-        &__title {
-          font-family: $primary-font;
-          font-size: 40px;
-          font-weight: 300;
-          line-height: 48px;
-          color: $blue;
-          @media screen and (max-width: $desktop) {
-            font-size: 32px;
-            line-height: 38px;
-          }
-          @media screen and (max-width: $tablet2) {
-            font-size: 20px;
-            line-height: 30px;
-            text-transform: uppercase;
-          }
-          @media screen and (max-width: $mobile) {
-            font-size: 18px;
-            line-height: 27px;
-          }
-        }
-        &__description {
-          font-family: $secondary-font;
-          font-size: 20px;
-          line-height: 30px;
-          @media screen and (max-width: $desktop) {
-            font-size: 18px;
-            line-height: 27px;
-          }
-          @media screen and (max-width: $desktop1) {
-            font-size: 14px;
-            line-height: 22px;
-          }
-          @media screen and (max-width: $mobile) {
-            font-size: 14px;
-            line-height: 22px;
+        span {
+          background: transparent;
+          border: none;
+          width: 100%;
+          height: 100%;
+          margin: 0 !important;
+          &.swiper-pagination-bullet-active {
+            color: $blue;
           }
         }
       }
-    }
-  }
-}
-.projects__swiper .swiper__nav--box .custom-button-next svg,
-.projects__swiper .swiper__nav--box .custom-button-prev svg {
-  @media screen and (max-width: $mobile) {
-    width: 32px;
-    height: 32px;
-  }
-}
-.projects__section .swiper__nav--box {
-  @media screen and (max-width: $mobile) {
-    justify-content: space-between;
-  }
-  & svg {
-    @media screen and (max-width: $mobile) {
-      width: 32px;
-      height: 32px;
-    }
-  }
-}
-.swiper__nav--box .swiper-pagination {
-  transform: translate3d(0px, 0, 0);
-  display: flex;
-  gap: 16px;
-  font-family: $primary-font;
-  font-size: 40px;
-  font-weight: 300;
-  line-height: 48px;
-  padding-top: 0 !important;
-  &.swiper-pagination-lock {
-    display: none;
-  }
-  @media screen and (max-width: $mobile) {
-    gap: 0;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 36px;
-  }
-  & span {
-    background: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
-    margin: 0 !important;
-    &.swiper-pagination-bullet-active {
-      color: $blue;
-    }
-  }
-}
-.swiper-wrapper {
-  max-height: 3310px;
-  @media screen and (max-width: $desktop) {
-    max-height: 2980px;
-  }
-  @media screen and (max-width: $desktop1) {
-    max-height: 2280px;
-  }
-  @media screen and (max-width: $mobile) {
-    max-height: 3020px;
-  }
-}
-.projects__section .swiper__nav--box .custom-button-next,
-.projects__section .swiper__nav--box .custom-button-prev {
-  z-index: 999;
-  &.swiper-button-lock {
-    display: none;
-  }
-  @media screen and (max-width: $tablet2) {
-    display: block;
-  }
-}
-.photo {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  max-width: 516px;
-  @media screen and (max-width: $desktop1) {
-    max-width: 479px;
-  }
-  @media screen and (max-width: $tablet2) {
-    max-width: 290px;
-  }
-  @media screen and (max-width: 690px) {
-    border-radius: $small-border-radius;
-    max-height: 240px;
-  }
-}
-.photo__wrapper {
-  position: relative;
-  padding-top: 56.25%;
-}
-.photo__photo {
-  position: absolute;
-  &:first-child {
-    top: 0;
-    left: 0;
-    object-fit: none;
-    object-position: left top;
-    @media screen and (max-width: $tablet2) {
-      width: 69%;
-      object-fit: contain;
-    }
-    @media screen and (max-width: $mobile) {
-      width: 64.5%;
-      object-fit: cover;
-    }
-  }
-  &:last-child {
-    bottom: 0;
-    right: 0;
-    object-fit: none;
-    object-position: bottom right;
-    @media screen and (max-width: $tablet2) {
-      width: 83%;
-      object-fit: contain;
-    }
-    @media screen and (max-width: $mobile) {
-      width: 64.5%;
-      object-fit: cover;
-    }
-  }
-}
-.photo__photo.single-image {
-  object-fit: cover;
-  object-position: center;
-  top: 6.2%;
-  @media screen and (max-width: $tablet2) {
-    width: 100%;
-    top: 11.5%;
-  }
-  @media screen and (max-width: $mobile) {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    object-fit: none;
-  }
-}
-.projects__swiper__item {
-  &:last-child {
-    .photo__photo {
-      &:first-child {
+      .custom-button-next,
+      .custom-button-prev {
+        z-index: 999;
+        &.swiper-button-lock {
+          display: none;
+        }
         @media screen and (max-width: $tablet2) {
-          width: 62.1%;
+          display: block;
         }
       }
-      &:last-child {
-        @media screen and (max-width: $tablet2) {
-          width: 62.1%;
+      @media screen and (max-width: $mobile) {
+        justify-content: space-between;
+      }
+      .custom-button-next svg,
+      .custom-button-prev svg {
+        @media screen and (max-width: $mobile) {
+          width: 32px;
+          height: 32px;
         }
       }
     }
   }
-}
-.projects__section {
-  .inner-container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    @media screen and (max-width: $tablet2) {
-      gap: 16px;
-    }
-  }
-}
-.swiper__nav--box:has(.swiper-button-lock) {
-  display: none;
 }
