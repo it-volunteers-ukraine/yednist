@@ -5,13 +5,13 @@ const submitButton = document.getElementById("submit-btn");
 const formContacts = document.querySelector(".form__contacts");
 
 
-//mask-phone==============================================================
-const formContactsPhone = document.querySelector(".contacts__form-phone");
-const maskOptions = {  
-  mask: '+{48} 00 000 00 00',  
-  lazy: false,
-};
-const mask = IMask(formContactsPhone, maskOptions);
+//imask-phone==============================================================
+// const formContactsPhone = document.querySelector(".contacts__form-phone");
+// const maskOptions = {  
+//   mask: '+{48} 00 000 00 00',  
+//   lazy: false,
+// };
+// const mask = IMask(formContactsPhone, maskOptions);
 
 
 //wpcf7mailsent + pop-up==========================================
