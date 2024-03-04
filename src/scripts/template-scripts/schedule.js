@@ -185,11 +185,16 @@ document.addEventListener("DOMContentLoaded", function () {
     xDown = null;
   }
 
-  // flip
+  // sort select
+  const lastnewsSelect = document.querySelector(".lastnews_select");
 
-  function handleTouch(event) {
-    var card = event.currentTarget;
-    var flipCardInner = card.querySelector(".activity__flip-card-inner");
-    flipCardInner.classList.toggle("flipped");
+  if (lastnewsSelect) {
+    const lastNewsSelect = new Choices(lastnewsSelect, {
+      searchEnabled: false,
+      allowHTML: false,
+      shouldSort: false,
+      position: "bottom",
+      itemSelectText: "",
+    });
   }
 });

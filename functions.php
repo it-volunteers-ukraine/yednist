@@ -348,41 +348,44 @@ function get_post_activity() {
     wp_die();
 }
 
-//ajax latest news
 
-add_action('wp_ajax_load_latest_news', 'load_latest_news');
-add_action('wp_ajax_nopriv_load_latest_news', 'load_latest_news');
+// news ajax
+add_action('wp_ajax_load_initial_news', 'load_initial_news');
+add_action('wp_ajax_nopriv_load_initial_news', 'load_initial_news');
 
-function load_latest_news() {
-  // Перевірка nonce
-  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "news_nonce")) {
-    exit;
-  }
+function load_initial_news() {
+    if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "news_nonce")) {
+        exit;
+    }
 
-  $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
-    $paged++;
+    $order = !empty($_POST['order']) ? $_POST['order'] : 'DESC';
+    $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
+    $max_pages = ceil(wp_count_posts('news')->publish / 5);
 
-  // Побудова запиту для отримання постів
-  $args = array(
-    'post_type' => 'news',
-    'posts_per_page' => 5,
-    'paged' => $paged,
-    // 'orderby' => 'modified',
-    'post_status' => 'publish'
-  );
+    if ($_POST['prev_order'] && $_POST['prev_order'] !== $order) {
+        $paged = 1;
+    }
 
-  $query = new WP_Query($args);
-  ob_start();
-  if ($query->have_posts()) :
-    while ($query->have_posts()) : $query->the_post(); ?>
-<?php get_template_part('template-parts/one-news'); ?>
-<?php endwhile;
+    $args = array(
+        'post_type'      => 'news',
+        'posts_per_page' => 5,
+        'paged'          => $paged,
+        'orderby'        => 'modified',
+        'order'          => $order,
+        'post_status'    => 'publish'
+    );
+
+    $query = new WP_Query($args);
+    ob_start();
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            get_template_part('template-parts/one-news');
+        endwhile;
     endif;
 
-  $html = ob_get_clean();
-  wp_reset_postdata();
+    $html = ob_get_clean();
+    wp_reset_postdata();
 
-  // Відправка відповіді JSON з HTML та кількістю сторінок
-  wp_send_json(array('html' => $html, 'paged' => $paged));
-  wp_die();
+    wp_send_json(array('html' => $html, 'max_pages' => $max_pages, 'paged' => $paged));
+    wp_die();
 }

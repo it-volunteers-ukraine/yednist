@@ -36,8 +36,8 @@
   padding: 40px 120px 40px 40px;
   display: flex;
   gap: 40px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
+  overflow-y: auto;
   align-items: flex-start;
   background-color: $background;
   border-radius: $bid-border-radius;
