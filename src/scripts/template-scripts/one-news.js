@@ -8,6 +8,7 @@ jQuery(document).ready(function ($) {
   function hideLoader() {
     $(".lastnews__section .loader").hide();
   }
+  hideLoader();
 
   function getNewsNonce() {
     return news.nonce;

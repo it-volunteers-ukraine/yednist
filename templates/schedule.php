@@ -145,7 +145,9 @@ get_header();
       <div class="inner-container">
         <div class="lastnews__wrapper">
 
-          <?php $args = array(
+          <?php
+
+          $args = array(
           'post_type' => 'news',
           'posts_per_page' => 5,
           'orderby' => 'modified',

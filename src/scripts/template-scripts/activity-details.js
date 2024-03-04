@@ -8,6 +8,47 @@ let screenHeight = window.innerHeight;
 const computedStyle = getComputedStyle(activityModalEl);
 let containerHeight = parseInt(computedStyle.height);
 
+const theme_uri = uri_object.theme_directory_uri;
+const hide_btn = uri_object.hide_btn;
+const read_btn = uri_object.read_btn;
+
+document.addEventListener("click", (e) => {
+  const btn = e.target;
+  if (btn.className === "activity__modal--detais-open") {
+    const fullText = btn.nextElementSibling;
+    const shortText = btn.previousElementSibling;
+
+    if (fullText.classList.contains("hidden")) {
+      btn.innerHTML = `${hide_btn}
+        <span class="activity__modal--detais--icon active">
+        <svg>
+          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow"></use></svg></span>`;
+
+      fullText.classList.remove("hidden");
+      shortText.classList.add("hidden");
+    } else {
+      btn.innerHTML = `${read_btn}
+        <span class="activity__modal--detais--icon">
+        <svg>
+          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow"></use>
+        </svg>
+      </span>`;
+
+      fullText.classList.add("hidden");
+      shortText.classList.remove("hidden");
+    }
+
+    let containerHeight = parseInt(getComputedStyle(activityModalEl).height);
+    if (screenHeight < containerHeight) {
+      activityModalEl.style.transition = "none";
+      activityModalEl.classList.add("horizontal");
+    } else {
+      activityModalEl.classList.remove("horizontal");
+      activityModalEl.style.transition = "$transition-function";
+    }
+  }
+});
+
 function lookForSizeChanges() {
   screenHeight = window.innerHeight;
   screenOrientation(screenHeight);
@@ -65,47 +106,6 @@ function updateModalHeight() {
     screenOrientation(screenHeight);
   }
 }
-
-const theme_uri = uri_object.theme_directory_uri;
-const hide_btn = uri_object.hide_btn;
-const read_btn = uri_object.read_btn;
-
-document.addEventListener("click", (e) => {
-  const btn = e.target;
-  if (btn.className === "activity__modal--detais-open") {
-    const fullText = btn.nextElementSibling;
-    const shortText = btn.previousElementSibling;
-
-    if (fullText.classList.contains("hidden")) {
-      btn.innerHTML = `${hide_btn}
-        <span class="activity__modal--detais--icon active">
-        <svg>
-          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow"></use></svg></span>`;
-
-      fullText.classList.remove("hidden");
-      shortText.classList.add("hidden");
-    } else {
-      btn.innerHTML = `${read_btn}
-        <span class="activity__modal--detais--icon">
-        <svg>
-          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow"></use>
-        </svg>
-      </span>`;
-
-      fullText.classList.add("hidden");
-      shortText.classList.remove("hidden");
-    }
-
-    let containerHeight = parseInt(getComputedStyle(activityModalEl).height);
-    if (screenHeight < containerHeight) {
-      activityModalEl.style.transition = "none";
-      activityModalEl.classList.add("horizontal");
-    } else {
-      activityModalEl.classList.remove("horizontal");
-      activityModalEl.style.transition = "$transition-function";
-    }
-  }
-});
 
 jQuery(document).ready(function ($) {
   if (openActivityFormButtons) {
