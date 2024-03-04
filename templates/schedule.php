@@ -13,11 +13,37 @@ get_header();
       <div class="inner-container">
         <h1 class="page-title"><?php the_field('schedule_page_title'); ?></h1>
 
-        <div class="activities__wrapper"></div>
+        <div class="">
 
-        <?php get_template_part( 'template-parts/loader' ); ?>
+          <?php  $args = array(
+            'post_type' => 'activities',
+            'post_status' => 'publish',
+            'tax_query' => array(
+            array(
+              'taxonomy' => 'activities-categories',
+              'field'    => 'slug',
+              'terms'    => 'temporal_activities'
+            )
+          )
+          );
+
+          $query = new WP_Query($args); ?>
+
+          <?php if ($query->have_posts()) : ?>
+
+          <div class="activities__wrapper">
+            <?php  while ($query->have_posts()) : $query->the_post(); ?>
+
+            <?php get_template_part('template-parts/one-activity'); ?>
+
+            <?php endwhile; ?>
+          </div>
+          <?php   endif; ?>
+
+        </div>
+
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
-
+        <?php wp_reset_postdata(); ?>
       </div>
     </div>
   </section>
@@ -32,10 +58,10 @@ get_header();
                 'post_type'      => 'activities',
                 'numberposts'    => -1,
                 'order'          => 'ASC',  
-                'orderby' => 'meta_value',
-	              'meta_key' => 'activity_time',
-                'tax_query' => array(
-                    array(
+                'orderby'        => 'meta_value',
+	              'meta_key'       => 'activity_time',
+                'tax_query'      => array(
+                        array(
                         'taxonomy' => 'activities-categories',
                         'field'    => 'slug',
                         'terms'    => 'constant_activities'
@@ -68,15 +94,25 @@ get_header();
                 }
             }
 
-            // Выводим активности для каждого дня недели
+            //Активності для кожного дня тижня
             foreach ($activities_by_day as $day_slug => $activities) { ?>
         <div class="activity__table">
-          <div class="activity__table-title"><?php the_field($day_slug, 'options'); ?></div>
-          <?php foreach ($activities as $post) { ?>
-          <div class="activity__table-row">
-            <div class="activity__table-time">
+          <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
+            class="activity__table-title schedule-accordion">
+            <p><?php the_field($day_slug, 'options'); ?></p>
+            <div class="activity__table-arrow">
+              <svg>
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-arrow-down"></use>
+              </svg>
+            </div>
+          </div>
+          <div id="panel-<?php the_field($day_slug, 'options'); ?>" role="region"
+            class="activity__table-box schedule-panel">
+            <?php foreach ($activities as $post) { ?>
+            <div class="activity__table-row">
+              <div class="activity__table-time">
 
-              <?php
+                <?php
                   if( have_rows('activity_time') ):
 
                       while( have_rows('activity_time') ) : the_row();
@@ -88,10 +124,12 @@ get_header();
 
                       endwhile;
                   endif;?>
+              </div>
+              <?php get_template_part( 'template-parts/one-activity-row' );?>
+
             </div>
-            <?php get_template_part( 'template-parts/one-activity-row' );?>
+            <?php } ?>
           </div>
-          <?php } ?>
         </div>
         <?php } ?>
 
@@ -105,10 +143,58 @@ get_header();
     <div class="container">
       <h2 class="section-title"><?php the_field('last_news_title'); ?></h2>
       <div class="inner-container">
+        <div class="lastnews__wrapper">
 
+          <?php
+
+          $args = array(
+          'post_type' => 'news',
+          'posts_per_page' => 5,
+          'orderby' => 'modified',
+          'post_status' => 'publish'
+        );
+
+        $query = new WP_Query($args);
+        if ($query->have_posts()) : ?>
+
+          <?php  while ($query->have_posts()) : $query->the_post(); ?>
+          <?php get_template_part('template-parts/one-news'); ?>
+          <?php endwhile; ?>
+
+          <?php get_template_part('template-parts/loader'); ?>
+
+          <?php 
+          // текущая страница
+          $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+          // максимум страниц
+          $max_pages = $query->max_num_pages;
+          // если текущая страница меньше, чем максимум страниц, то выводим кнопку
+          if( $paged < $max_pages ) { ?>
+
+          <div id="loadmore" style="text-align:center;">
+            <a href="#" data-max_pages="<?php echo $max_pages ?>" data-paged="<?php echo $paged ?>"
+              class="button primary-button loadnews-btn"><?php the_field("last_news_button", "options"); ?></a>
+          </div>
+
+          <?php } ?>
+
+          <?php endif; ?>
+
+          <?php
+        wp_reset_query(); ?>
+        </div>
       </div>
     </div>
   </section>
+
+  <div class="activity-backdrop is-hidden" id="js-activity-form">
+
+    <div class="activity-modal">
+
+    </div>
+
+  </div>
+
 </main>
 
 

@@ -30,11 +30,19 @@
   }
   &:not(:last-child) {
     margin-bottom: 40px;
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 32px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 16px;
+    }
+  }
+  @media screen and (max-width: $tablet2) {
+    border-color: $black;
   }
 }
 
 .activity__table-title {
-  height: 80px;
   border-bottom: 1px solid $blue;
   padding: 16px 48px;
   background: $lavender;
@@ -44,10 +52,62 @@
   text-transform: uppercase;
   @media screen and (max-width: $desktop) {
     font-size: 32px;
-    height: 70px;
   }
   @media screen and (max-width: $tablet2) {
+    padding: 12px 16px;
     font-size: 20px;
-    height: 54px;
+    line-height: 1.5;
+    border-color: $black;
+  }
+  @media screen and (max-width: $mobile) {
+    border: none;
+    position: relative;
+    padding: 8px 20px;
+    font-size: 18px;
+    &.active {
+      border-bottom: 1px solid $black;
+      & .activity__table-arrow {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}
+
+.activity__table-arrow {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 16px;
+    height: 10px;
+    transition: $transition-function;
+    & svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      stroke: $black;
+      stroke-width: 1.5;
+      width: 16px;
+      height: 10px;
+    }
+  }
+}
+
+.loadnews-btn {
+  margin: 0 auto;
+  margin-top: 40px;
+  min-width: 425px;
+  @media screen and (max-width: $desktop) {
+    min-width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin-top: 32px;
+    min-width: 246px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-top: 16px;
+    width: 100%;
   }
 }
