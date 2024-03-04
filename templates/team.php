@@ -19,25 +19,23 @@ get_header();
         </section>
 
 
-        <section class="section">
+        <section class="section team-members">
             <div class="container">
                 <h2 class="section-title members-title"><?php the_field('title'); ?></h2>
                 <div class="inner-container">
-                    <div class="swiper">
+                    <div class="swiper team_slider">
                         <div class="swiper-wrapper">
                             <?php
                             $teamMembers = get_field('team-members');
                             foreach ($teamMembers as $row) : ?>
                                 <div class="swiper-slide">
-                                    <div class="team-member">
-                                        <div class="team-image">
+                                        <div class="team-image size-block">
                                             <img src="<?= $row['image']; ?>" alt="image">
                                             <div class="block">
                                                 <div class="info"><?= $row['hover-info']; ?></div>
                                             </div>
                                         </div>
                                         <span><?= $row['description']; ?></span>
-                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
