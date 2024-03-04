@@ -255,7 +255,7 @@
   overflow: hidden;
   position: relative;
   max-width: 516px;
-  @media screen and (max-width: $desktop1) {
+  @media screen and (max-width: $desktop) {
     max-width: 479px;
   }
   @media screen and (max-width: $tablet2) {
@@ -264,6 +264,12 @@
   @media screen and (max-width: 690px) {
     border-radius: $small-border-radius;
     max-height: 240px;
+  }
+  &:has(.photo__photo.single-image) {
+    @media screen and (max-width: $mobile) {
+      transform: rotate(4deg);
+      margin-top: 10px;
+    }
   }
 }
 .photo__wrapper {
@@ -305,8 +311,12 @@
   object-fit: cover;
   object-position: center;
   top: 6.2%;
+  width: 95.54%;
+  @media screen and (max-width: $desktop) {
+    width: 95.6%;
+  }
   @media screen and (max-width: $tablet2) {
-    width: 100%;
+    width: 96.55%;
     top: 11.5%;
   }
   @media screen and (max-width: $mobile) {
