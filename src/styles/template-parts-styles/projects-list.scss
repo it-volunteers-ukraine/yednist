@@ -326,8 +326,8 @@
     object-fit: none;
   }
 }
-.projects__swiper__item {
-  &:last-child {
+.projects__section__swiper__item:last-child {
+  .photo {
     .photo__photo {
       &:first-child {
         @media screen and (max-width: $tablet2) {
