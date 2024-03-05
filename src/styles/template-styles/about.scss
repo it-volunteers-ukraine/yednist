@@ -1,3 +1,120 @@
+@import "../variables.scss";
+
 .about {
-    color: red
+    /*HERO=================================*/
+    &__hero {
+        margin-bottom: 120px;
+        @media (max-width: $desktop) {
+            margin-bottom: 100px;
+        }
+        @media (max-width: $tablet2) {
+            margin-bottom: 60px;
+        }        
+    }
+    &__title {
+        margin-bottom: 40px;
+        @media (max-width: $tablet2) {
+            margin-bottom: 16px;
+        }
+    }
+    &__img {  
+        margin-bottom: 40px;  
+        @media (max-width: $tablet2) {
+            margin-bottom: 16px;
+        }     
+        img {
+            border-radius: $bid-border-radius;
+            @media (max-width: $tablet2) {
+                border-radius: $small-border-radius;
+            }
+        }
+    }    
+    &__purpose {
+        display: flex;
+        gap: 20px;
+        @media (max-width: $mobile) {
+            flex-direction: column;
+            gap: 12px;
+        }    
+    }
+    &__mission {
+        max-width: 575px;
+        background-color: $lavender;
+        border: 1px solid $black;
+        border-radius: $bid-border-radius;
+        padding: 40px 27px;    
+        font-style: italic;    
+        font-size: 28px;        
+        line-height: 42px;
+        text-align: center;
+        display: flex; p { margin: auto; }
+        @media (max-width: $desktop) {
+            max-width: 426px;
+            padding: 65px 24px;        
+            font-size: 20px;
+            line-height: 30px;
+        }
+        @media (max-width: $tablet2) {
+            border-radius: $small-border-radius;
+            max-width: 248px;
+            padding: 58px 24px;        
+            font-size: 16px;
+            line-height: 25px;
+        }
+        @media (max-width: $mobile) {
+            max-width: 100%;
+            padding: 16px;        
+            font-size: 14px;
+            line-height: 21px;
+        }        
+    }
+    &__message {
+        flex: 1 1 auto;  
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        font-style: italic;
+        font-size: 24px;        
+        line-height: 36px;
+        text-align: center;  
+        @media (max-width: $desktop) {                   
+            font-size: 20px;
+            line-height: 30px;
+        }   
+        @media (max-width: $tablet2) {
+            font-size: 16px;
+            line-height: 24px;
+        }   
+        @media (max-width: $mobile) {
+            gap: 12px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+    &__message-row {
+        flex: 1 1 auto;  
+        display: flex;
+        gap: 20px;    
+        @media (max-width: $mobile) {
+            gap: 12px;
+        }    
+    }
+    &__message-block {
+        padding: 40px 27px;        
+        border: 1px solid $black;
+        border-radius: $bid-border-radius;
+        display: flex; p { margin: auto; }
+        @media (max-width: $desktop) {            
+            padding: 24px;  
+        }
+        @media (max-width: $tablet2) {
+            border-radius: $small-border-radius;
+        }
+        @media (max-width: $mobile) {
+            padding: 16px;  
+        }
+    }
+    &__message-first {background-color: $yellow;}
+    &__message-second {background-color: $pink;}
+    &__message-column { flex: 1 1 auto; background-color: $lavender; }
 }
