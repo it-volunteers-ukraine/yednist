@@ -6,7 +6,7 @@ get_header();
 ?>
 <main class="about">  
     <?php get_template_part( 'template-parts/breadcrumbs' ); ?>   
-    <section class="about__hero"> 
+    <section class="about__hero about__section"> 
         <div class="container">            
             <div class="inner-container">
                <h2 class="about__title page-title"><?php the_field('about-title'); ?></h2>
@@ -27,6 +27,16 @@ get_header();
                 </div>
             </div>  
         </div>    
-    </section>   
+    </section> 
+    <section class="about__activity about__section"> 
+        <div class="container"> 
+            <h2 class="about__activity-title section-title"><?php the_field('about-activity'); ?></h2>           
+            <div class="inner-container">
+                <div class="about__activity-body">
+                    <p class="about__activity-text"><?php the_field('about-activity-text'); ?></p>  
+                </div> 
+            </div>     
+        </div>
+    </section>
 </main>
 <?php get_footer(); ?>

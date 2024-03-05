@@ -1,8 +1,7 @@
 @import "../variables.scss";
 
-.about {
-    /*HERO=================================*/
-    &__hero {
+.about {    
+    &__section {
         margin-bottom: 120px;
         @media (max-width: $desktop) {
             margin-bottom: 100px;
@@ -11,22 +10,32 @@
             margin-bottom: 60px;
         }        
     }
+
+
+    /*HERO=====================================================*/
     &__title {
         margin-bottom: 40px;
         @media (max-width: $tablet2) {
             margin-bottom: 16px;
         }
     }
-    &__img {  
+    &__img { 
+        overflow: hidden;   
+        transition: opacity 0.8s ease 0s; 
         margin-bottom: 40px;  
         @media (max-width: $tablet2) {
             margin-bottom: 16px;
         }     
         img {
+            transition: transform 0.8s ease 0s;
             border-radius: $bid-border-radius;
             @media (max-width: $tablet2) {
                 border-radius: $small-border-radius;
             }
+            &:hover {               
+                transition: ease 0.7s;
+                transform: scale(1.1);
+            }    
         }
     }    
     &__purpose {
@@ -117,4 +126,40 @@
     &__message-first {background-color: $yellow;}
     &__message-second {background-color: $pink;}
     &__message-column { flex: 1 1 auto; background-color: $lavender; }
+
+
+    /*ACTIVITY================================================================*/       
+    &__activity-body {
+        padding: 60px 50px;
+        border-radius: $bid-border-radius;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        background: $white;
+        @media (max-width: $desktop) {
+            padding: 48px;
+        }   
+        @media (max-width: $tablet2) {
+            padding: 40px;
+            border-radius: $small-border-radius;
+        }
+        @media (max-width: $mobile) {
+            padding: 16px;
+        }
+    }
+    &__activity-text {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        @media (max-width: $desktop) {
+            font-size: 32px;
+            line-height: 38px;
+        }
+        @media (max-width: $tablet2) {
+            font-size: 20px;
+            line-height: 30px;
+        }
+        @media (max-width: $mobile) {
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
 }
