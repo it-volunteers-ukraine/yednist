@@ -1,37 +1,64 @@
-const teamSwiper = new Swiper(".swiper", {
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    spaceBetween: 30,
-    loop: true,
-    breakpoints: {
-        320: {
-            slidesPerView: 1,
-            enabled: true
-        },
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 28,
-            enabled: true,
-        },
-        1199: {
-            slidesPerView: 2,
-            spaceBetween: 28,
-            enabled: true,
-            grid: {
-                rows: 3,
-            },
-        },
-        1200: {
-            enabled: false,
-            grid: {
-                rows: 3,
-            },
-            slidesPerView: 3,
+window.addEventListener('DOMContentLoaded', () => {
+
+    const resizableSwiper = (breakpoint, swiperClass, swiperSettings, callback) => {
+
+        let swiper;
+
+        breakpoint = window.matchMedia(breakpoint);
+
+        const enableSwiper = function (className, settings) {
+
+            swiper = new Swiper(className, settings);
+
+            if (callback) {
+                callback(swiper);
+            }
         }
-    },
+
+        const checker = function () {
+            if (breakpoint.matches) {
+                return enableSwiper(swiperClass, swiperSettings);
+            } else {
+                if (swiper !== undefined) swiper.destroy(true, true);
+                return;
+            }
+        }
+
+        breakpoint.addEventListener('change', checker);
+        checker();
+    }
+
+
+    const commonSwiperSettings = {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    };
+
+
+    resizableSwiper(
+        '(max-width:575px)',
+        '.team_slider',
+        {
+            ...commonSwiperSettings,
+            slidesPerView: 1
+        }
+    )
+
+
+    resizableSwiper(
+        '(max-width:991px)',
+        '.team_slider',
+        {
+            ...commonSwiperSettings,
+            slidesPerView: 2,
+        }
+    )
+
 })
+
 
 
 

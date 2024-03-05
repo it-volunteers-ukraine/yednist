@@ -4,13 +4,18 @@
 /* section Our team */
 
 
-.team-title {
-  margin-bottom: 40px;
-}
+.our-team {
+
+  .team-image {
+    margin-bottom: 25px;
+  }
 
 
-.team-image {
-  margin-bottom: 25px;
+  .team-title {
+    margin-bottom: 40px;
+  }
+
+
 }
 
 
@@ -23,35 +28,42 @@
   .members-title {
     padding: 0 60px;
     margin-bottom: 50px;
+
+
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 40px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 12px;
+    }
+
+
   }
 
+
+  .wrap {
+    display: contents;
+
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+    }
+
+  }
 
   // Swiper
 
   .swiper {
     padding: 30px 0 70px 0;
     width: 100%;
-    display: contents;
+    overflow: hidden;
 
 
     .swiper-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 60px 95px;
-
-
-      @media screen and (max-width: $tablet2) {
-        flex-wrap: nowrap;
-        display: flex;
-        gap: 28px;
-      }
-
-      @media screen and (max-width: $desktop) {
-        gap: 40px 75px;
-      }
 
 
       .swiper-slide {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -60,16 +72,15 @@
         .team-image {
           margin-bottom: 16px;
           position: relative;
+          @extend .size-block;
 
 
           img {
             border-radius: 24px;
-            max-width: 100%;
           }
 
           .block {
             @extend .size-block;
-            border-radius: 24px;
             position: absolute;
             transform: rotate(6deg);
             bottom: 0;
@@ -78,33 +89,39 @@
             .info {
               @extend .size-block;
               padding: 64px 40px;
-              border-radius: 24px;
               transform: rotate(-6deg);
               line-height: 50px;
               font-size: 18px;
             }
           }
-
-          .size-block {
-            width: 404px;
-            height: 570px;
-
-            @media screen and (max-width: $desktop) {
-              width: 316px;
-              height: 423px;
-              line-height: 23px;
-            }
-
-
-            @media screen and (max-width: $mobile) {
-              width: 288px;
-              height: 386px;
-              line-height: 20px;
-            }
-
-          }
         }
 
+        .size-block {
+          width: 404px;
+          height: 542px;
+          border-radius: 24px;
+
+          @media screen and (max-width: $desktop) {
+            width: 315px;
+            height: 424px;
+            line-height: 23px;
+          }
+
+
+          @media screen and (max-width: $mobile) {
+            width: 288px;
+            height: 386px;
+            line-height: 20px;
+          }
+
+          @media screen and (max-width: $tablet2) {
+            width: 330px;
+            height: 443px;
+            line-height: 28px;
+          }
+
+
+        }
 
         span {
           font-size: 24px;
@@ -115,8 +132,26 @@
           }
         }
 
-
       }
+
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px 95px;
+
+
+      @media screen and (max-width: $tablet2) {
+        display: flex;
+        column-gap: 0;
+      }
+
+      @media screen and (max-width: $mobile) {
+        display: flex;
+        column-gap: 0;
+      }
+
     }
   }
 
@@ -177,6 +212,12 @@
       @media screen and (max-width: $tablet2) {
         left: 240px;
       }
+
+
+      @media screen and (max-width: $desktop) {
+        display: none;
+      }
+
     }
   }
 
@@ -193,8 +234,9 @@
     display: none;
   }
 
-
 }
+
+
 
 
 
