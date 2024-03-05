@@ -49,14 +49,14 @@
           min-height: 588px;
           gap: 8px;
         }
-        &.blue {
-          background-color: $lavender;
-        }
-        &.yellow {
+        &:nth-child(3n + 1) {
           background-color: $yellow;
         }
-        &.pink {
+        &:nth-child(3n + 2) {
           background-color: $pink;
+        }
+        &:nth-child(3n) {
+          background-color: $lavender;
         }
         &:last-child {
           .projects__section__swiper__item__photo__container {
