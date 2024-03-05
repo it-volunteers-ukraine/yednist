@@ -1,7 +1,7 @@
-<div class="one-activity-js activity__flip-card" ontouchstart="
-    const card = event.currentTarget;
-    const flipCardInner = card.querySelector('.activity__flip-card-inner');
-    flipCardInner.classList.toggle('flipped');">
+<div class="one-activity-js activity__flip-card" onclick="
+if (window.innerWidth < 991.98) {
+  const flipCardInner = this.querySelector('.activity__flip-card-inner'); 
+  flipCardInner.classList.toggle('flipped'); }">
 
   <div class="activity__flip-card-inner">
 
@@ -60,5 +60,6 @@
         <?php get_template_part( 'template-parts/activity-buttons' ); ?>
       </div>
     </div>
+
   </div>
 </div>

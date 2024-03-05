@@ -1,5 +1,24 @@
 @import "../variables";
 
+.activities__section {
+  & .activities-pagination__block {
+    @media screen and (max-width: $tablet1) {
+      margin: 12px auto 0;
+      justify-content: space-between;
+      max-width: 315px;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 288px;
+    }
+  }
+  & .activities__button-next,
+  & .activities__button-prev {
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+    }
+  }
+}
+
 .activities__wrapper {
   margin: 0 auto;
   width: 100%;
@@ -160,6 +179,7 @@
       border-radius: 40px;
       border: none;
       background: $white;
+      transition: all $transition-function;
       @media screen and (max-width: $desktop) {
         min-width: 203px;
         min-height: 48px;
@@ -213,6 +233,7 @@
         margin-top: 8px;
         color: $blue;
         font-size: 24px;
+        transition: all $transition-function;
         @media screen and (max-width: $desktop) {
           font-size: 20px;
         }

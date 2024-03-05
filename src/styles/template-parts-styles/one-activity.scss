@@ -39,7 +39,9 @@
 }
 
 .activity__flip-card:hover .activity__flip-card-inner {
-  transform: rotateY(180deg);
+  @media screen and (min-width: 992px) {
+    transform: rotateY(180deg);
+  }
 }
 
 .activity__flip-card-inner.flipped {
