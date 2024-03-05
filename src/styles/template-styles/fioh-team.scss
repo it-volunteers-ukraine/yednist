@@ -1,0 +1,164 @@
+@import "../variables";
+
+.fioh-team {
+  &__title {
+    margin-bottom: 40px;
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 16px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 12px;
+    }
+  }
+  &__image-wrapper {
+    border-radius: $bid-border-radius;
+    @media screen and (max-width: $tablet2) {
+      border-radius: $small-border-radius;
+    }
+  }
+  &__image-wrapper img {
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+
+  //appeal section
+
+  &__appeal-wrapper {
+    display: grid;
+    grid-template-areas:
+      "a b c"
+      "a d e"
+      "f f e";
+    gap: 20px;
+  }
+
+  &__appeal-wrapper p {
+    border: 1px solid black;
+    border-radius: $bid-border-radius;
+    text-align: center;
+  }
+
+  &__appeal-text-1 {
+    background-color: $lavender;
+    padding: 41px 40px;
+    grid-area: a;
+  }
+
+  &__appeal-text-2 {
+    background-color: $pink;
+    padding: 40px 34px;
+    grid-area: b;
+  }
+
+  &__appeal-text-3 {
+    background-color: $yellow;
+    padding: 40px 24px;
+    grid-area: c;
+  }
+
+  &__appeal-text-4 {
+    background-color: $lavender;
+    padding: 40px 40px;
+    grid-area: d;
+  }
+
+  &__appeal-text-5 {
+    background-color: $lavender;
+    padding: 42px 40px;
+    grid-area: e;
+  }
+  &__appeal-text-6 {
+    background-color: $yellow;
+    padding: 30px 40px;
+    grid-area: f;
+  }
+
+  //project section
+
+  &__project__list {
+    display: flex;
+    gap: 95px;
+    margin-bottom: 40px;
+    @media screen and (max-width: $desktop) {
+      gap: 44px;
+      margin-bottom: 20px;
+    }
+    @media screen and (max-width: $tablet2) {
+      gap: 48px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__project__item {
+    display: flex;
+    flex-direction: column;
+    background-color: $lavender;
+    border-radius: $small-border-radius;
+    overflow: hidden;
+  }
+
+  &__project__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__project__name {
+    padding: 16px;
+  }
+
+  //team section
+
+  &__team-repeater-item {
+    display: flex;
+    gap: 60px;
+    background-color: $white;
+    border-radius: $bid-border-radius;
+    border: 1px solid $violet-grey;
+    padding: 40px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  &__team-repeater-img {
+    border-radius: $small-border-radius;
+    max-width: 535px;
+    margin: 0 auto;
+    overflow: hidden;
+    @media screen and (max-width: $desktop) {
+      max-width: 448px;
+    }
+    @media screen and (max-width: $tablet2) {
+      max-width: 448px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__team-repeater-img img {
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+
+  &__team-repeater-item-bio {
+    margin-bottom: 192px;
+    width: 670px;
+  }
+
+  &__team-repeater-item-info {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+  }
+
+  &__team-repeater-item-name {
+    font-size: 24px;
+    color: $blue;
+  }
+}
