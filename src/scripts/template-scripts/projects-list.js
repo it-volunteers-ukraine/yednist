@@ -54,15 +54,4 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     },
   });
-
-  const slides = projectsSwiper.slides;
-  slides.forEach((slide, index) => {
-    if (index % 3 === 0) {
-      slide.classList.add("yellow");
-    } else if (index % 3 === 1) {
-      slide.classList.add("pink");
-    } else {
-      slide.classList.add("blue");
-    }
-  });
 });
