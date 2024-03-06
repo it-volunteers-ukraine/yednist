@@ -144,47 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-  const activitiesWrapper = document.querySelector(".activities__wrapper");
-  // Swipe
-  activitiesWrapper.addEventListener("touchstart", handleTouchStart, false);
-  activitiesWrapper.addEventListener("touchmove", handleTouchMove, false);
-
-  let xDown = null;
-
-  function handleTouchStart(event) {
-    const firstTouch = event.touches[0];
-    xDown = firstTouch.clientX;
-  }
-
-  function handleTouchMove(event) {
-    if (!xDown) {
-      return;
-    }
-
-    let xUp = event.touches[0].clientX;
-    let xDiff = xDown - xUp;
-
-    // Swipe left
-    if (xDiff > 0) {
-      if (currentPage < totalPages) {
-        currentPage++;
-        updateSlider();
-        currentBullet();
-        updatePaginationButtons();
-      }
-    }
-    // Swipe right
-    else {
-      if (currentPage > 1) {
-        currentPage--;
-        updateSlider();
-        currentBullet();
-        updatePaginationButtons();
-      }
-    }
-    xDown = null;
-  }
-
   // sort select
   const lastnewsSelect = document.querySelector(".lastnews_select");
 
