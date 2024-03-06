@@ -75,7 +75,7 @@ function wp_it_volunteers_scripts() {
         'theme_directory_uri' => get_template_directory_uri(),
         'hide_btn'=> get_field("hide_btn", "option"),
         'read_btn'=> get_field("read_btn", "option")
-));
+        ));
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
@@ -99,7 +99,9 @@ function wp_it_volunteers_scripts() {
       wp_localize_script('feedback-page-scripts', 'myAjax', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('feedbacks_nonce'),
-      ));
+            'hide_btn'=> get_field("hide_btn", "option"),
+            'read_btn'=> get_field("read_more_btn", "option")
+          ));
     }
 
     if (is_singular() && locate_template('template-parts/address.php')) {
@@ -309,17 +311,6 @@ function do_insert() {
             wp_send_json_error( 'Failed to add post.' );
         }
     }
-}
-
-//change the name of home page in the breadcrumbs
-add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
-function my_breadcrumb_title_swapper($title, $type, $id)
-{
-    if(in_array('home', $type))
-    { if(function_exists('pll__'))
-        $title = pll__('Головна');
-    }
-    return $title;
 }
 
 
