@@ -313,17 +313,6 @@ function do_insert() {
     }
 }
 
-//change the name of home page in the breadcrumbs
-add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
-function my_breadcrumb_title_swapper($title, $type, $id)
-{
-    if(in_array('home', $type))
-    { if(function_exists('pll__'))
-        $title = pll__('Головна');
-    }
-    return $title;
-}
-
 
 // ajax activity details
 add_action('wp_ajax_get_post_activity', 'get_post_activity');
