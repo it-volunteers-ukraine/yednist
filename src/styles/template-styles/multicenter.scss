@@ -1,0 +1,31 @@
+@import "../variables";
+
+.multicenter__section--title {
+  margin-bottom: 40px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 16px;
+  }
+}
+
+.multicenter__image {
+  margin-bottom: 60px;
+  border-radius: $bid-border-radius;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 55%;
+  @media screen and (max-width: $tablet2) {
+    padding-bottom: 58%;
+    margin-bottom: 40px;
+    border-radius: $small-border-radius;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-bottom: 69%;
+    margin-bottom: 20px;
+  }
+}
+
+.multicenter__image img {
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
