@@ -24,8 +24,10 @@
     width: calc(100% - 40px);
   }
   &__current__page {
-    & a {
-      color: $blue;
+    &:not(:last-child) {
+      a {
+        color: $blue;
+      }
     }
     .header__projects__content {
       color: $blue;
