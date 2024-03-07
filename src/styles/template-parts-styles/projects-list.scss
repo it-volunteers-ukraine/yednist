@@ -61,10 +61,10 @@
         &__button {
           font-family: $primary-font;
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
           @media screen and (max-width: $desktop) {
             font-size: 16px;
-            line-height: 24px;
+            line-height: 1.5;
           }
         }
         &__mark {
@@ -103,22 +103,22 @@
             text-align: center;
             font-family: $secondary-font;
             font-size: 16px;
-            line-height: 26px;
+            line-height: 1.62;
             color: $white;
             text-transform: uppercase;
             @media screen and (max-width: 1500px) {
               font-size: 14px;
-              line-height: 22px;
+              line-height: 1.57;
             }
             @media screen and (max-width: 1235px) {
               font-size: 10px;
-              line-height: 16px;
+              line-height: 1.6;
               max-width: 142.37px;
             }
             @media screen and (max-width: $mobile) {
               max-width: 89px;
               font-size: 8px;
-              line-height: 13px;
+              line-height: 1.62;
             }
           }
         }
@@ -153,37 +153,33 @@
           font-family: $primary-font;
           font-size: 40px;
           font-weight: 300;
-          line-height: 48px;
+          line-height: 1.2;
           color: $blue;
           @media screen and (max-width: $desktop) {
             font-size: 32px;
-            line-height: 38px;
+            line-height: 1.18;
           }
           @media screen and (max-width: $tablet2) {
             font-size: 20px;
-            line-height: 30px;
+            line-height: 1.5;
             text-transform: uppercase;
           }
           @media screen and (max-width: $mobile) {
             font-size: 18px;
-            line-height: 27px;
+            line-height: 1.5;
           }
         }
         &__description {
           font-family: $secondary-font;
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
           @media screen and (max-width: $desktop) {
             font-size: 18px;
-            line-height: 27px;
+            line-height: 1.5;
           }
           @media screen and (max-width: $desktop1) {
             font-size: 14px;
-            line-height: 22px;
-          }
-          @media screen and (max-width: $mobile) {
-            font-size: 14px;
-            line-height: 22px;
+            line-height: 1.57;
           }
         }
         &__photo {
