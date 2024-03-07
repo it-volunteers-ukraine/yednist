@@ -55,6 +55,10 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'projects-style', get_template_directory_uri() . '/assets/styles/template-styles/projects.css',array('main'));
       wp_enqueue_script( 'projects-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/projects.js', array(), false, true );
   }
+  if ( is_page_template('templates/boarding-school.php') ) {
+    wp_enqueue_style( 'boarding-school-style', get_template_directory_uri() . '/assets/styles/template-styles/boarding-school.css', array('main') );
+    wp_enqueue_script( 'boarding-school-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/boarding-school.js', array(), false, true );
+  }
     if ( is_page_template('templates/gallery.php') ) {
       wp_enqueue_style( 'gallery-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery.css', array('main') );
       wp_enqueue_script( 'gallery-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery.js', array(), false, true );
