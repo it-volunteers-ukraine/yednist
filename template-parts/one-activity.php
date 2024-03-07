@@ -6,12 +6,14 @@ if (window.innerWidth < 991.98) {
   <div class="activity__flip-card-inner">
 
     <div class="activity__flip-card-front">
-      <?php 
-      $image = get_field('activity_big_image');
-      $size = 'medium_large'; // (thumbnail, medium, large, full or custom size)
-      if( $image ) {
-          echo wp_get_attachment_image( $image, $size );
-      } ?>
+      <div class="activity__flip-card-img">
+        <?php 
+        $image = get_field('activity_big_image');
+        $size = 'medium_large'; // (thumbnail, medium, large, full or custom size)
+        if( $image ) {
+            echo wp_get_attachment_image( $image, $size );
+        } ?>
+      </div>
     </div>
 
     <div class="activity__flip-card-back">
@@ -58,6 +60,17 @@ if (window.innerWidth < 991.98) {
           </li>
         </ul>
         <?php get_template_part( 'template-parts/activity-buttons' ); ?>
+        <?php $learn_more = get_field('activity_learn_more_btn');
+        $post_id = get_the_ID();
+        if($learn_more) { ?>
+        <div class="learn__more--wrap">
+          <button class="button secondary-button activity__button js-open-activity-form"
+            data-post-id="<?php echo $post_id; ?>">
+            <?php echo $learn_more; ?>
+          </button>
+          <div class="button__loader hidden"></div>
+        </div>
+        <?php } ?>
       </div>
     </div>
 

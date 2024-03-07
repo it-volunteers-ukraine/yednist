@@ -80,6 +80,7 @@ function wp_it_volunteers_scripts() {
         'hide_btn'=> get_field("hide_btn", "option"),
         'read_btn'=> get_field("read_btn", "option")
         ));
+        
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
@@ -160,6 +161,11 @@ function wp_it_volunteers_scripts() {
             'nonce'   => wp_create_nonce('news_nonce'),
         ));
     }
+    
+        if ( is_singular() && locate_template('templates/multicenter.php') ) {
+        wp_enqueue_style( 'multicenter-style', get_template_directory_uri() . '/assets/styles/template-styles/multicenter.css', array('main') );
+        wp_enqueue_script( 'multicenter-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/multicenter.js', array(), false, true );
+      }
 }
 /** add fonts */
 function add_google_fonts() {
