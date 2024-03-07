@@ -15,6 +15,26 @@ get_header();
                     <div class="team-image">
                         <img src="<?php the_field('image'); ?>" alt="team-image">
                     </div>
+                    <div class="about-team">
+                        <?php
+                        $aboutTeam = get_field('about-team');
+                        foreach ($aboutTeam as $row): ?>
+                            <div class="item">
+                                <p class="info"><?= $row['info']; ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="founders">
+                        <?php
+                        $founders = get_field('founders');
+                        foreach ($founders as $row) : ?>
+                        <div class="image">
+                            <img src="<?= $row['founders-image']; ?>" alt="image">
+                            <div class="placeholder"><?= $row['placeholder']; ?></div>
+                        </div>
+                        <p class="description"><?= $row['description']; ?></p>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
