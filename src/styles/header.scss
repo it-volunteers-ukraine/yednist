@@ -23,7 +23,7 @@
     padding: 8px 16px;
     width: calc(100% - 40px);
   }
-  &__current__page {
+  .header__menu__item &__current__page {
     &:not(:last-child) {
       a {
         color: $blue;
