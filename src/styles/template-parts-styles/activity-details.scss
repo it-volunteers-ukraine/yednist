@@ -80,8 +80,9 @@
 
 .activity__modal--box {
   @media screen and (max-width: $mobile) {
-    display: flex;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 24% auto;
+    column-gap: 8px;
     margin-bottom: 24px;
   }
 }

@@ -77,9 +77,11 @@ $post = $args['post'];
   <div class="activity__modal--line"></div>
 
   <?php $fullContent = get_field('activity_caption');
+  $content = wp_trim_words($fullContent, 13, "...");
   $contentExcerpt = wp_trim_words($fullContent, 12, "..."); ?>
 
   <div class="activity__modal--detais-box">
+    <?php if (strlen($content) > strlen($contentExcerpt)) { ?>
     <div class="activity__modal--detais-short"><?php echo $contentExcerpt?></div>
 
     <button id="" class='activity__modal--detais-open' type='button'><?php the_field('read_btn', 'option'); ?>
@@ -93,6 +95,14 @@ $post = $args['post'];
     <div class="activity__modal--detais-full hidden">
       <?php if($fullContent) echo $fullContent; ?>
     </div>
+
+    <?php } else { ?>
+
+    <div class="activity__modal--detais-full">
+      <?php if($fullContent) echo $fullContent; ?>
+    </div>
+
+    <? } ?>
 
   </div>
 
