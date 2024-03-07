@@ -25,6 +25,19 @@ $post = $args['post'];
       </div>
       <p class="activity__modal--text"><?php the_field('activity_date'); ?></p>
     </li>
+    <?php
+    $no_registration = get_field('no_registration');
+    if ($no_registration) {
+    ?>
+    <li class="activity__modal--item">
+      <div class="activity__modal--icon">
+        <svg>
+          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_no-symbol"></use>
+        </svg>
+      </div>
+      <p class="activity__modal--text"><?php echo $no_registration; ?></p>
+    </li>
+    <?php }?>
     <li class="activity__modal--item">
       <div class="activity__modal--icon">
         <svg>
@@ -64,9 +77,11 @@ $post = $args['post'];
   <div class="activity__modal--line"></div>
 
   <?php $fullContent = get_field('activity_caption');
+  $content = wp_trim_words($fullContent, 13, "...");
   $contentExcerpt = wp_trim_words($fullContent, 12, "..."); ?>
 
   <div class="activity__modal--detais-box">
+    <?php if (strlen($content) > strlen($contentExcerpt)) { ?>
     <div class="activity__modal--detais-short"><?php echo $contentExcerpt?></div>
 
     <button id="" class='activity__modal--detais-open' type='button'><?php the_field('read_btn', 'option'); ?>
@@ -80,6 +95,14 @@ $post = $args['post'];
     <div class="activity__modal--detais-full hidden">
       <?php if($fullContent) echo $fullContent; ?>
     </div>
+
+    <?php } else { ?>
+
+    <div class="activity__modal--detais-full">
+      <?php if($fullContent) echo $fullContent; ?>
+    </div>
+
+    <? } ?>
 
   </div>
 
