@@ -1,0 +1,23 @@
+@import "../variables.scss";
+.school {
+  &__section {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      @media screen and (max-width: $desktop) {
+        gap: 40px;
+      }
+      @media screen and (max-width: $mobile) {
+        gap: 16px;
+      }
+      &__quotation {
+        background-color: $lavender;
+        width: 100%;
+        padding: 72px 40px 72px 140px;
+        border: 1px solid $black;
+        border-radius: $bid-border-radius;
+      }
+    }
+  }
+}
