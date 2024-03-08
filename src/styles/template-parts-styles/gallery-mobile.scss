@@ -1,0 +1,36 @@
+@import "../variables.scss";
+
+.gallery-mobile-swiper {
+    .gallery-mobile-item {
+        min-height: 342px;
+        a {                  
+            transition: all $transition-function;
+            &:hover {
+                color: $blue;              
+            }           
+        }          
+    }
+    .gallery-mobile-slide {
+        border-radius: $small-border-radius;
+        margin-bottom: 36px;
+        &:nth-child(odd) {
+            background-color: $lavender;
+        }    
+        &:nth-child(even) {
+            background-color: $yellow;
+        }
+        &:nth-child(3n) {
+            background-color: $pink;
+        }
+    }  
+    .gallery-mobile-pagination {
+        
+        .swiper-pagination-bullet {
+            border: 2px solid $violet-grey;
+            background-color: $white;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: $violet-grey;
+        }
+    }
+}
