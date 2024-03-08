@@ -22,6 +22,10 @@
     }
   }
 
+  & .breadcrumbs {
+    line-height: 0;
+  }
+
   & .breadcrumbs span {
     font-family: $secondary-font;
     color: $dark-grey;

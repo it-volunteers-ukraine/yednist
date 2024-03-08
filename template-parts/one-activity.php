@@ -51,11 +51,7 @@ if (window.innerWidth < 991.98) {
               </svg>
             </div>
             <p class="activity__text">
-              <?php
-              $category = get_the_terms($post->ID, 'activities-target');
-              foreach ($category as $cat) {
-                echo $cat->name;
-              }?>
+              <?php the_field('activity_target'); ?>
             </p>
           </li>
         </ul>
