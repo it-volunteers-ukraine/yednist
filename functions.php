@@ -154,10 +154,21 @@ function wp_it_volunteers_scripts() {
         ));
     }
     
-        if ( is_singular() && locate_template('templates/multicenter.php') ) {
-        wp_enqueue_style( 'multicenter-style', get_template_directory_uri() . '/assets/styles/template-styles/multicenter.css', array('main') );
-        wp_enqueue_script( 'multicenter-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/multicenter.js', array(), false, true );
-      }
+      if ( is_singular() && locate_template('templates/multicenter.php') ) {
+      wp_enqueue_style( 'multicenter-style', get_template_directory_uri() . '/assets/styles/template-styles/multicenter.css', array('main') );
+      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+      wp_enqueue_script( 'multicenter-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/multicenter.js', array('jquery-scripts'), false, true );
+      wp_localize_script( 'multicenter-scripts', 'multicenter_ajax', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('multicenter_nonce'),
+        'theme_directory_uri' => get_template_directory_uri(),
+        'hide_btn'=> get_field("hide_btn", "option"),
+        'read_btn'=> get_field("read_btn", "option")
+      ));
+    }
+      if ( is_singular() && locate_template('templates/one-class.php') ) {
+      wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-styles/one-class.css', array('main') );
+    }
 }
 /** add fonts */
 function add_google_fonts() {
@@ -391,4 +402,88 @@ function load_initial_news() {
 
     wp_send_json(array('html' => $html, 'max_pages' => $max_pages, 'paged' => $paged));
     wp_die();
+}
+
+// multicenter ajax
+add_action('wp_ajax_load_classes', 'load_classes');
+add_action('wp_ajax_nopriv_load_classes', 'load_classes');
+
+function load_classes() {
+    if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "multicenter_nonce")) {
+        exit;
+    }
+
+    $active_cat = !empty($_POST['active_cat']) ? $_POST['active_cat'] : 'for_all';
+    $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
+
+    if ($_POST['prev_active_cat'] && $_POST['prev_active_cat'] !== $active_cat) {
+        $paged = 1;
+    }
+
+    $args = array(
+        'post_type'      => 'activities',
+        'posts_per_page' => 1,
+        'paged'          => $paged,
+        'orderby'        => 'modified',
+        'order'          => 'DESC',
+        'post_status'    => 'publish',
+        'tax_query'      => array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy'=> 'activities-categories',
+                        'field' => 'slug',
+                        'terms' => 'constant_activities',
+                    ),
+                    array(
+                        'taxonomy'=> 'activities-target',
+                        'field' => 'slug',
+                        'terms' => $active_cat,
+                    )
+                )
+    );
+
+    $query = new WP_Query($args);
+    $posts_count = $query->found_posts; 
+
+    $max_pages = ceil($posts_count / 1);
+    ob_start();
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            get_template_part('template-parts/one-class');
+        endwhile;
+    endif;
+
+    $html = ob_get_clean();
+    wp_reset_postdata();
+
+    wp_send_json(array('html' => $html, 'max_pages' => $max_pages, 'paged' => $paged));
+    wp_die();
+}
+
+
+add_action( 'activities-target_add_form_fields', 'activities_target_add_term_fields', 10, 2 );
+
+function activities_target_add_term_fields( $term ) {
+	// get meta data value
+	$text_field = get_term_meta( $term->term_id, 'order_number', true );
+
+	?>
+<div class="form-field">
+  <label for="order_number">Приорітетність</label>
+  <input type="number" name="order_number" id="order_number" />
+  <p>Додайте порядковий номер, який відповідає тому, в якому порядку будуть знаходитись категорії на сторінці
+    "Мультикультурний центр"</p>
+</div>
+<?php
+}
+
+add_action( 'created_activities-target', 'activities_target_save_term_fields' );
+add_action( 'edited_activities-target', 'activities_target_save_term_fields' );
+function activities_target_save_term_fields( $term_id ) {
+	
+	update_term_meta(
+		$term_id,
+		'order_number',
+		sanitize_text_field( $_POST[ 'order_number' ] )
+	);
 }

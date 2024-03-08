@@ -8,6 +8,7 @@
 }
 
 .multicenter__image {
+  position: relative;
   margin-bottom: 60px;
   border-radius: $bid-border-radius;
   height: 0;
@@ -24,8 +25,93 @@
   }
 }
 
-.multicenter__image img {
+.multicenter__image--wrap {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.multicenter__image--wrap img {
   max-width: 100%;
   min-height: 100%;
   object-fit: cover;
+}
+
+.multicenter__quote--wrapper {
+  position: relative;
+  width: 100%;
+  padding: 72px 40px 72px 140px;
+  border-radius: $bid-border-radius;
+  border: 1px solid $black;
+  background: $lavender;
+  @media screen and (max-width: $desktop) {
+    padding: 72px 20px 54px 100px;
+  }
+  @media screen and (max-width: $tablet2) {
+    display: flex;
+    gap: 12px;
+    padding: 24px 20px;
+    border-radius: $small-border-radius;
+  }
+}
+
+.multicenter__quote {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 16px;
+  }
+}
+
+.multicenter__quote--icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  height: 120px;
+  @media screen and (max-width: $desktop) {
+    width: 80px;
+    height: 80px;
+  }
+  @media screen and (max-width: $tablet2) {
+    position: static;
+    width: 40px;
+    height: 40px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 20px;
+    height: 20px;
+  }
+  & svg {
+    width: 120px;
+    height: 120px;
+    @media screen and (max-width: $desktop) {
+      width: 80px;
+      height: 80px;
+    }
+    @media screen and (max-width: $tablet2) {
+      width: 40px;
+      height: 40px;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.classes__tabs--container {
+  display: flex;
+  justify-content: space-between;
 }

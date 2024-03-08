@@ -61,11 +61,7 @@ $post = $args['post'];
         </svg>
       </div>
       <p class="activity__modal--text">
-        <?php
-              $category = get_the_terms($post->ID, 'activities-target');
-              foreach ($category as $cat) {
-                echo $cat->name;
-              }?>
+        <?php the_field('activity_target'); ?>
       </p>
     </li>
 
