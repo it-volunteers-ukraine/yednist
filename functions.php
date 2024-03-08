@@ -166,8 +166,8 @@ function wp_it_volunteers_scripts() {
         'read_btn'=> get_field("read_btn", "option")
       ));
     }
-      if ( is_singular() && locate_template('templates/one-class.php') ) {
-      wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-styles/one-class.css', array('main') );
+      if ( is_singular() && locate_template('template-parts/one-class.php') ) {
+      wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
     }
 }
 /** add fonts */

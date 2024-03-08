@@ -25,7 +25,9 @@
   </div>
 
   <div class="activity__table--buttons">
+
     <?php get_template_part( 'template-parts/activity-buttons' ); ?>
+
     <?php $learn_more = get_field('activity_learn_more_btn');
       $post_id = get_the_ID();
       if($learn_more) { ?>
