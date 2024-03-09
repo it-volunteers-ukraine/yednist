@@ -15,6 +15,7 @@ get_header();
                     <div class="team-image">
                         <img src="<?php the_field('image'); ?>" alt="team-image">
                     </div>
+                    <h3 class="section-title additional-title"><?php the_field('second-title');?></h3>
                     <div class="about-team">
                         <?php
                         $aboutTeam = get_field('about-team');
@@ -32,7 +33,9 @@ get_header();
                             <img src="<?= $row['founders-image']; ?>" alt="image">
                             <div class="placeholder"><?= $row['placeholder']; ?></div>
                         </div>
-                        <p class="description"><?= $row['description']; ?></p>
+                        <div class="description">
+                            <?= $row['description']; ?>
+                        </div>
                     </div>
                     <?php endforeach; ?>
                 </div>
