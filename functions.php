@@ -68,7 +68,12 @@ function wp_it_volunteers_scripts() {
 
     if ( is_page_template('templates/fioh-team.php') ) {
       wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
+      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
       wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
+      wp_localize_script('fioh-team-scripts', 'myAjax', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('my_repeater_field_nonce'),
+          ));
     }
       
     if ( is_page_template('templates/schedule.php') ) {
@@ -172,6 +177,8 @@ function wp_it_volunteers_scripts() {
 function add_google_fonts() {
   wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;900&family=Fira+Sans+Extra+Condensed:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap', [], null );
 }
+
+add_action( 'wp_enqueue_scripts', 'add_swiper' );
 
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
 
@@ -400,4 +407,89 @@ function load_initial_news() {
 
     wp_send_json(array('html' => $html, 'max_pages' => $max_pages, 'paged' => $paged));
     wp_die();
+}
+
+/**
+ * ACF AJAX підвантаження для fioh-team
+ */
+
+// додаємо action для авторизованих користувачів
+add_action("wp_ajax_acf_repeater_show_more", "acf_repeater_show_more");
+// додаємо action для не авторизованих користувачів
+add_action("wp_ajax_nopriv_acf_repeater_show_more", "acf_repeater_show_more");
+
+function get_projects_per_page($width) {
+  if ($width > 1349.98) {
+    return 3;
+  } elseif ($width > 767.98) {
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
+function acf_repeater_show_more()
+{
+    // валідація Nonce («Одноразові числа»)
+    if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "my_repeater_field_nonce")) {
+        exit;
+    }
+    // впевнимося, що в нас є інші значення
+    if (!isset($_POST["post_id"]) || !isset($_POST["offset"])) {
+        return;
+    }
+
+     // Отримання параметрів з AJAX-запиту
+  $width = $_POST['width'];
+  
+  // Визначення кількості постів на сторінку залежно від ширини
+
+    $show = get_projects_per_page($width); // по скільки відображати
+    $start = $_POST["offset"];
+    $end = $start + $show;
+    $post_id = $_POST["post_id"];
+    // використаємо об'єктний буфер для захоплення виводу html
+    ob_start();
+    if (have_rows("fioh-team_projects-repeater", $post_id)) {
+        $total = count(get_field("fioh-team_projects-repeater", $post_id));
+        $count = 0;
+
+        while (have_rows("fioh-team_projects-repeater", $post_id)) {
+            the_row();
+            if ($count < $start) {
+                // продовжуємо показивати і збільшувати лічильник
+                $count++;
+                continue;
+            }
+            ?>
+             <?php $projectName = get_sub_field("fioh-team_projects-repeater-title"); ?>
+          <?php $projectLink = get_sub_field("fioh-team_projects-repeater-link"); ?>
+
+          <li class="fioh-team__project__item">
+                <div class="fioh-team__project__link">
+                <?php echo $projectLink; ?>
+                </div>
+                <div class="fioh-team__project__name">
+                    <p>
+                <?php echo $projectName; ?>
+                </p>
+                </div>
+              </li>
+            
+            <?php
+            $count++;
+            if ($count == $end) {
+                break; 
+            }
+        }
+    }
+    $content = ob_get_clean();
+    // перевіряємо, чи показали ми останній елемент
+    $more = false;
+    if ($total > $count) {
+        $more = true;
+    }
+    // виводим наші 3 значення у вигляді масиву в кодуванні json
+    echo json_encode(array("content" => $content, "more" => $more, "offset" => $end));
+    exit;
 }
