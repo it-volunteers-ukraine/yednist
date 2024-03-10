@@ -1,12 +1,14 @@
 jQuery(document).ready(function ($) {
-  // Початок показу лоадера
   function showLoader() {
     $(".loader").show();
+    $(".classes__container.mobile").addClass("loading-overlay");
+    $(".classes__container").addClass("loading-overlay");
   }
 
-  // Кінець показу лоадера
   function hideLoader() {
     $(".loader").hide();
+    $(".classes__container.mobile").removeClass("loading-overlay");
+    $(".classes__container").removeClass("loading-overlay");
   }
 
   hideLoader();
@@ -60,6 +62,9 @@ jQuery(document).ready(function ($) {
         } else {
           button.show();
         }
+
+        const panel = $(".tab-accordion.active").next();
+        panel.css("maxHeight", panel.prop("scrollHeight") + "px");
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
@@ -97,10 +102,81 @@ jQuery(document).ready(function ($) {
         if (paged > maxPages) {
           button.hide();
         }
+
+        const panel = $(".tab-accordion.active").next();
+        panel.css("maxHeight", panel.prop("scrollHeight") + "px");
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
       },
+    });
+  }
+
+  // hide & show comments
+  const theme_uri = multicenter_ajax.theme_directory_uri;
+  const hide_btn = multicenter_ajax.hide_btn;
+  const read_btn = multicenter_ajax.read_btn;
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target;
+    if (btn.className === "classes__detais-open") {
+      const fullText = btn.nextElementSibling;
+      const shortText = btn.previousElementSibling;
+      const textBox = btn.parentNode;
+      const panelEl = textBox.parentNode.parentNode;
+      const buttonBox = textBox.children[textBox.children.length - 1];
+
+      if (fullText.classList.contains("hidden")) {
+        btn.innerHTML = `${hide_btn}
+        <span class="activity__modal--detais--icon active">
+         <svg>
+          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow">
+          </use></svg></span>`;
+        fullText.classList.remove("hidden");
+        buttonBox.classList.remove("hidden");
+        shortText.classList.add("hidden");
+        panelEl.style.maxHeight = panelEl.scrollHeight + "px";
+      } else {
+        btn.innerHTML = `${read_btn}
+        <span class="activity__modal--detais--icon">
+        <svg>
+          <use href="${theme_uri}/assets/images/sprite.svg#icon-small_arrow"></use>
+        </svg>
+      </span>`;
+        fullText.classList.add("hidden");
+        buttonBox.classList.add("hidden");
+        shortText.classList.remove("hidden");
+        panelEl.style.maxHeight = panelEl.scrollHeight + "px";
+      }
+    }
+  });
+
+  // accordion
+  const acc = document.getElementsByClassName("tab-accordion");
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      const activeAccordion = document.querySelector(".tab-accordion.active");
+      if (activeAccordion && activeAccordion !== this) {
+        activeAccordion.classList.remove("active");
+        activeAccordion.setAttribute("aria-expanded", "false");
+        const activePanel = activeAccordion.nextElementSibling;
+        activePanel.style.maxHeight = null;
+      }
+
+      this.classList.toggle("active");
+      this.parentNode.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      if (this.classList.contains("active")) {
+        this.setAttribute("aria-expanded", "true");
+      } else this.setAttribute("aria-expanded", "false");
+
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
     });
   }
 });

@@ -29,6 +29,15 @@
         <li class="classes__title-mobile">
           <h2><?php echo $post->post_title; ?></h2>
         </li>
+        <li class="classes__item">
+          <div class="classes__icon">
+            <svg>
+              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_calendar"></use>
+            </svg>
+          </div>
+          <p class="classes__text"><?php the_field('activity_date'); ?></p>
+        </li>
+
         <?php
     $no_registration = get_field('no_registration');
     if ($no_registration) {
@@ -42,14 +51,6 @@
           <p class="classes__text"><?php echo $no_registration; ?></p>
         </li>
         <?php }?>
-        <li class="classes__item">
-          <div class="classes__icon">
-            <svg>
-              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_calendar"></use>
-            </svg>
-          </div>
-          <p class="classes__text"><?php the_field('activity_date'); ?></p>
-        </li>
 
         <li class="classes__item">
           <div class="classes__icon">
@@ -59,14 +60,7 @@
           </div>
           <p class="classes__text"><?php the_field('activity_location'); ?></p>
         </li>
-        <li class="classes__item">
-          <div class="classes__icon">
-            <svg>
-              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_money"></use>
-            </svg>
-          </div>
-          <p class="classes__text"><?php the_field('activity_price'); ?></p>
-        </li>
+
         <li class="classes__item">
           <div class="classes__icon">
             <svg>
@@ -76,6 +70,15 @@
           <p class="classes__text">
             <?php the_field('activity_target'); ?>
           </p>
+        </li>
+
+        <li class="classes__item">
+          <div class="classes__icon">
+            <svg>
+              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_money"></use>
+            </svg>
+          </div>
+          <p class="classes__text"><?php the_field('activity_price'); ?></p>
         </li>
 
       </ul>
@@ -106,6 +109,13 @@
     </div>
 
     <? } ?>
+
+    <div class="classes_btns--mobile hidden">
+      <?php get_template_part( 'template-parts/activity-buttons' ); ?>
+      <a href="<?php the_field("ask_btn_link", "options") ?>" class="button secondary-button classes__button">
+        <?php the_field("ask_btn", "options") ?>
+      </a>
+    </div>
 
   </div>
 
