@@ -49,31 +49,31 @@ get_header();
                     </p>
                 </div>
                 <div class="swiper fioh-team__appeal-wrapper-mobile">
-                <div class="swiper-wrapper ">
-                    <div class="swiper-slide fioh-team__appeal-swiper-slide">
-                    <p class="fioh-team__appeal-text-1">
-                        <?php the_field('fioh-team_appeal-text-1'); ?>
-                    </p>
-                    <p class="fioh-team__appeal-text-2">
-                        <?php the_field('fioh-team_appeal-text-2'); ?>
-                    </p>
-                    <p class="fioh-team__appeal-text-3">
-                        <?php the_field('fioh-team_appeal-text-3'); ?>
-                    </p>
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide fioh-team__appeal-swiper-slide">
+                            <p class="fioh-team__appeal-text-1">
+                                <?php the_field('fioh-team_appeal-text-1'); ?>
+                            </p>
+                            <p class="fioh-team__appeal-text-2">
+                                <?php the_field('fioh-team_appeal-text-2'); ?>
+                            </p>
+                            <p class="fioh-team__appeal-text-3">
+                                <?php the_field('fioh-team_appeal-text-3'); ?>
+                            </p>
+                        </div>
+                        <div class="swiper-slide fioh-team__appeal-swiper-slide">
+                            <p class="fioh-team__appeal-text-4">
+                                <?php the_field('fioh-team_appeal-text-4'); ?>
+                            </p>
+                            <p class="fioh-team__appeal-text-5">
+                                <?php the_field('fioh-team_appeal-text-5'); ?>
+                            </p>
+                            <p class="fioh-team__appeal-text-6">
+                                <?php the_field('fioh-team_appeal-text-6'); ?>
+                            </p>
+                        </div>
                     </div>
-                    <div class="swiper-slide fioh-team__appeal-swiper-slide">
-                    <p class="fioh-team__appeal-text-4">
-                        <?php the_field('fioh-team_appeal-text-4'); ?>
-                    </p>
-                    <p class="fioh-team__appeal-text-5">
-                        <?php the_field('fioh-team_appeal-text-5'); ?>
-                    </p>
-                    <p class="fioh-team__appeal-text-6">
-                        <?php the_field('fioh-team_appeal-text-6'); ?>
-                    </p>
-                    </div>
-                </div>
-                <div class="swiper-pagination fioh-team__appeal-bullets"></div>
+                    <div class="swiper-pagination fioh-team__appeal-bullets"></div>
                 </div>
 
             </div>
@@ -125,19 +125,30 @@ get_header();
                     let my_repeater_more = true;
                     let buttonACF = document.querySelector(".acf-loadmore");
                     let buttonHIDE = document.querySelector(".acf-hide");
-                    
+
+                    const getProjectsCount = () => {
+                        if (window.innerWidth > 1349.98) {
+                            return 3;
+                        } else if(window.innerWidth > 767.98) {
+                            return 2;
+                        } else {
+                            return 1;
+                        }
+                    }
+
                     acf_repeater_show_more()
 
                     buttonACF.addEventListener("click", acf_repeater_show_more)
+
                     buttonHIDE.addEventListener("click", () => {
                         const list = document.querySelector(".fioh-team__project__list")
                         list.innerHTML = ""
                         my_repeater_field_offset = 0;
                         acf_repeater_show_more()
-
+                        buttonHIDE.style.display = "none"
                     })
 
-                    function acf_repeater_show_more() {
+                    function acf_repeater_show_more(load_all) {
                         buttonACF.classList.add("loading");
                         // робимо AJAX запит
                         jQuery.post(
@@ -149,6 +160,7 @@ get_header();
                                 offset: my_repeater_field_offset,
                                 nonce: my_repeater_field_nonce,
                                 width: window.innerWidth,
+                                load_all,
                             },
                             function (json) {
                                 // додаємо контент в контейнер
@@ -157,7 +169,11 @@ get_header();
                                 jQuery(".fioh-team__project__list").append(json["content"]);
                                 // оновимо зміщення
                                 my_repeater_field_offset = json["offset"];
-     
+
+                                if(my_repeater_field_offset > getProjectsCount()) {
+                                    buttonHIDE.style.display = 'block'
+                                }
+
                                 // перевіримо, чи є ще що завантажити
                                 if (!json["more"]) {
                                     // якщо ні, сховаємо кнопку завантаження
@@ -183,52 +199,62 @@ get_header();
             <div class="inner-container">
 
                 <div class="swiper fioh-team__team-repeater">
-               
-                    
-                <?php if (have_rows('fioh-team_team-repeater')): ?>
-                    <ul class="swiper-wrapper">
 
-                        <?php
-                        $counter = 0;
-                         while (have_rows('fioh-team_team-repeater')):
-                            the_row();
-                            $name = get_sub_field('fioh-team_team-repeater-name');
-                            $age = get_sub_field('fioh-team_team-repeater-age');
-                            $bio = get_sub_field('fioh-team_team-repeater-bio');
-                            $image = get_sub_field('fioh-team_team-repeater-photo');
-                            $count = count(get_field("fioh-team_team-repeater"));
-                            $counter++;
-                            ?>
-                            <li class="fioh-team__team-repeater-item swiper-slide">
-                                <div class="fioh-team__team-repeater-img">
-                                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                </div>
-                                <div class="fioh-team__team-repeater-item-text-wrapper">
-                                    <p class="fioh-team__team-repeater-item-bio">
-                                        <?php echo $bio; ?>
-                                    </p>
-                                    <p class="fioh-team__team-repeater-item-info">
-                                        <span class="fioh-team__team-repeater-item-name">
-                                            <?php echo $name; ?>
-                                        </span>
-                                        <span class="fioh-team__team-repeater-item-age">
-                                            <?php echo $age; ?>
-                                        </span>
-                                    </p>
-                                </div>
-                                <button class="fioh-team__team-repeater-item-btn-circle ">
-                                    <?php echo $counter; ?>
-                                    <?php echo $count; ?>
-                                </button>
-                            </li>
-                        <?php endwhile; ?>
-                    </ul>
-                <?php endif; ?>
+
+                    <?php if (have_rows('fioh-team_team-repeater')): ?>
+                        <ul class="swiper-wrapper">
+
+                            <?php
+                            $counter = 0;
+                            while (have_rows('fioh-team_team-repeater')):
+                                the_row();
+                                $name = get_sub_field('fioh-team_team-repeater-name');
+                                $age = get_sub_field('fioh-team_team-repeater-age');
+                                $bio = get_sub_field('fioh-team_team-repeater-bio');
+                                $image = get_sub_field('fioh-team_team-repeater-photo');
+                                $count = count(get_field("fioh-team_team-repeater"));
+                                $counter++;
+                                ?>
+                                <li class="fioh-team__team-repeater-item swiper-slide">
+                                    <div class="fioh-team__team-repeater-img">
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    </div>
+                                    <div class="fioh-team__team-repeater-item-text-wrapper">
+                                        <button class="fioh-team__team-repeater-item-readmore">Читати далі</button>
+                                        <p class="fioh-team__team-repeater-item-bio">
+                                            <?php echo $bio; ?>
+                                        </p>
+                                        <p class="fioh-team__team-repeater-item-info">
+                                            <span class="fioh-team__team-repeater-item-name">
+                                                <?php echo $name; ?>
+                                            </span>
+                                            <span class="fioh-team__team-repeater-item-age">
+                                                <?php echo $age; ?>
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <button class="fioh-team__team-repeater-item-btn-circle">
+                                        <?php if ($count < 10): ?>
+                                            <p class="fioh-team__btn-circle-1">0
+                                                <?php echo $counter; ?>
+                                            </p>
+                                            <p class="fioh-team__btn-circle-2">0
+                                                <?php echo $count; ?>
+                                            </p>
+                                        <?php endif; ?>
+                                    </button>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </section>
 </main>
+
+
 <?php get_footer(); ?>

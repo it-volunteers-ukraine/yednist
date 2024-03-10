@@ -1,5 +1,16 @@
 @import "../variables";
 
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+
+  &:after {
+    content: "...";
+  }
+}
+
 .fioh-team {
   &__title {
     margin-bottom: 40px;
@@ -269,6 +280,13 @@
   &__team-repeater {
     max-height: 774px;
     overflow-x: visible;
+    @media screen and (max-width: $mobile) {
+      max-height: 438px;
+    }
+  }
+
+  &__team-repeater.expanded {
+    max-height: 774px;
   }
 
   &__team-repeater-item {
@@ -286,7 +304,12 @@
     @media screen and (max-width: $desktop) {
       font-size: 18px;
     }
+
+    @media screen and (max-width: $desktop1) {
+      font-size: 14px;
+    }
     @media screen and (max-width: $tablet2) {
+      max-width: calc(100% - 50px);
       flex-direction: column;
       align-items: center;
       font-size: 14px;
@@ -294,14 +317,18 @@
       padding: 40px 40px 74px 40px;
     }
     @media screen and (max-width: $mobile) {
-      max-width: 256px;
+      max-width: 100%;
       padding: 16px 16px 16px 16px;
       gap: 12px;
       font-size: 14px;
+      max-height: 100%;
     }
   }
 
   &__team-repeater-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: $small-border-radius;
     max-width: 535px;
     overflow: hidden;
@@ -310,9 +337,9 @@
     }
     @media screen and (max-width: $tablet2) {
       max-width: 832px;
+      height: 320px;
     }
     @media screen and (max-width: $mobile) {
-      max-width: 256px;
       height: 240px;
     }
   }
@@ -338,16 +365,42 @@
   }
 
   &__team-repeater-item-bio {
-    margin-bottom: 192px;
+    font-family: "Fira sans";
     max-width: 670px;
     line-height: 1.5;
     font-weight: 400;
+    padding-right: 20px;
     @media screen and (max-width: $desktop) {
       max-width: 448px;
-      margin-bottom: 178px;
     }
     @media screen and (max-width: $tablet2) {
+      padding-right: 10px;
       margin-bottom: 0px;
+    }
+    @media screen and (max-width: $mobile) {
+      padding-right: 0;
+      font-size: 14px;
+      max-height: 68px;
+      overflow: hidden;
+      width: auto;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__team-repeater-item-bio.expanded {
+    max-height: 100%;
+    overflow: auto;
+    -webkit-line-clamp: initial;
+  }
+
+  &__team-repeater-item-readmore {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      margin-top: -8px;
+      margin-left: auto;
     }
   }
 
@@ -381,12 +434,49 @@
   &__team-repeater-item-btn-circle {
     border-radius: 50%;
     position: absolute;
-    display: block;
-    width: 100px;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
     background-color: $violet-grey;
     top: 50%;
-    right: -50px;
+    right: -60px;
     transform: translateY(-50%);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 52px;
+      height: 1px;
+      background-color: $black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    @media screen and (max-width: $tablet2) {
+      right: -50px;
+      width: 100px;
+      height: 100px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      top: 216px;
+      right: 8px;
+      transform: none;
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  &__btn-circle-1 {
+    margin: 20px 0 0 27px;
+    font-size: 40px;
+  }
+
+  &__btn-circle-2 {
+    margin: -26px 33px 32px 60px;
+    font-size: 28px;
   }
 }

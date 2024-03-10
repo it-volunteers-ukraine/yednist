@@ -20,34 +20,49 @@ new Swiper(".fioh-team__team-repeater", {
   },
 });
 
-function acf_repeater_show_more({ url, post_id, offset, nonce }) {
-  buttonACF.classList.add("loading");
-  // робимо AJAX запит
-  jQuery.post(
-    url,
-    {
-      // AJAX, який ми налагодили в PHP
-      action: "acf_repeater_show_more",
-      post_id: post_id,
-      offset: offset,
-      nonce: nonce,
-      width: window.innerWidth,
-    },
-    function (json) {
-      // додаємо контент в контейнер
-      // цей ідентифікатор має відповідати контейнеру
-      // до якого ви хочете додати контент
-      jQuery(".fioh-team__project__list").append(json["content"]);
-      // оновимо зміщення
-      my_repeater_field_offset = json["offset"];
-      // перевіримо, чи є ще що завантажити
-      if (!json["more"]) {
-        // якщо ні, сховаємо кнопку завантаження
-        jQuery(".acf-loadmore").css("display", "none");
-      } else {
-        buttonACF.classList.remove("loading");
-      }
-    },
-    "json"
-  );
-}
+const readMoreBtn = document.querySelector(
+  ".fioh-team__team-repeater-item-readmore"
+);
+readMoreBtn.addEventListener("click", () => {
+  const text = document.querySelector(".fioh-team__team-repeater-item-bio");
+  const container = document.querySelector(".fioh-team__team-repeater");
+  text.classList.toggle("expanded");
+  container.classList.toggle("expanded");
+  if (text.classList.contains("expanded")) {
+    readMoreBtn.setAttribute("data-action", "hide");
+  } else {
+    readMoreBtn.setAttribute("data-action", "show");
+  }
+});
+
+// function acf_repeater_show_more({ url, post_id, offset, nonce }) {
+//   buttonACF.classList.add("loading");
+//   // робимо AJAX запит
+//   jQuery.post(
+//     url,
+//     {
+//       // AJAX, який ми налагодили в PHP
+//       action: "acf_repeater_show_more",
+//       post_id: post_id,
+//       offset: offset,
+//       nonce: nonce,
+//       width: window.innerWidth,
+//     },
+//     function (json) {
+//       // додаємо контент в контейнер
+//       // цей ідентифікатор має відповідати контейнеру
+//       // до якого ви хочете додати контент
+//       jQuery(".fioh-team__project__list").append(json["content"]);
+//       // оновимо зміщення
+//       my_repeater_field_offset = json["offset"];
+//       // перевіримо, чи є ще що завантажити
+//       if (!json["more"]) {
+//         // якщо ні, сховаємо кнопку завантаження
+//         jQuery(".acf-loadmore").css("display", "none");
+//       } else {
+//         buttonACF.classList.remove("loading");
+//       }
+//     },
+//     "json"
+//   );
+// }
