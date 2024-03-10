@@ -3,6 +3,7 @@
 .classes__article {
   position: relative;
   display: flex;
+  justify-content: space-between;
   gap: 20px;
   padding-bottom: 24px;
   @media screen and (max-width: $desktop) {
@@ -12,9 +13,10 @@
     display: block;
   }
   @media screen and (max-width: $mobile) {
-    padding: 20px;
+    padding: 20px 0;
+    margin-top: 20px;
   }
-  &:not(:last-child) {
+  &:not(:nth-last-child(2)) {
     margin-bottom: 40px;
     @media screen and (max-width: $desktop) {
       margin-bottom: 60px;
@@ -23,7 +25,7 @@
       margin-bottom: 16px;
     }
     @media screen and (max-width: $mobile) {
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
   }
   &::after {
@@ -52,7 +54,6 @@
 }
 
 .classes__img-wrap {
-  border-radius: $small-border-radius;
   height: 0;
   overflow: hidden;
   width: 277px;
@@ -64,21 +65,24 @@
   @media screen and (max-width: $tablet2) {
     width: 157px;
     height: 158px;
-    border-radius: 16px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;
-    height: auto;
     min-width: 56px;
     min-height: 56px;
-    border-radius: 8px;
   }
 }
 
 .classes__img-wrap img {
-  max-width: 100%;
-  min-height: 100%;
+  max-height: 100%;
   object-fit: cover;
+  border-radius: $small-border-radius;
+  @media screen and (max-width: $tablet2) {
+    border-radius: 16px;
+  }
+  @media screen and (max-width: $mobile) {
+    border-radius: 8px;
+  }
 }
 
 .classes__description {
@@ -162,7 +166,7 @@
   &-short {
     @media screen and (max-width: $mobile) {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 12px;
       font-family: $secondary-font;
       font-size: 14px;
       line-height: 1.6;
@@ -170,6 +174,9 @@
     &.hidden {
       display: none;
     }
+  }
+  &-short {
+    margin-bottom: 4px;
   }
 }
 
@@ -180,7 +187,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 20px;
   }
 }
 
@@ -216,20 +222,39 @@
     gap: 28px;
   }
   @media screen and (max-width: $tablet2) {
+    margin-left: 178px;
     flex-direction: row;
     gap: 16px;
   }
-  @media screen and (max-width: $mobile) {
-    flex-direction: column;
-    gap: 12px;
+  @media screen and (max-width: 650px) {
+    margin-left: 0;
+    justify-content: flex-end;
   }
-  .button {
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+  &--mobile {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    &.hidden {
+      display: none;
+    }
+    & .button {
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+      }
+    }
+  }
+  & .button {
     min-width: 277px;
     @media screen and (max-width: $desktop) {
       min-width: 203px;
-    }
-    @media screen and (max-width: $mobile) {
-      width: 100%;
     }
   }
 }

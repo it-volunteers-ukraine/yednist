@@ -422,7 +422,7 @@ function load_classes() {
 
     $args = array(
         'post_type'      => 'activities',
-        'posts_per_page' => 1,
+        'posts_per_page' => 5,
         'paged'          => $paged,
         'orderby'        => 'modified',
         'order'          => 'DESC',
@@ -445,7 +445,7 @@ function load_classes() {
     $query = new WP_Query($args);
     $posts_count = $query->found_posts; 
 
-    $max_pages = ceil($posts_count / 1);
+    $max_pages = ceil($posts_count / 5);
     ob_start();
     if ($query->have_posts()) :
         while ($query->have_posts()) : $query->the_post();

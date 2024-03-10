@@ -67,8 +67,32 @@ get_header();
           $tab_label = $term->name;
           $tab_classes = ($active_tab === $tab_slug) ? 'tab tab-active' : 'tab';
           ?>
-          <button type="button" class="<?php echo esc_attr($tab_classes); ?>"
-            data-active="<?php echo $tab_slug ?>"><?php echo esc_html($tab_label); ?></button>
+
+          <button type="button" class="<?php echo esc_attr($tab_classes); ?> tab-accordion"
+            data-active="<?php echo $tab_slug ?>" aria-controls="panel-<?php echo $tab_slug; ?>" aria-expanded="false">
+
+            <span class=""><?php echo esc_html($tab_label); ?></span>
+
+            <svg class="plus-icon" width="24px" height="24px">
+              <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
+            </svg>
+
+            <svg class="minus-icon" width="24px" height="24px">
+              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#minus-icon"></use>
+            </svg>
+
+          </button>
+
+          <div id="panel-<?php echo $tab_slug; ?>" role="region" class="classes__container mobile panel">
+            <div id="loadmore" class="classes__load--mobile">
+              <?php  get_template_part('template-parts/loader'); ?>
+              <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
+                data-paged="<?php echo $paged ?>">
+                <?php the_field("last_news_button", "options"); ?>
+              </a>
+            </div>
+          </div>
+
           <?php } ?>
         </div>
 
@@ -79,7 +103,7 @@ get_header();
 
             $args = array(
             'post_type'      => 'activities',
-            'posts_per_page' => 1,
+            'posts_per_page' => 5,
             'paged'          => $paged,
             'orderby'        => 'modified',
             'order'          => 'DESC',
@@ -102,12 +126,12 @@ get_header();
             $query = new WP_Query($args);
             $posts_count = $query->found_posts; 
 
-            $max_pages = ceil($posts_count / 1);
+            $max_pages = ceil($posts_count / 5);
             ?>
 
-          <div id="loadmore">
+          <div id="loadmore" class="classes__load">
             <?php  get_template_part('template-parts/loader'); ?>
-            <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
+            <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
               data-paged="<?php echo $paged ?>">
               <?php the_field("last_news_button", "options"); ?>
             </a>
