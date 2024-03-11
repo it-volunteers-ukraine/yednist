@@ -55,10 +55,10 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'projects-style', get_template_directory_uri() . '/assets/styles/template-styles/projects.css',array('main'));
       wp_enqueue_script( 'projects-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/projects.js', array(), false, true );
   }
-    // if ( is_page_template('templates/gallery.php') ) {
-    //   wp_enqueue_style( 'gallery-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery.css', array('main') );
-    //   wp_enqueue_script( 'gallery-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery.js', array(), false, true );
-    // }
+    if ( is_page_template('templates/gallery-photo.php') ) {
+      wp_enqueue_style( 'gallery-photo-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
+      wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
+    }
 
     if ( is_page_template('templates/gallery-post.php') ) {
       wp_enqueue_style( 'gallery-post-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
