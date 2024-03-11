@@ -491,3 +491,13 @@ function activities_target_save_term_fields( $term_id ) {
 		sanitize_text_field( $_POST[ 'order_number' ] )
 	);
 }
+
+add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
+function my_breadcrumb_title_swapper($title, $type, $id)
+{
+    if(in_array('home', $type))
+    { if(function_exists('pll__'))
+        $title = pll__('Головна');
+    }
+    return $title;
+}

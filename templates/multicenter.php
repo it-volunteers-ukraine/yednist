@@ -143,11 +143,42 @@ get_header();
     </div>
   </section>
 
-  <section class="section classes__section">
+  <section class="section invite__section">
 
     <div class="container">
       <h2 class="section-title"><?php the_field('invite_title'); ?></h2>
       <div class="inner-container">
+
+        <div class="invite__wrapper">
+
+          <div class="invite__text--box">
+            <h2 class="invite__subtitle"><?php the_field('invite_subtitle'); ?></h2>
+            <div class="invite__text"><?php the_field('invite_text'); ?></div>
+          </div>
+          <div class="invite__form">
+            <?php 
+                $form = get_field('registration_form');
+                if($form) : ?>
+            <div class="helpform">
+              <?php echo $form?>
+
+            </div>
+            <?php endif; ?>
+
+            <div id="invite__backdrop--notification" class="invite__backdrop--notification is-hidden">
+              <div class="invite__notification">
+                <button id="invite__notification--btn" class="invite__notification--btn" type="button"
+                  id="js-close-invite-form" aria-label="Close modal">
+                  <svg class="icon__cross">
+                    <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#cross-icon"></use>
+                  </svg>
+                </button>
+                <p class="invite__notification--title"><?php the_field('notification_title'); ?></p>
+                <p class="invite__notification--text"><?php the_field('notification_text'); ?></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
