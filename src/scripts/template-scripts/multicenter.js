@@ -179,4 +179,51 @@ jQuery(document).ready(function ($) {
       }
     });
   }
+
+  //form
+  const wpcf7Elm = document.querySelector(".wpcf7");
+  const notificationBackdropEl = document.getElementById(
+    "invite__backdrop--notification"
+  );
+  const closeNotificationBtn = document.getElementById(
+    "invite__notification--btn"
+  );
+  const submitNotificationEl = document.getElementById("submit-notification");
+
+  wpcf7Elm.addEventListener("wpcf7mailsent", getNotification, false);
+
+  let timerId;
+
+  function getNotification() {
+    const windowScrollY = window.scrollY;
+    document.documentElement.style.scrollBehavior = "auto";
+    notificationBackdropEl.classList.remove("is-hidden");
+    document.documentElement.classList.add("modal__opened");
+    document.documentElement.style.top = `-${windowScrollY}px`;
+    timerId = setTimeout(() => {
+      closeNotification();
+    }, 5000);
+    closeNotificationBtn.addEventListener("click", closeNotification);
+    notificationBackdropEl.addEventListener("mousedown", closeNotification);
+  }
+
+  function closeNotification() {
+    notificationBackdropEl.classList.add("is-hidden");
+    notificationBackdropEl.removeEventListener("mousedown", closeNotification);
+    closeNotificationBtn.removeEventListener("click", closeNotification);
+    const scrollY = parseInt(document.documentElement.style.top || "0");
+    document.documentElement.classList.remove("modal__opened");
+    window.scrollTo(0, -scrollY);
+    document.documentElement.style.scrollBehavior = "smooth";
+    clearTimeout(timerId);
+  }
+
+  wpcf7Elm.addEventListener("wpcf7invalid", getSubmitNotification, false);
+
+  function getSubmitNotification() {
+    submitNotificationEl.classList.add("active");
+    setTimeout(() => {
+      submitNotificationEl.classList.remove("active");
+    }, 5000);
+  }
 });
