@@ -84,7 +84,7 @@ get_header();
           </button>
 
           <div id="panel-<?php echo $tab_slug; ?>" role="region" class="classes__container mobile panel">
-            <div id="loadmore" class="classes__load--mobile">
+            <div id="loadmore-classes" class="classes__load--mobile">
               <?php  get_template_part('template-parts/loader'); ?>
               <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
                 data-paged="<?php echo $paged ?>">
@@ -129,7 +129,7 @@ get_header();
             $max_pages = ceil($posts_count / 5);
             ?>
 
-          <div id="loadmore" class="classes__load">
+          <div id="loadmore-classes" class="classes__load">
             <?php  get_template_part('template-parts/loader'); ?>
             <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
               data-paged="<?php echo $paged ?>">

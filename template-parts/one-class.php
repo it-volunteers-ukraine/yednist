@@ -53,12 +53,15 @@
         <?php }?>
 
         <li class="classes__item">
-          <div class="classes__icon">
-            <svg>
-              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
-            </svg>
-          </div>
-          <p class="classes__text"><?php the_field('activity_location'); ?></p>
+          <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank"
+            rel="noopener noreferrer">
+            <div class="classes__icon">
+              <svg>
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
+              </svg>
+            </div>
+            <p class="classes__text"><?php the_field('activity_location'); ?></p>
+          </a>
         </li>
 
         <li class="classes__item">
