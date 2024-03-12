@@ -55,14 +55,28 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  const slides = projectsSwiper.slides;
-  slides.forEach((slide, index) => {
-    if (index % 3 === 0) {
-      slide.classList.add("yellow");
-    } else if (index % 3 === 1) {
-      slide.classList.add("pink");
-    } else {
-      slide.classList.add("blue");
-    }
-  });
+  // Scroll
+  const paginationItems = document.querySelectorAll(
+    ".projects__section .swiper-pagination-bullet"
+  );
+  const prevButton = document.querySelector(
+    ".projects__section .custom-button-prev"
+  );
+  const nextButton = document.querySelector(
+    ".projects__section .custom-button-next"
+  );
+  if (paginationItems.length !== 0) {
+    paginationItems.forEach((item) => {
+      item.addEventListener("click", scrollToTop);
+    });
+    prevButton.addEventListener("click", scrollToTop);
+    nextButton.addEventListener("click", scrollToTop);
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 });

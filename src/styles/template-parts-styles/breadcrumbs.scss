@@ -22,15 +22,15 @@
     }
   }
 
-  & .breadcrumbs > span {
+  & .breadcrumbs span {
     font-family: $secondary-font;
     color: $dark-grey;
     line-height: 1.6;
     font-size: 16px;
     &:not(:last-child) {
-      margin-right: 8px;
+      margin-right: 4px;
     }
-    &:last-child {
+    &:last-child > span {
       color: $black;
     }
     @media screen and (max-width: $desktop) {
