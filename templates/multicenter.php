@@ -49,6 +49,7 @@ get_header();
 
     <div class="container">
       <h2 class="section-title"><?php the_field('classes_title'); ?></h2>
+      <h2 class="section-title"><?php the_field('classes_title'); ?></h2>
       <div class="inner-container">
 
         <div class="classes__tabs--container">
@@ -84,13 +85,15 @@ get_header();
           </button>
 
           <div id="panel-<?php echo $tab_slug; ?>" role="region" class="classes__container mobile panel">
-            <div id="loadmore-classes" class="classes__load--mobile">
-              <?php  get_template_part('template-parts/loader'); ?>
-              <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
-                data-paged="<?php echo $paged ?>">
-                <?php the_field("last_news_button", "options"); ?>
-              </a>
-            </div>
+            <<<<<<< HEAD <div id="loadmore-classes" class="classes__load--mobile">
+              =======
+              <div id="loadmore-classes" class="classes__load--mobile">
+                <?php  get_template_part('template-parts/loader'); ?>
+                <a href="#" class="button primary-button classes__load--btn" data-max_pages="<?php echo $max_pages ?>"
+                  data-paged="<?php echo $paged ?>">
+                  <?php the_field("last_news_button", "options"); ?>
+                </a>
+              </div>
           </div>
 
           <?php } ?>
