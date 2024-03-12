@@ -133,11 +133,10 @@
     &__post-title {
         font-size: 24px;
         line-height: 36px;
-        margin-bottom: 20px;     
+        margin-bottom: 16px;     
         @media (max-width: $desktop) {
             font-size: 20px;
-            line-height: 30px;
-            margin-bottom: 16px;
+            line-height: 30px;            
         }
         @media (max-width: $tablet2) {
             font-size: 18px;
