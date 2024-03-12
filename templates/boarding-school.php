@@ -1,7 +1,7 @@
 <?php
 /*
 * Template Name: boarding-school
-* Template post type: post
+* Template Post Type: post, page, projects
 */
 get_header();
 ?>
@@ -13,10 +13,10 @@ get_header();
     <div class="school__section__content">
       <div></div>
       <div class="school__section__content__quotation">
-      <svg class="plus-icon" width="20px" height="20px">
-        <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
+      <svg class="school__section__content__quotation__icon">
+        <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-bi_quote"></use>
       </svg>
-      <p>Відкриття школи-інтернату є стратегічною метою громадської організації "Єдність" на вересень 2024 року. Усі чинні проєкти, представлені на цьому сайті, є підготовчим етапом для досягнення цієї головної мети.</p>
+      <p class="school__section__content__quotation__text"><?php the_field("quotation_text") ?></p>
       </div>
     </div>
     </div>

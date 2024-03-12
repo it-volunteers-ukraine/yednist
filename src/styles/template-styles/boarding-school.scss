@@ -12,11 +12,61 @@
         gap: 16px;
       }
       &__quotation {
+        display: flex;
         background-color: $lavender;
         width: 100%;
-        padding: 72px 40px 72px 140px;
+        padding: 19px;
         border: 1px solid $black;
         border-radius: $bid-border-radius;
+        @media screen and (max-width: $desktop) {
+          gap: 0;
+        }
+        @media screen and (max-width: $tablet2) {
+          padding: 23px 19px;
+          gap: 12px;
+        }
+        &__icon {
+          width: 120px;
+          height: 120px;
+          min-width: 120px;
+          @media screen and (max-width: $desktop) {
+            width: 80px;
+            min-width: 80px;
+            height: 80px;
+          }
+          @media screen and (max-width: $tablet2) {
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+          }
+          @media screen and (max-width: $mobile) {
+            width: 20px;
+            min-width: 20px;
+            height: 20px;
+          }
+        }
+        &__text {
+          padding: 52px 0 52px;
+          font-family: $primary-font;
+          font-weight: 300;
+          font-size: 40px;
+          line-height: 48px;
+
+          @media screen and (max-width: $desktop) {
+            font-size: 32px;
+            line-height: 38px;
+            padding: 52px 0 34px;
+          }
+          @media screen and (max-width: $tablet2) {
+            font-size: 20px;
+            line-height: 30px;
+            padding: 0;
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 18px;
+            line-height: 27px;
+          }
+        }
       }
     }
   }
