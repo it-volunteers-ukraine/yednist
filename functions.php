@@ -164,6 +164,21 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style('gallery-mobile-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/gallery-mobile.css', array('main'));
       wp_enqueue_script( 'gallery-mobile-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery-mobile.js', array(), false, true );
     }
+    if ( is_singular() && locate_template('templates/multicenter.php') ) {
+      wp_enqueue_style( 'multicenter-style', get_template_directory_uri() . '/assets/styles/template-styles/multicenter.css', array('main') );
+      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+      wp_enqueue_script( 'multicenter-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/multicenter.js', array('jquery-scripts'), false, true );
+      wp_localize_script( 'multicenter-scripts', 'multicenter_ajax', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('multicenter_nonce'),
+        'theme_directory_uri' => get_template_directory_uri(),
+        'hide_btn'=> get_field("hide_btn", "option"),
+        'read_btn'=> get_field("read_btn", "option")
+      ));
+    }
+      if ( is_singular() && locate_template('template-parts/one-class.php') ) {
+      wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
+    }  
 }
 /** add fonts */
 function add_google_fonts() {
