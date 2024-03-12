@@ -192,12 +192,14 @@ jQuery(document).ready(function ($) {
     "invite__notification--btn"
   );
   const submitNotificationEl = document.getElementById("submit-notification");
+  const inputNameEl = document.getElementById("invite_name");
 
   if (wpcf7Elm) {
     wpcf7Elm.addEventListener("wpcf7mailsent", getNotification, false);
 
     let timerId;
 
+    // notification about email success sending
     function getNotification() {
       const windowScrollY = window.scrollY;
       document.documentElement.style.scrollBehavior = "auto";
@@ -227,6 +229,22 @@ jQuery(document).ready(function ($) {
 
     wpcf7Elm.addEventListener("wpcf7invalid", getSubmitNotification, false);
 
+    // name input validation
+    function checkName() {
+      const value = inputNameEl.value;
+      const pattern = /^[^\d]+$/;
+      check = pattern.test(value);
+      if (!check) {
+        inputNameEl.classList.add("wpcf7-not-valid");
+      } else {
+        inputNameEl.classList.remove("wpcf7-not-valid");
+      }
+    }
+
+    inputNameEl.addEventListener("blur", checkName);
+    inputNameEl.addEventListener("input", checkName);
+
+    // notification above the submit button
     function getSubmitNotification() {
       submitNotificationEl.classList.add("active");
       setTimeout(() => {

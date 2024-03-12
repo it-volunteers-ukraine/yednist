@@ -598,8 +598,7 @@
         right: 0;
         width: 100%;
         transform: translateX(0);
-        min-height: 348px;
-        padding: 134px 49px;
+        min-height: fit-content;
       }
 
       & .invite__notification--btn {
