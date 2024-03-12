@@ -163,16 +163,12 @@ jQuery(document).ready(function ($) {
         const activePanel = activeAccordion.nextElementSibling;
         activePanel.style.maxHeight = null;
         this.parentNode.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
+          behavior: "instant",
+          block: "start",
         });
       }
 
       this.classList.toggle("active");
-      this.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
 
       if (this.classList.contains("active")) {
         this.setAttribute("aria-expanded", "true");
