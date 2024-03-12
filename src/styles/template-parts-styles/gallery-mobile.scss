@@ -4,27 +4,30 @@
     .gallery-mobile-item {
         min-height: 342px;
         a {                  
-            transition: all $transition-function;
             &:hover {
-                color: $blue;              
-            }           
+                color: $blue;            
+                img, .gallery__post-content {
+                    border-radius: $bid-border-radius;                    
+                    transition: ease 0.7s;
+                    transform: scale(1.01); 
+                } 
+            }          
         }          
     }
     .gallery-mobile-slide {
         border-radius: $small-border-radius;
         margin-bottom: 36px;
         &:nth-child(odd) {
-            background-color: $lavender;
+            .gallery__post-content {background-color: $lavender;}
         }    
         &:nth-child(even) {
-            background-color: $yellow;
+            .gallery__post-content {background-color: $yellow;}
         }
         &:nth-child(3n) {
-            background-color: $pink;
+            .gallery__post-content {background-color: $pink;}
         }
     }  
-    .gallery-mobile-pagination {
-        
+    .gallery-mobile-pagination {        
         .swiper-pagination-bullet {
             border: 2px solid $violet-grey;
             background-color: $white;

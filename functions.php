@@ -155,7 +155,7 @@ function wp_it_volunteers_scripts() {
         ));
     }
     if (is_singular() && locate_template('template-parts/gallery-section.php')) {
-      wp_enqueue_style('gallery-section-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/gallery-section.css', array('main'));
+      wp_enqueue_style('gallery-section-style', get_template_directory_uri() . '/assets/styles/main.css', array('main'));
     }
     if (is_singular() && locate_template('template-parts/gallery-mobile.php')) {
       wp_enqueue_style('gallery-mobile-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/gallery-mobile.css', array('main'));
