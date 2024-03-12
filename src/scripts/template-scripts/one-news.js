@@ -47,7 +47,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  var button = $("#loadmore a"),
+  var button = $("#loadmore-news a"),
     maxPages = button.data("max_pages");
 
   var order = $("#order").val();

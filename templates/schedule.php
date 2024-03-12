@@ -161,7 +161,7 @@ get_header();
             $max_pages = ceil(wp_count_posts('news')->publish / 5);
             ?>
 
-          <div id="loadmore">
+          <div id="loadmore-news">
             <?php  get_template_part('template-parts/loader'); ?>
             <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
               data-paged="<?php echo $paged ?>" data-order="<?php echo $order ?>">
