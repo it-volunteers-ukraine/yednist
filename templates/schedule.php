@@ -57,9 +57,17 @@ get_header();
             $args = array( 
                 'post_type'      => 'activities',
                 'numberposts'    => -1,
-                'order'          => 'ASC',  
+                'order'          => 'ASC',
                 'orderby'        => 'meta_value',
-	              'meta_key'       => 'activity_time',
+                'meta_key'       => 'activity_time_time', // Ключ метаполя вложенного поля 'time'
+    'meta_type'      => 'TIME', // Предположим, что это поле содержит время
+    'tax_query'      => array(
+        array(
+            'taxonomy' => 'activities-categories',
+            'field'    => 'slug',
+            'terms'    => 'constant_activities'
+        )
+        ),
                 'tax_query'      => array(
                         array(
                         'taxonomy' => 'activities-categories',
