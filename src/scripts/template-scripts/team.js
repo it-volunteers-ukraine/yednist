@@ -1,63 +1,59 @@
-window.addEventListener('DOMContentLoaded', () => {
+let swiper = Swiper;
+let init = false;
 
-    const resizableSwiper = (breakpoint, swiperClass, swiperSettings, callback) => {
 
-        let swiper;
+function swiperMode() {
 
-        breakpoint = window.matchMedia(breakpoint);
 
-        const enableSwiper = function (className, settings) {
+    const mobile = window.matchMedia('(min-width: 0) and (max-width: 575px)');
+    const tablet = window.matchMedia('(min-width: 576px) and (max-width: 991px)');
+    const desktop = window.matchMedia('(min-width: 1025px)');
 
-            swiper = new Swiper(className, settings);
 
-            if (callback) {
-                callback(swiper);
-            }
+    if (mobile.matches || tablet.matches) {
+
+        if (!init) {
+
+            init = true;
+
+            swiper = new Swiper('.team_slider', {
+                loop: true,
+                autoplay: {
+                    delay: 2000,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                slidesPerView: 1,
+                observer: true,
+                observeParents: true,
+                autoWidth: false,
+                breakpoints: {
+                    576: {
+                        slidesPerView: 2,
+                        spaceBetween: 28,
+                    },
+                },
+            });
+
         }
+    } else if (desktop.matches) {
 
-        const checker = function () {
-            if (breakpoint.matches) {
-                return enableSwiper(swiperClass, swiperSettings);
-            } else {
-                if (swiper !== undefined) swiper.destroy(true, true);
-                return;
-            }
-        }
-
-        breakpoint.addEventListener('change', checker);
-        checker();
+        swiper.destroy();
+        init = false;
     }
+}
 
 
-    const commonSwiperSettings = {
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    };
+window.addEventListener('load', function () {
+    swiperMode();
+});
 
 
-    resizableSwiper(
-        '(max-width:575px)',
-        '.team_slider',
-        {
-            ...commonSwiperSettings,
-            slidesPerView: 1
-        }
-    )
+window.addEventListener('resize', function () {
+    swiperMode();
+});
 
-
-    resizableSwiper(
-        '(max-width:991px)',
-        '.team_slider',
-        {
-            ...commonSwiperSettings,
-            slidesPerView: 2,
-        }
-    )
-
-})
 
 
 
