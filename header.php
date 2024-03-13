@@ -35,7 +35,6 @@
                 foreach ($menu_left as $index => $menu_item) {
                     $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
                     $current_post_id = get_queried_object_id();
-                    $post = get_post($current_post_id);
                     if ($index === 7 && has_category('multicultural-theater', $current_post_id)) {
                       $current_class .= ' header__current__page';
                     }
