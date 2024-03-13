@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
   const allActivityCards = allActivityCardsArray.length;
+  const activitiesWrapper = document.querySelector(".activities__wrapper");
   let currentPage = 1;
 
   function cardsPerPage() {
@@ -99,10 +100,15 @@ document.addEventListener("DOMContentLoaded", function () {
         index < currentPage * cardsPerPage()
       ) {
         slide.style.display = "block";
+        showSlider();
       } else {
         slide.style.display = "none";
       }
     });
+  }
+
+  function showSlider() {
+    activitiesWrapper.classList.remove("is-hidden");
   }
 
   const nextButton = document.querySelector(".activities-next");
