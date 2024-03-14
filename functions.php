@@ -191,7 +191,7 @@ function add_google_fonts() {
   wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;900&family=Fira+Sans+Extra+Condensed:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap', [], null );
 }
 
-add_action( 'wp_enqueue_scripts', 'add_swiper' );
+//add_action( 'wp_enqueue_scripts', 'add_swiper' );
 
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
 
@@ -551,19 +551,19 @@ function acf_repeater_show_more()
     $title = get_sub_field('fioh-team_projects-repeater-title');
     $link = get_sub_field('fioh-team_projects-repeater-link');
     ?>
-                                
-    <li class="fioh-team__project__item">
-    <div class="fioh-team__project__link">
-    <?php echo $link; ?>
-     </div>
-    <div class="fioh-team__project__name">
-     <p>
-    <?php echo $title; ?>
-    </p>
-    </div>
-    </li>
 
-    <?php
+<li class="fioh-team__project__item">
+  <div class="fioh-team__project__link">
+    <?php echo $link; ?>
+  </div>
+  <div class="fioh-team__project__name">
+    <p>
+      <?php echo $title; ?>
+    </p>
+  </div>
+</li>
+
+<?php
     $i++;
 
   endwhile;
