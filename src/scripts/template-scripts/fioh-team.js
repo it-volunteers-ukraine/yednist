@@ -19,3 +19,18 @@ new Swiper(".fioh-team__team-repeater", {
     nextEl: ".fioh-team__team-repeater-item-btn-circle",
   },
 });
+
+const readMoreBtn = document.querySelector(
+  ".fioh-team__team-repeater-item-readmore"
+);
+readMoreBtn.addEventListener("click", () => {
+  const text = document.querySelector(".fioh-team__team-repeater-item-bio");
+  const container = document.querySelector(".fioh-team__team-repeater");
+  text.classList.toggle("expanded");
+  container.classList.toggle("expanded");
+  if (text.classList.contains("expanded")) {
+    readMoreBtn.setAttribute("data-action", "hide");
+  } else {
+    readMoreBtn.setAttribute("data-action", "show");
+  }
+});
