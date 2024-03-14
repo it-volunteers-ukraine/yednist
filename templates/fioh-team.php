@@ -57,17 +57,19 @@ get_header();
                             <p class="fioh-team__appeal-text-2">
                                 <?php the_field('fioh-team_appeal-text-2'); ?>
                             </p>
-                            <p class="fioh-team__appeal-text-3">
-                                <?php the_field('fioh-team_appeal-text-3'); ?>
-                            </p>
-                        </div>
-                        <div class="swiper-slide fioh-team__appeal-swiper-slide">
+                            
                             <p class="fioh-team__appeal-text-4">
                                 <?php the_field('fioh-team_appeal-text-4'); ?>
                             </p>
-                            <p class="fioh-team__appeal-text-5">
+                        </div>
+                        <div class="swiper-slide fioh-team__appeal-swiper-slide">
+                           <p class="fioh-team__appeal-text-5">
                                 <?php the_field('fioh-team_appeal-text-5'); ?>
                             </p>
+                             <p class="fioh-team__appeal-text-3">
+                                <?php the_field('fioh-team_appeal-text-3'); ?>
+                            </p>
+                            
                             <p class="fioh-team__appeal-text-6">
                                 <?php the_field('fioh-team_appeal-text-6'); ?>
                             </p>
@@ -110,8 +112,11 @@ get_header();
                     </ul>
                 <?php endif; ?>
 
-                <button class="button primary-button btn-show-all">
-                    <?php the_field('show_all'); ?>
+                <button class="button primary-button btn-show-all" style="display: none;">
+                    <?php the_field('show_all_videos', 'option'); ?>
+                </button>
+                <button class="button primary-button btn-hide-all" style="display: none;">
+                    <?php the_field('hide_btn', 'option'); ?>
                 </button>
             </div>
         </div>
@@ -121,10 +126,25 @@ get_header();
             const my_repeater_ajax_url = '<?php echo admin_url('admin-ajax.php'); ?>';
             let itemsCount = getitemsCount();
             let startIndex = 1;
+            let total;
 
             const showAllBtn = document.querySelector('.btn-show-all')
+            const hideAllBtn = document.querySelector('.btn-hide-all')
             showAllBtn.addEventListener("click", () => {
                 loadProjects();
+                showAllBtn.style.display = "none"
+                hideAllBtn.style.display = "block"
+            })
+            hideAllBtn.addEventListener("click", () => {
+                const items = document.querySelectorAll(".fioh-team__project__item")
+                const itemsArr = Array.from(items)
+                const slicedArr = itemsArr.slice(getitemsCount())
+                slicedArr.forEach(el => el.remove())
+                hideAllBtn.style.display = "none"
+                startIndex = getitemsCount()
+                if (total > startIndex) {
+                    showAllBtn.style.display = "block"
+                }
             })
 
             function getitemsCount() {
@@ -156,16 +176,15 @@ get_header();
                         jQuery(".fioh-team__project__list").append(json["content"]);
                         // оновимо зміщення
                         startIndex = Number(json["end"]);
+                        total = Number(json["total"])
                         // itemsCount =startIndex +getitemsCount()
-                        itemsCount = null
-
+                        itemsCount = total
                         // перевіримо, чи є ще що завантажити
-                        // if (!json["more"]) {
-                        //   // якщо ні, сховаємо кнопку завантаження
-                        //   jQuery(".acf-loadmore").css("display", "none");
-                        // } else {
-                        //   jQuery(".acf-loadmore").css("display", "block");
-                        // }
+                        if (!json["more"]) {
+                            showAllBtn.style.display = "none"
+                        } else {
+                            showAllBtn.style.display = "block"
+                        }
                     },
                     "json"
                 );
@@ -205,7 +224,9 @@ get_header();
                                         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                     </div>
                                     <div class="fioh-team__team-repeater-item-text-wrapper">
-                                        <button class="fioh-team__team-repeater-item-readmore">Читати далі</button>
+                                        <button class="fioh-team__team-repeater-item-readmore">
+                                            <?php the_field('read_btn', 'option'); ?>
+                                        </button>
                                         <p class="fioh-team__team-repeater-item-bio">
                                             <?php echo $bio; ?>
                                         </p>
@@ -221,8 +242,10 @@ get_header();
 
                                     <button class="fioh-team__team-repeater-item-btn-circle">
                                         <?php if ($counter < 10): ?>
-                                            <p class="fioh-team__btn-circle-1">0
-                                                <?php echo $counter; ?>
+                                            <p class="fioh-team__btn-circle-1"><span>0</span>
+                                                <span>
+                                                    <?php echo $counter; ?>
+                                                </span>
                                             <?php endif; ?>
                                             <?php if ($count >= 10): ?>
                                             <p class="fioh-team__btn-circle-1">
@@ -230,8 +253,11 @@ get_header();
                                             <?php endif; ?>
                                         </p>
                                         <?php if ($count < 10): ?>
-                                            <p class="fioh-team__btn-circle-2">0
-                                                <?php echo $count; ?>
+                                            <p class="fioh-team__btn-circle-2">
+                                                <span>0</span>
+                                                <span>
+                                                    <?php echo $count; ?>
+                                                </span>
                                             </p>
                                         <?php endif; ?>
                                         <?php if ($count >= 10): ?>

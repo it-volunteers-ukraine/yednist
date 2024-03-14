@@ -18,18 +18,16 @@
           </svg>
         </div>
         <div>
-          <?php
-              $category = get_the_terms($post->ID, 'activities-target');
-              foreach ($category as $cat) {
-                echo $cat->name;
-              }?>
+          <?php the_field('activity_target'); ?>
         </div>
       </li>
     </ul>
   </div>
 
   <div class="activity__table--buttons">
+
     <?php get_template_part( 'template-parts/activity-buttons' ); ?>
+
     <?php $learn_more = get_field('activity_learn_more_btn');
       $post_id = get_the_ID();
       if($learn_more) { ?>

@@ -34,4 +34,5 @@ const element = document.querySelector('.contacts__form-theme');
     allowHTML: false,  
     shouldSort: false,
     position: 'bottom',
+    itemSelectText: '',
   });

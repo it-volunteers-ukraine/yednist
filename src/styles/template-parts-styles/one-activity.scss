@@ -84,6 +84,14 @@
 
 .activity__flip-card-back {
   transform: rotateY(180deg);
+  .button {
+    @media screen and (max-width: 1600px) {
+      min-width: 235px;
+    }
+    @media screen and (max-width: $mobile) {
+      min-width: 100%;
+    }
+  }
 }
 
 .flip-card-back-first,

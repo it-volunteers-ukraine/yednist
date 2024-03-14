@@ -183,7 +183,8 @@
                     <?php endif; ?>
             </div>
         </div>
-        <div class="footer-bottom-container">
+        <div class="footer-bottom-wrapper">
+            <div class="footer-bottom-container">
             <p class="footer-copy-wrapper">
                 <span>Copyright </span>
                 <span> &copy
@@ -205,6 +206,7 @@
                         </a>
                     <?php endif; ?>
 
+        </div>
         </div>
         </div>
     </div>
