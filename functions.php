@@ -51,6 +51,19 @@ function wp_it_volunteers_scripts() {
         wp_enqueue_style( 'partners-style', get_template_directory_uri() . '/assets/styles/template-styles/partners.css',array('main'));
     }
 
+
+    if (is_page_template('templates/team.php')) {
+        wp_enqueue_style('team-style', get_template_directory_uri() . '/assets/styles/template-styles/team.css', array('main'));
+        wp_enqueue_script('team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/team.js', array(), false, true);
+    }
+
+    if (is_page_template('templates/projects.php')) {
+        wp_enqueue_style('projects-style', get_template_directory_uri() . '/assets/styles/template-styles/projects.css', array('main'));
+        wp_enqueue_script('projects-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/projects.js', array(), false, true);
+    }
+    if (is_page_template('templates/gallery.php')) {
+        wp_enqueue_style('gallery-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery.css', array('main'));
+        wp_enqueue_script('gallery-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery.js', array(), false, true);
     if ( is_page_template('templates/gallery-photo.php') ) {
       wp_enqueue_style( 'gallery-photo-style', get_template_directory_uri() . '/assets/styles/template-styles/gallery-post.css', array('main') );
       wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
@@ -72,7 +85,7 @@ function wp_it_volunteers_scripts() {
         'hide_btn'=> get_field("hide_btn", "option"),
         'read_btn'=> get_field("read_btn", "option")
         ));
-        
+
     }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
@@ -174,7 +187,7 @@ function wp_it_volunteers_scripts() {
     }
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
-    }  
+    }
 }
 /** add fonts */
 function add_google_fonts() {
@@ -332,6 +345,17 @@ function do_insert() {
     }
 }
 
+//change the name of home page in the breadcrumbs
+add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
+function my_breadcrumb_title_swapper($title, $type, $id)
+{
+    if(in_array('home', $type))
+    { if(function_exists('pll__'))
+        $title = pll__('Головна');
+    }
+    return $title;
+}
+
 
 // ajax activity details
 add_action('wp_ajax_get_post_activity', 'get_post_activity');
@@ -368,10 +392,10 @@ function get_post_activity() {
     wp_die();
 }
 
+//ajax latest news
 
-// news ajax
-add_action('wp_ajax_load_initial_news', 'load_initial_news');
-add_action('wp_ajax_nopriv_load_initial_news', 'load_initial_news');
+add_action('wp_ajax_load_latest_news', 'load_latest_news');
+add_action('wp_ajax_nopriv_load_latest_news', 'load_latest_news');
 
 function load_initial_news() {
     if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "news_nonce")) {
@@ -403,8 +427,8 @@ function load_initial_news() {
         endwhile;
     endif;
 
-    $html = ob_get_clean();
-    wp_reset_postdata();
+  $html = ob_get_clean();
+  wp_reset_postdata();
 
     wp_send_json(array('html' => $html, 'max_pages' => $max_pages, 'paged' => $paged));
     wp_die();
@@ -449,7 +473,7 @@ function load_classes() {
     );
 
     $query = new WP_Query($args);
-    $posts_count = $query->found_posts; 
+    $posts_count = $query->found_posts;
 
     $max_pages = ceil($posts_count / 5);
     ob_start();
@@ -486,7 +510,7 @@ function activities_target_add_term_fields( $term ) {
 add_action( 'created_activities-target', 'activities_target_save_term_fields' );
 add_action( 'edited_activities-target', 'activities_target_save_term_fields' );
 function activities_target_save_term_fields( $term_id ) {
-	
+
 	update_term_meta(
 		$term_id,
 		'order_number',
@@ -502,4 +526,5 @@ function my_breadcrumb_title_swapper($title, $type, $id)
         $title = pll__('Головна');
     }
     return $title;
+}
 }
