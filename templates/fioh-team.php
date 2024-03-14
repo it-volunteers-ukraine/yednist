@@ -81,115 +81,98 @@ get_header();
     </section>
     <section class="section fioh-team__section">
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
         <div class="container">
             <h2 class="fioh-team__subtitle section-title">
                 <?php the_field('fioh-team_projects-title'); ?>
             </h2>
             <div class="inner-container">
 
-                <?php
-                // $total_rows = count(get_field("fioh-team_projects-repeater")); # всього постів
-                // $count = 0;  # лічильник
-                // $number = 3; # скільки відображати на сторінці
-                ?>
-
-                <?php
-                // Якщо є вкладені поля
-                if (have_rows("fioh-team_projects-repeater")) { ?>
+                <?php if (have_rows('fioh-team_projects-repeater')): ?>
 
                     <ul class="fioh-team__project__list">
+                        <?php
+                        the_row();
+                        $title = get_sub_field('fioh-team_projects-repeater-title');
+                        $link = get_sub_field('fioh-team_projects-repeater-link');
+                        ?>
 
-
+                        <li class="fioh-team__project__item">
+                            <div class="fioh-team__project__link">
+                                <?php echo $link; ?>
+                            </div>
+                            <div class="fioh-team__project__name">
+                                <p>
+                                    <?php echo $title; ?>
+                                </p>
+                            </div>
+                        </li>
                     </ul>
-                <?php } ?>
+                <?php endif; ?>
 
-
-                <div class="loadmore-wrapper">
-                    <button class="btn acf-loadmore button primary-button" <?php if ($total_rows < $count): ?>
-                            style="display: block;" <?php endif; ?>>
-                        показати ще
-                    </button>
-                    <button class="btn acf-hide button primary-button" style="display: none;">
-                        сховати
-                    </button>
-                </div>
-
-                <!-- AJAX завантаження -->
-
-                <script>
-
-                    let my_repeater_field_post_id = <?php echo $post->ID; ?>;
-                    let my_repeater_field_offset = 0;
-                    let my_repeater_field_nonce = "<?php echo wp_create_nonce("my_repeater_field_nonce"); ?>";
-                    let my_repeater_ajax_url = "<?php echo admin_url("admin-ajax.php"); ?>";
-                    let my_repeater_more = true;
-                    let buttonACF = document.querySelector(".acf-loadmore");
-                    let buttonHIDE = document.querySelector(".acf-hide");
-
-                    const getProjectsCount = () => {
-                        if (window.innerWidth > 1349.98) {
-                            return 3;
-                        } else if(window.innerWidth > 767.98) {
-                            return 2;
-                        } else {
-                            return 1;
-                        }
-                    }
-
-                    acf_repeater_show_more()
-
-                    buttonACF.addEventListener("click", acf_repeater_show_more)
-
-                    buttonHIDE.addEventListener("click", () => {
-                        const list = document.querySelector(".fioh-team__project__list")
-                        list.innerHTML = ""
-                        my_repeater_field_offset = 0;
-                        acf_repeater_show_more()
-                        buttonHIDE.style.display = "none"
-                    })
-
-                    function acf_repeater_show_more(load_all) {
-                        buttonACF.classList.add("loading");
-                        // робимо AJAX запит
-                        jQuery.post(
-                            my_repeater_ajax_url,
-                            {
-                                // AJAX, який ми налагодили в PHP
-                                action: "acf_repeater_show_more",
-                                post_id: my_repeater_field_post_id,
-                                offset: my_repeater_field_offset,
-                                nonce: my_repeater_field_nonce,
-                                width: window.innerWidth,
-                                load_all,
-                            },
-                            function (json) {
-                                // додаємо контент в контейнер
-                                // цей ідентифікатор має відповідати контейнеру
-                                // до якого ви хочете додати контент
-                                jQuery(".fioh-team__project__list").append(json["content"]);
-                                // оновимо зміщення
-                                my_repeater_field_offset = json["offset"];
-
-                                if(my_repeater_field_offset > getProjectsCount()) {
-                                    buttonHIDE.style.display = 'block'
-                                }
-
-                                // перевіримо, чи є ще що завантажити
-                                if (!json["more"]) {
-                                    // якщо ні, сховаємо кнопку завантаження
-                                    jQuery(".acf-loadmore").css("display", "none");
-                                } else {
-                                    buttonACF.classList.remove("loading")
-                                    jQuery(".acf-loadmore").css("display", "block");
-                                }
-                            },
-                            "json"
-                        );
-                    }
-
-                </script>
+                <button class="button primary-button btn-show-all">
+                    <?php the_field('show_all'); ?>
+                </button>
             </div>
         </div>
+        <script>
+            const post_id = <?php echo $post->ID; ?>;
+            const my_repeater_field_nonce = '<?php echo wp_create_nonce('my_repeater_field_nonce'); ?>';
+            const my_repeater_ajax_url = '<?php echo admin_url('admin-ajax.php'); ?>';
+            let itemsCount = getitemsCount();
+            let startIndex = 1;
+
+            const showAllBtn = document.querySelector('.btn-show-all')
+            showAllBtn.addEventListener("click", () => {
+                loadProjects();
+            })
+
+            function getitemsCount() {
+                if (window.innerWidth > 1349.98) {
+                    return 3;
+                } else if (window.innerWidth > 767.98) {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+            function loadProjects() {
+                // робимо AJAX запит
+                jQuery.post(
+                    my_repeater_ajax_url,
+                    {
+                        // AJAX, який ми налагодили в PHP
+                        action: "acf_repeater_show_more",
+                        nonce: my_repeater_field_nonce,
+
+                        start: startIndex,
+                        end: itemsCount,
+                        post_id
+                    },
+                    function (json) {
+                        // додаємо контент в контейнер
+                        // цей ідентифікатор має відповідати контейнеру
+                        // до якого ви хочете додати контент
+                        jQuery(".fioh-team__project__list").append(json["content"]);
+                        // оновимо зміщення
+                        startIndex = Number(json["end"]);
+                        // itemsCount =startIndex +getitemsCount()
+                        itemsCount = null
+
+                        // перевіримо, чи є ще що завантажити
+                        // if (!json["more"]) {
+                        //   // якщо ні, сховаємо кнопку завантаження
+                        //   jQuery(".acf-loadmore").css("display", "none");
+                        // } else {
+                        //   jQuery(".acf-loadmore").css("display", "block");
+                        // }
+                    },
+                    "json"
+                );
+            }
+
+            loadProjects();
+        </script>
     </section>
     <section class="section fioh-team__section">
         <div class="container">
@@ -197,6 +180,8 @@ get_header();
                 <?php the_field('fioh-team_team-title'); ?>
             </h2>
             <div class="inner-container">
+
+
 
                 <div class="swiper fioh-team__team-repeater">
 
@@ -235,11 +220,22 @@ get_header();
                                     </div>
 
                                     <button class="fioh-team__team-repeater-item-btn-circle">
-                                        <?php if ($count < 10): ?>
+                                        <?php if ($counter < 10): ?>
                                             <p class="fioh-team__btn-circle-1">0
                                                 <?php echo $counter; ?>
-                                            </p>
+                                            <?php endif; ?>
+                                            <?php if ($count >= 10): ?>
+                                            <p class="fioh-team__btn-circle-1">
+                                                <?php echo $counter; ?>
+                                            <?php endif; ?>
+                                        </p>
+                                        <?php if ($count < 10): ?>
                                             <p class="fioh-team__btn-circle-2">0
+                                                <?php echo $count; ?>
+                                            </p>
+                                        <?php endif; ?>
+                                        <?php if ($count >= 10): ?>
+                                            <p class="fioh-team__btn-circle-2">
                                                 <?php echo $count; ?>
                                             </p>
                                         <?php endif; ?>
@@ -254,6 +250,7 @@ get_header();
             </div>
         </div>
     </section>
+
 </main>
 
 

@@ -20,33 +20,29 @@ new Swiper(".fioh-team__team-repeater", {
   },
 });
 
-const readMoreBtn = document.querySelector(
-  ".fioh-team__team-repeater-item-readmore"
-);
-readMoreBtn.addEventListener("click", () => {
-  const text = document.querySelector(".fioh-team__team-repeater-item-bio");
-  const container = document.querySelector(".fioh-team__team-repeater");
-  text.classList.toggle("expanded");
-  container.classList.toggle("expanded");
-  if (text.classList.contains("expanded")) {
-    readMoreBtn.setAttribute("data-action", "hide");
-  } else {
-    readMoreBtn.setAttribute("data-action", "show");
-  }
-});
+// let itemsCount = getitemsCount();
+// let startIndex = 0;
 
-// function acf_repeater_show_more({ url, post_id, offset, nonce }) {
-//   buttonACF.classList.add("loading");
+// function getitemsCount() {
+//   if (window.innerWidth > 1349.98) {
+//     return 3;
+//   } else if (window.innerWidth > 767.98) {
+//     return 2;
+//   } else {
+//     return 1;
+//   }
+// }
+
+// function loadProjects() {
 //   // робимо AJAX запит
 //   jQuery.post(
-//     url,
+//     myAjax.ajaxUrl,
 //     {
 //       // AJAX, який ми налагодили в PHP
 //       action: "acf_repeater_show_more",
-//       post_id: post_id,
-//       offset: offset,
-//       nonce: nonce,
-//       width: window.innerWidth,
+//       nonce: myAjax.nonce,
+//       start: startIndex,
+//       end: itemsCount,
 //     },
 //     function (json) {
 //       // додаємо контент в контейнер
@@ -54,15 +50,18 @@ readMoreBtn.addEventListener("click", () => {
 //       // до якого ви хочете додати контент
 //       jQuery(".fioh-team__project__list").append(json["content"]);
 //       // оновимо зміщення
-//       my_repeater_field_offset = json["offset"];
+//       startIndex = json["end"];
+
 //       // перевіримо, чи є ще що завантажити
-//       if (!json["more"]) {
-//         // якщо ні, сховаємо кнопку завантаження
-//         jQuery(".acf-loadmore").css("display", "none");
-//       } else {
-//         buttonACF.classList.remove("loading");
-//       }
+//       // if (!json["more"]) {
+//       //   // якщо ні, сховаємо кнопку завантаження
+//       //   jQuery(".acf-loadmore").css("display", "none");
+//       // } else {
+//       //   jQuery(".acf-loadmore").css("display", "block");
+//       // }
 //     },
 //     "json"
 //   );
 // }
+
+// loadProjects();

@@ -365,7 +365,7 @@
   }
 
   &__team-repeater-item-bio {
-    font-family: "Fira sans";
+    font-family: $secondary-font;
     max-width: 670px;
     line-height: 1.5;
     font-weight: 400;
@@ -442,23 +442,34 @@
     top: 50%;
     right: -60px;
     transform: translateY(-50%);
+    font-family: $primary-font;
+    padding: 20px 33px 32px 27px;
 
     &::after {
       content: "";
       display: block;
       width: 52px;
       height: 1px;
-      background-color: $black;
+      background-color: $main-dark;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-45deg);
+
+      @media screen and (max-width: $tablet2) {
+        width: 48px;
+      }
+
+      @media screen and (max-width: $mobile) {
+        width: 36px;
+      }
     }
 
     @media screen and (max-width: $tablet2) {
       right: -50px;
       width: 100px;
       height: 100px;
+      padding: 18px 30px 30px 23px;
     }
 
     @media screen and (max-width: $mobile) {
@@ -467,16 +478,76 @@
       transform: none;
       width: 64px;
       height: 64px;
+      padding: 15px 18px 18px 15px;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $lavender;
     }
   }
 
   &__btn-circle-1 {
-    margin: 20px 0 0 27px;
     font-size: 40px;
+    line-height: 1;
+    @media screen and (max-width: $tablet2) {
+      font-size: 32px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      font-size: 20px;
+    }
   }
 
   &__btn-circle-2 {
-    margin: -26px 33px 32px 60px;
     font-size: 28px;
+    line-height: 1;
+    align-self: end;
+    color: $main-dark;
+
+    @media screen and (max-width: $tablet2) {
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+    }
+  }
+}
+.second-item {
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+.third-item {
+  @media screen and (max-width: $tablet2) {
+    display: none;
+  }
+
+  @media screen and (max-width: $mobile) {
+  }
+}
+
+.btn-for-desktop {
+  @media screen and (max-width: $desktop) {
+    display: none;
+  }
+}
+
+.btn-for-tablet {
+  display: none;
+  @media screen and (max-width: $desktop) {
+    display: block;
+  }
+
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.btn-for-tablet {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    display: block;
   }
 }

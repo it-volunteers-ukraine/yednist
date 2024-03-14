@@ -418,15 +418,7 @@ add_action("wp_ajax_acf_repeater_show_more", "acf_repeater_show_more");
 // додаємо action для не авторизованих користувачів
 add_action("wp_ajax_nopriv_acf_repeater_show_more", "acf_repeater_show_more");
 
-function get_projects_per_page($width) {
-  if ($width > 1349.98) {
-    return 3;
-  } elseif ($width > 767.98) {
-    return 2;
-  } else {
-    return 1;
-  }
-}
+
 
 function acf_repeater_show_more()
 {
@@ -434,62 +426,81 @@ function acf_repeater_show_more()
     if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "my_repeater_field_nonce")) {
         exit;
     }
-    // впевнимося, що в нас є інші значення
-    if (!isset($_POST["post_id"]) || !isset($_POST["offset"])) {
-        return;
-    }
 
-     // Отримання параметрів з AJAX-запиту
-  $width = $_POST['width'];
-  
-  // Визначення кількості постів на сторінку залежно від ширини
-
-    $show = get_projects_per_page($width); // по скільки відображати
-    $start = $_POST["offset"];
-    $end = $start + $show;
-    $post_id = $_POST["post_id"];
+  $post_id = $_POST["post_id"];
+// по скільки відображати
+$rows = get_field("fioh-team_projects-repeater", $post_id);
+$total = count($rows);
+  $start = !isset($_POST["start"]) ? 1 : $_POST["start"];
+    $end = $_POST["end"] < 0 ? $total - 1 : $_POST["end"];
+  $i = 0;
     // використаємо об'єктний буфер для захоплення виводу html
     ob_start();
-    if (have_rows("fioh-team_projects-repeater", $post_id)) {
-        $total = count(get_field("fioh-team_projects-repeater", $post_id));
-        $count = 0;
+  
+while (have_rows('fioh-team_projects-repeater', $post_id)):
+the_row();
+if ($i < $start) {
+					// we have not gotten to where
+					// we need to start showing
+					// increment count and continue
+					$i++;
+					continue;
+				}
+        if ($i == $end) {
+					// we've shown the number, break out of loop
+					break;
+				}
+$title = get_sub_field('fioh-team_projects-repeater-title');
+$link = get_sub_field('fioh-team_projects-repeater-link');
+?>
+                                
+<li class="fioh-team__project__item">
+<div class="fioh-team__project__link">
+<?php echo $link; ?>
+ </div>
+<div class="fioh-team__project__name">
+ <p>
+<?php echo $title; ?>
+</p>
+</div>
+</li>
 
-        while (have_rows("fioh-team_projects-repeater", $post_id)) {
-            the_row();
-            if ($count < $start) {
-                // продовжуємо показивати і збільшувати лічильник
-                $count++;
-                continue;
-            }
-            ?>
-             <?php $projectName = get_sub_field("fioh-team_projects-repeater-title"); ?>
-          <?php $projectLink = get_sub_field("fioh-team_projects-repeater-link"); ?>
+<?php
+  $i++;
+				
+ endwhile; 
 
-          <li class="fioh-team__project__item">
-                <div class="fioh-team__project__link">
-                <?php echo $projectLink; ?>
-                </div>
-                <div class="fioh-team__project__name">
-                    <p>
-                <?php echo $projectName; ?>
-                </p>
-                </div>
-              </li>
-            
-            <?php
-            $count++;
-            if ($count == $end) {
-                break; 
-            }
-        }
-    }
+    // for ($i = 1; $i < $total; $i++) {
+    //   if ($i < $start) {
+    //   continue;
+    //   }
+    //   if($i > $end) {
+    //   break;
+    //   }
+    //   the_row();
+    //   // $row = $rows[$i];
+    //    $row_title = get_sub_field('fioh-team_projects-repeater-title');
+    //    $row_link = get_sub_field('fioh-team_projects-repeater-link');
+    //    echo '<li class="fioh-team__project__item">';
+    //          echo   '<div class="fioh-team__project__link">';
+    //            $row_link; 
+    //              echo   '</div>';
+    //              echo   '<div class="fioh-team__project__name">';
+    //                  echo   '<p>';
+    //            $row_title; 
+    //            echo   ' </p>';
+    //             echo   '</div>';
+    // echo '</li>';
+
+    // }
+    
     $content = ob_get_clean();
     // перевіряємо, чи показали ми останній елемент
     $more = false;
-    if ($total > $count) {
+    if ($total > $end) {
         $more = true;
     }
     // виводим наші 3 значення у вигляді масиву в кодуванні json
-    echo json_encode(array("content" => $content, "more" => $more, "offset" => $end));
+    echo json_encode(array("content" => $content, "more" => $more, "end" => $end));
     exit;
 }
