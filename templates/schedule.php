@@ -58,7 +58,7 @@ get_header();
         $args = array( 
             'post_type'      => 'activities',
             'numberposts'    => -1,
-            'meta_key'       => 'activity_time_0_order_time',
+            'meta_key'       => 'activity_time_1_order_time',
             'tax_query'      => array(
                 array(
                     'taxonomy' => 'activities-categories',
@@ -96,8 +96,8 @@ get_header();
             //Активності для кожного дня тижня
             foreach ($activities_by_day as $day_slug => $activities) { 
               usort($activities, function($a, $b) {
-              $time_a = strtotime(get_field('activity_time_0_order_time', $a->ID));
-              $time_b = strtotime(get_field('activity_time_0_order_time', $b->ID));
+              $time_a = strtotime(get_field('activity_time_1_order_time', $a->ID));
+              $time_b = strtotime(get_field('activity_time_1_order_time', $b->ID));
               return $time_a - $time_b;
           });
           $activities_by_day[$day_slug] = $activities;?>
@@ -125,7 +125,9 @@ get_header();
 
                           $day = get_sub_field('day');
                           if($day==$day_slug){
-                            echo get_sub_field('custom_time');
+                            $order_time = get_sub_field('order_time');
+                            $finish_time = get_sub_field('finish_time');
+                            echo "<span>{$order_time} - {$finish_time}</span>";
                           }
 
                       endwhile;
