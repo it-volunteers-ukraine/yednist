@@ -84,23 +84,49 @@ get_header();
 
             // Групування активностей по дням тижня
             foreach ($activities_array as $activity) {
-                $category = get_the_terms($activity->ID, 'activities-categories');
-                foreach ($category as $cat) {
-                    $slug = $cat->slug;
-                    if (array_key_exists($slug, $activities_by_day)) {
-                        $activities_by_day[$slug][] = $activity;
+                if (have_rows('activity_time', $activity->ID)) {
+                    while (have_rows('activity_time', $activity->ID)) {
+                        the_row();
+                        $day = get_sub_field('day');
+                        $activities_by_day[$day][] = $activity;
                     }
                 }
             }
 
-            //Активності для кожного дня тижня
-            foreach ($activities_by_day as $day_slug => $activities) { 
-              usort($activities, function($a, $b) {
-              $time_a = strtotime(get_field('activity_time_1_order_time', $a->ID));
-              $time_b = strtotime(get_field('activity_time_1_order_time', $b->ID));
-              return $time_a - $time_b;
-          });
-          $activities_by_day[$day_slug] = $activities;?>
+// Сортування активностей всередині кожної групи по часу, з урахуванням дня у subfield репітера
+  foreach ($activities_by_day as $day_slug => $activities) {
+    $activity_times = array();   
+    foreach ($activities as $key => $activity) {
+        if (have_rows('activity_time', $activity->ID)) {
+            $rows = get_field('activity_time', $activity->ID); 
+            foreach ($rows as $row) {
+                $day = $row['day'];
+                if ($day == $day_slug) {
+                    $activity_time = array(
+                        'time' => $row['order_time'],
+                        'post_id' => $activity->ID
+                    );
+                    array_push($activity_times, $activity_time) ;
+                }
+            }
+        }
+    }
+    // Сортування массиву активностей по часу
+    usort($activity_times, function($a, $b) {
+        $time_a = strtotime($a['time']);
+        $time_b = strtotime($b['time']);
+        return $time_a - $time_b;
+    });
+    // Новий масив активностей, відсортований відповідно масиву $activity_times
+    $sorted_activities = array_map(function($activity_time) use ($activities) {
+        foreach ($activities as $activity) {
+            if ($activity->ID == $activity_time['post_id']) {
+                return $activity;
+            }
+        }
+    }, $activity_times);
+
+    $activities = $sorted_activities; ?>
 
         <div class="activity__table">
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
