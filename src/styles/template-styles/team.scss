@@ -199,6 +199,10 @@
           margin-bottom: 25px;
         }
 
+        @media screen and (max-width: $mobile) {
+          margin-bottom: 0;
+        }
+
 
         img {
           width: 722px;
@@ -253,6 +257,7 @@
             height: 66px;
             padding: 12px;
             left: 12px;
+            bottom: 12px;
           }
 
         }
@@ -270,6 +275,13 @@
 
         @media screen and (max-width: $mobile) {
           padding: 0 14px;
+          font-size: 14px;
+        }
+
+
+        @media screen and (max-width: $tablet2) {
+          width: 710px;
+          padding: 0 24px;
           font-size: 14px;
         }
 
@@ -356,7 +368,16 @@
 
               &:hover {
                 .wrapper-info {
+
+                  @media screen and (max-width: $tablet2) {
+                    display: none;
+                  }
+
                   display: block;
+
+                  .info {
+                    display: block;
+                  }
                 }
               }
 
@@ -381,8 +402,9 @@
                   transform: rotate(0deg);
                   bottom: 0;
                   padding: 64px 40px;
+                  display: none;
                   left: 0;
-                  background-color: lavender;
+                  background-color: $lavender;
 
 
                   @media screen and (max-width: $tablet2) {
@@ -400,9 +422,9 @@
                   position: absolute;
                   bottom: 0;
                   border-radius: 24px;
-                  background-color: $blue;
                   left: 5px;
                   z-index: -1;
+                  background-color: $blue;
                 }
 
 
@@ -424,6 +446,22 @@
                 }
 
 
+              }
+
+              .active svg {
+                fill: $blue;
+                stroke-width: 1;
+                stroke: $blue;
+
+                rect {
+                  stroke: $blue;
+                }
+
+              }
+
+
+              .inactive svg {
+                fill-opacity: 0.6;
               }
 
 
@@ -487,17 +525,6 @@
 
               .info {
                 background-color: $yellow;
-              }
-            }
-          }
-        }
-
-
-        .swiper-slide:nth-child(n) {
-          .team-image {
-            &:hover {
-              .frame {
-                background-color: $blue;
               }
             }
           }

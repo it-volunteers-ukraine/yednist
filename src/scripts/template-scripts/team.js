@@ -1,6 +1,9 @@
+
+
+const buttons = document.querySelectorAll('.show-info');
+
 let swiper = Swiper;
 let init = false;
-
 
 function swiperMode() {
 
@@ -57,8 +60,34 @@ window.addEventListener('resize', function () {
 
 
 
+function showInfo(event) {
+
+    const targetButton = event.currentTarget;
+
+    const infoByButton = targetButton.nextElementSibling;
 
 
+    targetButton.classList.toggle('active');
+
+
+    infoByButton.style.display = (targetButton.classList.contains('active')) ? 'block' : 'none';
+
+
+    if (!targetButton.classList.contains('active')) {
+        targetButton.classList.add('inactive');
+    } else {
+        targetButton.classList.remove('inactive');
+    }
+
+}
+
+
+buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        showInfo(event);
+    })
+
+})
 
 
 
