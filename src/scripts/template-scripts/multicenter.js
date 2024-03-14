@@ -162,10 +162,12 @@ jQuery(document).ready(function ($) {
         activeAccordion.setAttribute("aria-expanded", "false");
         const activePanel = activeAccordion.nextElementSibling;
         activePanel.style.maxHeight = null;
-        this.parentNode.scrollIntoView({
-          behavior: "instant",
-          block: "start",
-        });
+        if (window.innerWidth < 576) {
+          this.parentNode.scrollIntoView({
+            behavior: "instant",
+            block: "start",
+          });
+        }
       }
 
       this.classList.toggle("active");
