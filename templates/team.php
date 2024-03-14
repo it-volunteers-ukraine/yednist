@@ -33,9 +33,7 @@ get_header();
                     <div class="founders">
                         <?php
                         $founders = get_field('founders');
-                        foreach ($founders
-
-                        as $row) : ?>
+                        foreach ($founders as $row) : ?>
                         <div class="image">
                             <img src="<?= $row['founders-image']; ?>" alt="image">
                             <div class="placeholder"><?= $row['placeholder']; ?></div>

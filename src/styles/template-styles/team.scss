@@ -520,7 +520,7 @@
           .team-image {
             &:hover {
               .frame {
-                background-color: #EEBC3C;
+                background-color: $dark-yellow;
               }
 
               .info {
@@ -536,7 +536,7 @@
             &:hover {
 
               .frame {
-                background-color: #A06C6C;
+                background-color: $dark-pink;
               }
 
               .info {
