@@ -1,5 +1,24 @@
 @import "../variables";
 
+.activities__section {
+  & .activities-pagination__block {
+    @media screen and (max-width: $tablet1) {
+      margin: 12px auto 0;
+      justify-content: space-between;
+      max-width: 315px;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: 288px;
+    }
+  }
+  & .activities__button-next,
+  & .activities__button-prev {
+    @media screen and (max-width: $tablet2) {
+      display: flex;
+    }
+  }
+}
+
 .activities__wrapper {
   margin: 0 auto;
   width: 100%;
@@ -17,6 +36,13 @@
     display: block;
   }
 }
+
+.activities__wrapper.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+//table section
 
 .activity__table {
   border: 1px solid $blue;
@@ -91,6 +117,168 @@
       stroke-width: 1.5;
       width: 16px;
       height: 10px;
+    }
+  }
+}
+
+// news section
+
+.lastnews_form {
+  display: flex;
+  justify-content: flex-end;
+
+  & .choices {
+    margin-bottom: 0;
+    padding: 0;
+    overflow: visible;
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+
+    &::after {
+      margin: 0;
+      right: 15%;
+      top: 51%;
+      transform: translateY(-50%);
+      background-image: url(../../../assets/images/arrow-down-blue.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-origin: border-box;
+      border: none;
+      height: 10px;
+      width: 16px;
+      @media screen and (max-width: $desktop) {
+        right: 10%;
+      }
+      @media screen and (max-width: $mobile) {
+        right: 25%;
+      }
+    }
+
+    &[data-type*="select-one"]::after {
+      margin: 0;
+    }
+
+    &.is-open::after {
+      background-image: url(../../../assets/images/arrow-up-blue.svg);
+    }
+
+    &.is-open.is-focused {
+      & .choices__inner {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    & .choices__inner {
+      display: flex;
+      align-items: center;
+      padding: 8px 32px;
+      min-width: 277px;
+      min-height: 54px;
+      border-radius: 40px;
+      border: none;
+      background: $white;
+      transition: all $transition-function;
+      @media screen and (max-width: $desktop) {
+        min-width: 203px;
+        min-height: 48px;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+      }
+
+      &:hover,
+      &:focus {
+        box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
+      }
+
+      & .choices__list--single {
+        padding: 0;
+
+        & .choices__item {
+          text-align: center;
+          color: $blue;
+          font-size: 24px;
+          @media screen and (max-width: $desktop) {
+            font-size: 20px;
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    & .choices__list--dropdown {
+      border-color: transparent;
+      border-bottom-left-radius: $bid-border-radius;
+      border-bottom-right-radius: $bid-border-radius;
+      background: $white;
+      box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 0;
+        background-color: $violet-grey;
+      }
+
+      & .choices__item--choice {
+        padding: 8px 32px;
+        text-align: center;
+        margin-top: 8px;
+        color: $blue;
+        font-size: 24px;
+        transition: all $transition-function;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 16px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          display: block;
+          left: 0;
+          bottom: 0;
+          height: 4px;
+          width: 100%;
+        }
+
+        &:last-child {
+          margin-bottom: 16px;
+        }
+
+        &:hover,
+        &:focus {
+          &::after {
+            background-color: $violet-grey;
+          }
+        }
+
+        &.is-highlighted {
+          background-color: transparent;
+        }
+
+        &.is-selected {
+          background-color: $lavender;
+        }
+      }
+
+      & .choices__item--selectable::after {
+        top: auto;
+      }
     }
   }
 }

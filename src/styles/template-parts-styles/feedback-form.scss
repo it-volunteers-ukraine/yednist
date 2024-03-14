@@ -428,8 +428,6 @@
 
     &:checked {
       background-image: url(../../images/icon-checkbox-check.svg);
-      background-size: contain;
-      background-origin: border-box;
     }
   }
   & .feedback-privacy__link {
@@ -499,7 +497,7 @@
       margin-bottom: 16px;
       font-size: 28px;
     }
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $mobile) {
       margin-bottom: 20px;
     }
   }

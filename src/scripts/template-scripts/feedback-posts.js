@@ -111,4 +111,26 @@ jQuery(document).ready(function ($) {
   // Початкове завантаження постів
   loadPosts(currentPage);
   updateCurrentPage();
+
+  // hide & show comments
+  const hide_btn = myAjax.hide_btn;
+  const read_btn = myAjax.read_btn;
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target;
+    if (btn.className === "feedback-open__btn") {
+      const fullText = btn.nextElementSibling;
+      const shortText = btn.previousElementSibling;
+
+      if (fullText.classList.contains("hidden")) {
+        btn.innerHTML = `${hide_btn}`;
+        fullText.classList.remove("hidden");
+        shortText.classList.add("hidden");
+      } else {
+        btn.innerHTML = `${read_btn}`;
+        fullText.classList.add("hidden");
+        shortText.classList.remove("hidden");
+      }
+    }
+  });
 });

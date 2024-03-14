@@ -11,9 +11,11 @@
     <p class="lastnews__time"><?php the_time('d.m.Y'); ?></p>
 
     <?php $fullContent = get_the_content();
+    $content = wp_trim_words($fullContent, 15, "...");
     $contentExcerpt = wp_trim_words($fullContent, 14, "..."); ?>
 
     <div class="lastnews__detais-box">
+      <?php if (strlen($content) > strlen($contentExcerpt)) { ?>
       <div class="lastnews__content--short"><?php echo $contentExcerpt?></div>
 
       <button id="" class='activity__modal--detais-open' type='button'><?php the_field('read_btn', 'option'); ?>
@@ -24,10 +26,17 @@
         </span>
       </button>
 
-
       <div class="lastnews__content--full hidden">
         <?php if($fullContent) echo $fullContent; ?>
       </div>
+
+      <?php } else { ?>
+
+      <div class="lastnews__content--full">
+        <?php if($fullContent) echo $fullContent; ?>
+      </div>
+
+      <? } ?>
 
     </div>
 

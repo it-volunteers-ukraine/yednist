@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
   const allActivityCards = allActivityCardsArray.length;
+  const activitiesWrapper = document.querySelector(".activities__wrapper");
   let currentPage = 1;
 
   function cardsPerPage() {
@@ -99,10 +100,15 @@ document.addEventListener("DOMContentLoaded", function () {
         index < currentPage * cardsPerPage()
       ) {
         slide.style.display = "block";
+        showSlider();
       } else {
         slide.style.display = "none";
       }
     });
+  }
+
+  function showSlider() {
+    activitiesWrapper.classList.remove("is-hidden");
   }
 
   const nextButton = document.querySelector(".activities-next");
@@ -144,52 +150,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-  const activitiesWrapper = document.querySelector(".activities__wrapper");
-  // Swipe
-  activitiesWrapper.addEventListener("touchstart", handleTouchStart, false);
-  activitiesWrapper.addEventListener("touchmove", handleTouchMove, false);
+  // sort select
+  const lastnewsSelect = document.querySelector(".lastnews_select");
 
-  let xDown = null;
-
-  function handleTouchStart(event) {
-    const firstTouch = event.touches[0];
-    xDown = firstTouch.clientX;
-  }
-
-  function handleTouchMove(event) {
-    if (!xDown) {
-      return;
-    }
-
-    let xUp = event.touches[0].clientX;
-    let xDiff = xDown - xUp;
-
-    // Swipe left
-    if (xDiff > 0) {
-      if (currentPage < totalPages) {
-        currentPage++;
-        updateSlider();
-        currentBullet();
-        updatePaginationButtons();
-      }
-    }
-    // Swipe right
-    else {
-      if (currentPage > 1) {
-        currentPage--;
-        updateSlider();
-        currentBullet();
-        updatePaginationButtons();
-      }
-    }
-    xDown = null;
-  }
-
-  // flip
-
-  function handleTouch(event) {
-    var card = event.currentTarget;
-    var flipCardInner = card.querySelector(".activity__flip-card-inner");
-    flipCardInner.classList.toggle("flipped");
+  if (lastnewsSelect) {
+    const lastNewsSelect = new Choices(lastnewsSelect, {
+      searchEnabled: false,
+      allowHTML: false,
+      shouldSort: false,
+      position: "bottom",
+      itemSelectText: "",
+    });
   }
 });

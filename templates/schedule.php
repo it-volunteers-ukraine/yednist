@@ -31,7 +31,7 @@ get_header();
 
           <?php if ($query->have_posts()) : ?>
 
-          <div class="activities__wrapper">
+          <div class="activities__wrapper is-hidden">
             <?php  while ($query->have_posts()) : $query->the_post(); ?>
 
             <?php get_template_part('template-parts/one-activity'); ?>
@@ -54,20 +54,19 @@ get_header();
       <div class="inner-container">
 
         <?php 
-            $args = array( 
-                'post_type'      => 'activities',
-                'numberposts'    => -1,
-                'order'          => 'ASC',  
-                'orderby'        => 'meta_value',
-	              'meta_key'       => 'activity_time',
-                'tax_query'      => array(
-                        array(
-                        'taxonomy' => 'activities-categories',
-                        'field'    => 'slug',
-                        'terms'    => 'constant_activities'
-                    )
+
+        $args = array( 
+            'post_type'      => 'activities',
+            'numberposts'    => -1,
+            'meta_key'       => 'activity_time_1_order_time',
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'activities-categories',
+                    'field'    => 'slug',
+                    'terms'    => 'constant_activities'
                 )
-            );
+            )
+        );
 
             $activities_array = get_posts( $args ); ?>
 
@@ -95,7 +94,14 @@ get_header();
             }
 
             //Активності для кожного дня тижня
-            foreach ($activities_by_day as $day_slug => $activities) { ?>
+            foreach ($activities_by_day as $day_slug => $activities) { 
+              usort($activities, function($a, $b) {
+              $time_a = strtotime(get_field('activity_time_1_order_time', $a->ID));
+              $time_b = strtotime(get_field('activity_time_1_order_time', $b->ID));
+              return $time_a - $time_b;
+          });
+          $activities_by_day[$day_slug] = $activities;?>
+
         <div class="activity__table">
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
             class="activity__table-title schedule-accordion">
@@ -119,7 +125,9 @@ get_header();
 
                           $day = get_sub_field('day');
                           if($day==$day_slug){
-                            echo get_sub_field('time');
+                            $order_time = get_sub_field('order_time');
+                            $finish_time = get_sub_field('finish_time');
+                            echo "<span>{$order_time} - {$finish_time}</span>";
                           }
 
                       endwhile;
@@ -143,45 +151,34 @@ get_header();
     <div class="container">
       <h2 class="section-title"><?php the_field('last_news_title'); ?></h2>
       <div class="inner-container">
+
+        <form method="POST" class="lastnews_form">
+          <select name="order" id="order" class="lastnews_select">
+            <option value="DESC"><?php the_field('new_at_the_begining'); ?></option>
+            <option value="ASC"><?php the_field('old_at_the_begining'); ?></option>
+          </select>
+          <input type="hidden" id="prev_order" value="<?php echo $order; ?>">
+        </form>
+
         <div class="lastnews__wrapper">
 
           <?php
 
-          $args = array(
-          'post_type' => 'news',
-          'posts_per_page' => 5,
-          'orderby' => 'modified',
-          'post_status' => 'publish'
-        );
+            $order = isset($_POST['order']) ? $_POST['order'] : 'DESC';
+            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+            $max_pages = ceil(wp_count_posts('news')->publish / 5);
+            ?>
 
-        $query = new WP_Query($args);
-        if ($query->have_posts()) : ?>
-
-          <?php  while ($query->have_posts()) : $query->the_post(); ?>
-          <?php get_template_part('template-parts/one-news'); ?>
-          <?php endwhile; ?>
-
-          <?php get_template_part('template-parts/loader'); ?>
-
-          <?php 
-          // текущая страница
-          $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-          // максимум страниц
-          $max_pages = $query->max_num_pages;
-          // если текущая страница меньше, чем максимум страниц, то выводим кнопку
-          if( $paged < $max_pages ) { ?>
-
-          <div id="loadmore" style="text-align:center;">
-            <a href="#" data-max_pages="<?php echo $max_pages ?>" data-paged="<?php echo $paged ?>"
-              class="button primary-button loadnews-btn"><?php the_field("last_news_button", "options"); ?></a>
+          <div id="loadmore-news">
+            <?php  get_template_part('template-parts/loader'); ?>
+            <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
+              data-paged="<?php echo $paged ?>" data-order="<?php echo $order ?>">
+              <?php the_field("last_news_button", "options"); ?>
+            </a>
           </div>
 
-          <?php } ?>
 
-          <?php endif; ?>
 
-          <?php
-        wp_reset_query(); ?>
         </div>
       </div>
     </div>
