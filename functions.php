@@ -191,8 +191,6 @@ function add_google_fonts() {
   wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;900&family=Fira+Sans+Extra+Condensed:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap', [], null );
 }
 
-//add_action( 'wp_enqueue_scripts', 'add_swiper' );
-
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
 
 /** Register menus */
@@ -289,16 +287,6 @@ function get_feedbacks_per_page($width) {
     return 1;
   }
 }
-
-
-//add words to translate
-function polylang_translate()
-{
-  if (function_exists('pll_register_string')) {
-    pll_register_string('відправити', 'відправити', 'General');
-  }
-}
-add_action( 'init', 'polylang_translate' );
 
 
 // AJAX for writing reviews into CPT "Feedbacks"
@@ -442,7 +430,7 @@ function load_classes() {
         'post_type'      => 'activities',
         'posts_per_page' => 5,
         'paged'          => $paged,
-        'orderby'        => 'modified',
+        'orderby'        => 'date',
         'order'          => 'DESC',
         'post_status'    => 'publish',
         'tax_query'      => array(
@@ -577,4 +565,16 @@ function acf_repeater_show_more()
   // виводим наші 3 значення у вигляді масиву в кодуванні json
   echo json_encode(array("content" => $content, "more" => $more, "end" => $end, "total" => $total));
   exit;
+}
+
+
+// change the breadcrumbs title for home hage
+add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
+function my_breadcrumb_title_swapper($title, $type, $id)
+{
+    if(in_array('home', $type))
+    { if(function_exists('pll__'))
+        $title = pll__('Головна');
+    }
+    return $title;
 }
