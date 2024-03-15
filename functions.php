@@ -64,12 +64,7 @@ function wp_it_volunteers_scripts() {
 
     if ( is_page_template('templates/fioh-team.php') ) {
       wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
-      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
       wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
-      wp_localize_script('fioh-team-scripts', 'myAjax', array(
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('my_repeater_field_nonce'),
-          ));
     }
 
     if ( is_page_template('templates/schedule.php') ) {
@@ -185,6 +180,10 @@ function wp_it_volunteers_scripts() {
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
     }  
+    if ( is_singular() && locate_template('templates/fioh-team.php') ) {
+      wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
+      wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
+    }
 }
 /** add fonts */
 function add_google_fonts() {
@@ -495,77 +494,7 @@ function activities_target_save_term_fields( $term_id ) {
 }
 
 
-/**
- * ACF AJAX підвантаження для fioh-team
- */
 
-// додаємо action для авторизованих користувачів
-add_action("wp_ajax_acf_repeater_show_more", "acf_repeater_show_more");
-// додаємо action для не авторизованих користувачів
-add_action("wp_ajax_nopriv_acf_repeater_show_more", "acf_repeater_show_more");
-
-
-
-function acf_repeater_show_more()
-{
-  // валідація Nonce («Одноразові числа»)
-  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "my_repeater_field_nonce")) {
-    exit;
-  }
-
-  $post_id = $_POST["post_id"];
-  // по скільки відображати
-  $rows = get_field("fioh-team_projects-repeater", $post_id);
-  $total = count($rows);
-  $start = !isset($_POST["start"]) ? 1 : $_POST["start"];
-  $end = !isset($_POST["end"]) ? $total : $_POST["end"];
-  $i = 0;
-  // використаємо об'єктний буфер для захоплення виводу html
-  ob_start();
-
-  while (have_rows('fioh-team_projects-repeater', $post_id)):
-    the_row();
-    if ($i < $start) {
-      // we have not gotten to where
-      // we need to start showing
-      // increment count and continue
-      $i++;
-      continue;
-    }
-    if ($i == $end) {
-      // we've shown the number, break out of loop
-      break;
-    }
-    $title = get_sub_field('fioh-team_projects-repeater-title');
-    $link = get_sub_field('fioh-team_projects-repeater-link');
-    ?>
-
-<li class="fioh-team__project__item">
-  <div class="fioh-team__project__link">
-    <?php echo $link; ?>
-  </div>
-  <div class="fioh-team__project__name">
-    <p>
-      <?php echo $title; ?>
-    </p>
-  </div>
-</li>
-
-<?php
-    $i++;
-
-  endwhile;
-
-  $content = ob_get_clean();
-  // перевіряємо, чи показали ми останній елемент
-  $more = false;
-  if ($total > $end) {
-    $more = true;
-  }
-  // виводим наші 3 значення у вигляді масиву в кодуванні json
-  echo json_encode(array("content" => $content, "more" => $more, "end" => $end, "total" => $total));
-  exit;
-}
 
 
 // change the breadcrumbs title for home hage
