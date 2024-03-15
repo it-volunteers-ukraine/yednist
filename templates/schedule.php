@@ -58,7 +58,6 @@ get_header();
         $args = array( 
             'post_type'      => 'activities',
             'numberposts'    => -1,
-            'meta_key'       => 'activity_time_1_order_time',
             'tax_query'      => array(
                 array(
                     'taxonomy' => 'activities-categories',
@@ -69,6 +68,7 @@ get_header();
         );
 
             $activities_array = get_posts( $args ); ?>
+
 
         <?php 
             // ключ - це день тижня, а значення - це масив активностей
@@ -92,7 +92,6 @@ get_header();
                     }
                 }
             }
-
 // Сортування активностей всередині кожної групи по часу, з урахуванням дня у subfield репітера
   foreach ($activities_by_day as $day_slug => $activities) {
     $activity_times = array();   
@@ -111,6 +110,8 @@ get_header();
             }
         }
     }
+
+
     // Сортування массиву активностей по часу
     usort($activity_times, function($a, $b) {
         $time_a = strtotime($a['time']);
