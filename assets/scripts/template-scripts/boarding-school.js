@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelector(".school__section__content__image"),n=document.getElementById("videoModal");e.addEventListener("click",(function(){n.style.display="flex"})),window.onclick=function(e){e.target==n&&(n.style.display="none")}}));
