@@ -25,6 +25,9 @@
   &:not(:last-child) {
     border-bottom: 1px solid $violet-grey;
   }
+  &:first-child {
+    border-top: 1px solid $blue;
+  }
 
   &::after {
     content: "";
@@ -42,10 +45,6 @@
       transition: all $transition-function;
       background-color: $violet-grey;
     }
-    .activity__title {
-      color: $blue;
-      text-decoration-line: underline;
-    }
   }
 }
 
@@ -62,6 +61,7 @@
     min-width: 102px;
   }
   @media screen and (max-width: $mobile) {
+    font-family: $secondary-font;
     margin-bottom: 14px;
     min-width: 90px;
     font-size: 14px;
@@ -182,7 +182,7 @@
   }
   @media screen and (max-width: $tablet2) {
     flex-direction: row;
-    margin-top: -24px;
+    margin-top: -18px;
   }
   @media screen and (max-width: 660px) {
     margin-top: 0;
@@ -201,6 +201,7 @@
   }
 
   & button.secondary-button.activity__button {
+    color: $black;
     display: block;
     padding: 0;
     background-color: transparent;
@@ -212,6 +213,8 @@
     &:hover,
     &:focus {
       box-shadow: none;
+      color: $blue;
+      transform: scale(1.1);
     }
   }
 }
