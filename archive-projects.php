@@ -9,7 +9,7 @@ get_header();
     <section class="section projects__section"> 
         <div class="container">
             <div class="inner-container">       
-                <h2 class="page-title projects__section__title"><?php the_field('projects-title'); ?></h2>
+                <h2 class="page-title projects__section__title"><?php the_title(); ?></h2>
                 <?php get_template_part( 'template-parts/projects-list' ); ?>   
 
               <div class="swiper__nav--box">
