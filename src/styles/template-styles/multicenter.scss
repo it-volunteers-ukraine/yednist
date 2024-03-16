@@ -228,15 +228,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.plus-icon,
-.minus-icon {
-  display: none;
-  @media screen and (max-width: $mobile) {
-    display: block;
-    min-width: 24px;
-    min-height: 24px;
+  .plus-icon,
+  .minus-icon {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: block;
+      min-width: 24px;
+      min-height: 24px;
+    }
   }
 }
 

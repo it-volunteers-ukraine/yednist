@@ -25,6 +25,9 @@
   &:not(:last-child) {
     border-bottom: 1px solid $violet-grey;
   }
+  &:first-child {
+    border-top: 1px solid $blue;
+  }
 
   &::after {
     content: "";
@@ -41,9 +44,6 @@
     &::after {
       transition: all $transition-function;
       background-color: $violet-grey;
-    }
-    .activity__title {
-      color: $blue;
     }
   }
 }

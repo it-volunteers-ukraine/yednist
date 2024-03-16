@@ -62,6 +62,11 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
     }
 
+    if ( is_page_template('templates/fioh-team.php') ) {
+      wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
+      wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
+    }
+
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
         wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
@@ -175,6 +180,10 @@ function wp_it_volunteers_scripts() {
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
     }  
+    if ( is_singular() && locate_template('templates/fioh-team.php') ) {
+      wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
+      wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
+    }
 }
 /** add fonts */
 function add_google_fonts() {
@@ -277,16 +286,6 @@ function get_feedbacks_per_page($width) {
     return 1;
   }
 }
-
-
-//add words to translate
-function polylang_translate()
-{
-  if (function_exists('pll_register_string')) {
-    pll_register_string('відправити', 'відправити', 'General');
-  }
-}
-add_action( 'init', 'polylang_translate' );
 
 
 // AJAX for writing reviews into CPT "Feedbacks"
@@ -430,7 +429,7 @@ function load_classes() {
         'post_type'      => 'activities',
         'posts_per_page' => 5,
         'paged'          => $paged,
-        'orderby'        => 'modified',
+        'orderby'        => 'date',
         'order'          => 'DESC',
         'post_status'    => 'publish',
         'tax_query'      => array(
@@ -494,6 +493,11 @@ function activities_target_save_term_fields( $term_id ) {
 	);
 }
 
+
+
+
+
+// change the breadcrumbs title for home hage
 add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
 function my_breadcrumb_title_swapper($title, $type, $id)
 {
