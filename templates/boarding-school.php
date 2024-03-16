@@ -40,10 +40,11 @@ get_header();
     <h3 class="section-title"><?php the_field("appeal-title") ?></h3>
     <div class="inner-container appeal__section__content">
     <?php while(have_rows('appeal_content')) : the_row(); 
-                        $text = get_sub_field('appeal_text');
-                    ?>
-                    <div class="appeal__section__content__wrapper"><p class="appeal__section__content__wrapper__text"><?php echo $text ?></p></div>
-                      <?php endwhile; ?>
+      $text = get_sub_field('appeal_text');
+    ?>
+      <div class="appeal__section__content__wrapper swiper-slide"><p class="appeal__section__content__wrapper__text"><?php echo $text ?></p></div>
+    <?php endwhile; ?>
+    <div class="swiper-pagination"></div>
     </div>
   </div>
 </section>

@@ -12,4 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
     }
   };
+  const schoolSwiper = new Swiper(".appeal__swiper", {
+    slidesPerView: 3,
+    spaceBetween: 12,
+    direction: "vertical",
+    pagination: {
+      el: ".swiper-pagination",
+      type: "bullets",
+    },
+  });
+  console.log(schoolSwiper);
 });

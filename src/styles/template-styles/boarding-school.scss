@@ -131,6 +131,13 @@ iframe {
     @media screen and (max-width: $tablet2) {
       grid-template-columns: [col] 0.31% [col] 0.58% [col] 11.62% [col] 14.54% [col] 4.94% [col] 6.25% [col] 0 [col] 0 [col] 0;
     }
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-height: 393px;
+      overflow: hidden;
+    }
     &__wrapper {
       padding: 27px 39px;
       border: 1px solid #0d0d0d;
@@ -138,6 +145,15 @@ iframe {
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: $desktop) {
+        padding: 23px;
+      }
+      @media screen and (max-width: $tablet2) {
+        padding: 15px;
+      }
+      @media screen and (max-width: $mobile) {
+        min-width: 100%;
+      }
       &:nth-child(1) {
         grid-column: col / span 4;
         grid-row: row;
@@ -159,13 +175,13 @@ iframe {
         grid-row: 3 / 5;
       }
       &:nth-child(6) {
+        grid-row: 4;
+        grid-column: col 5 / span 6;
+      }
+      &:nth-child(7) {
         grid-row: 3;
         grid-column: col 5 / span 5;
         background-color: $yellow !important;
-      }
-      &:nth-child(7) {
-        grid-row: 4;
-        grid-column: col 5 / span 6;
       }
       &:nth-child(3n + 1) {
         background-color: $lavender;
@@ -190,7 +206,30 @@ iframe {
           font-size: 16px;
           line-height: 26px;
         }
+        @media screen and (max-width: $mobile) {
+          font-size: 14px;
+          line-height: 21px;
+        }
       }
+    }
+  }
+}
+.appeal__section .swiper-pagination {
+  position: static;
+  width: fit-content;
+  & .swiper-pagination-bullet {
+    opacity: 1;
+    border: 1px solid $violet-grey;
+    background: none;
+    width: 16px;
+    height: 16px;
+    @media screen and (max-width: $tablet2) {
+      width: 12px;
+      height: 12px;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 8px;
+      height: 8px;
     }
   }
 }
