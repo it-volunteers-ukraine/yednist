@@ -233,7 +233,7 @@
       grid-row-gap: 44px;
       margin-bottom: 20px;
     }
-    @media screen and (max-width: $tablet2) {
+    @media screen and (max-width: $tablet1) {
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 48px;
       grid-row-gap: 48px;
@@ -260,12 +260,13 @@
     }
   }
 
-  &__project__link {
+  &__project__img-wp {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    max-width: 425px;
     height: 300px;
+    position: relative;
     @media screen and (max-width: $desktop) {
       height: 261px;
     }
@@ -275,11 +276,21 @@
     }
   }
 
-  &__project__link iframe {
+  &__project__img {
     height: 300px;
+    max-width: 100%;
+    object-fit: cover;
     @media screen and (max-width: $desktop) {
       height: 261px;
     }
+  }
+
+  &__project__img-btn {
+    position: absolute;
+    width: 116px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &__project__name {
@@ -569,14 +580,14 @@
 }
 
 .btn-show-all {
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet2) {
     max-width: 336px;
     margin: 0 auto;
   }
 }
 
 .btn-hide-all {
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet2) {
     max-width: 336px;
     margin: 0 auto;
   }
