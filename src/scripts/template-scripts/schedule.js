@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const activitiesWrapper = document.querySelector(".activities__wrapper");
   let currentPage = 1;
 
+  function changeJustifyContent() {
+    if (window.innerWidth > 1220 && allActivityCards < 3) {
+      activitiesWrapper.style.justifyContent = "center";
+      activitiesWrapper.style.gap = "80px";
+    }
+  }
+
   function cardsPerPage() {
     let cardPerPage = 3;
     if (window.innerWidth < 1220) {
@@ -37,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return cardPerPage;
   }
 
-  const totalPages = Math.ceil(allActivityCards / cardsPerPage());
+  let totalPages = Math.ceil(allActivityCards / cardsPerPage());
 
   function isPagination() {
     const paginationBox = document.querySelector(
@@ -46,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (totalPages === 1) {
       paginationBox.classList.add("hidden");
-    }
+    } else paginationBox.classList.remove("hidden");
   }
 
   // Оновлення кнопок пагінації
@@ -85,12 +92,19 @@ document.addEventListener("DOMContentLoaded", function () {
       currentBullet();
     }
   }
+  function funcForRisizeChanges() {
+    changeJustifyContent();
+    updateSlider();
+    totalPages = Math.ceil(allActivityCards / cardsPerPage());
+    currentPage = 1;
+    isPagination();
+    updatePaginationButtons();
+    countBullets();
+    currentBullet();
+  }
+  funcForRisizeChanges();
 
-  updateSlider();
-  isPagination();
-  updatePaginationButtons();
-  countBullets();
-  currentBullet();
+  window.addEventListener("resize", funcForRisizeChanges);
 
   // slider update
   function updateSlider() {

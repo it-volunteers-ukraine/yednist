@@ -173,7 +173,7 @@ get_header();
             <?php 
                 $form = get_field('registration_form');
                 if($form) : ?>
-            <div class="helpform">
+            <div class="">
               <?php echo $form?>
 
             </div>
