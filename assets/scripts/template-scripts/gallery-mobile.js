@@ -1,1 +1,0 @@
-new Swiper(".gallery-mobile-swiper",{autoHeight:!1,watchOverflow:!0,pagination:{el:".swiper-pagination",clickable:!0},slidesPerView:1,spaceBetween:5});

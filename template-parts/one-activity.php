@@ -29,15 +29,12 @@ if (window.innerWidth < 991.98) {
             <p class="activity__text"><?php the_field('activity_date'); ?></p>
           </li>
           <li class="activity__item">
-            <a class="activity__item" href="<?php the_field("google_maps_url") ?>" target="_blank"
-              rel="noopener noreferrer">
-              <div class="activity__icon">
-                <svg>
-                  <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
-                </svg>
-              </div>
-              <p class="activity__text"><?php the_field('activity_location'); ?></p>
-            </a>
+            <div class="activity__icon">
+              <svg>
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
+              </svg>
+            </div>
+            <p class="activity__text"><?php the_field('activity_location'); ?></p>
           </li>
           <li class="activity__item">
             <div class="activity__icon">
@@ -54,7 +51,11 @@ if (window.innerWidth < 991.98) {
               </svg>
             </div>
             <p class="activity__text">
-              <?php the_field('activity_target'); ?>
+              <?php
+              $category = get_the_terms($post->ID, 'activities-target');
+              foreach ($category as $cat) {
+                echo $cat->name;
+              }?>
             </p>
           </li>
         </ul>

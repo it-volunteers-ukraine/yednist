@@ -37,11 +37,6 @@
   }
 }
 
-.activities__wrapper.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 //table section
 
 .activity__table {
@@ -69,6 +64,7 @@
 }
 
 .activity__table-title {
+  border-bottom: 1px solid $blue;
   padding: 16px 48px;
   background: $lavender;
   font-size: 40px;

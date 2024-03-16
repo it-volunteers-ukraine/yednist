@@ -31,7 +31,7 @@ get_header();
 
           <?php if ($query->have_posts()) : ?>
 
-          <div class="activities__wrapper is-hidden">
+          <div class="activities__wrapper">
             <?php  while ($query->have_posts()) : $query->the_post(); ?>
 
             <?php get_template_part('template-parts/one-activity'); ?>
@@ -54,21 +54,22 @@ get_header();
       <div class="inner-container">
 
         <?php 
-
-        $args = array( 
-            'post_type'      => 'activities',
-            'numberposts'    => -1,
-            'tax_query'      => array(
-                array(
-                    'taxonomy' => 'activities-categories',
-                    'field'    => 'slug',
-                    'terms'    => 'constant_activities'
+            $args = array( 
+                'post_type'      => 'activities',
+                'numberposts'    => -1,
+                'order'          => 'ASC',  
+                'orderby'        => 'meta_value',
+	              'meta_key'       => 'activity_time',
+                'tax_query'      => array(
+                        array(
+                        'taxonomy' => 'activities-categories',
+                        'field'    => 'slug',
+                        'terms'    => 'constant_activities'
+                    )
                 )
-            )
-        );
+            );
 
             $activities_array = get_posts( $args ); ?>
-
 
         <?php 
             // ключ - це день тижня, а значення - це масив активностей
@@ -84,51 +85,17 @@ get_header();
 
             // Групування активностей по дням тижня
             foreach ($activities_array as $activity) {
-                if (have_rows('activity_time', $activity->ID)) {
-                    while (have_rows('activity_time', $activity->ID)) {
-                        the_row();
-                        $day = get_sub_field('day');
-                        $activities_by_day[$day][] = $activity;
+                $category = get_the_terms($activity->ID, 'activities-categories');
+                foreach ($category as $cat) {
+                    $slug = $cat->slug;
+                    if (array_key_exists($slug, $activities_by_day)) {
+                        $activities_by_day[$slug][] = $activity;
                     }
                 }
             }
-// Сортування активностей всередині кожної групи по часу, з урахуванням дня у subfield репітера
-  foreach ($activities_by_day as $day_slug => $activities) {
-    $activity_times = array();   
-    foreach ($activities as $key => $activity) {
-        if (have_rows('activity_time', $activity->ID)) {
-            $rows = get_field('activity_time', $activity->ID); 
-            foreach ($rows as $row) {
-                $day = $row['day'];
-                if ($day == $day_slug) {
-                    $activity_time = array(
-                        'time' => $row['order_time'],
-                        'post_id' => $activity->ID
-                    );
-                    array_push($activity_times, $activity_time) ;
-                }
-            }
-        }
-    }
 
-
-    // Сортування массиву активностей по часу
-    usort($activity_times, function($a, $b) {
-        $time_a = strtotime($a['time']);
-        $time_b = strtotime($b['time']);
-        return $time_a - $time_b;
-    });
-    // Новий масив активностей, відсортований відповідно масиву $activity_times
-    $sorted_activities = array_map(function($activity_time) use ($activities) {
-        foreach ($activities as $activity) {
-            if ($activity->ID == $activity_time['post_id']) {
-                return $activity;
-            }
-        }
-    }, $activity_times);
-
-    $activities = $sorted_activities; ?>
-
+            //Активності для кожного дня тижня
+            foreach ($activities_by_day as $day_slug => $activities) { ?>
         <div class="activity__table">
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
             class="activity__table-title schedule-accordion">
@@ -152,9 +119,7 @@ get_header();
 
                           $day = get_sub_field('day');
                           if($day==$day_slug){
-                            $order_time = get_sub_field('order_time');
-                            $finish_time = get_sub_field('finish_time');
-                            echo "<span>{$order_time} - {$finish_time}</span>";
+                            echo get_sub_field('time');
                           }
 
                       endwhile;
@@ -196,7 +161,7 @@ get_header();
             $max_pages = ceil(wp_count_posts('news')->publish / 5);
             ?>
 
-          <div id="loadmore-news">
+          <div id="loadmore">
             <?php  get_template_part('template-parts/loader'); ?>
             <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
               data-paged="<?php echo $paged ?>" data-order="<?php echo $order ?>">

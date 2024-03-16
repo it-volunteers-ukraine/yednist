@@ -34,14 +34,12 @@
 
                 foreach ($menu_left as $index => $menu_item) {
                     $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
-                    $current_post_id = get_queried_object_id();
-                    if ($index === 7 && has_category('multicultural-theater', $current_post_id)) {
-                      $current_class .= ' header__current__page';
-                    }
                     if ($index === 2) {
                         $inside_projects = true;
                         echo '<li class="header__menu__projects ' . esc_attr($current_class) . '"><div class="header__projects__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__projects__icon"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use></svg></div><ul class="header__projects__menu"><li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' <span class="header__projects__menu__item__text">' . esc_html($menu_item->title) . '</span></a></li>';
-                    } elseif ($inside_projects && ($index >= 3 && $index <= 5)) {
+                    }
+
+                    if ($inside_projects && ($index >= 3 && $index <= 5)) {
                         if (is_singular()) {
                             $current_post_id = get_queried_object_id();
                             $current_class = ($current_post_id == $menu_item->object_id) ? 'header__current__page' : '';

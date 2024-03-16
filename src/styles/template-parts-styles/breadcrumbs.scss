@@ -28,10 +28,11 @@
     line-height: 1.6;
     font-size: 16px;
     &:not(:last-child) {
-      margin-right: 4px;
+      margin-right: 8px;
     }
-    &:last-child > span {
+    & .breadcrumb_last {
       color: $black;
+      margin-left: 8px;
     }
     @media screen and (max-width: $desktop) {
       font-size: 14px;
