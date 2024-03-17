@@ -1,6 +1,7 @@
 <?php
 /*
 Template Name: fioh-team
+Template Post Type: post, page, projects
 */
 get_header();
 ?>
@@ -82,8 +83,6 @@ get_header();
         </div>
     </section>
     <section class="section fioh-team__section">
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
         <div class="container">
             <h2 class="fioh-team__subtitle section-title">
                 <?php the_field('fioh-team_projects-title'); ?>
@@ -94,14 +93,18 @@ get_header();
 
                     <ul class="fioh-team__project__list">
                         <?php
+                        while (have_rows('fioh-team_projects-repeater')):
                         the_row();
                         $title = get_sub_field('fioh-team_projects-repeater-title');
                         $link = get_sub_field('fioh-team_projects-repeater-link');
+                        $photo = get_sub_field('fioh-team_projects-repeater-img');
                         ?>
-
-                        <li class="fioh-team__project__item">
-                            <div class="fioh-team__project__link">
-                                <?php echo $link; ?>
+                        <li class="fioh-team__project__item" style="display: none;">
+                            <div class="fioh-team__project__img-wp">
+                               <img class="fioh-team__project__img" src="<?php echo $photo['url']; ?>" alt="<?php echo $photo['alt']; ?>" />
+                                <button class="fioh-team__project__img-btn">
+                                <img class="fioh-team__project__svg" src="<?php the_field('img_btn_play'); ?>" />
+                            </button>
                             </div>
                             <div class="fioh-team__project__name">
                                 <p>
@@ -109,89 +112,18 @@ get_header();
                                 </p>
                             </div>
                         </li>
+                        <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>
 
                 <button class="button primary-button btn-show-all" style="display: none;">
-                    <?php the_field('show_all_videos', 'option'); ?>
+                    <?php the_field('show_all'); ?>
                 </button>
                 <button class="button primary-button btn-hide-all" style="display: none;">
-                    <?php the_field('hide_btn', 'option'); ?>
+                    <?php the_field('hide'); ?>
                 </button>
             </div>
         </div>
-        <script>
-            const post_id = <?php echo $post->ID; ?>;
-            const my_repeater_field_nonce = '<?php echo wp_create_nonce('my_repeater_field_nonce'); ?>';
-            const my_repeater_ajax_url = '<?php echo admin_url('admin-ajax.php'); ?>';
-            let itemsCount = getitemsCount();
-            let startIndex = 1;
-            let total;
-
-            const showAllBtn = document.querySelector('.btn-show-all')
-            const hideAllBtn = document.querySelector('.btn-hide-all')
-            showAllBtn.addEventListener("click", () => {
-                loadProjects();
-                showAllBtn.style.display = "none"
-                hideAllBtn.style.display = "block"
-            })
-            hideAllBtn.addEventListener("click", () => {
-                const items = document.querySelectorAll(".fioh-team__project__item")
-                const itemsArr = Array.from(items)
-                const slicedArr = itemsArr.slice(getitemsCount())
-                slicedArr.forEach(el => el.remove())
-                hideAllBtn.style.display = "none"
-                startIndex = getitemsCount()
-                if (total > startIndex) {
-                    showAllBtn.style.display = "block"
-                }
-            })
-
-            function getitemsCount() {
-                if (window.innerWidth > 1349.98) {
-                    return 3;
-                } else if (window.innerWidth > 767.98) {
-                    return 2;
-                } else {
-                    return 1;
-                }
-            }
-            function loadProjects() {
-                // робимо AJAX запит
-                jQuery.post(
-                    my_repeater_ajax_url,
-                    {
-                        // AJAX, який ми налагодили в PHP
-                        action: "acf_repeater_show_more",
-                        nonce: my_repeater_field_nonce,
-
-                        start: startIndex,
-                        end: itemsCount,
-                        post_id
-                    },
-                    function (json) {
-                        // додаємо контент в контейнер
-                        // цей ідентифікатор має відповідати контейнеру
-                        // до якого ви хочете додати контент
-                        jQuery(".fioh-team__project__list").append(json["content"]);
-                        // оновимо зміщення
-                        startIndex = Number(json["end"]);
-                        total = Number(json["total"])
-                        // itemsCount =startIndex +getitemsCount()
-                        itemsCount = total
-                        // перевіримо, чи є ще що завантажити
-                        if (!json["more"]) {
-                            showAllBtn.style.display = "none"
-                        } else {
-                            showAllBtn.style.display = "block"
-                        }
-                    },
-                    "json"
-                );
-            }
-
-            loadProjects();
-        </script>
     </section>
     <section class="section fioh-team__section">
         <div class="container">
@@ -199,15 +131,9 @@ get_header();
                 <?php the_field('fioh-team_team-title'); ?>
             </h2>
             <div class="inner-container">
-
-
-
                 <div class="swiper fioh-team__team-repeater">
-
-
                     <?php if (have_rows('fioh-team_team-repeater')): ?>
                         <ul class="swiper-wrapper">
-
                             <?php
                             $counter = 0;
                             while (have_rows('fioh-team_team-repeater')):

@@ -43,7 +43,7 @@ footer {
     bottom: 20px;
   }
 
-  @media screen and (max-width: $tablet1) {
+  @media screen and (max-width: $tablet2) {
     bottom: 28px;
   }
   @media screen and (max-width: $mobile) {
@@ -60,7 +60,7 @@ footer {
     top: calc(-20px - 60px);
   }
 
-  @media screen and (max-width: $tablet1) {
+  @media screen and (max-width: $tablet2) {
     top: calc(-28px - 40px);
   }
   @media screen and (max-width: $mobile) {
