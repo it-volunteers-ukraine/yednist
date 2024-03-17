@@ -53,7 +53,20 @@ get_header();
 
         <div class="classes__tabs--container">
           <?php
-        $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'for_all';
+
+          $lang_tab = 'for_all';
+          if(function_exists('pll_current_language')){
+          $my_lang = pll_current_language();
+          
+            if ( $my_lang == 'en' ) { 
+            $lang_tab = 'for_all-en';
+            }
+            if ( $my_lang == 'pl' ) { 
+            $lang_tab = 'for_all-pl';
+            }
+          }
+          
+        $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : $lang_tab;
 
         $taxonomy_terms = get_terms(array(
           'taxonomy' => 'activities-target',
@@ -160,7 +173,7 @@ get_header();
             <?php 
                 $form = get_field('registration_form');
                 if($form) : ?>
-            <div class="helpform">
+            <div class="">
               <?php echo $form?>
 
             </div>
