@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
           el: ".swiper-pagination",
           type: "bullets",
           clickable: true,
-          dynamicBullets: true,
         },
       });
       const goalsSwiper = new Swiper(".goals__section__swiper", {
