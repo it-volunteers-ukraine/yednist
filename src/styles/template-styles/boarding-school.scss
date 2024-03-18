@@ -465,7 +465,7 @@ iframe {
 }
 
 .stages__section {
-  .inner-container {
+  &__container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -532,6 +532,56 @@ iframe {
     }
     @media screen and (max-width: $tablet2) {
       max-width: none;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    @media screen and (max-width: $desktop) {
+      gap: 100px;
+    }
+    @media screen and (max-width: $tablet2) {
+      gap: 60px;
+    }
+    &__content {
+      border: 1px solid #0d0d0d;
+      background: #ccd1ff;
+      padding: 59px;
+      border-radius: $bid-border-radius;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      @media screen and (max-width: $desktop) {
+        padding: 39px;
+        gap: 48px;
+      }
+      @media screen and (max-width: $tablet2) {
+        gap: 30px;
+      }
+      @media screen and (max-width: $mobile) {
+        gap: 27px;
+        padding: 23px;
+        border-radius: $small-border-radius;
+      }
+      p {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        text-align: left;
+        @media screen and (max-width: $desktop) {
+          font-size: 32px;
+          line-height: 38px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 20px;
+          line-height: 30px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+      }
     }
   }
 }

@@ -102,7 +102,8 @@ get_header();
   <div class="container">
     <h3 class="section-title"><?php the_field("stages_title") ?></h3>
     <div class="inner-container">
-      <div class="stages__section__wrapper">
+    <div class="stages__section__container">
+    <div class="stages__section__wrapper">
         <?php while(have_rows('stages_descriptions')) : the_row(); 
           $text = get_sub_field('stages_description');
         ?>
@@ -111,6 +112,17 @@ get_header();
         <?php $image = get_field("stages_image"); ?>
       </div>
       <div class="stages__section__image-wrapper"><img class="stages__section__wrapper__image" src='<?php echo $image['url'] ?>' alt='<?php echo $image['alt'] ?>'/></div>
+    </div>
+      <div class="stages__section__info">
+          <div class="stages__section__info__content"><?php while(have_rows('stages_descriptions')) : the_row(); 
+              $text = get_sub_field('stages_description');
+            ?>
+            <p><?php echo $text ?></p>
+            <?php endwhile; ?></div>
+            <?php $image = get_field("stages_sec_image"); ?>
+            <img class="stages__section__image" src='<?php echo $image['url'] ?>' alt='<?php echo $image['alt'] ?>'/>
+        </div>
+      </div>
     </div>
   </div>
 </section>
