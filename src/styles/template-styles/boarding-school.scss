@@ -1,5 +1,5 @@
 @import "../variables.scss";
-.school {
+.main {
   &__section {
     &__title {
       margin-bottom: 40px;
@@ -353,6 +353,101 @@ iframe {
         @media screen and (max-width: $mobile) {
           font-size: 16px;
           line-height: 24px;
+        }
+      }
+    }
+  }
+}
+.school__section {
+  .inner-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+    }
+  }
+  &__wrapper {
+    max-width: 574px;
+    @media screen and (max-width: $desktop) {
+      max-width: 426px;
+    }
+    @media screen and (max-width: $tablet2) {
+      max-width: 246px;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: none;
+    }
+    &__text {
+      font-family: $secondary-font;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: left;
+      @media screen and (max-width: $desktop) {
+        font-size: 18px;
+        line-height: 27px;
+      }
+      @media screen and (max-width: $tablet2) {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 722px;
+    @media screen and (max-width: $desktop) {
+      max-width: 538px;
+    }
+    @media screen and (max-width: $tablet2) {
+      max-width: 422px;
+    }
+    @media screen and (max-width: $mobile) {
+      max-width: none;
+    }
+    &__item {
+      padding: 12px 0 11px 34px;
+      border-bottom: 1px solid $blue;
+      font-family: $secondary-font;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: left;
+      position: relative;
+      @media screen and (max-width: $desktop) {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 12px 0 11px 32px;
+      }
+      @media screen and (max-width: $tablet2) {
+        font-size: 14px;
+        line-height: 22px;
+        padding: 12px 0 11px 30px;
+      }
+      @media screen and (max-width: $mobile) {
+        padding: 8px 0 8px 26px;
+      }
+      &::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translate(-50%, -50%) translateX(0);
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 1px solid $blue;
+        margin-right: 8px;
+        @media screen and (max-width: $desktop) {
+          width: 12px;
+          height: 12px;
+        }
+        @media screen and (max-width: $tablet2) {
+          width: 10px;
+          height: 10px;
         }
       }
     }

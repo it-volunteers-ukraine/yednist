@@ -6,16 +6,17 @@
 get_header();
 ?>
 <?php get_template_part( 'template-parts/breadcrumbs' ); ?>   
+
 <section class="section">
   <div class="container">
     <div class="inner-container">
-    <h2 class="page-title school__section__title"><?php the_title(); ?></h2>
-    <div class="school__section__content">
+    <h2 class="page-title main__section__title"><?php the_title(); ?></h2>
+    <div class="main__section__content">
     <?php $main_photo = get_field("main_photo"); $quotation_text = get_field("quotation_text"); $video_link = get_field('video_link'); ?>
-      <div class="school__section__content__image">
+      <div class="main__section__content__image">
       <?php if ($main_photo): ?>
         <img src="<?php echo esc_url($main_photo['url']); ?>" alt="<?php echo esc_attr($main_photo['alt']); ?>" style="display: block; margin: 0 auto;">
-        <svg class="school__section__content__image__icon">
+        <svg class="main__section__content__image__icon">
           <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-youtube"></use>
         </svg>
       <?php endif; ?>
@@ -25,16 +26,17 @@ get_header();
       </div>
     </div>
       </div>
-      <div class="school__section__content__quotation">
-      <svg class="school__section__content__quotation__icon">
+      <div class="main__section__content__quotation">
+      <svg class="main__section__content__quotation__icon">
         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-bi_quote"></use>
       </svg>
-      <p class="school__section__content__quotation__text"><?php echo $quotation_text ?></p>
+      <p class="main__section__content__quotation__text"><?php echo $quotation_text ?></p>
       </div>
     </div>
     </div>
   </div>
 </section>
+
 <section class="section appeal__section">
   <div class="container">
     <h3 class="section-title"><?php the_field("appeal_title") ?></h3>
@@ -48,6 +50,7 @@ get_header();
     </div>
   </div>
 </section>
+
 <section class="section goals__section">
   <div class="container">
     <h3 class="section-title"><?php the_field("goals_title") ?></h3>
@@ -67,6 +70,22 @@ get_header();
         <div class="swiper-pagination"></div>
       </div>
       <?php get_template_part( 'template-parts/slider'); ?>
+    </div>
+  </div>
+</section>
+
+<section class="section school__section">
+  <div class="container">
+    <h3 class="section-title"><?php the_field("school_title") ?></h3>
+    <div class="inner-container">
+      <div class="school__section__wrapper"><p class="school__section__wrapper__text"><?php the_field("school_text") ?></p></div>
+        <ul class="school__section__list">
+          <?php while(have_rows('school_advantages')) : the_row(); 
+            $text = get_sub_field('school_advantage');
+          ?>
+            <li class="school__section__list__item"><?php echo $text ?><li>
+          <?php endwhile; ?>
+      </ul>
     </div>
   </div>
 </section>
