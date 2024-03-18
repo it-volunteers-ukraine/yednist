@@ -53,7 +53,6 @@
         }
         &__text {
           padding: 52px 0 52px;
-          font-family: $primary-font;
           font-weight: 300;
           font-size: 40px;
           line-height: 48px;
@@ -76,9 +75,9 @@
       }
       &__image {
         position: relative;
-        border-radius: 40px;
+        border-radius: $bid-border-radius;
         @media screen and (max-width: $mobile) {
-          border-radius: 24px;
+          border-radius: $small-border-radius;
         }
         &__icon {
           width: 200px;
@@ -141,8 +140,8 @@ iframe {
     }
     &__wrapper {
       padding: 27px 39px;
-      border: 1px solid #0d0d0d;
-      border-radius: 40px;
+      border: 1px solid $black;
+      border-radius: $bid-border-radius;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -155,7 +154,7 @@ iframe {
       @media screen and (max-width: $mobile) {
         min-width: -webkit-fill-available;
         margin: 0 !important;
-        border-radius: 24px;
+        border-radius: $small-border-radius;
       }
       &:nth-child(1) {
         grid-column: col / span 4;
@@ -228,7 +227,6 @@ iframe {
         background-color: $pink;
       }
       &__text {
-        font-family: $primary-font;
         font-size: 28px;
         font-style: italic;
         line-height: 42px;
@@ -249,7 +247,8 @@ iframe {
     }
   }
 }
-.appeal__section .swiper-pagination {
+.appeal__section .swiper-pagination,
+.goals__section .swiper-pagination {
   @media screen and (max-width: $mobile) {
     position: static;
     display: flex;
@@ -276,7 +275,91 @@ iframe {
     }
   }
 }
-.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-bullets-dynamic {
+.goals__section {
+  &__swiper {
+    margin-bottom: 120px;
+    overflow: visible;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 100px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 60px;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 12px;
+      gap: 0;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 32px;
+      box-shadow: 0px 4px 4px 0px $boarding-school-box-shadow;
+      background-color: $white;
+      padding: 40px 32px 40px 32px;
+      border-radius: $bid-border-radius;
+      max-width: 425px;
+      height: auto;
+      flex-shrink: inherit;
+      @media screen and (max-width: $desktop) {
+        max-width: 315px;
+        padding: 40px 20px 40px 20px;
+      }
+      @media screen and (max-width: $tablet2) {
+        gap: 20px;
+        max-width: 203px;
+        padding: 20px;
+        border-radius: $small-border-radius;
+      }
+      @media screen and (max-width: $mobile) {
+        max-width: none;
+        padding: 40px 20px 40px 20px;
+        flex-shrink: 0;
+      }
+      &__image {
+        max-width: 160px;
+        height: 160px;
+        @media screen and (max-width: $desktop) {
+          max-width: 120px;
+          height: 120px;
+        }
+        @media screen and (max-width: $tablet2) {
+          max-width: 60px;
+          height: 60px;
+        }
+        @media screen and (max-width: $mobile) {
+          max-width: 100px;
+          height: 100px;
+        }
+      }
+      &__text {
+        font-size: 24px;
+        line-height: 36px;
+        text-align: center;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+          line-height: 30px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+.appeal__section
+  .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-bullets-dynamic {
   transform: none;
   min-width: 100%;
   span:nth-child(3) {

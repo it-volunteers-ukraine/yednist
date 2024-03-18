@@ -37,7 +37,7 @@ get_header();
 </section>
 <section class="section appeal__section">
   <div class="container">
-    <h3 class="section-title"><?php the_field("appeal-title") ?></h3>
+    <h3 class="section-title"><?php the_field("appeal_title") ?></h3>
     <div class="swiper inner-container appeal__swiper">
     <div class="swiper-wrapper appeal__section__content"><?php while(have_rows('appeal_content')) : the_row(); 
       $text = get_sub_field('appeal_text');
@@ -45,6 +45,24 @@ get_header();
       <div class="swiper-slide appeal__section__content__wrapper"><p class="appeal__section__content__wrapper__text"><?php echo $text ?></p></div>
     <?php endwhile; ?></div>
     <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+<section class="section goals__section">
+  <div class="container">
+    <h3 class="section-title"><?php the_field("goals_title") ?></h3>
+    <div class="inner-container ">
+      <div class="swiper goals__section__swiper">
+          <div class="swiper-wrapper goals__section__wrapper"><?php while(have_rows('goals_texts')) : the_row(); 
+          $image = get_sub_field('goals_image');
+          $text = get_sub_field('goals_text');
+        ?>
+          <div class="swiper-slide goals__section__wrapper__item"><img class="goals__section__wrapper__item__image" src='<?php echo $image['url'] ?>' /><p class="goals__section__wrapper__item__text"><?php echo $text ?></p></div>
+        <?php endwhile; ?></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    <?php get_template_part( 'template-parts/slider'); ?>
+      </div>
     </div>
   </div>
 </section>

@@ -29,11 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
           dynamicBullets: true,
         },
       });
-      console.log(schoolSwiper);
+      const goalsSwiper = new Swiper(".goals__section__swiper", {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 20,
+        grabCursor: true,
+        direction: "horizontal",
+        pagination: {
+          el: ".swiper-pagination",
+          type: "bullets",
+          clickable: true,
+        },
+      });
     }
   }
-  initSwiper(); // Инициализация свайпера при загрузке страницы
+  initSwiper();
 
-  // Слушатель событий для изменения размера экрана
-  screenWidth575.addListener(initSwiper);
+  screenWidth575.addEventListener("change", initSwiper);
 });
