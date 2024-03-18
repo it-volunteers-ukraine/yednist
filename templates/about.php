@@ -7,7 +7,7 @@ global $post;
 ?>
 <main class="about">  
     <?php get_template_part( 'template-parts/breadcrumbs' ); ?>   
-    <section class="about__hero about__section"> 
+     <section class="about__hero section"> 
         <div class="container">            
             <div class="inner-container">
                <h2 class="about__title page-title"><?php the_field('about-title'); ?></h2>
@@ -28,8 +28,8 @@ global $post;
                 </div>
             </div>  
         </div>    
-    </section> 
-    <section class="about__activity about__section"> 
+    </section>  
+    <section class="about__activity section"> 
         <div class="container"> 
             <h2 class="about__activity-title section-title"><?php the_field('about-activity'); ?></h2>           
             <div class="inner-container">
@@ -38,7 +38,7 @@ global $post;
                 </div> 
             </div>     
         </div>
-    </section>    
+    </section>     
     <section class="about__gallery section"> 
         <div class="container"> 
             <h2 class="about__gallery-title section-title"><?php the_field('about-gallery'); ?></h2>           
@@ -62,6 +62,16 @@ global $post;
                 </div> 
             </div>     
         </div> 
-    </section>
+    </section> 
+    <section class="about__history section"> 
+        <div class="container"> 
+            <h2 class="section-title"><?php the_field('about-history'); ?></h2>           
+            <div class="inner-container">
+                <div class="about__history-body">
+                    <?php get_template_part( 'template-parts/about-history' ); ?> 
+                </div>
+            </div>    
+        </div>    
+    </section>                         
 </main>
 <?php get_footer(); ?>

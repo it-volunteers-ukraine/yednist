@@ -3,7 +3,7 @@ new Swiper('.gallery-mobile-swiper', {
     autoHeight: false,    
     watchOverflow: true,
     pagination: {
-      el: '.swiper-pagination',
+      el: '.gallery-mobile-pagination',
       clickable: true,    
     },   
     slidesPerView: 1, 

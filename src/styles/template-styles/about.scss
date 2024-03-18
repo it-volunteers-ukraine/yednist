@@ -1,18 +1,7 @@
 @import "../variables.scss";
 
-.about {    
-    &__section {
-        margin-bottom: 120px;
-        @media (max-width: $desktop) {
-            margin-bottom: 100px;
-        }
-        @media (max-width: $tablet2) {
-            margin-bottom: 60px;
-        }        
-    }
-
-
-    /*HERO=====================================================*/
+.about {     
+    /*HERO===========================*/       
     &__title {
         margin-bottom: 40px;
         @media (max-width: $tablet2) {
@@ -129,7 +118,7 @@
     &__message-column { flex: 1 1 auto; background-color: $lavender; }
 
 
-    /*ACTIVITY================================================================*/       
+    /*ACTIVITY=======================*/       
     &__activity-body {
         padding: 60px 50px;
         border-radius: $bid-border-radius;
@@ -165,7 +154,7 @@
     }
 
 
-    /*GALLERY================================================================*/    
+    /*GALLERY========================*/    
     &__gallery {  
         .gallery {
             @media (max-width: $mobile) {
@@ -260,4 +249,7 @@
             }
         }        
     }
+
+
+    /*HISTORY-UA========================*/ 
 }
