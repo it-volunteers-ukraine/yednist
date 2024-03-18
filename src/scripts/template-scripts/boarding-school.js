@@ -12,14 +12,28 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
     }
   };
-  const schoolSwiper = new Swiper(".appeal__swiper", {
-    slidesPerView: 3,
-    spaceBetween: 12,
-    direction: "vertical",
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-    },
-  });
-  console.log(schoolSwiper);
+  const screenWidth575 = window.matchMedia("(max-width: 575.98px)");
+
+  function initSwiper() {
+    if (screenWidth575.matches) {
+      const schoolSwiper = new Swiper(".appeal__swiper", {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 12,
+        grabCursor: true,
+        direction: "horizontal",
+        pagination: {
+          el: ".swiper-pagination",
+          type: "bullets",
+          clickable: true,
+          dynamicBullets: true,
+        },
+      });
+      console.log(schoolSwiper);
+    }
+  }
+  initSwiper(); // Инициализация свайпера при загрузке страницы
+
+  // Слушатель событий для изменения размера экрана
+  screenWidth575.addListener(initSwiper);
 });

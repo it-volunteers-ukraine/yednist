@@ -132,11 +132,12 @@ iframe {
       grid-template-columns: [col] 0.31% [col] 0.58% [col] 11.62% [col] 14.54% [col] 4.94% [col] 6.25% [col] 0 [col] 0 [col] 0;
     }
     @media screen and (max-width: $mobile) {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      display: grid;
+      grid-template-columns: [ col] 100% [ col] 100%;
+      grid-template-rows: [row] auto [row] 53px [row] 95px [row] auto;
+      gap: 12px;
       max-height: 393px;
-      overflow: hidden;
+      margin-bottom: 12px;
     }
     &__wrapper {
       padding: 27px 39px;
@@ -152,36 +153,70 @@ iframe {
         padding: 15px;
       }
       @media screen and (max-width: $mobile) {
-        min-width: 100%;
+        min-width: -webkit-fill-available;
+        margin: 0 !important;
+        border-radius: 24px;
       }
       &:nth-child(1) {
         grid-column: col / span 4;
         grid-row: row;
+        @media screen and (max-width: $mobile) {
+          grid-column: 1;
+          grid-row: row;
+        }
       }
       &:nth-child(2) {
         grid-column: col 5 / span 6;
         grid-row: row;
+        @media screen and (max-width: $mobile) {
+          grid-column: 1;
+          grid-row: 2 / 4;
+        }
       }
       &:nth-child(3) {
         grid-column: col / span 9;
         grid-row: row 2;
+        @media screen and (max-width: $mobile) {
+          grid-column: 1;
+          grid-row: 4;
+        }
       }
       &:nth-child(4) {
         grid-column: 10;
         grid-row: 2 / 4;
+        @media screen and (max-width: $mobile) {
+          grid-column: 2;
+          grid-row: row;
+        }
       }
       &:nth-child(5) {
         grid-column: col / span 4;
         grid-row: 3 / 5;
+        @media screen and (max-width: $mobile) {
+          order: 6;
+          grid-column: 2;
+          grid-row: 3;
+        }
       }
       &:nth-child(6) {
         grid-row: 4;
         grid-column: col 5 / span 6;
+        @media screen and (max-width: $mobile) {
+          order: 7;
+          grid-column: 2;
+          grid-row: 4;
+        }
       }
       &:nth-child(7) {
         grid-row: 3;
         grid-column: col 5 / span 5;
         background-color: $yellow !important;
+        @media screen and (max-width: $mobile) {
+          order: 5;
+          grid-column: 2;
+          grid-row: 2;
+          height: fit-content;
+        }
       }
       &:nth-child(3n + 1) {
         background-color: $lavender;
@@ -215,21 +250,36 @@ iframe {
   }
 }
 .appeal__section .swiper-pagination {
-  position: static;
-  width: fit-content;
-  & .swiper-pagination-bullet {
-    opacity: 1;
-    border: 1px solid $violet-grey;
-    background: none;
-    width: 16px;
-    height: 16px;
-    @media screen and (max-width: $tablet2) {
-      width: 12px;
-      height: 12px;
+  @media screen and (max-width: $mobile) {
+    position: static;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    & .swiper-pagination-bullet {
+      opacity: 1;
+      border: 1px solid $violet-grey;
+      background: none;
+      width: 16px;
+      height: 16px;
+      @media screen and (max-width: $tablet2) {
+        width: 12px;
+        height: 12px;
+      }
+      @media screen and (max-width: $mobile) {
+        width: 8px;
+        height: 8px;
+      }
     }
-    @media screen and (max-width: $mobile) {
-      width: 8px;
-      height: 8px;
+    & .swiper-pagination-bullet-active {
+      background-color: $violet-grey;
     }
+  }
+}
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-bullets-dynamic {
+  transform: none;
+  min-width: 100%;
+  span:nth-child(3) {
+    display: none;
   }
 }
