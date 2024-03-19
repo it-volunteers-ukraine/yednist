@@ -47,6 +47,10 @@ function wp_it_volunteers_scripts() {
         wp_enqueue_script( 'contacts-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/contacts.js', array(), false, true );
     }
 
+    if ( is_page_template('templates/projects.php') ) {
+      wp_enqueue_style( 'projects-style', get_template_directory_uri() . '/assets/styles/template-styles/projects.css', array('main') );
+  }
+
     if ( is_page_template('templates/partners.php')) {
         wp_enqueue_style( 'partners-style', get_template_directory_uri() . '/assets/styles/template-styles/partners.css',array('main'));
     }
