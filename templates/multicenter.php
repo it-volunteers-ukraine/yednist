@@ -1,9 +1,7 @@
 <?php
 /*
 Template Name: multicenter
-Template Post Type: post, page, projects
 */
-acf_form_head();
 get_header();
 
 ?>

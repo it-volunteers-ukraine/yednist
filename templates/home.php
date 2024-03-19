@@ -2,7 +2,6 @@
 /*
 Template Name: home
 */
-acf_form_head();
 get_header();
 
 ?>
