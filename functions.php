@@ -201,10 +201,6 @@ function wp_it_volunteers_scripts() {
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
     }  
-    if ( is_singular() && locate_template('templates/fioh-team.php') ) {
-      wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
-      wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
-    }
 }
 /** add fonts */
 function add_google_fonts() {
