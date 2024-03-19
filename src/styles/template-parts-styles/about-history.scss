@@ -227,6 +227,8 @@
         img {
             border-radius: $small-border-radius; 
             transition: transform 0.8s ease 0s;   
+            object-fit: cover;
+            object-position: top;
         }  
         @media (max-width: $tablet2) {
             height: 306px;
