@@ -186,7 +186,7 @@ jQuery(document).ready(function ($) {
   }
 
   //form
-  const wpcf7Elm = document.querySelector(".wpcf7");
+  const wpcf7Elm = document.querySelector(".invite__form .wpcf7");
   const notificationBackdropEl = document.getElementById(
     "invite__backdrop--notification"
   );

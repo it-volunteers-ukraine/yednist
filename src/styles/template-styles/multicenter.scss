@@ -222,12 +222,16 @@
 }
 
 //accordion
+.classes__section {
+  .tab-accordion {
+    @media screen and (max-width: $mobile) {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 
-.tab-accordion {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   .plus-icon,
   .minus-icon {
     display: none;
@@ -237,25 +241,25 @@
       min-height: 24px;
     }
   }
-}
 
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height $transition-function;
-}
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $transition-function;
+  }
 
-.minus-icon {
-  display: none;
-}
+  .minus-icon {
+    display: none;
+  }
 
-.tab-accordion.active {
-  @media screen and (max-width: $mobile) {
-    & .minus-icon {
-      display: block;
-    }
-    & .plus-icon {
-      display: none;
+  .tab-accordion.active {
+    @media screen and (max-width: $mobile) {
+      & .minus-icon {
+        display: block;
+      }
+      & .plus-icon {
+        display: none;
+      }
     }
   }
 }
