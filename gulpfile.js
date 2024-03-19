@@ -53,6 +53,12 @@ function scriptsTemplates() {
     .pipe(dest("assets/scripts/template-scripts"));
 }
 
+function scriptsTemplateParts() {
+  return src(["src/scripts/template-parts-scripts/*.js"])
+    .pipe(uglify())
+    .pipe(dest("assets/scripts/template-parts-scripts"));
+}
+
 function watching() {
   watch("src/styles/*scss", styles);
   watch("src/styles/template-styles/*scss", stylesTemplates);
@@ -60,6 +66,7 @@ function watching() {
   watch(["src/images"], images);
   watch("src/scripts/*js", scripts);
   watch("src/scripts/template-scripts/*js", scriptsTemplates);
+  watch("src/scripts/template-parts-scripts/*js", scriptsTemplateParts);
 }
 
 exports.styles = styles;
@@ -68,6 +75,7 @@ exports.stylesTemplatesParts = stylesTemplatesParts;
 exports.images = images;
 exports.scripts = scripts;
 exports.scriptsTemplates = scriptsTemplates;
+exports.scriptsTemplateParts = scriptsTemplateParts;
 exports.watching = watching;
 exports.default = parallel(
   styles,
@@ -76,5 +84,6 @@ exports.default = parallel(
   images,
   scripts,
   scriptsTemplates,
+  scriptsTemplateParts,
   watching
 );
