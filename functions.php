@@ -66,6 +66,9 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
       wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
     }
+    if ( is_page_template('templates/support.php') ) {
+      wp_enqueue_style( 'support-style', get_template_directory_uri() . '/assets/styles/template-styles/support.css', array('main') );
+    }
 
     if ( is_page_template('templates/schedule.php') ) {
         wp_enqueue_style( 'schedule-style', get_template_directory_uri() . '/assets/styles/template-styles/schedule.css', array('main') );
