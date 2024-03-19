@@ -2,9 +2,10 @@
   <div class='swiper-wrapper'>
     <?php
     $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
-    $parent_id = ($current_language == 'EN') ? 62 : (($current_language == 'УКР') ? 29 : 177);
+    $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
+    $parent_page = get_page_by_path($parent_slug);
     $pages = get_pages();
-    $children = get_page_children($parent_id, $pages);
+    $children = get_page_children($parent_page->ID, $pages);
 
     foreach ($children as $child) {
       if (have_rows('projects_descriptions')) {
@@ -16,7 +17,6 @@
         $project_link = get_permalink($child->ID);
         $project_id = $child->ID;
         $terms = get_the_terms($project_id, 'projects-mark');
-
         echo '<div class="swiper-slide projects__section__swiper__item">';
         if ($terms && !is_wp_error($terms)) {
           foreach ($terms as $term) {
