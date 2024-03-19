@@ -442,7 +442,7 @@
     }
     @media screen and (max-width: $mobile) {
       flex-direction: column-reverse;
-      gap: 8px;
+      gap: 0;
     }
   }
 
@@ -461,6 +461,7 @@
     }
     @media screen and (max-width: $mobile) {
       padding-right: 0;
+      margin-top: 8px;
       font-size: 14px;
       max-height: 68px;
       overflow: hidden;
@@ -484,7 +485,7 @@
       justify-content: center;
       align-items: center;
       gap: 6px;
-      margin-top: -8px;
+      margin-top: 4px;
       margin-left: auto;
       color: $blue;
     }
