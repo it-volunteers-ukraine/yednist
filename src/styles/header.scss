@@ -234,9 +234,9 @@
         padding: 80px 40px 40px;
         position: relative;
         max-height: 688px;
+        height: fit-content;
       }
       @media screen and (max-width: $mobile) {
-        width: 100%;
         max-width: 228px;
         border-radius: 0px $small-border-radius $small-border-radius 0px;
         padding: 60px 16px 16px;
@@ -295,7 +295,6 @@
       font-size: 20px;
       line-height: 1.5;
       text-transform: uppercase;
-      transition: all $transition-function;
       cursor: pointer;
       gap: 8px;
       &:has(.header__current__page) {
@@ -404,7 +403,6 @@
     @media screen and (max-width: $desktop1) {
       flex-direction: column;
       order: 3;
-      margin: auto 0 0;
       height: 100%;
     }
   }
@@ -433,6 +431,7 @@
       max-width: 100%;
       margin: 12px 0 0;
       padding: 8px 24px;
+      height: auto;
     }
   }
 
@@ -511,7 +510,7 @@
     @media screen and (max-width: $desktop1) {
       order: 1;
       width: 100%;
-      margin: auto 0 0;
+      margin: 100px 0 0;
       & p,
       & img {
         display: none;
@@ -520,6 +519,9 @@
         color: $black;
         text-decoration-line: none;
       }
+    }
+    @media screen and (max-width: $mobile) {
+      margin: 40px 0 0;
     }
     &__content {
       display: none;
