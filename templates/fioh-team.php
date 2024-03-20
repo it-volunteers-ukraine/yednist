@@ -1,7 +1,6 @@
 <?php
 /*
 Template Name: fioh-team
-Template Post Type: post, page, projects
 */
 get_header();
 ?>
@@ -58,19 +57,19 @@ get_header();
                             <p class="fioh-team__appeal-text-2">
                                 <?php the_field('fioh-team_appeal-text-2'); ?>
                             </p>
-                            
+
                             <p class="fioh-team__appeal-text-4">
                                 <?php the_field('fioh-team_appeal-text-4'); ?>
                             </p>
                         </div>
                         <div class="swiper-slide fioh-team__appeal-swiper-slide">
-                           <p class="fioh-team__appeal-text-5">
+                            <p class="fioh-team__appeal-text-5">
                                 <?php the_field('fioh-team_appeal-text-5'); ?>
                             </p>
-                             <p class="fioh-team__appeal-text-3">
+                            <p class="fioh-team__appeal-text-3">
                                 <?php the_field('fioh-team_appeal-text-3'); ?>
                             </p>
-                            
+
                             <p class="fioh-team__appeal-text-6">
                                 <?php the_field('fioh-team_appeal-text-6'); ?>
                             </p>
@@ -94,24 +93,35 @@ get_header();
                     <ul class="fioh-team__project__list">
                         <?php
                         while (have_rows('fioh-team_projects-repeater')):
-                        the_row();
-                        $title = get_sub_field('fioh-team_projects-repeater-title');
-                        $link = get_sub_field('fioh-team_projects-repeater-link');
-                        $photo = get_sub_field('fioh-team_projects-repeater-img');
-                        ?>
-                        <li class="fioh-team__project__item" style="display: none;">
-                            <div class="fioh-team__project__img-wp">
-                               <img class="fioh-team__project__img" src="<?php echo $photo['url']; ?>" alt="<?php echo $photo['alt']; ?>" />
-                                <button class="fioh-team__project__img-btn">
-                                <img class="fioh-team__project__svg" src="<?php the_field('img_btn_play'); ?>" />
-                            </button>
-                            </div>
-                            <div class="fioh-team__project__name">
-                                <p>
-                                    <?php echo $title; ?>
-                                </p>
-                            </div>
-                        </li>
+                            the_row();
+                            $title = get_sub_field('fioh-team_projects-repeater-title');
+                            $link = get_sub_field('fioh-team_projects-repeater-link');
+                            $photo = get_sub_field('fioh-team_projects-repeater-img');
+                            ?>
+                            <li class="fioh-team__project__item" style="display: none;">
+                                <div class="fioh-team__project__img-wp">
+                                    <img class="fioh-team__project__img" src="<?php echo $photo['url']; ?>"
+                                        alt="<?php echo $photo['alt']; ?>" />
+                                    <button class="fioh-team__project__img-btn">
+                                        <img class="fioh-team__project__svg" src="<?php the_field('img_btn_play'); ?>" />
+                                    </button>
+                                </div>
+                                <div class="fioh-team__modal ">
+                                    <div class="fioh-team__modal_background">
+                                        <div class="fioh-team__modal_window">
+                                            <div class="fioh-team__modal_player">
+                                                <?php echo $link; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="fioh-team__project__name">
+                                    <p>
+                                        <?php echo $title; ?>
+                                    </p>
+                                </div>
+                            </li>
                         <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>
@@ -150,8 +160,11 @@ get_header();
                                         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                     </div>
                                     <div class="fioh-team__team-repeater-item-text-wrapper">
-                                        <button class="fioh-team__team-repeater-item-readmore">
-                                            <?php the_field('read_btn', 'option'); ?>
+                                        <button class="fioh-team__team-repeater-item-readmore" data-show-text="<?php the_field('read_btn', 'option'); ?>" data-hide-text="<?php the_field('hide_btn', 'option'); ?>">
+                                            <span><?php the_field('read_btn', 'option'); ?></span>
+                                            <?php if (get_field('svg_down')): ?>
+                                <img class="fioh-team__team-repeater-item-arrow"  width="12" height="6" src="<?php the_field('svg_down'); ?>" />
+                            <?php endif; ?>
                                         </button>
                                         <p class="fioh-team__team-repeater-item-bio">
                                             <?php echo $bio; ?>
@@ -202,7 +215,6 @@ get_header();
             </div>
         </div>
     </section>
-
 </main>
 
 

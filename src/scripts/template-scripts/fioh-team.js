@@ -9,47 +9,62 @@ new Swiper(".fioh-team__appeal-wrapper-mobile", {
   },
 });
 
-new Swiper(".fioh-team__team-repeater", {
+const teamSwiper = new Swiper(".fioh-team__team-repeater", {
   effect: "slide",
   loop: true,
   slidesPerView: 1,
   spaceBetween: 30,
-  direction: "vertical",
+  direction: "horizontal",
   navigation: {
     nextEl: ".fioh-team__team-repeater-item-btn-circle",
   },
+  breakpoints: {
+    576: {
+      direction: "vertical",
+    },
+  },
+});
+
+teamSwiper?.on("slideChange", () => {
+  const expandedText = document.querySelector(
+    ".fioh-team__team-repeater-item-bio.expanded"
+  );
+  const expandedContainer = document.querySelector(
+    ".fioh-team__team-repeater.expanded"
+  );
+  if (expandedText) {
+    expandedText.classList.remove("expanded");
+  }
+  if (expandedContainer) {
+    expandedContainer.classList.remove("expanded");
+  }
 });
 
 //read-more for team
-
-const readMoreBtn = document.querySelector(
+const repeaterContainer = document.querySelector(".fioh-team__team-repeater");
+const buttons = repeaterContainer.querySelectorAll(
   ".fioh-team__team-repeater-item-readmore"
 );
-if (readMoreBtn) {
-  readMoreBtn.addEventListener("click", () => {
-    const text = document.querySelector(".fioh-team__team-repeater-item-bio");
-    const container = document.querySelector(".fioh-team__team-repeater");
-    text.classList.toggle("expanded");
-    container.classList.toggle("expanded");
-    if (text.classList.contains("expanded")) {
-      readMoreBtn.setAttribute("data-action", "hide");
-    } else {
-      readMoreBtn.setAttribute("data-action", "show");
-    }
-  });
-
-  readMoreBtn.addEventListener("click", () => {
-    const text = document.querySelector(".fioh-team__team-repeater-item-bio");
-    const container = document.querySelector(".fioh-team__team-repeater");
-    text.classList.toggle("expanded");
-    container.classList.toggle("expanded");
-    if (text.classList.contains("expanded")) {
-      readMoreBtn.setAttribute("data-action", "hide");
-    } else {
-      readMoreBtn.setAttribute("data-action", "show");
-    }
-  });
-}
+Array.from(buttons).forEach((readMoreBtn) => {
+  if (readMoreBtn) {
+    readMoreBtn.addEventListener("click", () => {
+      const text = readMoreBtn.parentElement.querySelector(
+        ".fioh-team__team-repeater-item-bio"
+      );
+      text.classList.toggle("expanded");
+      repeaterContainer.classList.toggle("expanded");
+      if (text.classList.contains("expanded")) {
+        readMoreBtn.setAttribute("data-action", "hide");
+        readMoreBtn.firstElementChild.textContent =
+          readMoreBtn.getAttribute("data-hide-text");
+      } else {
+        readMoreBtn.setAttribute("data-action", "show");
+        readMoreBtn.firstElementChild.textContent =
+          readMoreBtn.getAttribute("data-show-text");
+      }
+    });
+  }
+});
 
 //show elements for projects
 
@@ -91,3 +106,13 @@ function getItemsCount() {
     return 1;
   }
 }
+
+const list = document.querySelectorAll(".fioh-team__project__item");
+Array.from(list).forEach((el) => {
+  el.addEventListener("click", (e) => {
+    const modal = el.querySelector(".fioh-team__modal");
+    modal.style.display = "block";
+    if (e.target.classList.contains("fioh-team__modal_background"))
+      modal.style.display = "none";
+  });
+});
