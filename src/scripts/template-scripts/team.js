@@ -2,12 +2,10 @@ const buttons = document.querySelectorAll('.show-info');
 
 
 let teamSwiper = null;
-
 let aboutTeamSwiper = null;
 
-let initMobileOrTablet = false;
-
 let initMobile = false;
+let initTablet = false;
 
 
 function swiperMode() {
@@ -18,11 +16,20 @@ function swiperMode() {
     const desktop = window.matchMedia('(min-width: 1025px)');
 
 
-    if (mobile.matches || tablet.matches) {
+    if (mobile.matches) {
 
-        if (!initMobileOrTablet) {
+        if (!initMobile) {
 
-            initMobileOrTablet = true;
+            initMobile = true;
+            initTablet = false;
+
+            if (teamSwiper) {
+                teamSwiper.destroy();
+            }
+
+            if (aboutTeamSwiper) {
+                aboutTeamSwiper.destroy();
+            }
 
             teamSwiper = new Swiper('.team_slider', {
                 loop: true,
@@ -40,54 +47,76 @@ function swiperMode() {
                 },
                 slideToClickedSlide: false,
                 slidesPerView: 1,
-                autoWidth: false,
-                initialSlide: 0,
-                breakpoints: {
-                    576: {
-                        slidesPerView: 2,
-                        spaceBetween: 28,
-                    },
-                },
             });
 
 
+            aboutTeamSwiper = new Swiper('.about-team_slider', {
+                loop: false,
+                pagination: {
+                    el: '.swiper-custom-pagination',
+                },
+                speed: 800,
+                slidesPerView: 1,
+                spaceBetween: 10,
+                grid: {
+                    rows: 2,
+                },
+            });
         }
+    } else if (tablet.matches) {
+        if (!initTablet) {
 
+            initTablet = true;
+            initMobile = false;
 
-        if (mobile.matches) {
-
-            if (!initMobile) {
-
-                initMobile = true;
-
-                aboutTeamSwiper = new Swiper('.about-team_slider', {
-                    loop: false,
-                    pagination: {
-                        el: '.swiper-custom-pagination',
-                    },
-                    speed: 800,
-                    slidesPerView: 1,
-                    spaceBetween: 20,
-                    grid: {
-                        rows: 2,
-                    },
-                });
+            if (teamSwiper) {
+                teamSwiper.destroy();
             }
+
+            if (aboutTeamSwiper) {
+                aboutTeamSwiper.destroy();
+            }
+
+            teamSwiper = new Swiper('.team_slider', {
+                loop: true,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                speed: 800,
+                effect: 'opacity',
+                fadeEffect: {
+                    crossFade: true
+                },
+                pagination: {
+                    el: '.swiper-custom-pagination',
+                },
+                slideToClickedSlide: false,
+                slidesPerView: 1,
+                breakpoints: {
+                    576: {
+                        slidesPerView: 2,
+                        spaceBetween: 2,
+                    },
+                },
+            });
         }
     } else if (desktop.matches) {
-        teamSwiper.destroy();
-        aboutTeamSwiper.destroy();
-        initMobileOrTablet = false;
-        initMobile = false;
-    }
-    if (tablet.matches) {
-        aboutTeamSwiper.destroy();
+        if (teamSwiper) {
+            teamSwiper.destroy();
+        }
+
+        if (aboutTeamSwiper) {
+            aboutTeamSwiper.destroy();
+        }
+
+        initTablet = false;
         initMobile = false;
     }
 }
 
 
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
     swiperMode();
 });
 window.addEventListener('resize', function () {
@@ -106,13 +135,6 @@ function showInfo(event) {
 
 
     infoByButton.style.display = (targetButton.classList.contains('active')) ? 'block' : 'none';
-
-
-    if (!targetButton.classList.contains('active')) {
-        targetButton.classList.add('inactive');
-    } else {
-        targetButton.classList.remove('inactive');
-    }
 
 }
 

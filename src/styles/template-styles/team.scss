@@ -129,22 +129,11 @@
         .swiper-slide:nth-child(2n) {
 
           @media screen and (max-width: $mobile) {
-            order: 1;
-          }
-
-        }
-
-        .swiper-slide:nth-child(2n+1) {
-          @media screen and (max-width: $mobile) {
             order: 2;
           }
         }
 
-        .swiper-slide:nth-child(2) {
-          @media screen and (max-width: $mobile) {
-            order: 2;
-          }
-        }
+
       }
 
       .flex {
@@ -158,6 +147,10 @@
         @media screen and (max-width: $mobile) {
           column-gap: 0;
           margin-bottom: 0;
+        }
+
+        @media screen and (max-width: $tablet2) {
+          margin-bottom: 60px;
         }
 
 
@@ -400,10 +393,12 @@
             gap: 16px;
             padding-top: 24px;
             width: 379px;
+            padding-left: 19px;
 
 
             @media screen and (max-width: $desktop) {
               width: 280px;
+              padding-left: 11px;
             }
 
             @media screen and (max-width: $tablet2) {
@@ -450,7 +445,7 @@
                   bottom: 0;
                   padding: 64px 40px;
                   left: 0;
-                  background-color: lavender;
+                  background-color: $lavender;
 
 
                   @media screen and (max-width: $tablet2) {
@@ -471,9 +466,9 @@
                   font-size: 18px;
                   position: absolute;
                   bottom: 0;
-                  background-color: $blue;
                   left: 5px;
                   z-index: -1;
+                  background-color: $blue;
                 }
               }
 
@@ -484,7 +479,7 @@
 
 
                 @media screen and (max-width: $desktop) {
-                  line-height: 23px;
+                  line-height: 19px;
                 }
 
 
@@ -506,22 +501,16 @@
                   display: block;
                 }
 
-                .active svg {
-                  fill: $blue;
-                  stroke-width: 1;
+              }
+
+              .active svg {
+                fill: $blue;
+                stroke: $blue;
+                overflow: visible;
+
+                rect {
                   stroke: $blue;
-
-                  rect {
-                    stroke: $blue;
-                  }
-
                 }
-
-
-                .inactive svg {
-                  fill-opacity: 0.6;
-                }
-
 
               }
 
@@ -542,6 +531,7 @@
 
 
         }
+
 
         .swiper-slide:nth-child(2n+3):not(:last-child) {
           .team-item {
@@ -595,6 +585,8 @@
     }
   }
 }
+
+
 
 
 
