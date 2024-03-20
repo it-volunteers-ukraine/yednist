@@ -113,6 +113,35 @@ get_header();
       </div>
       <div class="stages__section__image-wrapper"><img class="stages__section__wrapper__image" src='<?php echo $image['url'] ?>' alt='<?php echo $image['alt'] ?>'/></div>
     </div>
+    </div>
+  </div>
+</section>
+<section class="section years__section">
+  <div class="container">
+    <div class="inner-container">
+      <div class="years__section__timeline">
+        <?php while(have_rows('stages_swiper')) : the_row(); 
+            $year = get_sub_field('stages_swiper_year')
+          ?>
+        <div class="years__section__timeline__point" data-year="2023-2024">
+          <h4 class="years__section__timeline__point__year"><?php echo $year ?></h4>
+          <div class="years__section__timeline__point__circle"></div>
+          <div class="years__section__timeline__point__text-wrapper">
+          <?php while(have_rows('stages_swiper_texts')) : the_row(); 
+            $text = get_sub_field('stages_swiper_text');
+          ?>
+          <p class="years__section__timeline__point__text"><?php echo $text ?></p>
+          <?php endwhile; ?>
+          </div>
+        </div>
+        <?php endwhile; ?>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="inner-container">
       <div class="stages__section__info">
           <div class="stages__section__info__content"><?php while(have_rows('stages_descriptions')) : the_row(); 
               $text = get_sub_field('stages_description');
@@ -121,9 +150,9 @@ get_header();
             <?php endwhile; ?></div>
             <?php $image = get_field("stages_sec_image"); ?>
             <img class="stages__section__image" src='<?php echo $image['url'] ?>' alt='<?php echo $image['alt'] ?>'/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 <?php get_footer(); ?>

@@ -585,3 +585,98 @@ iframe {
     }
   }
 }
+.years__section {
+  .container {
+    position: relative;
+    &::after {
+      content: "";
+      width: calc(100% - 32px);
+      height: 1px;
+      position: absolute;
+      top: 18.85%;
+      background-color: #1d2087;
+      @media screen and (max-width: 1545px) {
+        top: 16.39%;
+      }
+    }
+  }
+  &__timeline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    &__point {
+      height: auto;
+      max-width: 277px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 1;
+      @media screen and (max-width: $desktop) {
+        max-width: 203px;
+      }
+      &__circle {
+        width: 48px;
+        height: 48px;
+        background: #f7f7fc;
+        border-radius: 50%;
+        border: 1px solid #1d2087;
+        margin-bottom: 12px;
+        @media screen and (max-width: $desktop) {
+          margin-bottom: 4px;
+          width: 32px;
+          height: 32px;
+        }
+        @media screen and (max-width: $tablet2) {
+        }
+        @media screen and (max-width: $mobile) {
+        }
+      }
+      &__year {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        color: #1d2087;
+        @media screen and (max-width: $desktop) {
+          font-size: 32px;
+          line-height: 38px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 28px;
+          line-height: 34px;
+        }
+      }
+      &__text {
+        font-family: $secondary-font;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: left;
+        @media screen and (max-width: $desktop) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        &-wrapper {
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+    }
+  }
+}
+@keyframes fill {
+  from {
+    background-color: #f7f7fc;
+  }
+  to {
+    background-color: #1d2087;
+  }
+}
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
