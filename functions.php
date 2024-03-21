@@ -542,14 +542,14 @@ function my_breadcrumb_title_swapper($title, $type, $id)
 add_filter('bcn_breadcrumb_url', 'bcn_breadcrumb_url_swapper', 3, 10);
 function bcn_breadcrumb_url_swapper($url, $type, $id)
 {
-    if ($type == 'home') {
+    if (in_array('home', $type)) {
         if (function_exists('pll_current_language')) {
             $my_lang = pll_current_language();
             if ($my_lang == 'en') { 
-                $url = get_template_directory_uri() . '/home-en/';
+                $url = '/home-en/';
             }
             if ($my_lang == 'pl') { 
-                $url = get_template_directory_uri() . '/home-pl/';
+                $url = '/home-pl/';
             }
         }
     }
