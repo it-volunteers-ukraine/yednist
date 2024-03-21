@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const schoolVideo = document.querySelector(".main__section__content__image");
-  const modal = document.getElementById("videoModal");
+  const modal = document.getElementById("mainVideoModal");
   schoolVideo.addEventListener("click", function () {
     modal.style.display = "flex";
   });

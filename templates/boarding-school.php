@@ -24,9 +24,9 @@ get_header();
               <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-youtube"></use>
             </svg>
           <?php endif; ?>
-          <div id="videoModal" class="modal">
-            <div class="modal-content">
-              <iframe src='<?php echo $video_link ?>' frameborder="0" allowfullscreen autoplay></iframe>
+          <div id="mainVideoModal" class="main__section__content__modal">
+            <div class="main__section__content__modal-content">
+            <?php echo $video_link ?>
             </div>
           </div>
         </div>
