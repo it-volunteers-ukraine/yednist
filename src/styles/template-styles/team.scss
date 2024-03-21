@@ -445,7 +445,6 @@
                   bottom: 0;
                   padding: 64px 40px;
                   left: 0;
-                  background-color: $lavender;
 
 
                   @media screen and (max-width: $tablet2) {
@@ -456,6 +455,8 @@
                   @media screen and (max-width: $mobile) {
                     width: 255px;
                   }
+
+
                 }
 
 
@@ -468,7 +469,6 @@
                   bottom: 0;
                   left: 5px;
                   z-index: -1;
-                  background-color: $blue;
                 }
               }
 
@@ -533,22 +533,7 @@
         }
 
 
-        .swiper-slide:nth-child(2n+3):not(:last-child) {
-          .team-item {
-            &:hover {
-              .frame {
-                background-color: $dark-pink;
-              }
-
-              .info {
-                background-color: $pink;
-              }
-
-            }
-          }
-        }
-
-        .swiper-slide:nth-child(2n + 2):not(:nth-child(6)):not(:nth-child(8)), :last-child {
+        .yellow {
           .team-item {
             &:hover {
               .frame {
@@ -557,7 +542,34 @@
 
               .info {
                 background-color: $yellow;
+                display: block;
               }
+            }
+          }
+        }
+
+        .pink {
+          .team-item {
+            .frame {
+              background-color: $dark-pink;
+            }
+
+            .info {
+              background-color: $pink;
+              display: block;
+            }
+          }
+        }
+
+        .blue {
+          .team-item {
+            .frame {
+              background-color: $blue;
+            }
+
+            .info {
+              background-color: $lavender;
+              display: block;
             }
           }
         }
@@ -583,8 +595,20 @@
         }
       }
     }
+
+    .info {
+      display: none;
+    }
   }
 }
+
+
+
+
+
+
+
+
 
 
 
