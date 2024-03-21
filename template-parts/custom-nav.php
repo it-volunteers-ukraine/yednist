@@ -1,4 +1,4 @@
-<div class="activities-pagination__block">
+<div class="activities-pagination__block hidden">
 
   <button class="activities__button-prev activities-prev" aria-label="previous slide" type="button">
     <svg class="">

@@ -187,10 +187,6 @@
   }
   @media screen and (max-width: $tablet2) {
     flex-direction: row;
-    margin-top: -18px;
-  }
-  @media screen and (max-width: 660px) {
-    margin-top: 0;
   }
   @media screen and (max-width: $mobile) {
     flex-direction: column;

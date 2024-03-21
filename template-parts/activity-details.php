@@ -25,21 +25,9 @@ $post = $args['post'];
       </div>
       <p class="activity__modal--text"><?php the_field('activity_date'); ?></p>
     </li>
-    <?php
-    $no_registration = get_field('no_registration');
-    if ($no_registration) {
-    ?>
     <li class="activity__modal--item">
-      <div class="activity__modal--icon">
-        <svg>
-          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_no-symbol"></use>
-        </svg>
-      </div>
-      <p class="activity__modal--text"><?php echo $no_registration; ?></p>
-    </li>
-    <?php }?>
-    <li class="activity__modal--item">
-      <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank" rel="noopener noreferrer">
+      <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank"
+        rel="noopener noreferrer">
         <div class="activity__modal--icon">
           <svg>
             <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
