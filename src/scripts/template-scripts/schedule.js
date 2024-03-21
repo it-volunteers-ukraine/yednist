@@ -102,10 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
     countBullets();
     currentBullet();
   }
-  funcForRisizeChanges();
 
-  window.addEventListener("resize", throttle(funcForRisizeChanges, 200));
+  if (allActivityCards > 0) {
+    funcForRisizeChanges();
 
+    window.addEventListener("resize", throttle(funcForRisizeChanges, 200));
+  }
   // slider update
   function updateSlider() {
     allActivityCardsArray.forEach((slide, index) => {

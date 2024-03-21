@@ -68,6 +68,8 @@ function wp_it_volunteers_scripts() {
     }
     if ( is_page_template('templates/support.php') ) {
       wp_enqueue_style( 'support-style', get_template_directory_uri() . '/assets/styles/template-styles/support.css', array('main') );
+      wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
+      wp_enqueue_script( 'support-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/support.js', array('jquery-scripts'), false, true );
     }
 
     if ( is_page_template('templates/schedule.php') ) {
@@ -504,7 +506,7 @@ function activities_target_save_term_fields( $term_id ) {
 
 
 
-// change the breadcrumbs title for home hage
+// change the breadcrumbs title for home page
 add_filter('bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10);
 function my_breadcrumb_title_swapper($title, $type, $id)
 {
@@ -513,4 +515,22 @@ function my_breadcrumb_title_swapper($title, $type, $id)
         $title = pll__('Головна');
     }
     return $title;
+}
+
+//change the breadcrumbs url for home page
+add_filter('bcn_breadcrumb_url', 'bcn_breadcrumb_url_swapper', 3, 10);
+function bcn_breadcrumb_url_swapper($url, $type, $id)
+{
+    if ($type == 'home') {
+        if (function_exists('pll_current_language')) {
+            $my_lang = pll_current_language();
+            if ($my_lang == 'en') { 
+                $url = get_template_directory_uri() . '/home-en/';
+            }
+            if ($my_lang == 'pl') { 
+                $url = get_template_directory_uri() . '/home-pl/';
+            }
+        }
+    }
+    return $url;
 }
