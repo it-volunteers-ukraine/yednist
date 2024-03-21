@@ -8,6 +8,10 @@ let initMobile = false;
 let initTablet = false;
 
 
+let teamSlider = document.querySelector('.team_slider');
+let slides = teamSlider.querySelectorAll('.swiper-slide');
+
+
 function swiperMode() {
 
 
@@ -35,7 +39,7 @@ function swiperMode() {
                 loop: true,
                 autoplay: {
                     delay: 2000,
-                    disableOnInteraction: false,
+                    disableOnInteraction: true,
                 },
                 speed: 800,
                 effect: 'opacity',
@@ -123,6 +127,22 @@ window.addEventListener('resize', function () {
     swiperMode();
 });
 
+
+function addColorForCards() {
+
+    slides.forEach(function (slide, index) {
+        let lastIndex = slides.length - 1;
+        if (index === 0 || index === lastIndex) {
+            slide.classList.add('blue');
+        } else if ((index + 1) % 2 === 0) {
+            slide.classList.add('yellow');
+        } else {
+            slide.classList.add('pink');
+        }
+    })
+}
+
+addColorForCards()
 
 function showInfo(event) {
 
