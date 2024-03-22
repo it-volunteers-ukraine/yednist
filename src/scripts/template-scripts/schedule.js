@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
   const allActivityCards = allActivityCardsArray.length;
   const activitiesWrapper = document.querySelector(".activities__wrapper");
+  const activityPlaceholder = document.getElementById(
+    "activity_placeholder-js"
+  );
   let currentPage = 1;
 
   function changeJustifyContent() {
@@ -51,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ".activities-pagination__block"
     );
 
-    if (totalPages === 1) {
+    if (totalPages === 1 || activityPlaceholder) {
       paginationBox.classList.add("hidden");
     } else paginationBox.classList.remove("hidden");
   }

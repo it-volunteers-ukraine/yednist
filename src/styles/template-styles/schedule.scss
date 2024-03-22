@@ -42,6 +42,18 @@
   pointer-events: none;
 }
 
+.activity_placeholder {
+  width: 435px;
+  border-radius: $small-border-radius;
+  margin: 0 auto;
+  @media screen and (max-width: $desktop) {
+    width: 315px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 288px;
+  }
+}
+
 //table section
 
 .activity__table {
