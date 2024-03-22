@@ -4,7 +4,11 @@
     $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
     $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
     $parent_page = get_page_by_path($parent_slug);
-    $pages = get_pages();
+    $pages = get_pages(array(
+        'parent' => $parent_page->ID,
+        'sort_column' => 'post_date',
+        'sort_order' => 'DESC'
+      ));
     $children = get_page_children($parent_page->ID, $pages);
 
     foreach ($children as $child) {

@@ -38,20 +38,6 @@
           <p class="classes__text"><?php the_field('activity_date'); ?></p>
         </li>
 
-        <?php
-    $no_registration = get_field('no_registration');
-    if ($no_registration) {
-    ?>
-        <li class="classes__item">
-          <div class="classes__icon">
-            <svg>
-              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_no-symbol"></use>
-            </svg>
-          </div>
-          <p class="classes__text"><?php echo $no_registration; ?></p>
-        </li>
-        <?php }?>
-
         <li class="classes__item">
           <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank"
             rel="noopener noreferrer">
