@@ -41,7 +41,6 @@ get_header();
 
             <?php }  else { 
               $image = get_field('activity-placeholder', "options");
-            $size = 'large';
             if( $image ) { ?>
             <img id="activity_placeholder-js" class="activity_placeholder" src="<?php echo esc_url($image['url']); ?>"
               alt="<?php echo esc_attr($image['alt']); ?>" />
