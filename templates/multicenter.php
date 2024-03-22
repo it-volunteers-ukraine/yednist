@@ -19,7 +19,9 @@ get_header();
             $size = 'large';
             if( $image ) {
                 echo wp_get_attachment_image( $image, $size );
-          } ?>
+          } else {
+            
+          }?>
 
           </div>
         </div>
