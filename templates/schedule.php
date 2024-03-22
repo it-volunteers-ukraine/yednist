@@ -28,17 +28,27 @@ get_header();
 
           $query = new WP_Query($args); ?>
 
-          <?php if ($query->have_posts()) : ?>
+          <div class="activities__wrapper">
 
-          <div class="activities__wrapper is-hidden">
+            <?php if ($query->have_posts()) { ?>
+
+
             <?php  while ($query->have_posts()) : $query->the_post(); ?>
 
             <?php get_template_part('template-parts/one-activity'); ?>
 
             <?php endwhile; ?>
-          </div>
-          <?php   endif; ?>
 
+            <?php }  else { 
+              $image = get_field('activity-placeholder', "options");
+            if( $image ) { ?>
+            <img id="activity_placeholder-js" class="activity_placeholder" src="<?php echo esc_url($image['url']); ?>"
+              alt="<?php echo esc_attr($image['alt']); ?>" />
+            <?php }?>
+
+            <?php }?>
+
+          </div>
         </div>
 
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
