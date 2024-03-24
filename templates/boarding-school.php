@@ -119,6 +119,7 @@ get_header();
 <section class="section years__section">
   <div class="container">
     <div class="swiper inner-container">
+      <div class="years__section__timeline__shadow"></div>
       <div class="swiper-wrapper years__section__timeline">
         <?php while(have_rows('stages_swiper')) : the_row(); 
             $year = get_sub_field('stages_swiper_year')

@@ -38,26 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
           clickable: true,
         },
       });
-      const yearsSwiper = new Swiper(".years__section .inner-container", {
-        slidesPerView: 3,
-        centeredSlides: true,
-        spaceBetween: 20,
-        grabCursor: true,
-        direction: "horizontal",
-        pagination: {
-          el: ".swiper-pagination",
-          type: "bullets",
-          clickable: true,
-        },
-      });
-      console.log(yearsSwiper);
     }
   }
   initSwiper();
 
   screenWidth575.addEventListener("change", initSwiper);
 
-  const screenWidth992 = window.matchMedia("(min-width: 992px)");
+  const screenWidth992 = window.matchMedia("(max-width: 992px)");
+  const screenWidthMore992 = window.matchMedia("(min-width: 992px)");
 
   function initIntersectionObserver() {
     const circles = document.querySelectorAll(
@@ -94,15 +82,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function handleScreenWidthChange(screenWidth992) {
-    if (screenWidth992.matches) {
+  function handleScreenWidthChange(screenWidthMore992) {
+    if (screenWidthMore992.matches) {
       initIntersectionObserver();
     }
   }
 
-  handleScreenWidthChange(screenWidth992);
+  handleScreenWidthChange(screenWidthMore992);
+
+  function handleScreenWidthChanges(screenWidth992) {
+    if (screenWidth992.matches) {
+      const yearsSwiper = new Swiper(".years__section .inner-container", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 20,
+        grabCursor: true,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "bullets",
+          clickable: true,
+        },
+        breakpoints: {
+          576: {
+            spaceBetween: 39,
+            centeredSlides: false,
+          },
+          992: {
+            spaceBetween: 20,
+          },
+        },
+      });
+      console.log(yearsSwiper);
+    }
+  }
+
+  handleScreenWidthChanges(screenWidth992);
 
   screenWidth992.addEventListener("change", function () {
-    handleScreenWidthChange(screenWidth992);
+    handleScreenWidthChanges(screenWidth992);
+  });
+  screenWidthMore992.addEventListener("change", function () {
+    handleScreenWidthChange(screenWidthMore992);
   });
 });

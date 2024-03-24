@@ -612,6 +612,7 @@
       position: absolute;
       top: 87.5px;
       background-color: #1d2087;
+      z-index: 998;
       @media screen and (max-width: $desktop) {
         top: 70px;
       }
@@ -621,6 +622,19 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    &__shadow {
+      width: 203px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 999;
+      background: linear-gradient(
+        270deg,
+        #f7f7fc 0%,
+        rgba(247, 247, 252, 0) 100%
+      );
+    }
     &__point {
       height: auto;
       max-width: 277px;
@@ -634,6 +648,7 @@
       }
       @media screen and (max-width: $tablet2) {
         text-align: center;
+        background: #f7f7fc;
       }
       &__circle {
         width: 48px;
