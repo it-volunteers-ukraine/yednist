@@ -118,12 +118,12 @@ get_header();
 </section>
 <section class="section years__section">
   <div class="container">
-    <div class="inner-container">
-      <div class="years__section__timeline">
+    <div class="swiper inner-container">
+      <div class="swiper-wrapper years__section__timeline">
         <?php while(have_rows('stages_swiper')) : the_row(); 
             $year = get_sub_field('stages_swiper_year')
           ?>
-        <div class="years__section__timeline__point" data-year="2023-2024">
+        <div class="swiper-slide years__section__timeline__point" data-year="2023-2024">
           <h4 class="years__section__timeline__point__year"><?php echo $year ?></h4>
           <div class="years__section__timeline__point__circle"></div>
           <div class="years__section__timeline__point__text-wrapper">

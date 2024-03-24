@@ -38,42 +38,71 @@ document.addEventListener("DOMContentLoaded", function () {
           clickable: true,
         },
       });
+      const yearsSwiper = new Swiper(".years__section .inner-container", {
+        slidesPerView: 3,
+        centeredSlides: true,
+        spaceBetween: 20,
+        grabCursor: true,
+        direction: "horizontal",
+        pagination: {
+          el: ".swiper-pagination",
+          type: "bullets",
+          clickable: true,
+        },
+      });
+      console.log(yearsSwiper);
     }
   }
   initSwiper();
 
   screenWidth575.addEventListener("change", initSwiper);
 
-  const circles = document.querySelectorAll(
-    ".years__section__timeline__point__circle"
-  );
-  const texts = document.querySelectorAll(
-    ".years__section__timeline__point__text-wrapper"
-  );
+  const screenWidth992 = window.matchMedia("(min-width: 992px)");
 
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.querySelector(
-              ".years__section__timeline__point__circle"
-            ).style.animation = "fill 1s forwards";
-            entry.target.querySelector(
-              ".years__section__timeline__point__text-wrapper"
-            ).style.animation = "opacity 1s forwards";
-          }, index * 1000);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
+  function initIntersectionObserver() {
+    const circles = document.querySelectorAll(
+      ".years__section__timeline__point__circle"
+    );
+    const texts = document.querySelectorAll(
+      ".years__section__timeline__point__text-wrapper"
+    );
 
-  circles.forEach((circle) => {
-    observer.observe(circle);
-  });
-  texts.forEach((text) => {
-    observer.observe(text.parentElement);
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.querySelector(
+                ".years__section__timeline__point__circle"
+              ).style.animation = "fill 1s forwards";
+              entry.target.querySelector(
+                ".years__section__timeline__point__text-wrapper"
+              ).style.animation = "opacity 1s forwards";
+            }, index * 1000);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    circles.forEach((circle) => {
+      observer.observe(circle);
+    });
+    texts.forEach((text) => {
+      observer.observe(text.parentElement);
+    });
+  }
+
+  function handleScreenWidthChange(screenWidth992) {
+    if (screenWidth992.matches) {
+      initIntersectionObserver();
+    }
+  }
+
+  handleScreenWidthChange(screenWidth992);
+
+  screenWidth992.addEventListener("change", function () {
+    handleScreenWidthChange(screenWidth992);
   });
 });
