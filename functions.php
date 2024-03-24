@@ -72,7 +72,10 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_script( 'gallery-post-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/gallery-post.js', array(), false, true );
       wp_enqueue_script( 'fslightbox-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fslightbox.js', array(), false, true );
     }
-
+    if ( is_page_template('templates/boarding-school.php') ) {
+      wp_enqueue_style( 'boarding-school-style', get_template_directory_uri() . '/assets/styles/template-styles/boarding-school.css', array('main') );
+      wp_enqueue_script( 'boarding-school-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/boarding-school.js', array(), false, true );
+    }
     if ( is_page_template('templates/fioh-team.php') ) {
       wp_enqueue_style( 'fioh-team-style', get_template_directory_uri() . '/assets/styles/template-styles/fioh-team.css', array('main') );
       wp_enqueue_script( 'fioh-team-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/fioh-team.js', array(), false, true );
