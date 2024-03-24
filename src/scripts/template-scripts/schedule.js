@@ -23,7 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
   const allActivityCards = allActivityCardsArray.length;
+  const activitiesWrapper = document.querySelector(".activities__wrapper");
+  const activityPlaceholder = document.getElementById(
+    "activity_placeholder-js"
+  );
   let currentPage = 1;
+
+  function changeJustifyContent() {
+    if (window.innerWidth > 1220 && allActivityCards < 3) {
+      activitiesWrapper.style.justifyContent = "center";
+      activitiesWrapper.style.gap = "80px";
+    }
+  }
 
   function cardsPerPage() {
     let cardPerPage = 3;
@@ -36,16 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return cardPerPage;
   }
 
-  const totalPages = Math.ceil(allActivityCards / cardsPerPage());
+  let totalPages = Math.ceil(allActivityCards / cardsPerPage());
 
   function isPagination() {
     const paginationBox = document.querySelector(
       ".activities-pagination__block"
     );
 
-    if (totalPages === 1) {
+    if (totalPages === 1 || activityPlaceholder) {
       paginationBox.classList.add("hidden");
-    }
+    } else paginationBox.classList.remove("hidden");
   }
 
   // Оновлення кнопок пагінації
@@ -84,13 +95,22 @@ document.addEventListener("DOMContentLoaded", function () {
       currentBullet();
     }
   }
+  function funcForRisizeChanges() {
+    changeJustifyContent();
+    updateSlider();
+    totalPages = Math.ceil(allActivityCards / cardsPerPage());
+    currentPage = 1;
+    isPagination();
+    updatePaginationButtons();
+    countBullets();
+    currentBullet();
+  }
 
-  updateSlider();
-  isPagination();
-  updatePaginationButtons();
-  countBullets();
-  currentBullet();
+  if (allActivityCards > 0) {
+    funcForRisizeChanges();
 
+    window.addEventListener("resize", throttle(funcForRisizeChanges, 200));
+  }
   // slider update
   function updateSlider() {
     allActivityCardsArray.forEach((slide, index) => {
@@ -99,10 +119,15 @@ document.addEventListener("DOMContentLoaded", function () {
         index < currentPage * cardsPerPage()
       ) {
         slide.style.display = "block";
+        showSlider();
       } else {
         slide.style.display = "none";
       }
     });
+  }
+
+  function showSlider() {
+    activitiesWrapper.classList.remove("is-hidden");
   }
 
   const nextButton = document.querySelector(".activities-next");

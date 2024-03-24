@@ -25,26 +25,16 @@ $post = $args['post'];
       </div>
       <p class="activity__modal--text"><?php the_field('activity_date'); ?></p>
     </li>
-    <?php
-    $no_registration = get_field('no_registration');
-    if ($no_registration) {
-    ?>
     <li class="activity__modal--item">
-      <div class="activity__modal--icon">
-        <svg>
-          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_no-symbol"></use>
-        </svg>
-      </div>
-      <p class="activity__modal--text"><?php echo $no_registration; ?></p>
-    </li>
-    <?php }?>
-    <li class="activity__modal--item">
-      <div class="activity__modal--icon">
-        <svg>
-          <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
-        </svg>
-      </div>
-      <p class="activity__modal--text"><?php the_field('activity_location'); ?></p>
+      <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank"
+        rel="noopener noreferrer">
+        <div class="activity__modal--icon">
+          <svg>
+            <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_map"></use>
+          </svg>
+        </div>
+        <p class="activity__modal--text"><?php the_field('activity_location'); ?></p>
+      </a>
     </li>
     <li class="activity__modal--item">
       <div class="activity__modal--icon">
@@ -61,11 +51,7 @@ $post = $args['post'];
         </svg>
       </div>
       <p class="activity__modal--text">
-        <?php
-              $category = get_the_terms($post->ID, 'activities-target');
-              foreach ($category as $cat) {
-                echo $cat->name;
-              }?>
+        <?php the_field('activity_target'); ?>
       </p>
     </li>
 
@@ -108,22 +94,7 @@ $post = $args['post'];
 
   <div class="activity__modal--detais"><?php echo $fullContent?></div>
 
-  <?php
-
-      $activity_name = 'activity_telegram';
-      if( get_field('select_btn') == 'Зареєструватись' ) {
-      $activity_name = 'activity_registration';
-    }
-      if( get_field('select_btn') == 'Купити квиток' ) {
-      $activity_name = 'activity_buy_ticket';
-    }
-
-      $activity = get_field($activity_name);
-      $class_name = $activity_name == 'activity_telegram' ? 'secondary-button':'primary-button';
-      if( $activity ): ?>
-  <a class="button <?php echo $class_name; ?> activity__button" target="_blank"
-    href="<?php echo esc_url( $activity['link'] ); ?>"><?php echo esc_html( $activity['btn'] ); ?></a>
-  <?php endif; ?>
+  <?php get_template_part( 'template-parts/activity-buttons' ); ?>
 </div>
 
 <button class="activity__modal--btn" type="button" id="js-close-activity-form" aria-label="Close modal">

@@ -25,6 +25,9 @@
   &:not(:last-child) {
     border-bottom: 1px solid $violet-grey;
   }
+  &:first-child {
+    border-top: 1px solid $blue;
+  }
 
   &::after {
     content: "";
@@ -42,10 +45,6 @@
       transition: all $transition-function;
       background-color: $violet-grey;
     }
-    .activity__title {
-      color: $blue;
-      text-decoration-line: underline;
-    }
   }
 }
 
@@ -62,6 +61,7 @@
     min-width: 102px;
   }
   @media screen and (max-width: $mobile) {
+    font-family: $secondary-font;
     margin-bottom: 14px;
     min-width: 90px;
     font-size: 14px;
@@ -79,9 +79,11 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 12px;
+  gap: 20px;
   @media screen and (max-width: $tablet2) {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0;
   }
   @media screen and (max-width: $mobile) {
     padding-left: 0;
@@ -103,7 +105,8 @@
 
 .activity__table--text {
   @media screen and (max-width: $tablet2) {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 28%;
     gap: 10px;
     justify-content: space-between;
     width: 100%;
@@ -141,7 +144,12 @@
   @media screen and (max-width: $desktop) {
     font-size: 14px;
   }
+  @media screen and (max-width: 1080px) {
+    display: grid;
+    grid-template-columns: 150px auto;
+  }
   @media screen and (max-width: $tablet2) {
+    display: flex;
     flex-direction: column;
     gap: 14px;
   }
@@ -154,9 +162,6 @@
 .activity__details--box {
   display: flex;
   align-items: center;
-  @media screen and (max-width: $tablet2) {
-    min-width: 135px;
-  }
 }
 
 .activity__table--icon {
@@ -182,10 +187,6 @@
   }
   @media screen and (max-width: $tablet2) {
     flex-direction: row;
-    margin-top: -24px;
-  }
-  @media screen and (max-width: 660px) {
-    margin-top: 0;
   }
   @media screen and (max-width: $mobile) {
     flex-direction: column;
@@ -201,23 +202,35 @@
   }
 
   & button.secondary-button.activity__button {
+    color: $black;
     display: block;
     padding: 0;
     background-color: transparent;
     border: none;
     min-width: fit-content;
+    margin-left: auto;
+    @media screen and (max-width: $tablet2) {
+      margin-left: 0;
+      margin-right: auto;
+    }
     @media screen and (max-width: $mobile) {
       height: fit-content;
     }
     &:hover,
     &:focus {
       box-shadow: none;
+      color: $blue;
+      transform: scale(1.1);
     }
   }
 }
 
 .learn__more--wrap {
   position: relative;
+  min-width: 154px;
+  @media screen and (max-width: $desktop) {
+    min-width: 124px;
+  }
 }
 .button__loader {
   position: absolute;

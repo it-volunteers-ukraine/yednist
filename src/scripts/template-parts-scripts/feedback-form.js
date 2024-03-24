@@ -8,32 +8,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const feedbackBackdrop = document.getElementById("js-feedback-form");
   const feedbackModalEl = document.querySelector(".feedback-modal");
 
+  function screenOrientation(containerHeight, height) {
+    if (containerHeight > height) {
+      feedbackModalEl.classList.add("horizontal");
+    } else {
+      feedbackModalEl.classList.remove("horizontal");
+    }
+  }
+
   //open-close modal
   if (openFeedbackFormButton) {
     openFeedbackFormButton.addEventListener("click", showForm);
 
     let screenHeight = window.innerHeight;
-    const computedStyle = getComputedStyle(feedbackModalEl);
-    const containerHeight = parseInt(computedStyle.height);
+    let containerHeight = parseInt(getComputedStyle(feedbackModalEl).height);
 
     function lookForSizeChanges() {
       screenHeight = window.innerHeight;
-      screenOrientation(screenHeight);
-    }
-
-    function screenOrientation(height) {
-      if (containerHeight > height) {
-        feedbackModalEl.classList.add("horizontal");
-      } else {
-        feedbackModalEl.classList.remove("horizontal");
-      }
+      screenOrientation(containerHeight, screenHeight);
     }
 
     function showForm() {
       const windowScrollY = window.scrollY;
       document.documentElement.style.scrollBehavior = "auto";
       feedbackBackdrop.classList.remove("is-hidden");
-      screenOrientation(screenHeight);
+      screenOrientation(containerHeight, screenHeight);
+      window.addEventListener("resize", lookForSizeChanges);
       closeFeedbackFormButton.addEventListener("click", hideForm);
       feedbackBackdrop.addEventListener("mousedown", closeByBgdClick);
       window.addEventListener("keydown", closeByPressEscape);
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       closeFeedbackFormButton.removeEventListener("click", hideForm);
       feedbackBackdrop.removeEventListener("mousedown", closeByBgdClick);
       feedbackModalEl.classList.remove("horizontal");
+      window.removeEventListener("resize", lookForSizeChanges);
 
       const scrollY = parseInt(document.documentElement.style.top || "0");
       document.documentElement.classList.remove("modal__opened");
@@ -102,6 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (event.detail.choice.id === choicesLength) {
           additionalField.classList.add("shown");
+          let screenHeight = window.innerHeight;
+          let containerHeight = parseInt(
+            getComputedStyle(feedbackModalEl).height
+          );
+
+          function lookForSizeChanges() {
+            screenHeight = window.innerHeight;
+            screenOrientation(containerHeight, screenHeight);
+          }
+
+          lookForSizeChanges();
         } else additionalField.classList.remove("shown");
       },
       false
@@ -219,6 +231,20 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!inputEl.value.trim() || inputEl.classList.contains("invalid")) {
             inputEl.classList.add("invalid");
             $(".feedback-alert").removeClass("hidden");
+
+            let screenHeight = window.innerHeight;
+            let containerHeight = parseInt(
+              getComputedStyle(feedbackModalEl).height
+            );
+
+            function lookForSizeChanges() {
+              screenHeight = window.innerHeight;
+              screenOrientation(containerHeight, screenHeight);
+            }
+
+            lookForSizeChanges();
+
+            $(window).resize(lookForSizeChanges);
             isFormValid = false;
           }
         });

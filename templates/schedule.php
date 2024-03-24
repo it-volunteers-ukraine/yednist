@@ -2,7 +2,6 @@
 /*
 Template Name: schedule
 */
-acf_form_head();
 get_header();
 
 ?>
@@ -29,17 +28,27 @@ get_header();
 
           $query = new WP_Query($args); ?>
 
-          <?php if ($query->have_posts()) : ?>
-
           <div class="activities__wrapper">
+
+            <?php if ($query->have_posts()) { ?>
+
+
             <?php  while ($query->have_posts()) : $query->the_post(); ?>
 
             <?php get_template_part('template-parts/one-activity'); ?>
 
             <?php endwhile; ?>
-          </div>
-          <?php   endif; ?>
 
+            <?php }  else { 
+              $image = get_field('activity-placeholder', "options");
+            if( $image ) { ?>
+            <img id="activity_placeholder-js" class="activity_placeholder" src="<?php echo esc_url($image['url']); ?>"
+              alt="<?php echo esc_attr($image['alt']); ?>" />
+            <?php }?>
+
+            <?php }?>
+
+          </div>
         </div>
 
         <?php get_template_part( 'template-parts/custom-nav' ); ?>
@@ -54,22 +63,21 @@ get_header();
       <div class="inner-container">
 
         <?php 
-            $args = array( 
-                'post_type'      => 'activities',
-                'numberposts'    => -1,
-                'order'          => 'ASC',  
-                'orderby'        => 'meta_value',
-	              'meta_key'       => 'activity_time',
-                'tax_query'      => array(
-                        array(
-                        'taxonomy' => 'activities-categories',
-                        'field'    => 'slug',
-                        'terms'    => 'constant_activities'
-                    )
+
+        $args = array( 
+            'post_type'      => 'activities',
+            'numberposts'    => -1,
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'activities-categories',
+                    'field'    => 'slug',
+                    'terms'    => 'constant_activities'
                 )
-            );
+            )
+        );
 
             $activities_array = get_posts( $args ); ?>
+
 
         <?php 
             // ключ - це день тижня, а значення - це масив активностей
@@ -85,17 +93,82 @@ get_header();
 
             // Групування активностей по дням тижня
             foreach ($activities_array as $activity) {
-                $category = get_the_terms($activity->ID, 'activities-categories');
-                foreach ($category as $cat) {
-                    $slug = $cat->slug;
-                    if (array_key_exists($slug, $activities_by_day)) {
-                        $activities_by_day[$slug][] = $activity;
+                if (have_rows('activity_time', $activity->ID)) {
+                    while (have_rows('activity_time', $activity->ID)) {
+                        the_row();
+                        $day = get_sub_field('day');
+                        $activities_by_day[$day][] = $activity;
                     }
                 }
             }
+// Сортування активностей всередині кожної групи по часу, з урахуванням дня у subfield репітера
+  foreach ($activities_by_day as $day_slug => $activities) {
+    $activity_times = array();
+    foreach ($activities as $key => $activity) {
+        if (have_rows('activity_time', $activity->ID)) {
+            $rows = get_field('activity_time', $activity->ID); 
+            foreach ($rows as $row_index => $row) { 
+                $day = $row['day'];
 
-            //Активності для кожного дня тижня
-            foreach ($activities_by_day as $day_slug => $activities) { ?>
+                if ($day == $day_slug) {
+                    $existing_day_index = false;
+                    foreach ($activity_times as $index => $existing_activity_time) {
+                      if ($existing_activity_time['day'] == $day_slug) {
+                          $existing_day_index = $index;
+                          break;
+                      }
+                    }
+
+                    if ($existing_day_index !== false) {
+                        $day_index = $existing_day_index;
+                    } else {
+                        $day_index = array_search($day, array_column($rows, 'day'));
+                    }
+
+                    $activity_time = array(
+                        'time' => $row['order_time'],
+                        'post_id' => $activity->ID,
+                        'row_index' => $row_index,
+                        'day' => $day_slug
+                    );
+
+                    // чи існує такий слаг з таким часом
+                    $existing_activity = false;
+                    foreach ($activity_times as $existing_activity_time) {
+                        if ($existing_activity_time['time'] == $activity_time['time'] && $existing_activity_time['post_id'] == $activity_time['post_id']) {
+                            $existing_activity = true;
+                            break;
+                        }
+                    }
+
+                    if (!$existing_activity) {
+                        array_push($activity_times, $activity_time);
+                    }
+                }
+            }
+        }
+    }
+
+          // Сортування массиву активностей по часу
+          usort($activity_times, function($a, $b) {
+              $time_a = strtotime($a['time']);
+              $time_b = strtotime($b['time']);
+              return $time_a - $time_b;
+          });
+          // Новий масив активностей, відсортований відповідно масиву $activity_times
+          $sorted_activities = array_map(function($activity_time) use ($activities) {
+              foreach ($activities as $activity) {
+                  if ($activity->ID == $activity_time['post_id']) {
+                      return array(
+                          'activity' => $activity,
+                          'row_index' => $activity_time['row_index']
+                      );
+                  }
+              }
+          }, $activity_times);
+
+          $activities = $sorted_activities; ?>
+
         <div class="activity__table">
           <div aria-controls="panel-<?php the_field($day_slug, 'options'); ?>" role="button" aria-expanded="false"
             class="activity__table-title schedule-accordion">
@@ -108,22 +181,23 @@ get_header();
           </div>
           <div id="panel-<?php the_field($day_slug, 'options'); ?>" role="region"
             class="activity__table-box schedule-panel">
-            <?php foreach ($activities as $post) { ?>
+            <?php foreach ($sorted_activities as $sorted_activity) { 
+              $post = $sorted_activity['activity'];
+              $row_index = $sorted_activity['row_index']; ?>
+
             <div class="activity__table-row">
               <div class="activity__table-time">
 
                 <?php
-                  if( have_rows('activity_time') ):
 
-                      while( have_rows('activity_time') ) : the_row();
-
-                          $day = get_sub_field('day');
-                          if($day==$day_slug){
-                            echo get_sub_field('time');
-                          }
-
-                      endwhile;
-                  endif;?>
+                    $rows = get_field('activity_time');
+                      if( $rows ) {
+                          $current_row = $rows[$row_index];
+                          $order_time = $current_row['order_time'];
+                          $finish_time = $current_row['finish_time'];
+                          echo "<span>{$order_time} - {$finish_time}</span>";
+                          
+                } ?>
               </div>
               <?php get_template_part( 'template-parts/one-activity-row' );?>
 
@@ -161,7 +235,7 @@ get_header();
             $max_pages = ceil(wp_count_posts('news')->publish / 5);
             ?>
 
-          <div id="loadmore">
+          <div id="loadmore-news">
             <?php  get_template_part('template-parts/loader'); ?>
             <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
               data-paged="<?php echo $paged ?>" data-order="<?php echo $order ?>">

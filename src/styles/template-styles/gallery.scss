@@ -1,6 +1,4 @@
-@import "../variables.scss";
-
-.gallery {    
+.gallery {   
     &__header {
         margin: 0px 0 40px;
         display: grid;
@@ -49,39 +47,47 @@
     }
     &__item {
         display: flex;
-        flex-direction: column;  
-        border-radius: $small-border-radius;
-        max-width: 425px;
+        flex-direction: column; 
+        max-width: 425px;        
         @media (max-width: $mobile) {
             max-width: 100%;
-        }        
+        }  
+        transition: transform 0.8s ease 0s;  
+        &:hover {
+            color: $blue;            
+            img, .gallery__post-content {
+                border-radius: $bid-border-radius;                    
+                transition: ease 0.7s;
+                transform: scale(1.01); 
+            } 
+        }           
         a { 
             flex: 1 1 auto;    
             display: flex;
-            flex-direction: column;       
-            transition: all $transition-function;
+            flex-direction: column;  
+            transition: transform 0.8s ease 0s;    
             &:hover {
-                color: $blue;              
-            }           
+                transition: ease 0.7s;
+                transform: scale(1.01); 
+            }  
+            
         }    
         &:nth-child(odd) {
-            background-color: $lavender;
+            .gallery__post-content {background-color: $lavender;}
         }    
         &:nth-child(even) {
-            background-color: $yellow;
+            .gallery__post-content {background-color: $yellow;}
         }
         &:nth-child(3n) {
-            background-color: $pink;
+            .gallery__post-content {background-color: $pink;}
         }
     }
     &__post-img {     
-        border-radius: $small-border-radius $small-border-radius 0 0; 
-        overflow: hidden;   
-        transition: opacity 0.8s ease 0s;               
+        overflow: hidden;                 
         img {
+            border-radius: $small-border-radius $small-border-radius 0 0; 
             object-fit: cover;
-            object-position: top;
-            transition: transform 0.8s ease 0s;
+            object-position: top;           
             max-width: 425px;
             height: 300px;
             @media (max-width: $desktop) {
@@ -92,14 +98,11 @@
             }
             @media (max-width: $mobile) {
                 max-width: 100%;
-            }
-            &:hover {                
-                transition: ease 0.7s;
-                transform: scale(1.1);
-            }
+            }            
         }
     }   
     &__post-content { 
+        border-radius: 0 0 $small-border-radius $small-border-radius; 
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
@@ -110,9 +113,9 @@
         }
         @media (max-width: $tablet2) {
             padding: 12px;
-        }
+        }               
     }  
-    &__post-cat {
+    &__post-cat {        
         font-family: $secondary-font;  
         font-size: 16px;
         line-height: 26px;
@@ -128,11 +131,10 @@
     &__post-title {
         font-size: 24px;
         line-height: 36px;
-        margin-bottom: 20px;     
+        margin-bottom: 16px;     
         @media (max-width: $desktop) {
             font-size: 20px;
-            line-height: 30px;
-            margin-bottom: 16px;
+            line-height: 30px;            
         }
         @media (max-width: $tablet2) {
             font-size: 18px;
@@ -150,6 +152,44 @@
         @media (max-width: $desktop) {
             font-size: 14px;
             line-height: 22px;
+        }
+    }
+    .breadcrumbs__section {
+        padding-top: 184px;
+        margin-bottom: 20px;
+        @media screen and (max-width: $desktop) {
+          padding-top: 156px;
+        }
+        @media screen and (max-width: $tablet2) {
+          padding-top: 104px;
+        }
+        @media screen and (max-width: $mobile) {
+          padding-top: 76px;
+        }
+      
+        & .breadcrumbs__line {
+          margin-bottom: 12px;
+          height: 2px;
+          background-color: $violet-grey;
+          @media screen and (max-width: $tablet2) {
+            height: 1px;
+          }
+        }
+      
+        & .breadcrumbs span {
+          font-family: $secondary-font;
+          color: $dark-grey;
+          line-height: 1.6;
+          font-size: 16px;
+          &:not(:last-child) {
+            margin-right: 4px;
+          }
+          &:last-child > span {
+            color: $black;
+          }
+          @media screen and (max-width: $desktop) {
+            font-size: 14px;
+        }
         }
     }
 }

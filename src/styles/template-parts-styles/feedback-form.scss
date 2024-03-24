@@ -70,6 +70,7 @@
   left: 50%;
   bottom: 0;
   transform: translateX(-50%) translateX(0);
+  overflow-y: scroll;
 }
 
 .feedback-modal__title-wrap {

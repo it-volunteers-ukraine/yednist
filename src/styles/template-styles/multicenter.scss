@@ -8,6 +8,7 @@
 }
 
 .multicenter__image {
+  position: relative;
   margin-bottom: 60px;
   border-radius: $bid-border-radius;
   height: 0;
@@ -24,8 +25,647 @@
   }
 }
 
-.multicenter__image img {
+.multicenter__image--wrap {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.multicenter__image--wrap img {
   max-width: 100%;
   min-height: 100%;
   object-fit: cover;
+}
+
+.multicenter__quote--wrapper {
+  position: relative;
+  width: 100%;
+  padding: 72px 40px 72px 140px;
+  border-radius: $bid-border-radius;
+  border: 1px solid $black;
+  background: $lavender;
+  @media screen and (max-width: $desktop) {
+    padding: 72px 20px 54px 100px;
+  }
+  @media screen and (max-width: $tablet2) {
+    display: flex;
+    gap: 12px;
+    padding: 24px 20px;
+    border-radius: $small-border-radius;
+  }
+}
+
+.multicenter__quote {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 16px;
+  }
+}
+
+.multicenter__quote--icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  height: 120px;
+  @media screen and (max-width: $desktop) {
+    width: 80px;
+    height: 80px;
+  }
+  @media screen and (max-width: $tablet2) {
+    position: static;
+    width: 40px;
+    height: 40px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 20px;
+    height: 20px;
+  }
+  & svg {
+    width: 120px;
+    height: 120px;
+    @media screen and (max-width: $desktop) {
+      width: 80px;
+      height: 80px;
+    }
+    @media screen and (max-width: $tablet2) {
+      width: 40px;
+      height: 40px;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// classes section
+.classes__tabs--container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  padding: 16px 32px;
+  border-radius: $bid-border-radius;
+  background: $white;
+  box-shadow: 0px 4px 7px 0px $header-box-shadow;
+  @media screen and (max-width: $desktop) {
+  }
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 16px;
+    padding: 16px 24px;
+  }
+  @media screen and (max-width: 660px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+    margin-bottom: 0;
+    padding: 20px 16px;
+    border-radius: $small-border-radius;
+    border: 1px solid $black;
+  }
+  & .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px 32px;
+    color: $blue;
+    font-size: 24px;
+    text-transform: uppercase;
+    border-radius: $bid-border-radius;
+    min-width: 258px;
+    @media screen and (max-width: $desktop) {
+      padding: 8px 20px;
+      font-size: 20px;
+      min-width: 225px;
+    }
+    @media screen and (max-width: 1200px) {
+      min-width: auto;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 18px;
+    }
+    &.tab-active {
+      background-color: $lavender;
+      @media screen and (max-width: $mobile) {
+        background-color: transparent;
+      }
+    }
+    @media screen and (max-width: $mobile) {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $black;
+      padding: 18px 0;
+      font-size: 16px;
+      text-transform: none;
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: $violet-grey;
+      }
+    }
+    & span,
+    & svg {
+      pointer-events: none;
+    }
+  }
+}
+
+.classes__container {
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.classes__container.mobile {
+  display: none;
+  @media screen and (max-width: $mobile) {
+    display: block;
+    position: relative;
+    & .loader {
+      position: absolute;
+      bottom: 74px;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      display: block;
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+      border: 4px solid $main-dark;
+      border-top: 4px solid $violet-grey;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+//accordion
+.classes__section {
+  .tab-accordion {
+    @media screen and (max-width: $mobile) {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .plus-icon,
+  .minus-icon {
+    display: none;
+    @media screen and (max-width: $mobile) {
+      display: block;
+      min-width: 24px;
+      min-height: 24px;
+    }
+  }
+
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $transition-function;
+  }
+
+  .minus-icon {
+    display: none;
+  }
+
+  .tab-accordion.active {
+    @media screen and (max-width: $mobile) {
+      & .minus-icon {
+        display: block;
+      }
+      & .plus-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+.classes__load--mobile {
+  padding: 20px 0;
+}
+
+.classes__load {
+  margin-top: 40px;
+  @media screen and (max-width: $tablet2) {
+    margin-top: 16px;
+  }
+}
+
+.classes__load--btn {
+  margin: 0 auto;
+  min-width: 425px;
+  @media screen and (max-width: $desktop) {
+    min-width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    min-width: 246px;
+  }
+}
+
+.loading-overlay {
+  position: relative;
+}
+
+.loading-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 4px 122px 40px rgba(255, 255, 255, 0.6);
+  z-index: 999;
+}
+
+// invite to coworking section
+
+.invite__wrapper {
+  padding: 60px;
+  display: grid;
+  column-gap: 103px;
+  grid-template-columns: 39% auto;
+  border-radius: $bid-border-radius;
+  border: 1px solid $black;
+  background: $lavender;
+  @media screen and (max-width: $desktop) {
+    padding: 36px 75px;
+    column-gap: 36px;
+  }
+  @media screen and (max-width: $tablet2) {
+    padding: 36px 36px;
+    column-gap: 32px;
+    grid-template-columns: 40% auto;
+  }
+  @media screen and (max-width: $mobile) {
+    display: block;
+    border-radius: $small-border-radius;
+    padding: 36px 16px;
+  }
+}
+
+.invite__text--box {
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 36px;
+  }
+}
+
+.invite__subtitle {
+  color: $blue;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  margin-bottom: 16px;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+  }
+}
+
+.invite__text {
+  font-family: $secondary-font;
+  @media screen and (max-width: $desktop) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $tablet2) {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.invite__form {
+  & br {
+    display: none;
+  }
+
+  & .input__wrap {
+    margin-bottom: 24px;
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 20px;
+    }
+  }
+
+  & .invite__form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: $secondary-font;
+    @media screen and (max-width: $desktop) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 4px;
+    }
+  }
+
+  & .invite_input,
+  & textarea {
+    display: flex;
+    align-items: center;
+    padding: 12px 32px;
+    width: 100%;
+    border-radius: $bid-border-radius;
+    background: $white;
+    color: $black;
+    font-family: $secondary-font;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    @media screen and (max-width: $desktop) {
+      padding: 12px 24px;
+      font-size: 18px;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    &::placeholder {
+      color: $grey;
+      font-family: $secondary-font;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      @media screen and (max-width: $desktop) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: $tablet2) {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  & .invite_message {
+    margin-bottom: 8px;
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 4px;
+    }
+    & textarea {
+      resize: none;
+      height: 228px;
+      @media screen and (max-width: $desktop) {
+        height: 225px;
+      }
+      @media screen and (max-width: $tablet2) {
+        border-radius: $small-border-radius;
+        height: 220px;
+      }
+      &::-webkit-scrollbar {
+        display: block;
+        @media screen and (max-width: $mobile) {
+          width: 12px;
+        }
+      }
+
+      &::-webkit-scrollbar-button {
+        background-color: transparent;
+        height: 12px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: $small-border-radius;
+        background-color: $header-box-shadow;
+        cursor: pointer;
+        @media screen and (max-width: $mobile) {
+          width: 12px;
+        }
+      }
+    }
+  }
+
+  & .privacy__container {
+    margin-bottom: 24px;
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 20px;
+    }
+
+    & p {
+      display: flex;
+      gap: 8px;
+
+      & .wpcf7-list-item {
+        margin: 0;
+        & input {
+          vertical-align: top;
+          appearance: none;
+          background-image: url(../../../assets/images/icon-checkbox-blank.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-origin: border-box;
+          transition: $transition-function;
+          min-width: 24px;
+          height: 24px;
+          @media screen and (max-width: $mobile) {
+            min-width: 16px;
+            height: 16px;
+          }
+
+          &:checked {
+            background-image: url(../../images/icon-checkbox-check.svg);
+          }
+        }
+      }
+
+      & .privacy__text {
+        font-family: $secondary-font;
+        font-size: 16px;
+        line-height: 1.6;
+        @media screen and (max-width: $desktop) {
+          font-size: 12px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 10px;
+        }
+        @media screen and (max-width: $mobile) {
+          line-height: 1.4;
+        }
+        & a {
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  & .invite__btn-wrap {
+    & .submit-notification {
+      color: $invalid-input;
+      font-size: 1em;
+      font-weight: normal;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    & .button {
+      @media screen and (max-width: $desktop) {
+        min-width: 277px;
+      }
+      @media screen and (max-width: $tablet2) {
+        min-width: 203px;
+      }
+      @media screen and (max-width: $mobile) {
+        min-width: 100%;
+      }
+    }
+
+    & .wpcf7-spinner {
+      display: none;
+    }
+  }
+
+  .wpcf7-response-output {
+    display: none;
+  }
+  .wpcf7-not-valid {
+    border: 1px solid $invalid-input !important;
+  }
+
+  .invite__backdrop--notification {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity $transition-function;
+    &.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      & .invite__notification {
+        transform: translate(-50%, -50%) translateX(-100%);
+        @media screen and (max-width: $mobile) {
+          transform: translateX(-100%);
+        }
+      }
+    }
+
+    & .invite__notification {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateX(0);
+      padding: 92px 70px;
+      width: 60.7%;
+      line-height: normal;
+      overflow: hidden;
+      background-color: $background;
+      border-radius: $bid-border-radius;
+      box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);
+      transition: transform $transition-function;
+      @media screen and (max-width: $tablet2) {
+        border-radius: $small-border-radius;
+      }
+      @media screen and (max-width: $mobile) {
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        transform: translateX(0);
+        min-height: fit-content;
+      }
+
+      & .invite__notification--btn {
+        position: absolute;
+        top: 24px;
+        right: 40px;
+        @media screen and (max-width: $desktop) {
+          right: 24px;
+        }
+        @media screen and (max-width: $mobile) {
+          top: 12px;
+          right: 12px;
+        }
+      }
+
+      & .icon__cross {
+        width: 40px;
+        height: 40px;
+        @media screen and (max-width: $desktop) {
+          width: 32px;
+          height: 32px;
+        }
+        .invite__notification--btn:hover &,
+        .invite__notification--btn:hover & {
+          fill: $blue;
+        }
+      }
+
+      & .invite__notification--title {
+        margin-bottom: 40px;
+        font-weight: 300;
+        font-size: 64px;
+        text-transform: uppercase;
+        text-align: center;
+        color: $blue;
+        @media screen and (max-width: $desktop) {
+          margin-bottom: 20px;
+          text-transform: none;
+          font-size: 40px;
+        }
+        @media screen and (max-width: $tablet2) {
+          margin-bottom: 16px;
+          font-size: 28px;
+        }
+        @media screen and (max-width: $mobile) {
+          margin-bottom: 20px;
+        }
+      }
+
+      & .invite__notification--text {
+        font-weight: 300;
+        font-size: 40px;
+        text-align: center;
+        @media screen and (max-width: $desktop) {
+          font-size: 32px;
+        }
+        @media screen and (max-width: $tablet2) {
+          font-size: 28px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 18px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }
