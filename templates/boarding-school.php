@@ -1,7 +1,6 @@
 <?php
 /*
 * Template Name: boarding-school
-* Template Post Type: post, page, projects
 */
 get_header();
 ?>
