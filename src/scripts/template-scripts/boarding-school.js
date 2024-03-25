@@ -97,23 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
         centeredSlides: true,
         spaceBetween: 20,
         grabCursor: true,
-
-        pagination: {
-          el: ".swiper-pagination",
-          type: "bullets",
-          clickable: true,
-        },
         breakpoints: {
           576: {
             spaceBetween: 39,
-            centeredSlides: false,
-          },
-          992: {
-            spaceBetween: 20,
           },
         },
       });
-      console.log(yearsSwiper);
     }
   }
 

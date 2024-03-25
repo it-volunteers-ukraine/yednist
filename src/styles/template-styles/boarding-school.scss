@@ -603,6 +603,18 @@
   }
 }
 .years__section {
+  .swiper {
+    overflow: visible;
+    @media screen and (max-width: $tablet2) {
+      overflow: clip;
+    }
+  }
+  .swiper-slide {
+    flex-shrink: inherit;
+    @media screen and (max-width: $tablet2) {
+      flex-shrink: 0;
+    }
+  }
   .container {
     position: relative;
     &::after {
@@ -612,9 +624,11 @@
       position: absolute;
       top: 87.5px;
       background-color: #1d2087;
-      z-index: 96;
       @media screen and (max-width: $desktop) {
         top: 70px;
+      }
+      @media screen and (max-width: $tablet2) {
+        z-index: 96;
       }
       @media screen and (max-width: $mobile) {
         display: none;
@@ -629,17 +643,19 @@
       gap: 0;
     }
     &__shadow {
-      width: 203px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 999;
-      background: linear-gradient(
-        270deg,
-        #f7f7fc 0%,
-        rgba(247, 247, 252, 0) 100%
-      );
+      @media screen and (max-width: $tablet2) {
+        width: 203px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 999;
+        background: linear-gradient(
+          270deg,
+          #f7f7fc 0%,
+          rgba(247, 247, 252, 0) 100%
+        );
+      }
       @media screen and (max-width: $mobile) {
         width: 15.27%;
         height: 100%;
@@ -647,6 +663,7 @@
       &-right {
         display: none;
         @media screen and (max-width: $mobile) {
+          display: block;
           width: 15.27%;
           height: 100%;
           position: absolute;
@@ -697,22 +714,22 @@
         margin-bottom: 12px;
         position: absolute;
         top: 64px;
-        left: 20%;
+        left: 41.51%;
         z-index: 998;
         @media screen and (max-width: $desktop) {
           margin-bottom: 4px;
           width: 32px;
           height: 32px;
           top: 54px;
+          left: 42.12%;
         }
         @media screen and (max-width: $tablet2) {
           background: #1d2087;
-          left: 40%;
         }
         @media screen and (max-width: $mobile) {
           width: 24px;
           height: 24px;
-          left: 68px;
+          left: 42.5%;
           top: 42px;
         }
       }
@@ -721,6 +738,7 @@
         font-weight: 300;
         line-height: 48px;
         color: #1d2087;
+        text-align: center;
         @media screen and (max-width: $desktop) {
           font-size: 32px;
           line-height: 38px;
