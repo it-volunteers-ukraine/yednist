@@ -612,9 +612,12 @@
       position: absolute;
       top: 87.5px;
       background-color: #1d2087;
-      z-index: 998;
+      z-index: 96;
       @media screen and (max-width: $desktop) {
         top: 70px;
+      }
+      @media screen and (max-width: $mobile) {
+        display: none;
       }
     }
   }
@@ -622,6 +625,9 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    @media screen and (max-width: $tablet2) {
+      gap: 0;
+    }
     &__shadow {
       width: 203px;
       height: 100%;
@@ -634,6 +640,26 @@
         #f7f7fc 0%,
         rgba(247, 247, 252, 0) 100%
       );
+      @media screen and (max-width: $mobile) {
+        width: 15.27%;
+        height: 100%;
+      }
+      &-right {
+        display: none;
+        @media screen and (max-width: $mobile) {
+          width: 15.27%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 999;
+          background: linear-gradient(
+            270deg,
+            rgba(247, 247, 252, 0) 0%,
+            #f7f7fc 100%
+          );
+        }
+      }
     }
     &__point {
       height: auto;
@@ -650,6 +676,18 @@
         text-align: center;
         background: #f7f7fc;
       }
+      @media screen and (max-width: $mobile) {
+        max-width: 160px;
+        &::after {
+          content: "";
+          height: 1px;
+          position: absolute;
+          top: 54px;
+          width: 100%;
+          background-color: #1d2087;
+          z-index: 96;
+        }
+      }
       &__circle {
         width: 48px;
         height: 48px;
@@ -660,6 +698,7 @@
         position: absolute;
         top: 64px;
         left: 20%;
+        z-index: 998;
         @media screen and (max-width: $desktop) {
           margin-bottom: 4px;
           width: 32px;
@@ -671,6 +710,10 @@
           left: 40%;
         }
         @media screen and (max-width: $mobile) {
+          width: 24px;
+          height: 24px;
+          left: 68px;
+          top: 42px;
         }
       }
       &__year {
@@ -695,6 +738,10 @@
         @media screen and (max-width: $desktop) {
           font-size: 18px;
           line-height: 27px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 14px;
+          line-height: 22.4px;
         }
         &-wrapper {
           opacity: 0;
