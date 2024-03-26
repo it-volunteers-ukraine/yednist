@@ -11,7 +11,7 @@
             <div class="swiper-wrapper">
               <?php              
               $params = array(
-                'category_name' => 'history-ua',    
+                'category_name' => 'history-en',    
                 'numberposts' => -1,    
               );
               $my_posts = get_posts($params);
@@ -35,7 +35,7 @@
                   </div>  
               <?php wp_reset_postdata(); endforeach ?>  
             </div>
-            <?php get_template_part( 'template-parts/swiper-navigation' ); ?>   
+            <?php get_template_part( 'template-parts/swiper-navigation' ); ?>  
           </div> 
         </div>
       </div>    
