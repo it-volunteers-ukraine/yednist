@@ -14,7 +14,7 @@ global $post;
                 <div class="galery-post__body">
                     <?php    
                     $params = array(
-                        'category_name' => 'multicultural-theater',  
+                        'category_name' => 'gallery',  
                         'numberposts' => -1,
                     );
                     $my_posts = get_posts($params);
