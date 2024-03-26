@@ -81,6 +81,10 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'support-style', get_template_directory_uri() . '/assets/styles/template-styles/support.css', array('main') );
       wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
       wp_enqueue_script( 'support-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/support.js', array('jquery-scripts'), false, true );
+      wp_localize_script( 'support-scripts', 'support', array(
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('support_nonce'),
+    ));
     }
 
     if ( is_page_template('templates/schedule.php') ) {
@@ -212,6 +216,9 @@ function wp_it_volunteers_scripts() {
     }
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
+    }  
+      if ( is_singular() && locate_template('template-parts/support-details-btns.php') ) {
+      wp_enqueue_style( 'support-btns-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/support-details-btns.css', array('main') );
     }  
 }
 /** add fonts */
@@ -554,4 +561,75 @@ function bcn_breadcrumb_url_swapper($url, $type, $id)
         }
     }
     return $url;
+}
+
+
+// add_filter('bcn_after_fill', 'custom_breadcrumb_add_about_us', 10, 2);
+
+// function custom_breadcrumb_add_about_us($trail, $breadcrumb_trail_obj) {
+//     // Слаг для категории "about-uk"
+//     $about_uk_slug = 'about-uk';
+
+//     // Найдем позицию крошки "головна" и "история в Україні"
+//     $home_uk_index = array_search('home-uk', array_column($trail, 'id'));
+//     $history_index = array_search('history', array_column($trail, 'id'));
+
+//     // Если нашли обе крошки, добавляем новую крошку после "головна"
+//     if ($home_uk_index !== false && $history_index !== false) {
+//         // Получаем объект термина (категории) по ее слагу
+//         $about_uk_term = get_term_by('slug', $about_uk_slug, 'category');
+
+//         // Если термин найден
+//         if ($about_uk_term) {
+//             // Создаем крошку "Про нас"
+//             $about_us_crumb = array(
+//                 'title' => 'Про нас', // Заголовок крошки
+//                 'url' => get_term_link($about_uk_term), // URL крошки
+//                 'type' => 'page', // Тип крошки (категория)
+//                 'id' => $about_uk_term->term_id // ID крошки
+//             );
+
+//             // Вставляем новую крошку после "головна" и перед "история в Україні"
+//             array_splice($trail, $home_uk_index + 1, 0, array($about_us_crumb));
+//         }
+//     }
+
+//     return $trail;
+// }
+
+add_action('wp_ajax_support', 'support');
+add_action('wp_ajax_nopriv_support', 'support');
+
+function support() {
+    if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "support_nonce")) {
+        exit;
+    }
+
+    if (isset($_POST['current_index'])) {
+        $current_index = $_POST['current_index'];
+
+        $fields = get_field('money_support_type', "options");
+        $current_field = $fields[$current_index-1];
+
+        ob_start();
+
+        if ($current_field) :
+            $rows = $current_field['fields'];
+            if ($rows) { 
+                foreach ($rows as $row) { 
+                    get_template_part('template-parts/support-details', null,  array('row' => $row));
+                }
+            } 
+        endif;
+
+        if ($current_field['paypal']) { 
+            get_template_part('template-parts/support-details-btns');
+        }
+
+        $html = ob_get_clean();
+        wp_reset_postdata();
+
+        wp_send_json(array('html' => $html));
+        wp_die();
+    }
 }
