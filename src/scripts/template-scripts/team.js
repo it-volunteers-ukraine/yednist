@@ -39,7 +39,7 @@ function swiperMode() {
                 loop: true,
                 autoplay: {
                     delay: 2000,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                 },
                 speed: 800,
                 effect: 'opacity',
@@ -61,7 +61,7 @@ function swiperMode() {
                 },
                 speed: 800,
                 slidesPerView: 1,
-                spaceBetween: 10,
+                spaceBetween: 12,
                 grid: {
                     rows: 2,
                 },
@@ -130,6 +130,7 @@ window.addEventListener('resize', function () {
 
 function addColorForCards() {
 
+
     slides.forEach(function (slide, index) {
         let lastIndex = slides.length - 1;
         if (index === 0 || index === lastIndex) {
@@ -140,6 +141,7 @@ function addColorForCards() {
             slide.classList.add('pink');
         }
     })
+
 }
 
 addColorForCards()
@@ -148,19 +150,33 @@ function showInfo(event) {
 
     const targetButton = event.currentTarget;
 
-    const infoByButton = targetButton.nextElementSibling;
+    const flipCard = targetButton.closest('.flip-card');
+
+    const infoByButton = flipCard.querySelector('.flip-card-back');
+
+    const flipInner = flipCard.querySelector('.flip-card-inner')
 
 
-    targetButton.classList.toggle('active');
+    if (flipInner.classList.contains('no-hover')) {
+        flipInner.classList.remove('no-hover')
+    }
+
+    infoByButton.addEventListener('click', function (event) {
 
 
-    infoByButton.style.display = (targetButton.classList.contains('active')) ? 'block' : 'none';
+        console.log('click')
 
+        if (!flipInner.classList.contains('no-hover')) {
+            flipInner.classList.add('no-hover')
+        }
+
+    })
 }
 
 
 buttons.forEach(function (button) {
     button.addEventListener("click", function (event) {
+        console.log('click')
         showInfo(event);
     })
 })
