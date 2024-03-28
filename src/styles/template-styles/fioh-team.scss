@@ -23,6 +23,7 @@
   }
   &__image-wrapper {
     border-radius: $bid-border-radius;
+    overflow: hidden;
     @media screen and (max-width: $tablet2) {
       border-radius: $small-border-radius;
     }
@@ -704,15 +705,15 @@
 }
 
 .btn-show-all {
+  margin: 0 auto;
   @media screen and (max-width: $tablet2) {
     max-width: 336px;
-    margin: 0 auto;
   }
 }
 
 .btn-hide-all {
+  margin: 0 auto;
   @media screen and (max-width: $tablet2) {
     max-width: 336px;
-    margin: 0 auto;
   }
 }

@@ -69,6 +69,7 @@ Array.from(buttons).forEach((readMoreBtn) => {
 //show elements for projects
 
 const items = document.querySelectorAll(".fioh-team__project__item");
+const firstItem = items[0];
 const itemsArr = Array.from(items);
 const initialArr = itemsArr.slice(0, getItemsCount());
 const slicedArr = itemsArr.slice(getItemsCount());
@@ -97,6 +98,34 @@ if (hideAllBtn) {
   });
 }
 
+function handleResize() {
+  const itemWidth = firstItem?.getBoundingClientRect().width || 0;
+  const buttonWidth =
+    showAllBtn?.getBoundingClientRect().width ||
+    hideAllBtn?.getBoundingClientRect().width;
+  if (window.innerWidth > 767.98 || window.innerWidth < 575.98) {
+    if (itemWidth !== buttonWidth) {
+      if (showAllBtn) {
+        showAllBtn.style.width = itemWidth + "px";
+      }
+      if (hideAllBtn) {
+        hideAllBtn.style.width = itemWidth + "px";
+      }
+    }
+  } else {
+    if (showAllBtn) {
+      showAllBtn.style.width = "246px";
+    }
+    if (hideAllBtn) {
+      hideAllBtn.style.width = "246px";
+    }
+  }
+}
+
+handleResize();
+
+window.addEventListener("resize", handleResize);
+
 function getItemsCount() {
   if (window.innerWidth > 991.98) {
     return 3;
@@ -111,8 +140,20 @@ const list = document.querySelectorAll(".fioh-team__project__item");
 Array.from(list).forEach((el) => {
   el.addEventListener("click", (e) => {
     const modal = el.querySelector(".fioh-team__modal");
+    const video = modal.querySelector("iframe");
+
+    video.src += "?enablejsapi=1";
+
     modal.style.display = "block";
-    if (e.target.classList.contains("fioh-team__modal_background"))
+    if (e.target.classList.contains("fioh-team__modal_background")) {
       modal.style.display = "none";
+      video.contentWindow.postMessage(
+        '{"event":"command","func":"' + "stopVideo" + '","args":""}',
+        "*"
+      );
+      if (video.src.includes("enablejsapi=1")) {
+        video.src = video.src.replace("?enablejsapi=1", "");
+      }
+    }
   });
 });
