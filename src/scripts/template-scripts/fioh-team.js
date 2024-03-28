@@ -111,8 +111,20 @@ const list = document.querySelectorAll(".fioh-team__project__item");
 Array.from(list).forEach((el) => {
   el.addEventListener("click", (e) => {
     const modal = el.querySelector(".fioh-team__modal");
+    const video = modal.querySelector("iframe");
+
+    video.src += "?enablejsapi=1";
+
     modal.style.display = "block";
-    if (e.target.classList.contains("fioh-team__modal_background"))
+    if (e.target.classList.contains("fioh-team__modal_background")) {
       modal.style.display = "none";
+      video.contentWindow.postMessage(
+        '{"event":"command","func":"' + "stopVideo" + '","args":""}',
+        "*"
+      );
+      if (video.src.includes("enablejsapi=1")) {
+        video.src = video.src.replace("?enablejsapi=1", "");
+      }
+    }
   });
 });
