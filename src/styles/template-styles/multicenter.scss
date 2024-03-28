@@ -264,10 +264,6 @@
   }
 }
 
-.classes__load--mobile {
-  padding: 20px 0;
-}
-
 .classes__load {
   margin-top: 40px;
   @media screen and (max-width: $tablet2) {
@@ -275,7 +271,7 @@
   }
 }
 
-.classes__load--btn {
+.classes__load--btn.button {
   margin: 0 auto;
   min-width: 425px;
   @media screen and (max-width: $desktop) {
@@ -283,6 +279,9 @@
   }
   @media screen and (max-width: $tablet2) {
     min-width: 246px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin: 20px 0;
   }
 }
 

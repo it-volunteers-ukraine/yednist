@@ -1,0 +1,29 @@
+@import "../variables";
+
+.moneysupport__buttons--box {
+  margin: 0 auto;
+  min-width: 687px;
+  margin-top: 28px;
+  @media screen and (max-width: $desktop) {
+    min-width: 579px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin: 0;
+    min-width: fit-content;
+    margin-top: 16px;
+  }
+
+  & svg {
+    width: 88px;
+    height: 32px;
+    @media screen and (max-width: $desktop) {
+      width: 77px;
+      height: 28px;
+    }
+  }
+
+  & .moneysupport__button {
+    border: 1px solid $blue;
+    background: $white;
+  }
+}

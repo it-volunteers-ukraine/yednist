@@ -86,6 +86,10 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'support-style', get_template_directory_uri() . '/assets/styles/template-styles/support.css', array('main') );
       wp_enqueue_script( 'jquery-scripts', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array(), false, true );
       wp_enqueue_script( 'support-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/support.js', array('jquery-scripts'), false, true );
+      wp_localize_script( 'support-scripts', 'support', array(
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('support_nonce'),
+    ));
     }
 
     if ( is_page_template('templates/schedule.php') ) {
@@ -217,6 +221,9 @@ function wp_it_volunteers_scripts() {
     }
       if ( is_singular() && locate_template('template-parts/one-class.php') ) {
       wp_enqueue_style( 'one-class-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-class.css', array('main') );
+    }  
+      if ( is_singular() && locate_template('template-parts/support-details-btns.php') ) {
+      wp_enqueue_style( 'support-btns-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/support-details-btns.css', array('main') );
     }  
 }
 /** add fonts */
@@ -559,4 +566,41 @@ function bcn_breadcrumb_url_swapper($url, $type, $id)
         }
     }
     return $url;
+}
+
+add_action('wp_ajax_support', 'support');
+add_action('wp_ajax_nopriv_support', 'support');
+
+function support() {
+    if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "support_nonce")) {
+        exit;
+    }
+
+    if (isset($_POST['current_index'])) {
+        $current_index = $_POST['current_index'];
+
+        $fields = get_field('money_support_type', "options");
+        $current_field = $fields[$current_index-1];
+
+        ob_start();
+
+        if ($current_field) :
+            $rows = $current_field['fields'];
+            if ($rows) { 
+                foreach ($rows as $row) { 
+                    get_template_part('template-parts/support-details', null,  array('row' => $row));
+                }
+            } 
+        endif;
+
+        if ($current_field['paypal']) { 
+            get_template_part('template-parts/support-details-btns');
+        }
+
+        $html = ob_get_clean();
+        wp_reset_postdata();
+
+        wp_send_json(array('html' => $html));
+        wp_die();
+    }
 }
