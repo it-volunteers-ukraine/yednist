@@ -106,7 +106,7 @@ get_header();
                                         <img class="fioh-team__project__svg" src="<?php the_field('img_btn_play'); ?>" />
                                     </button>
                                 </div>
-                                <div class="fioh-team__modal ">
+                                <div class="fioh-team__modal">
                                     <div class="fioh-team__modal_background">
                                         <div class="fioh-team__modal_window">
                                             <div class="fioh-team__modal_player">
