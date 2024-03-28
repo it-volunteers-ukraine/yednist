@@ -563,40 +563,6 @@ function bcn_breadcrumb_url_swapper($url, $type, $id)
     return $url;
 }
 
-
-// add_filter('bcn_after_fill', 'custom_breadcrumb_add_about_us', 10, 2);
-
-// function custom_breadcrumb_add_about_us($trail, $breadcrumb_trail_obj) {
-//     // Слаг для категории "about-uk"
-//     $about_uk_slug = 'about-uk';
-
-//     // Найдем позицию крошки "головна" и "история в Україні"
-//     $home_uk_index = array_search('home-uk', array_column($trail, 'id'));
-//     $history_index = array_search('history', array_column($trail, 'id'));
-
-//     // Если нашли обе крошки, добавляем новую крошку после "головна"
-//     if ($home_uk_index !== false && $history_index !== false) {
-//         // Получаем объект термина (категории) по ее слагу
-//         $about_uk_term = get_term_by('slug', $about_uk_slug, 'category');
-
-//         // Если термин найден
-//         if ($about_uk_term) {
-//             // Создаем крошку "Про нас"
-//             $about_us_crumb = array(
-//                 'title' => 'Про нас', // Заголовок крошки
-//                 'url' => get_term_link($about_uk_term), // URL крошки
-//                 'type' => 'page', // Тип крошки (категория)
-//                 'id' => $about_uk_term->term_id // ID крошки
-//             );
-
-//             // Вставляем новую крошку после "головна" и перед "история в Україні"
-//             array_splice($trail, $home_uk_index + 1, 0, array($about_us_crumb));
-//         }
-//     }
-
-//     return $trail;
-// }
-
 add_action('wp_ajax_support', 'support');
 add_action('wp_ajax_nopriv_support', 'support');
 

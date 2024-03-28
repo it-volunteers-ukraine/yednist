@@ -14,8 +14,10 @@ if (moneysupport_acc) {
 
       const panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
+        panel.style.paddingBottom = "0";
         panel.style.maxHeight = null;
       } else {
+        panel.style.paddingBottom = "24px";
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });
@@ -57,6 +59,10 @@ jQuery(document).ready(function ($) {
       success: function (response) {
         hideLoading();
         $(".moneysupport__block_desktop").html(response.html);
+
+        if (current_index === 1) {
+          $(".moneysupport__block_desktop").addClass("first_tab");
+        } else $(".moneysupport__block_desktop").removeClass("first_tab");
       },
     });
   }
@@ -66,10 +72,6 @@ jQuery(document).ready(function ($) {
 
 // copy data
 const moneysupportSection = document.querySelector(".moneysupport__section");
-//const currentAccount = document.querySelectorAll(".current_account-js");
-// const copyCurrentAccounbtn = document.querySelectorAll(
-//   "copy_current_account-js"
-// );
 
 moneysupportSection.addEventListener("click", onCopyBtnClick);
 

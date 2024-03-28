@@ -1,8 +1,6 @@
 <div class="moneysupport__buttons--box">
-  <div class="moneysupport__button--first">
-    <a href="/" class="button moneysupport__button">PayPal</a>
-  </div>
-  <div class="moneysupport__button--second">
-    <a href="/" class="button moneysupport__button">PayU</a>
-  </div>
+    <a href="/" class="button moneysupport__button"><svg>
+        <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_PayU">
+        </use>
+      </svg></a>
 </div>

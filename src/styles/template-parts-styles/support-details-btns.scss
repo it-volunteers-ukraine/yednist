@@ -1,25 +1,24 @@
 @import "../variables";
 
 .moneysupport__buttons--box {
-  display: flex;
-  gap: 36px;
-  justify-content: center;
+  margin: 0 auto;
+  min-width: 687px;
   margin-top: 28px;
+  @media screen and (max-width: $desktop) {
+    min-width: 579px;
+  }
   @media screen and (max-width: $tablet2) {
+    margin: 0;
+    min-width: fit-content;
     margin-top: 16px;
   }
-  @media screen and (max-width: $mobile) {
-    flex-direction: column;
-    gap: 12px;
-  }
 
-  & .moneysupport__button--second {
-    min-width: 507px;
+  & svg {
+    width: 88px;
+    height: 32px;
     @media screen and (max-width: $desktop) {
-      min-width: 460px;
-    }
-    @media screen and (max-width: $tablet2) {
-      min-width: auto;
+      width: 77px;
+      height: 28px;
     }
   }
 

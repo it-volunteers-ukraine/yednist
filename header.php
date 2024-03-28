@@ -58,14 +58,14 @@
 
                 echo '</ul>';
                 ?>
-                <div class="header__logo">
-                    <?php
+              <div class="header__logo">
+                <?php
                     if (has_custom_logo()) {
                         echo get_custom_logo();
                     }
                     ?>
-                </div>
-                <?php
+              </div>
+              <?php
                 echo '<ul class="header__second__list">';
                 foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {
