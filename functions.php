@@ -572,6 +572,7 @@ function bcn_breadcrumb_url_swapper($url, $type, $id)
     return $url;
 }
 
+//support repeater fields
 add_action('wp_ajax_support', 'support');
 add_action('wp_ajax_nopriv_support', 'support');
 
@@ -607,4 +608,32 @@ function support() {
         wp_send_json(array('html' => $html));
         wp_die();
     }
+}
+
+add_filter( 'wpcf7_validate_text*', 'custom_text_confirmation_validation_filter', 20, 2 );
+  
+function custom_text_confirmation_validation_filter( $result, $tag ) {
+  if ( 'invite_name' == $tag->name ) {
+    $invite_name = isset( $_POST['invite_name'] ) ? trim( $_POST['invite_name'] ) : '';
+  
+    if ( !$invite_name ) {
+      $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+    }
+  }
+  
+  return $result;
+}
+
+add_filter( 'wpcf7_validate_textarea*', 'custom_textarea_confirmation_validation_filter', 20, 2 );
+  
+function custom_textarea_confirmation_validation_filter( $result, $tag ) {
+  if ( 'invite_message' == $tag->name ) {
+    $invite_message = isset( $_POST['invite_message'] ) ? trim( $_POST['invite_message'] ) : '';
+  
+    if ( !$invite_message ) {
+      $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+    }
+  }
+  
+  return $result;
 }

@@ -1,28 +1,29 @@
 @import "./variables.scss";
+
 .header {
   border-radius: 0px 0px $bid-border-radius $bid-border-radius;
   box-shadow: 0px 4px 7px 0px $header-box-shadow;
   background: $white;
   padding: 12px 40px;
-  margin: 0 80px;
   position: fixed;
-  width: calc(100% - 160px);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9;
+  max-width: 1760px;
+  width: calc(100% - 32px);
   @media screen and (max-width: $desktop) {
-    margin: 0 60px;
+    max-width: 1320px;
     padding: 20px 40px 8px;
-    width: calc(100% - 120px);
   }
   @media screen and (max-width: $desktop1) {
     border-radius: 0px 0px $small-border-radius $small-border-radius;
-    margin: 0 40px;
     padding: 12px 20px;
-    width: calc(100% - 80px);
+  }
+  @media screen and (max-width: $tablet1) {
+    max-width: 688px;
   }
   @media screen and (max-width: $mobile) {
-    margin: 0 16px;
     padding: 8px 16px;
-    width: calc(100% - 32px);
   }
   .header__menu__item.header__current__page {
     color: $blue;

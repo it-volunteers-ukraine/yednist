@@ -235,8 +235,8 @@ jQuery(document).ready(function ($) {
     function checkName() {
       const value = inputNameEl.value;
       const pattern = /^[^\d]+$/;
-      check = pattern.test(value);
-      if (!check) {
+      check = pattern.test(value.trim());
+      if (!check || value.trim() === "") {
         inputNameEl.classList.add("wpcf7-not-valid");
       } else {
         inputNameEl.classList.remove("wpcf7-not-valid");
