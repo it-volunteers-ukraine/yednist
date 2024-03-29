@@ -2,14 +2,14 @@
 
 .moneysupport__buttons--box {
   margin: 0 auto;
-  min-width: 687px;
+  width: 687px;
   margin-top: 28px;
   @media screen and (max-width: $desktop) {
-    min-width: 579px;
+    width: 579px;
   }
   @media screen and (max-width: $tablet2) {
     margin: 0;
-    min-width: fit-content;
+    width: fit-content;
     margin-top: 16px;
   }
 
