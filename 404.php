@@ -10,51 +10,24 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'wp-it-volunteers' ); ?></h1>
-			</header><!-- .page-header -->
-
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'wp-it-volunteers' ); ?></p>
-
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'wp-it-volunteers' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-					/* translators: %1$s: smiley */
-					$wp_it_volunteers_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'wp-it-volunteers' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$wp_it_volunteers_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-			</div><!-- .page-content -->
+	<main id="primary">
+		<section class="section error-404 not-found page-404__section">
+			 <div class="container page-404__container">
+				<div class="inner-container page-404__inner-container">
+					<p class="page-404__left-title"> <?php the_field('404-title', 'option'); ?></p>
+			<p class="page-404__right-title"> <?php the_field('404-title', 'option'); ?></p>
+			<div class="page-404__wrapper">
+			<h1 class="page-404__main-title"> 
+				<?php the_field('404-title', 'option'); ?></h1>
+			<p class="page-404__main-text"><?php the_field('404-text', 'option'); ?></p>
+			<a class="button primary-button"
+                        href="<?php echo esc_attr(get_field('404-btn-link', 'option') ); ?>">
+            <?php the_field('404-btn-name', 'option'); ?></a>
+			</div>
+			 </div>
+			 </div>
 		</section><!-- .error-404 -->
 
 	</main><!-- #main -->
 
-<?php
-get_footer();
+<?php get_footer(); ?>
