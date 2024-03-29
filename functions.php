@@ -637,35 +637,3 @@ function custom_textarea_confirmation_validation_filter( $result, $tag ) {
   
   return $result;
 }
-
-//validation cf7 text
-add_filter('wpcf7_validate_text*', 'custom_text_confirmation_validation_filter', 20, 2);
-
-function custom_text_confirmation_validation_filter($result, $tag) {  
-  $tag = new WPCF7_FormTag($tag);
-  $name = 'text-name';        
-  if ( $name == $tag->name ) {    
-      $your_name = isset($_POST[$name]) ? trim($_POST[$name]) : '';            
-      if ( !$your_name ) {
-        $result->invalidate( $tag, wpcf7_get_message('validation_error') ); 
-      }
-  }    
-
-  return $result;
-}
-
-//validation cf7 textarea
-add_filter('wpcf7_validate_textarea*', 'custom_textarea_confirmation_validation_filter', 20, 2);
-
-function custom_textarea_confirmation_validation_filter($result, $tag) {           
-  $tag = new WPCF7_FormTag($tag); 
-  $tag_message = 'message';
-  if ($tag_message === $tag->name) {
-      $your_message = isset($_POST[$tag_message]) ? trim($_POST[$tag_message]) : '';
-      if ( !$your_message ) {
-        $result->invalidate( $tag, wpcf7_get_message('validation_error') );
-    }
-  }
-    
-  return $result;
-}
