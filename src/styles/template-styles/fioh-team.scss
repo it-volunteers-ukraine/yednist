@@ -24,8 +24,13 @@
   &__image-wrapper {
     border-radius: $bid-border-radius;
     overflow: hidden;
+    height: 805px;
     @media screen and (max-width: $tablet2) {
       border-radius: $small-border-radius;
+      height: 480px;
+    }
+    @media screen and (max-width: $mobile) {
+      height: 204px;
     }
   }
   &__image-wrapper img {
