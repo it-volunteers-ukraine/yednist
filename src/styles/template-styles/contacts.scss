@@ -275,6 +275,9 @@
         @media (max-width: $tablet2) {
             font-size: 14px;
         }
+        & .choices__item:first-child { 
+            display: none; 
+        }
     } 
     .privacy__container p {
         display: flex;
@@ -340,7 +343,10 @@
     .wpcf7-not-valid {
         border: 1px solid #DC1414!important;        
     }
-
+    
+    .error-name {
+        display: none;
+    }
     /*Popup=======================*/
     .popup {
        position: fixed;
