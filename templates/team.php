@@ -9,8 +9,8 @@ get_header();
     <main>
         <?php get_template_part('template-parts/breadcrumbs'); ?>
         <section class="section our-team">
-            <div class="container">
-                <div class="inner-container wrapper-container">
+            <div class="container tablet-container">
+                <div class="inner-container">
                     <h1 class="page-title team-title"><?php the_title(); ?></h1>
                     <div class="team-image">
                         <img src="<?php the_field('image'); ?>" alt="team-image">
@@ -53,7 +53,7 @@ get_header();
         <section class="section team-members">
             <div class="container tablet-container">
                 <h2 class="section-title members-title"><?php the_field('title'); ?></h2>
-                <div class="inner-container wrapper-container">
+                <div class="inner-container">
                     <div class="swiper team_slider">
                         <div class="swiper-wrapper grid">
                             <?php
@@ -76,7 +76,9 @@ get_header();
                                                     </button>
                                                 </div>
                                                 <div class="flip-card-back">
-                                                    <div class="info"><?= $row['hover-info']; ?></div>
+                                                    <div class="info">
+                                                        <div><?= $row['hover-info']; ?></div>
+                                                    </div>
                                                     <div class="frame"></div>
                                                 </div>
                                             </div>
