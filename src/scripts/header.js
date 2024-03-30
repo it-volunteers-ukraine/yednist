@@ -72,6 +72,14 @@ if (openProjects) {
   });
 }
 
+window.addEventListener("resize", throttle(lookForRisizeChanges, 200));
+
+function lookForRisizeChanges() {
+  if (window.innerWidth > 1150) {
+    hideMenu();
+  }
+}
+
 function hideMenu() {
   menu.classList.remove("open");
   closeButton.removeEventListener("click", hideMenu);
