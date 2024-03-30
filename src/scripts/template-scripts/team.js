@@ -17,7 +17,8 @@ function swiperMode() {
 
     const mobile = window.matchMedia('(min-width: 0) and (max-width: 575px)');
     const tablet = window.matchMedia('(min-width: 576px) and (max-width: 991px)');
-    const desktop = window.matchMedia('(min-width: 1025px)');
+    const desktop = window.matchMedia('(min-width: 992px) and (max-width:1440px)');
+    const full = window.matchMedia('(min-width: 1441px) and (max-width:1920px)');
 
 
     if (mobile.matches) {
@@ -40,6 +41,7 @@ function swiperMode() {
                 autoplay: {
                     delay: 2000,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
                 },
                 speed: 800,
                 effect: 'opacity',
@@ -86,6 +88,7 @@ function swiperMode() {
                 autoplay: {
                     delay: 2000,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
                 },
                 speed: 800,
                 effect: 'opacity',
@@ -105,7 +108,7 @@ function swiperMode() {
                 },
             });
         }
-    } else if (desktop.matches) {
+    } else if (desktop.matches || full.matches) {
         if (teamSwiper) {
             teamSwiper.destroy();
         }
@@ -161,22 +164,23 @@ function showInfo(event) {
         flipInner.classList.remove('no-hover')
     }
 
-    infoByButton.addEventListener('click', function (event) {
+
+    if (!infoByButton.hasAttribute('data-click-handler')) {
+        infoByButton.addEventListener('click', function (event) {
+            if (!flipInner.classList.contains('no-hover')) {
+                flipInner.classList.add('no-hover');
+            }
+        });
+
+        infoByButton.setAttribute('data-click-handler', 'true');
 
 
-        console.log('click')
-
-        if (!flipInner.classList.contains('no-hover')) {
-            flipInner.classList.add('no-hover')
-        }
-
-    })
+    }
 }
 
 
 buttons.forEach(function (button) {
     button.addEventListener("click", function (event) {
-        console.log('click')
         showInfo(event);
     })
 })
