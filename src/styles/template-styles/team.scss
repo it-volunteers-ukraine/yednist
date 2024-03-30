@@ -212,11 +212,11 @@
           font-size: 28px;
           font-family: $primary-font;
           text-align: center;
-          line-height: 37px;
+          line-height: 1.3;
 
           @media screen and (max-width: $desktop) {
             font-size: 20px;
-            line-height: 30px;
+            line-height: 1.5;
           }
 
 
@@ -224,16 +224,16 @@
             font-size: 16px;
             font-style: italic;
             font-family: $primary-font;
-            line-height: 25px;
+            line-height: 1.6;
           }
 
 
           @media screen and (min-width: 576px) and (max-width: 767px) {
-            line-height: 20px;
+            line-height: 1.6;
           }
 
           @media screen and (min-width: 992px) and (max-width: 1399px) {
-            line-height: 25px;
+            line-height: 1.6;
           }
 
 
@@ -241,7 +241,7 @@
             font-style: italic;
             font-family: $primary-font;
             font-size: 14px;
-            line-height: 21px;
+            line-height: 1.6;
           }
 
 
@@ -379,7 +379,7 @@
           font-family: $secondary-font;
           margin-bottom: 10px;
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
 
           &:last-child {
             margin-bottom: 0;
@@ -387,7 +387,7 @@
 
           @media screen and (max-width: $desktop) {
             font-size: 18px;
-            line-height: 27px;
+            line-height: 1.5;
           }
 
           @media screen and (max-width: $tablet2) {
@@ -401,7 +401,7 @@
 
           @media screen and (min-width: 992px) and (max-width: 1399px) {
             font-size: 14px;
-            line-height: 18px;
+            line-height: 1.3;
           }
 
 
@@ -553,7 +553,7 @@
 
                   @media screen and (max-width: $full) {
                     font-size: 18px;
-                    line-height: 27px;
+                    line-height: 1.5;
                   }
 
 
@@ -561,19 +561,19 @@
                     font-size: 14px;
                     padding: 125px 40px;
                     top: 6px;
-                    line-height: 22px;
+                    line-height: 1.6;
                   }
 
                   @media screen and (max-width: $mobile) {
                     padding: 70px 24px;
-                    line-height: 22px;
+                    line-height: 1.6;
                     bottom: 0;
                   }
 
 
                   @media screen and (min-width: 992px) and (max-width: 1399px) {
                     font-size: 12px;
-                    line-height: 18px;
+                    line-height: 1.3;
                   }
 
 
