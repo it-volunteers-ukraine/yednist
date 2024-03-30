@@ -4,16 +4,6 @@ const closeButtonForm = document.querySelector('.popup__close');
 const submitButton = document.getElementById("submit-btn");
 const formContacts = document.querySelector(".form__contacts");
 
-
-//imask-phone==============================================================
-// const formContactsPhone = document.querySelector(".contacts__form-phone");
-// const maskOptions = {  
-//   mask: '+{48} 00 000 00 00',  
-//   lazy: false,
-// };
-// const mask = IMask(formContactsPhone, maskOptions);
-
-
 //wpcf7mailsent + pop-up==========================================
 formContacts.addEventListener( 'wpcf7mailsent', function( event ) {
     popupMessage.classList.add('opened');

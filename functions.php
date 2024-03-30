@@ -637,3 +637,31 @@ function custom_textarea_confirmation_validation_filter( $result, $tag ) {
   
   return $result;
 }
+
+add_filter( 'wpcf7_validate_text*', 'custom_contact_text_confirmation_validation_filter', 20, 2 );
+
+function custom_contact_text_confirmation_validation_filter( $result, $tag ) { 
+  $tag_name = 'text-name';
+    if ($tag_name === $tag->name) {
+        $value = isset($_POST[$tag_name]) ? trim($_POST[$tag_name]) : '';
+
+        if (!$value) {
+          $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+        }
+    }
+  return $result;
+}
+
+add_filter( 'wpcf7_validate_textarea*', 'custom_contact_textarea_confirmation_validation_filter', 20, 2 );
+ 
+function custom_contact_textarea_confirmation_validation_filter( $result, $tag ) {
+  $tag_message = 'message';
+    if ($tag_message === $tag->name) {
+        $value = isset($_POST[$tag_message]) ? trim($_POST[$tag_message]) : '';
+
+        if (!$value) {
+          $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+        }
+    }
+ return $result;
+}
