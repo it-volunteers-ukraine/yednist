@@ -35,14 +35,18 @@
                 foreach ($menu_left as $index => $menu_item) {
                     $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
                     $current_post_id = get_queried_object_id();
-                    $post_url = get_permalink($current_post_id);
-
-                  $expected_title = ($current_language == 'EN') ? 'Gallery' : (($current_language == 'УКР') ? 'Галерея' : 'Galeria');
-
-                  if ($menu_item->title === $expected_title && get_post_type($current_post_id) === 'post' ) {
+                    $gallery_title = ($current_language == 'EN') ? 'Gallery' : (($current_language == 'УКР') ? 'Галерея' : 'Galeria');
+                    $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
+                  if ($menu_item->title === $gallery_title) {
+                    if(is_category(($current_language == 'EN') ? 'gallery-en' : (($current_language == 'УКР') ? 'gallery' : 'gallery-pl'))){
+                      $current_class .= ' header__current__page s';
+                    }
+                    if(get_post_type($current_post_id) === 'post'){
+                      $current_class .= ' header__current__page s';
+                    }
                       $current_class .= ' header__current__page s';
                   }
-                    if ($index === 2) {
+                    if ($menu_item->title === $projects_title) {
                         $inside_projects = true;
                         echo '<li class="header__menu__projects ' . esc_attr($current_class) . '"><div class="header__projects__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__projects__icon"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use></svg></div><ul class="header__projects__menu"><li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' <span class="header__projects__menu__item__text">' . esc_html($menu_item->title) . '</span></a></li>';
                     } elseif ($inside_projects && ($index >= 3 && $index <= 5)) {
@@ -55,7 +59,7 @@
                         echo '</ul>';
                         $inside_projects = false;
                         echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
-                    } elseif ($index !== 2) {
+                    } elseif ($menu_item->title !== $projects_title) {
                         echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     }
                 }
