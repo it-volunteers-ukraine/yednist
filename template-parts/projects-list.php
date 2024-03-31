@@ -24,7 +24,7 @@
       if (have_rows('projects_descriptions')) {
         the_row();
 
-       get_template_part( 'template-parts/one-project' );
+       get_template_part( 'template-parts/one-project', null, array('child' => $child));
 
        }
     }
