@@ -39,10 +39,10 @@
                     $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
                   if ($menu_item->title === $gallery_title) {
                     if(is_category(($current_language == 'EN') ? 'gallery-en' : (($current_language == 'УКР') ? 'gallery' : 'gallery-pl'))){
-                      $current_class .= ' header__current__page f';
+                      $current_class .= ' header__current__page';
                     }
                     if(get_post_type($current_post_id) === 'post'){
-                      $current_class .= ' header__current__page g';
+                      $current_class .= ' header__current__page';
                     }
                   }
                     if ($menu_item->title === $projects_title) {
@@ -77,7 +77,7 @@
                 foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {
                         $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
-                        echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                        echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     } else {
                         if (function_exists('pll_the_languages')) {
                             $languages = pll_the_languages(array('show_names' => 1, 'show_flags' => 1, 'raw' => 1));
