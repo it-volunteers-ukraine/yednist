@@ -17,7 +17,7 @@ const projectsIcon = document.querySelector(".header__projects__icon");
 // Burger menu
 openButton.addEventListener("click", function () {
   menu.classList.toggle("open");
-  document.documentElement.style.scrollBehavior = "auto";
+  //document.documentElement.style.scrollBehavior = "auto";
   document.documentElement.style.overflow = "hidden";
   button.style.display = "none";
   menu.addEventListener("click", closeByBgdClick);
@@ -89,7 +89,7 @@ function hideMenu() {
   projects.classList.remove("open");
   projectsMenu.style.display = "none";
   document.documentElement.style.overflow = "hidden auto";
-  document.documentElement.style.scrollBehavior = "smooth";
+  //document.documentElement.style.scrollBehavior = "smooth";
 }
 function closeByBgdClick(e) {
   if (e.target === menu) {
