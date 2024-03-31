@@ -39,12 +39,11 @@
                     $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
                   if ($menu_item->title === $gallery_title) {
                     if(is_category(($current_language == 'EN') ? 'gallery-en' : (($current_language == 'УКР') ? 'gallery' : 'gallery-pl'))){
-                      $current_class .= ' header__current__page s';
+                      $current_class .= ' header__current__page f';
                     }
                     if(get_post_type($current_post_id) === 'post'){
-                      $current_class .= ' header__current__page s';
+                      $current_class .= ' header__current__page g';
                     }
-                      $current_class .= ' header__current__page s';
                   }
                     if ($menu_item->title === $projects_title) {
                         $inside_projects = true;
