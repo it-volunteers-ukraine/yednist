@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const projectsSwiper = new Swiper(".projects__section__swiper", {
-    slidesPerView: 5,
+    slidesPerView: 1,
     spaceBetween: 20,
-    slidesPerGroup: 5,
-    direction: "vertical",
+    autoHeight: true,
     lazy: {
       loadOnTransitionStart: true,
       loadPrevNext: true,
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
       992: {
-        slidesPerView: 5,
+        slidesPerView: 1,
         spaceBetween: 40,
         pagination: {
           clickable: true,
@@ -42,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
       1441: {
-        slidesPerView: 5,
+        slidesPerView: 1,
         spaceBetween: 60,
         pagination: {
           clickable: true,

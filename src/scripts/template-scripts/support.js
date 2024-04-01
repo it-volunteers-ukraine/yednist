@@ -18,6 +18,10 @@ if (moneysupport_acc) {
         panel.style.maxHeight = null;
       } else {
         panel.style.paddingBottom = "24px";
+        lookForWidthChanges();
+        window.addEventListener("resize", throttle(lookForWidthChanges, 200));
+      }
+      function lookForWidthChanges() {
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });
