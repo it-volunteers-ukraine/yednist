@@ -51,7 +51,7 @@
                     } elseif ($inside_projects && ($index >= 3 && $index <= 5)) {
                         if (is_singular()) {
                             $current_post_id = get_queried_object_id();
-                            $current_class = ($current_post_id == $menu_item->object_id) ? 'header__current__page' : '';
+                            $current_class = ($current_post_id == $menu_item->object_id) ? ' header__current__page' : '';
                         }
                         echo '<li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     } elseif ($inside_projects && $index > 5) {
@@ -76,7 +76,7 @@
                 echo '<ul class="header__second__list">';
                 foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {
-                        $current_class = (is_page($menu_item->object_id)) ? 'header__current__page' : '';
+                        $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
                         echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     } else {
                         if (function_exists('pll_the_languages')) {
