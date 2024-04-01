@@ -7,8 +7,8 @@ if (isset($args['parent_page'])) {
 }
 
         $projects_button = get_field("projects_button_text", $parent_page->ID);
-        $project_description = get_sub_field('project_description', $parent_page->ID);
-        $project_images = (is_array(get_sub_field('project_images'))) ? get_sub_field('project_images') : '';
+        $project_description = get_field('project_description', $child->ID);
+        $project_images = get_field('project_images', $child->ID);
         $project_title = get_the_title($child->ID);
         $project_link = get_permalink($child->ID);
         $project_id = $child->ID;

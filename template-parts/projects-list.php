@@ -21,12 +21,7 @@
       foreach ($slideArray as $key => $slide) { ?>
     <div class="swiper-slide projects__section__swiper-slide">
       <?php foreach ($slide as $child) {
-      if (have_rows('projects_descriptions')) {
-        the_row();
-
-       get_template_part( 'template-parts/one-project', null, array('child' => $child));
-
-       }
+       get_template_part( 'template-parts/one-project', null, array('child' => $child, 'parent_page' => $parent_page));
     }
     ?>
     </div>
