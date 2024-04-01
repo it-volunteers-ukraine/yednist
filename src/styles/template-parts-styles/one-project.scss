@@ -1,6 +1,7 @@
 @import "../variables";
 
 .projects__section__swiper__item {
+  position: relative;
   border: 1px solid $black;
   border-radius: $bid-border-radius;
   padding: 64px 79px;
