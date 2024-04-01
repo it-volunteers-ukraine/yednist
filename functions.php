@@ -229,6 +229,9 @@ function wp_it_volunteers_scripts() {
       if ( is_singular() && locate_template('template-parts/support-details-btns.php') ) {
       wp_enqueue_style( 'support-btns-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/support-details-btns.css', array('main') );
     }  
+    if ( is_singular() && locate_template('template-parts/one-project.php') ) {
+      wp_enqueue_style( 'one-project-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/one-project.css', array('main') );
+    } 
 }
 /** add fonts */
 function add_google_fonts() {

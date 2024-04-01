@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const feedbackBackdrop = document.getElementById("js-feedback-form");
   const feedbackModalEl = document.querySelector(".feedback-modal");
+  let containerHeight = parseInt(getComputedStyle(feedbackModalEl).height);
 
   function screenOrientation(containerHeight, height) {
     if (containerHeight > height) {
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     openFeedbackFormButton.addEventListener("click", showForm);
 
     let screenHeight = window.innerHeight;
-    let containerHeight = parseInt(getComputedStyle(feedbackModalEl).height);
 
     function lookForSizeChanges() {
       screenHeight = window.innerHeight;
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showForm() {
       const windowScrollY = window.scrollY;
-      document.documentElement.style.scrollBehavior = "auto";
+      //document.documentElement.style.scrollBehavior = "auto";
       feedbackBackdrop.classList.remove("is-hidden");
       screenOrientation(containerHeight, screenHeight);
       window.addEventListener("resize", lookForSizeChanges);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const scrollY = parseInt(document.documentElement.style.top || "0");
       document.documentElement.classList.remove("modal__opened");
       window.scrollTo(0, -scrollY);
-      document.documentElement.style.scrollBehavior = "smooth";
+      //document.documentElement.style.scrollBehavior = "smooth";
     }
 
     function closeByBgdClick(e) {
@@ -104,12 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.detail.choice.id === choicesLength) {
           additionalField.classList.add("shown");
           let screenHeight = window.innerHeight;
-          let containerHeight = parseInt(
-            getComputedStyle(feedbackModalEl).height
-          );
 
           function lookForSizeChanges() {
-            screenHeight = window.innerHeight;
+            feedbackModalEl.classList.remove("horizontal");
+            containerHeight = feedbackModalEl.offsetHeight;
             screenOrientation(containerHeight, screenHeight);
           }
 
@@ -216,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
           $("html").removeClass("modal__opened");
           window.scrollTo(0, parseInt(scrollY || "0") * -1);
           $(window).off("keydown", escHandler);
-          $("html").css("scrollBehavior", "smooth");
+          //$("html").css("scrollBehavior", "smooth");
         }
 
         //form validation

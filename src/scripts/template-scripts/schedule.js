@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   function funcForRisizeChanges() {
-    changeJustifyContent();
     updateSlider();
+    changeJustifyContent();
     totalPages = Math.ceil(allActivityCards / cardsPerPage());
     currentPage = 1;
     isPagination();
@@ -108,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (allActivityCards > 0) {
     funcForRisizeChanges();
-
     window.addEventListener("resize", throttle(funcForRisizeChanges, 200));
   }
   // slider update

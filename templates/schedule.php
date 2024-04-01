@@ -28,7 +28,7 @@ get_header();
 
           $query = new WP_Query($args); ?>
 
-          <div class="activities__wrapper">
+          <div class="activities__wrapper is-hidden">
 
             <?php if ($query->have_posts()) { ?>
 
