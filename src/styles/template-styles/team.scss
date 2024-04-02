@@ -28,6 +28,11 @@
 
         @media screen and (max-width: $tablet2) {
           border-radius: $small-border-radius;
+          height: 494px;
+        }
+
+        @media screen and (max-width: $mobile) {
+          height: 200px;
         }
 
       }
@@ -36,17 +41,12 @@
 
 
     .team-title {
-      margin-bottom: 37px;
+      margin-bottom: 40px;
 
-
-      @media screen and (max-width: $desktop) {
-        margin-bottom: 40px;
-      }
 
       @media screen and (max-width: $tablet2) {
-        margin-bottom: 24px;
+        margin-bottom: 16px;
         font-size: 40px;
-        text-transform: inherit;
       }
 
       @media screen and (max-width: $mobile) {
@@ -131,8 +131,8 @@
         }
 
         .swiper-slide:nth-child(n+2):not(:last-child) {
-          width: 41%;
-          padding: 24px 33px;
+          width: 42%;
+          padding: 24px 40px;
 
 
           @media screen and (max-width: $desktop) {
@@ -296,6 +296,7 @@
         gap: 0;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 60px;
       }
 
       .image {
@@ -324,41 +325,51 @@
             width: 100%;
           }
 
+          @media screen and (max-width: $mobile) {
+            height: 224px;
+          }
+
 
         }
 
 
         .placeholder {
           border-radius: 16px;
-          padding: 16px 57px;
+          padding: 16px 32px;
           background-color: rgba(255, 255, 255, 0.60);
           backdrop-filter: blur(7px);
           width: 402px;
           height: 76px;
           position: absolute;
           right: 24px;
-          bottom: 22px;
+          bottom: 24px;
           text-align: center;
           font-size: 16px;
           font-style: italic;
+          line-height: 1.3;
 
 
           @media screen and (max-width: $desktop) {
+            width: 293px;
+            height: 70px;
             font-size: 14px;
-            padding: 16px 32px;
-            bottom: 16px;
+            padding: 16px 20px;
+            bottom: 20px;
+            right: 20px;
           }
 
 
           @media screen and (max-width: $tablet2) {
             width: 314px;
+            padding: 16px 32px;
           }
 
           @media screen and (max-width: $mobile) {
             width: 264px;
             height: 66px;
-            padding: 12px;
-            left: 12px;
+            padding: 12px 6px;
+            right: 12px;
+            bottom: 8px;
           }
 
 
@@ -441,11 +452,11 @@
       padding: 0 24px;
     }
 
-    @media screen and (max-width: $tablet2){
+    @media screen and (max-width: $tablet2) {
       overflow: hidden;
     }
 
-    @media screen and (max-width: $mobile){
+    @media screen and (max-width: $mobile) {
       padding: 0 8px;
     }
 
@@ -454,19 +465,17 @@
       padding: 0 60px;
       margin-bottom: 40px;
 
+      @media screen and (max-width: $desktop) {
+        margin-bottom: 50px;
+      }
 
       @media screen and (max-width: $tablet2) {
         padding: 0 0;
-        margin-bottom: 31px;
+        margin-bottom: 16px;
       }
 
       @media screen and (max-width: $mobile) {
         padding: 0 16px;
-      }
-
-
-      @media screen and (max-width: $mobile) {
-        margin-bottom: 20px;
       }
 
     }
@@ -491,7 +500,7 @@
         @media screen and (max-width: $tablet2) {
           display: flex;
           column-gap: 0;
-          margin-bottom: 19px;
+          margin-bottom: 16px;
         }
 
 
@@ -529,6 +538,17 @@
 
               img {
                 border-radius: $small-border-radius;
+
+                @media screen and (max-width: $tablet2) {
+                  height: 424px;
+                }
+
+                @media screen and (max-width: $mobile) {
+                  height: 368px;
+                  width: 288px;
+                }
+
+
               }
 
               .flip-card-back {
@@ -642,12 +662,8 @@
             }
 
             .flip-card {
-              &:hover {
-                .flip-card-inner.no-hover {
-                  @media screen and (max-width: $tablet2) {
-                    transform: none;
-                  }
-                }
+              .flip-card-inner.no-hover {
+                transform: none;
               }
             }
 
@@ -662,8 +678,7 @@
 
 
               @media screen and (max-width: $mobile) {
-                height: 360px;
-                width: 268px;
+                width: 288px;
               }
 
             }
@@ -674,6 +689,14 @@
 
               @media screen and (max-width: $desktop) {
                 font-size: 20px;
+              }
+
+              @media screen and (max-width: $tablet2) {
+                font-size: 18px;
+              }
+
+              @media screen and (max-width: $mobile) {
+                font-size: 16px;
               }
 
             }

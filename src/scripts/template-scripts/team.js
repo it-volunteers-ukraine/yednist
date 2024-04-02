@@ -37,19 +37,14 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                loop: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                },
-                speed: 800,
+                speed: 650,
                 effect: 'opacity',
                 fadeEffect: {
                     crossFade: true
                 },
                 pagination: {
                     el: '.swiper-custom-pagination',
+                    clickable: true,
                 },
                 slideToClickedSlide: false,
                 slidesPerView: 1,
@@ -84,12 +79,6 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                loop: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                },
                 speed: 800,
                 effect: 'opacity',
                 fadeEffect: {
@@ -97,6 +86,7 @@ function swiperMode() {
                 },
                 pagination: {
                     el: '.swiper-custom-pagination',
+                    clickable: true,
                 },
                 slideToClickedSlide: false,
                 slidesPerView: 1,
@@ -171,10 +161,6 @@ function showInfo(event) {
                 flipInner.classList.add('no-hover');
             }
         });
-
-        infoByButton.setAttribute('data-click-handler', 'true');
-
-
     }
 }
 
