@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll('.show-info');
+const cards = document.querySelectorAll('.flip-card');
 
 
 let teamSwiper = null;
@@ -37,19 +38,14 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                loop: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                },
-                speed: 800,
+                speed: 650,
                 effect: 'opacity',
                 fadeEffect: {
                     crossFade: true
                 },
                 pagination: {
                     el: '.swiper-custom-pagination',
+                    clickable: true,
                 },
                 slideToClickedSlide: false,
                 slidesPerView: 1,
@@ -84,12 +80,6 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                loop: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                },
                 speed: 800,
                 effect: 'opacity',
                 fadeEffect: {
@@ -97,6 +87,7 @@ function swiperMode() {
                 },
                 pagination: {
                     el: '.swiper-custom-pagination',
+                    clickable: true,
                 },
                 slideToClickedSlide: false,
                 slidesPerView: 1,
@@ -159,23 +150,28 @@ function showInfo(event) {
 
     const flipInner = flipCard.querySelector('.flip-card-inner')
 
+    const isMobile = window.innerWidth < 575.98;
 
-    if (flipInner.classList.contains('no-hover')) {
-        flipInner.classList.remove('no-hover')
+
+    if (isMobile) {
+        flipInner.classList.add('flipped-mobile');
+        flipInner.classList.remove('flipped');
+        flipInner.classList.remove('flipped-tablet');
+    } else {
+        flipInner.classList.remove('flipped-mobile');
+        flipInner.classList.remove('flipped');
+        flipInner.classList.add('flipped-tablet');
     }
 
 
-    if (!infoByButton.hasAttribute('data-click-handler')) {
-        infoByButton.addEventListener('click', function (event) {
-            if (!flipInner.classList.contains('no-hover')) {
-                flipInner.classList.add('no-hover');
-            }
-        });
+    infoByButton.addEventListener('click', function () {
+        if (isMobile) {
+            flipInner.classList.remove('flipped-mobile');
+        } else {
+            flipInner.classList.remove('flipped-tablet');
+        }
+    })
 
-        infoByButton.setAttribute('data-click-handler', 'true');
-
-
-    }
 }
 
 
@@ -185,6 +181,28 @@ buttons.forEach(function (button) {
     })
 })
 
+
+
+
+function flipCard() {
+
+    cards.forEach(card => {
+
+        const flipInner = card.querySelector('.flip-card-inner');
+
+        card.addEventListener('mouseenter', function () {
+            flipInner.classList.add('flipped');
+        });
+
+        card.addEventListener('mouseleave', function () {
+            flipInner.classList.remove('flipped');
+        });
+
+    })
+
+}
+
+flipCard();
 
 
 
