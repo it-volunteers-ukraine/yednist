@@ -80,7 +80,7 @@ get_header();
                 <?php
                       if( get_sub_field('icon_copy') ) { ?>
 
-                <button class="icon_copy">
+                <button class="icon_copy" aria-label="copy string">
                   <svg width="20px" height="20px">
                     <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-copy_doc">
                     </use>

@@ -42,7 +42,7 @@ get_header();
             <?php }  else { 
               $image = get_field('activity-placeholder', "options");
             if( $image ) { ?>
-            <img id="activity_placeholder-js" class="activity_placeholder" src="<?php echo esc_url($image['url']); ?>"
+            <img class="activity_placeholder one-activity-js" src="<?php echo esc_url($image['url']); ?>"
               alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php }?>
 
@@ -219,7 +219,7 @@ get_header();
       <div class="inner-container">
 
         <form method="POST" class="lastnews_form">
-          <select name="order" id="order" class="lastnews_select">
+          <select role="combobox" name="order" id="order" class="lastnews_select">
             <option value="DESC"><?php the_field('new_at_the_begining'); ?></option>
             <option value="ASC"><?php the_field('old_at_the_begining'); ?></option>
           </select>

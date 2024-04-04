@@ -204,7 +204,6 @@ jQuery(document).ready(function ($) {
     // notification about email success sending
     function getNotification() {
       const windowScrollY = window.scrollY;
-      //document.documentElement.style.scrollBehavior = "auto";
       notificationBackdropEl.classList.remove("is-hidden");
       document.documentElement.classList.add("modal__opened");
       document.documentElement.style.top = `-${windowScrollY}px`;
@@ -225,7 +224,6 @@ jQuery(document).ready(function ($) {
       const scrollY = parseInt(document.documentElement.style.top || "0");
       document.documentElement.classList.remove("modal__opened");
       window.scrollTo(0, -scrollY);
-      //document.documentElement.style.scrollBehavior = "smooth";
       clearTimeout(timerId);
     }
 
