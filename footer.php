@@ -162,6 +162,30 @@
                         </a>
                     <?php endif; ?>
 
+                    <?php
+                    $link = get_field('social_link_4', 'option');
+                    if ($link):
+                        $link_url = $link['url'];
+                        $link_title = $link['title'];
+                        $link_target = $link['target'] ? $link['target'] : '_self';
+                        ?>
+                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                            <?php echo esc_html($link_title); ?>
+                        </a>
+                    <?php endif; ?>
+
+                    <?php
+                    $link = get_field('social_link_5', 'option');
+                    if ($link):
+                        $link_url = $link['url'];
+                        $link_title = $link['title'];
+                        $link_target = $link['target'] ? $link['target'] : '_self';
+                        ?>
+                        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                            <?php echo esc_html($link_title); ?>
+                        </a>
+                    <?php endif; ?>
+
                     <a href="mailto:<?php the_field('social_mail', 'option') ?>" rel="noopener noreferrer">
                         <?php the_field('social_mail', 'option') ?>
                     </a>
