@@ -30,9 +30,9 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer" aria-label="telegram">
                             <?php if (get_field('social_icon_1', 'option')): ?>
-                                <img src="<?php the_field('social_icon_1', 'option'); ?>" />
+                                <img src="<?php the_field('social_icon_1', 'option'); ?>" alt="telegram"/>
                             <?php endif; ?>
                         </a>
                     <?php endif; ?>
@@ -46,9 +46,9 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer" aria-label="facebook">
                             <?php if (get_field('social_icon_2', 'option')): ?>
-                                <img src="<?php the_field('social_icon_2', 'option'); ?>" />
+                                <img src="<?php the_field('social_icon_2', 'option'); ?>" alt="facebook"/>
                             <?php endif; ?>
                         </a>
                     <?php endif; ?>
@@ -61,9 +61,9 @@
                         $link_target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <a class="footer-btn-icon" href="<?php echo esc_url($link_url); ?>"
-                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                            target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer" aria-label="instagram">
                             <?php if (get_field('social_icon_3', 'option')): ?>
-                                <img src="<?php the_field('social_icon_3', 'option'); ?>" />
+                                <img src="<?php the_field('social_icon_3', 'option'); ?>" alt="instagram" />
                             <?php endif; ?>
                         </a>
                     <?php endif; ?>
@@ -78,7 +78,7 @@
                 <h2 class="footer-title">
                     <?php the_field('org_title', 'option'); ?>
                 </h2>
-                <h3 class="footer-about-title-mobile acc-show">
+                <h3 class="footer-about-title-mobile acc-show" role="button">
                     <?php the_field('about__title', 'option'); ?><svg class="acc-plus-icon" width="20px" height="20px">
                         <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#plus-icon"></use>
                     </svg>
