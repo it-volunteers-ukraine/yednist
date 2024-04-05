@@ -9,7 +9,7 @@ if (isset($args['row'])) {
   <div class="current_account">
     <p id="" class="moneysupport__value"><?php echo $row['value']; ?></p>
     <?php if ($row['icon_copy']) { ?>
-    <button class="icon_copy">
+    <button class="icon_copy" aria-label="copy string">
       <svg width="20px" height="20px">
         <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-copy_doc">
         </use>

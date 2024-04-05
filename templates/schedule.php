@@ -42,7 +42,7 @@ get_header();
             <?php }  else { 
               $image = get_field('activity-placeholder', "options");
             if( $image ) { ?>
-            <img id="activity_placeholder-js" class="activity_placeholder" src="<?php echo esc_url($image['url']); ?>"
+            <img class="activity_placeholder one-activity-js" src="<?php echo esc_url($image['url']); ?>"
               alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php }?>
 
@@ -231,14 +231,14 @@ get_header();
           <?php
 
             $order = isset($_POST['order']) ? $_POST['order'] : 'DESC';
-            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-            $max_pages = ceil(wp_count_posts('news')->publish / 5);
+            if(function_exists('pll_current_language')){
+          $my_lang = pll_current_language();}
             ?>
 
           <div id="loadmore-news">
             <?php  get_template_part('template-parts/loader'); ?>
-            <a href="#" class="button primary-button loadnews-btn" data-max_pages="<?php echo $max_pages ?>"
-              data-paged="<?php echo $paged ?>" data-order="<?php echo $order ?>">
+            <a href="#" class="button primary-button loadnews-btn" data-order="<?php echo $order ?>"
+              data-lang="<?php echo $my_lang; ?>">
               <?php the_field("last_news_button", "options"); ?>
             </a>
           </div>

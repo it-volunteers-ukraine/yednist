@@ -81,7 +81,8 @@
 
           <label class="feedback-privacy__label">
             <input class="feedback-check" type="checkbox" name="privacy" required>
-            <span><?php the_field('feedback_policy_text'); ?><a class="feedback-privacy__link"
+            <span><?php the_field('feedback_policy_text'); ?><a class="feedback-privacy__link" target="_blank"
+                rel="noopener noreferrer"
                 href="<?php the_field("policy", "options"); ?>"><?php the_field('feedback_policy_name'); ?></a>*
             </span>
           </label>
