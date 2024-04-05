@@ -531,19 +531,10 @@
         }
       }
     }
-    &__image {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: auto;
-    }
   }
   &__image-wrapper {
     width: 100%;
     max-width: 722px;
-    position: relative;
-    padding-top: 56.25%;
     @media screen and (max-width: $desktop) {
       max-width: 538px;
     }

@@ -1,6 +1,7 @@
 @import "../variables";
 
 .projects__section__swiper__item {
+  position: relative;
   border: 1px solid $black;
   border-radius: $bid-border-radius;
   padding: 64px 79px;
@@ -256,17 +257,21 @@
       overflow: hidden;
       position: relative;
       max-width: 546px;
+      min-height: 484px;
       @media screen and (max-width: $desktop) {
         max-width: 459px;
         width: 50%;
+        min-height: 466px;
       }
       @media screen and (max-width: $tablet2) {
         max-width: 300px;
+        min-height: 334px;
       }
       @media screen and (max-width: $mobile) {
         border-radius: $small-border-radius;
         max-width: 248px;
         max-height: 240px;
+        min-height: 240px;
         width: 100%;
       }
       &:has(.single-image) {
