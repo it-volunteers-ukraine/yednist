@@ -427,7 +427,7 @@ function load_initial_news() {
 
     $order = !empty($_POST['order']) ? $_POST['order'] : 'DESC';
     $paged = !empty($_POST['paged']) ? $_POST['paged'] : 1;
-    $max_pages = ceil(wp_count_posts('news')->publish / 5);
+    $lang = !empty($_POST['lang']) ? $_POST['lang'] : 'uk';
 
     if ($_POST['prev_order'] && $_POST['prev_order'] !== $order) {
         $paged = 1;
@@ -439,10 +439,15 @@ function load_initial_news() {
         'paged'          => $paged,
         'orderby'        => 'modified',
         'order'          => $order,
-        'post_status'    => 'publish'
+        'post_status'    => 'publish',
+        'lang' => $lang,
     );
 
     $query = new WP_Query($args);
+    
+    $posts_count = $query->found_posts; 
+    $max_pages = ceil($posts_count / 5);
+
     ob_start();
     if ($query->have_posts()) :
         while ($query->have_posts()) : $query->the_post();
@@ -613,58 +618,47 @@ function support() {
     }
 }
 
-add_filter( 'wpcf7_validate_text*', 'custom_text_confirmation_validation_filter', 20, 2 );
-  
-function custom_text_confirmation_validation_filter( $result, $tag ) {
-  if ( 'invite_name' == $tag->name ) {
-    $invite_name = isset( $_POST['invite_name'] ) ? trim( $_POST['invite_name'] ) : '';
-  
-    if ( !$invite_name ) {
-      $result->invalidate( $tag, wpcf7_get_message('validation_error') );
-    }
-  }
-  
-  return $result;
-}
+// additional form validation
+add_filter('wpcf7_validate_text*', 'custom_text_validation_filters', 20, 2);
 
-add_filter( 'wpcf7_validate_textarea*', 'custom_textarea_confirmation_validation_filter', 20, 2 );
-  
-function custom_textarea_confirmation_validation_filter( $result, $tag ) {
-  if ( 'invite_message' == $tag->name ) {
-    $invite_message = isset( $_POST['invite_message'] ) ? trim( $_POST['invite_message'] ) : '';
-  
-    if ( !$invite_message ) {
-      $result->invalidate( $tag, wpcf7_get_message('validation_error') );
-    }
-  }
-  
-  return $result;
-}
+function custom_text_validation_filters($result, $tag)
+{
+    $fields = array(
+        'invite_name',
+        'text-name'
+    );
 
-add_filter( 'wpcf7_validate_text*', 'custom_contact_text_confirmation_validation_filter', 20, 2 );
+    foreach ($fields as $field) {
+        if ($field === $tag->name) {
+            $value = isset($_POST[$field]) ? trim($_POST[$field]) : '';
 
-function custom_contact_text_confirmation_validation_filter( $result, $tag ) { 
-  $tag_name = 'text-name';
-    if ($tag_name === $tag->name) {
-        $value = isset($_POST[$tag_name]) ? trim($_POST[$tag_name]) : '';
-
-        if (!$value) {
-          $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+            if (!$value) {
+                $result->invalidate($tag, wpcf7_get_message('validation_error'));
+            }
         }
     }
-  return $result;
+
+    return $result;
 }
 
-add_filter( 'wpcf7_validate_textarea*', 'custom_contact_textarea_confirmation_validation_filter', 20, 2 );
- 
-function custom_contact_textarea_confirmation_validation_filter( $result, $tag ) {
-  $tag_message = 'message';
-    if ($tag_message === $tag->name) {
-        $value = isset($_POST[$tag_message]) ? trim($_POST[$tag_message]) : '';
+add_filter('wpcf7_validate_textarea*', 'custom_textarea_confirmation_validation_filter', 20, 2);
 
-        if (!$value) {
-          $result->invalidate( $tag, wpcf7_get_message('validation_error') );
+function custom_textarea_confirmation_validation_filter($result, $tag)
+{
+    $fields = array(
+        'invite_message',
+        'message'
+    );
+
+    foreach ($fields as $field) {
+        if ($field === $tag->name) {
+            $value = isset($_POST[$field]) ? trim($_POST[$field]) : '';
+
+            if (!$value) {
+                $result->invalidate($tag, wpcf7_get_message('validation_error'));
+            }
         }
     }
- return $result;
+
+    return $result;
 }

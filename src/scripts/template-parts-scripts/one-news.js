@@ -25,21 +25,22 @@ jQuery(document).ready(function ($) {
         order: order,
         paged: 1,
         prev_order: prev_order,
+        lang: lang,
       },
       beforeSend: showLoader,
       success: function (data) {
         hideLoader();
         button.parent().prevAll().remove();
         button.parent().before(data.html);
-        paged = 2;
+        paged = data.paged;
+        maxPages = data.max_pages;
 
-        if (paged > maxPages) {
+        if (paged >= maxPages) {
           button.hide();
         } else {
           button.show();
         }
-
-        maxPages = data.max_pages;
+        paged = 2;
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
@@ -48,7 +49,7 @@ jQuery(document).ready(function ($) {
   }
 
   var button = $("#loadmore-news a"),
-    maxPages = button.data("max_pages");
+    lang = button.data("lang");
 
   var order = $("#order").val();
   var prev_order = order;
@@ -78,12 +79,14 @@ jQuery(document).ready(function ($) {
         order: order,
         paged: paged,
         prev_order: prev_order,
+        lang: lang,
       },
       beforeSend: showLoader,
       success: function (data) {
         hideLoader();
         button.parent().before(data.html);
         paged++;
+        maxPages = data.max_pages;
 
         if (paged > maxPages) {
           button.hide();

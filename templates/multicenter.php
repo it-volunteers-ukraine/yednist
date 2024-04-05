@@ -167,15 +167,9 @@ get_header();
             <h2 class="invite__subtitle"><?php the_field('invite_subtitle'); ?></h2>
             <div class="invite__text"><?php the_field('invite_text'); ?></div>
           </div>
-          <div class="invite__form">
-            <?php 
-                $form = get_field('registration_form');
-                if($form) : ?>
-            <div class="">
-              <?php echo $form?>
+          <div class="invite__form" name="invite__form" method="post">
 
-            </div>
-            <?php endif; ?>
+            <?php echo do_shortcode('[contact-form-7 id="4c8e395" title="Форма ЗАПРОШУЄМО ДО СПІВПРАЦІ"]') ?>
 
             <div id="invite__backdrop--notification" class="invite__backdrop--notification is-hidden">
               <div class="invite__notification">
