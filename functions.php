@@ -437,7 +437,7 @@ function load_initial_news() {
         'post_type'      => 'news',
         'posts_per_page' => 5,
         'paged'          => $paged,
-        'orderby'        => 'modified',
+        'orderby'        => 'date',
         'order'          => $order,
         'post_status'    => 'publish',
         'lang' => $lang,
