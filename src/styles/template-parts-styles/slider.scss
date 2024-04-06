@@ -19,6 +19,11 @@
 //slider
 .moments-section__slider {
   position: relative;
+  .swiper__nav--box .swiper-pagination {
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+  }
 }
 
 .moments-section__wrapper {

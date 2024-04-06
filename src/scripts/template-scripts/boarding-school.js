@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
   const screenWidth575 = window.matchMedia("(max-width: 575.98px)");
 
   function initSwiper() {
