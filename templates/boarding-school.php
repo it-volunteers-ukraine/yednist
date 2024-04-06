@@ -16,18 +16,10 @@ get_header();
           $quotation_text = get_field("quotation_text"); 
           $video_link = get_field('video_link'); 
         ?>
-        <div class="main__section__content__image">
-          <?php if ($main_photo): ?>
-            <img src="<?php echo esc_url($main_photo['url']); ?>" alt="<?php echo esc_attr($main_photo['alt']); ?>" style="display: block; margin: 0 auto;">
-            <svg class="main__section__content__image__icon">
-              <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-youtube"></use>
-            </svg>
-          <?php endif; ?>
-          <div id="mainVideoModal" class="main__section__content__modal">
-            <div class="main__section__content__modal-content">
-            <?php echo $video_link ?>
-            </div>
-          </div>
+        <div class="main__section__content__video">
+        <video class="main__section__content__video-main" controls controlsList="nodownload" disablePictureInPicture>
+        <source src="<?php echo $video_link['url']; ?>" type="video/mp4">
+    </video>
         </div>
         <div class="main__section__content__quotation">
           <svg class="main__section__content__quotation__icon">
