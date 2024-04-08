@@ -225,13 +225,12 @@
 }
 
 .appeal__section .swiper-pagination,
-.goals__section .swiper-pagination {
+.goals__section__swiper .swiper-pagination {
   @media screen and (max-width: $mobile) {
     position: static;
     display: flex;
     width: 100%;
     justify-content: center;
-    gap: 8px;
     & .swiper-pagination-bullet {
       opacity: 1;
       border: 1px solid $violet-grey;
