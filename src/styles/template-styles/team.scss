@@ -536,7 +536,7 @@
 
             @media screen and (max-width: $mobile) {
               gap: 12px;
-              height: 394px;
+              height: 368px;
             }
 
 
@@ -553,8 +553,18 @@
                 border-radius: $small-border-radius;
 
 
+                @media screen and (min-width: 768px) and (max-width: 799px) {
+                  max-height: 425px;
+                }
+
+                @media screen and (min-width: 800px) and (max-width: 991px) {
+                  height: auto;
+                }
+
+
                 @media screen and (max-width: $mobile) {
                   width: 288px;
+                  max-height: 368px;
                 }
 
 
