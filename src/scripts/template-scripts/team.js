@@ -1,5 +1,4 @@
 const buttons = document.querySelectorAll('.show-info');
-const cards = document.querySelectorAll('.flip-card');
 
 
 let teamSwiper = null;
@@ -56,6 +55,7 @@ function swiperMode() {
                 loop: false,
                 pagination: {
                     el: '.swiper-custom-pagination',
+                    clickable: true,
                 },
                 speed: 800,
                 slidesPerView: 1,
@@ -150,25 +150,17 @@ function showInfo(event) {
 
     const flipInner = flipCard.querySelector('.flip-card-inner')
 
-    const isMobile = window.innerWidth < 575.98;
+    const isMobile = window.innerWidth < 991.98;
 
 
     if (isMobile) {
-        flipInner.classList.add('flipped-mobile');
-        flipInner.classList.remove('flipped');
-        flipInner.classList.remove('flipped-tablet');
-    } else {
-        flipInner.classList.remove('flipped-mobile');
-        flipInner.classList.remove('flipped');
-        flipInner.classList.add('flipped-tablet');
+        flipInner.classList.add('flipped');
     }
 
 
     infoByButton.addEventListener('click', function () {
         if (isMobile) {
-            flipInner.classList.remove('flipped-mobile');
-        } else {
-            flipInner.classList.remove('flipped-tablet');
+            flipInner.classList.remove('flipped');
         }
     })
 
@@ -182,27 +174,6 @@ buttons.forEach(function (button) {
 })
 
 
-
-
-function flipCard() {
-
-    cards.forEach(card => {
-
-        const flipInner = card.querySelector('.flip-card-inner');
-
-        card.addEventListener('mouseenter', function () {
-            flipInner.classList.add('flipped');
-        });
-
-        card.addEventListener('mouseleave', function () {
-            flipInner.classList.remove('flipped');
-        });
-
-    })
-
-}
-
-flipCard();
 
 
 

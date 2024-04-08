@@ -463,20 +463,30 @@
 
 
     .members-title {
-      padding: 0 60px;
       margin-bottom: 40px;
+
 
       @media screen and (max-width: $desktop) {
         margin-bottom: 50px;
+        width: 100%;
+
+        &:before {
+          width: 56px;
+        }
       }
 
       @media screen and (max-width: $tablet2) {
-        padding: 0 0;
         margin-bottom: 16px;
+        width: 100%;
       }
 
       @media screen and (max-width: $mobile) {
         padding: 0 16px;
+        width: 100%;
+        gap: 12px;
+        &:before {
+          width: 28px;
+        }
       }
 
     }
@@ -659,34 +669,20 @@
 
 
             .flip-card {
+              &:hover {
+                .flip-card-inner {
+                  transform: rotateY(180deg);
+                  @media screen and (max-width: $tablet2) {
+                    transform: none;
+                  }
+                }
+              }
+            }
+
+
+            .flip-card {
               .flip-card-inner.flipped {
                 transform: rotateY(180deg);
-                @media screen and (max-width: $tablet2) {
-                  transform: none;
-                }
-              }
-            }
-
-
-            .flip-card {
-              .flip-card-inner.flipped-mobile {
-                @media screen and (max-width: $tablet2) {
-                  transform: none;
-                }
-                @media screen and (max-width: $mobile) {
-                  transform: rotateY(180deg);
-                }
-              }
-            }
-
-            .flip-card {
-              .flip-card-inner.flipped-tablet {
-                @media screen and (max-width: $tablet2) {
-                  transform: rotateY(180deg);
-                }
-                @media screen and (max-width: $mobile) {
-                  transform: none;
-                }
               }
             }
 
