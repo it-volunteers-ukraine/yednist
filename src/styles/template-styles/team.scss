@@ -20,6 +20,8 @@
 
       @media screen and (max-width: $tablet2) {
         margin-bottom: 60px;
+        position: relative;
+        padding: 0 0 72% 0;
       }
 
 
@@ -29,6 +31,11 @@
 
         @media screen and (max-width: $tablet2) {
           border-radius: $small-border-radius;
+          object-fit: cover;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
 
         @media screen and (max-width: $mobile) {
