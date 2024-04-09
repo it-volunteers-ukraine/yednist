@@ -24,6 +24,10 @@
         padding: 0 0 72% 0;
       }
 
+      @media screen and (max-width: $mobile) {
+        padding: 0 0 70% 0;
+      }
+
 
       img {
         border-radius: $bid-border-radius;
@@ -36,10 +40,6 @@
           position: absolute;
           top: 0;
           left: 0;
-        }
-
-        @media screen and (max-width: $mobile) {
-          min-height: 200px;
         }
 
 
@@ -313,10 +313,13 @@
 
         @media screen and (max-width: $tablet2) {
           margin-bottom: 25px;
+          padding: 0 0 72% 0;
+          width: 100%;
         }
 
         @media screen and (max-width: $mobile) {
           margin-bottom: 12px;
+          padding: 0 0 78% 0;
         }
 
 
@@ -331,11 +334,13 @@
 
           @media screen and (max-width: $tablet2) {
             width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            object-fit: cover;
           }
 
-          @media screen and (max-width: $mobile) {
-            min-height: 224px;
-          }
 
 
         }
