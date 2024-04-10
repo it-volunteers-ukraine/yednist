@@ -102,7 +102,6 @@
     padding: 8px 20px;
     font-size: 18px;
     &.active {
-      border-bottom: 1px solid $black;
       & .activity__table-arrow {
         transform: rotate(-180deg);
       }

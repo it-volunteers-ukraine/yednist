@@ -30,12 +30,16 @@
           <h2><?php echo $post->post_title; ?></h2>
         </li>
         <li class="classes__item">
-          <div class="classes__icon">
-            <svg>
-              <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_calendar"></use>
-            </svg>
-          </div>
-          <p class="classes__text"><?php the_field('activity_date'); ?></p>
+
+          <a class="activity__modal--item" href="<?php the_field ("event_calendar_link", "options") ?>">
+            <div class="classes__icon">
+              <svg>
+                <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_calendar"></use>
+              </svg>
+            </div>
+            <p class="classes__text"><?php the_field('activity_date'); ?></p>
+
+          </a>
         </li>
 
         <li class="classes__item">

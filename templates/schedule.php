@@ -186,21 +186,24 @@ get_header();
               $row_index = $sorted_activity['row_index']; ?>
 
             <div class="activity__table-row">
-              <div class="activity__table-time">
 
-                <?php
+
+              <?php
 
                     $rows = get_field('activity_time');
                       if( $rows ) {
-                          $current_row = $rows[$row_index];
-                          $order_time = $current_row['order_time'];
-                          $finish_time = $current_row['finish_time'];
-                          echo "<span>{$order_time} - {$finish_time}</span>";
-                          
-                } ?>
-              </div>
-              <?php get_template_part( 'template-parts/one-activity-row' );?>
+                       $current_row = $rows[$row_index];
+                       $auditory = $current_row['auditory'];?>
+              <div class="activity__table-time">
 
+                <?php $order_time = $current_row['order_time'];
+                          $finish_time = $current_row['finish_time'];
+                          echo "<span>{$order_time} - {$finish_time}</span>"; ?>
+              </div>
+
+
+              <?php get_template_part( 'template-parts/one-activity-row', null, array('auditory'=> $auditory) );?>
+              <?php } ?>
             </div>
             <?php } ?>
           </div>
