@@ -1,3 +1,8 @@
+<?php 
+if (isset($args['auditory'])) {
+    $auditory = $args['auditory'];
+} ?>
+
 <div class="activity__table-caption">
   <div class="activity__table--text">
     <p class="activity__title"><?php echo $post->post_title; ?></p>
@@ -18,7 +23,7 @@
           </svg>
         </div>
         <div>
-          <?php the_field('activity_target'); ?>
+          <?php if ($auditory) echo $auditory; else the_field('activity_target'); ?>
         </div>
       </li>
     </ul>
