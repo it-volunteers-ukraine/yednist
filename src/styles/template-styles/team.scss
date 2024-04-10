@@ -642,7 +642,12 @@
 
               .flip-card-inner {
                 transform-style: preserve-3d;
-                transition: opacity .5s linear;
+                transition: transform .5s;
+
+                @media screen and (max-width: $tablet2) {
+                  transition: opacity .5s linear;
+                  transform: none;
+                }
 
                 .flip-card-front, .flip-card-back {
                   backface-visibility: hidden;
@@ -651,6 +656,9 @@
               }
 
             }
+
+
+
 
 
             // flip-card
