@@ -103,7 +103,7 @@ function handleResize() {
   const buttonWidth =
     showAllBtn?.getBoundingClientRect().width ||
     hideAllBtn?.getBoundingClientRect().width;
-  if (window.innerWidth > 767.98 || window.innerWidth < 575.98) {
+  if (window.innerWidth > 991.98 || window.innerWidth < 575.98) {
     if (itemWidth !== buttonWidth) {
       if (showAllBtn) {
         showAllBtn.style.width = itemWidth + "px";
