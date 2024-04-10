@@ -119,6 +119,18 @@
         }                 
     }
     &-social {
+        display: flex;
+        gap: 30%;
+        @media (max-width: $desktop) {
+            gap: 34%;
+        }
+        @media (max-width: $tablet2) {
+            flex-direction: column;
+            gap: 18px;
+        }
+        @media (max-width: $mobile) {
+            gap: 16px;
+        }
         &-list {
             display: flex;  
             flex-direction: column;          
@@ -184,7 +196,8 @@
         width: 100%;
         padding: 12px 32px;
         margin-bottom: 24px;    
-        resize: none;    
+        resize: none;   
+        cursor: text; 
         @media (max-width: $desktop) {             
             font-size: 18px;
         }

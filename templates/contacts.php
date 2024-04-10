@@ -84,7 +84,39 @@ get_header();
                                     </a>
                                     <?php endif; ?>
                                 </li>
-                            <li> 
+                                <li class="contacts__page-social-item">
+                                    <?php
+                                    $link = get_field('social_link_5', 'option');
+                                    if ($link):
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                    ?>
+                                    <a href="<?php echo esc_url($link_url); ?>" target="_blank">
+                                        <svg class="icon">
+                                            <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#twitter" alt="twitter"></use>
+                                        </svg>
+                                    <?php echo esc_html($link_title); ?>
+                                    </a>
+                                    <?php endif; ?>
+                                </li>
+                                <li class="contacts__page-social-item">
+                                    <?php
+                                    $link = get_field('social_link_4', 'option');
+                                    if ($link):
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                    ?>
+                                    <a href="<?php echo esc_url($link_url); ?>" target="_blank">
+                                        <svg class="icon">
+                                            <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#linkedin" alt="linkedin"></use>
+                                        </svg>
+                                    <?php echo esc_html($link_title); ?>
+                                    </a>
+                                    <?php endif; ?>
+                                </li>
+                            </ul>    
+                            <ul class="contacts__page-social-list">
+                                <li> 
                                     <a href="tel:<?php the_field('social_phone', 'option') ?>">
                                         <svg class="icon">
                                             <use xlink:href="<?php bloginfo('template_url'); ?>/assets/images/sprite.svg#phone" alt="phone"></use>
