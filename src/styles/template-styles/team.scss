@@ -229,13 +229,10 @@
         }
 
 
-        @media screen and (min-width: 576px) and (max-width: 767px) {
+        @media screen and (min-width: 576px) and (max-width: 1399px) {
           line-height: 1.6;
         }
 
-        @media screen and (min-width: 992px) and (max-width: 1399px) {
-          line-height: 1.6;
-        }
 
 
         @media screen and (max-width: $mobile) {
