@@ -199,10 +199,7 @@ function wp_it_volunteers_scripts() {
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('news_nonce'),
         ));
-    }
-    if (is_singular() && locate_template('template-parts/gallery-section.php')) {
-      wp_enqueue_style('gallery-section-style', get_template_directory_uri() . '/assets/styles/main.css', array('main'));
-    }
+    }    
     if (is_singular() && locate_template('template-parts/gallery-mobile.php')) {
       wp_enqueue_style('gallery-mobile-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/gallery-mobile.css', array('main'));
       wp_enqueue_script( 'gallery-mobile-scripts', get_template_directory_uri() . '/assets/scripts/template-parts-scripts/gallery-mobile.js', array(), false, true );

@@ -11,7 +11,7 @@
             <div class="swiper-wrapper">
               <?php              
               $params = array(
-                'category_name' => 'history-ua',    
+                'category_name' => 'history',    
                 'numberposts' => -1,    
               );
               $my_posts = get_posts($params);

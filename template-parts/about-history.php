@@ -8,7 +8,7 @@
         <?php
         $posts_per_page =  (int) get_field('gallery-post-amount');
         $params = array(
-            'category_name' => 'history-ua',    
+            'category_name' => 'history',    
             'numberposts' => -1,    
         );
         $my_posts = get_posts($params);
