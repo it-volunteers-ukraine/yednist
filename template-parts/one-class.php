@@ -31,7 +31,7 @@
         </li>
         <li class="classes__item">
 
-          <a class="activity__modal--item" href="<?php the_field ("event_calendar_link", "options") ?>">
+          <a class="classes__item item__link" href="<?php the_field ("event_calendar_link", "options") ?>">
             <div class="classes__icon">
               <svg>
                 <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_calendar"></use>
@@ -43,7 +43,7 @@
         </li>
 
         <li class="classes__item">
-          <a class="activity__modal--item" href="<?php the_field("google_maps_url") ?>" target="_blank"
+          <a class="classes__item item__link" href="<?php the_field("google_maps_url") ?>" target="_blank"
             rel="noopener noreferrer">
             <div class="classes__icon">
               <svg>
