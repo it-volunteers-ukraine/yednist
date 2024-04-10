@@ -670,12 +670,16 @@
               }
             }
 
+            .flip-card-inner {
+              transition: opacity .5s linear;
+            }
+
 
             .flip-card {
               .flip-card-inner.flipped {
                 transform: rotateY(180deg);
                 .show-info{
-                  display: none;
+                  opacity: 0;
                 }
               }
             }
