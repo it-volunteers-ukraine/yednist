@@ -642,6 +642,7 @@
 
               .flip-card-inner {
                 transform-style: preserve-3d;
+                transition: opacity .5s linear;
 
                 .flip-card-front, .flip-card-back {
                   backface-visibility: hidden;
@@ -666,9 +667,7 @@
               }
             }
 
-            .flip-card-inner {
-              transition: opacity .5s linear;
-            }
+
 
 
             .flip-card {
