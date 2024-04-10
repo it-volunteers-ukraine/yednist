@@ -9,7 +9,7 @@ get_header();
     <main>
         <?php get_template_part('template-parts/breadcrumbs'); ?>
         <section class="section our-team">
-            <div class="container tablet-container">
+            <div class="container">
                 <div class="inner-container">
                     <h1 class="page-title team-title"><?php the_title(); ?></h1>
                     <div class="team-image">
@@ -33,9 +33,7 @@ get_header();
                     <div class="founders">
                         <?php
                         $founders = get_field('founders');
-                        foreach ($founders
-
-                        as $row) : ?>
+                        foreach ($founders as $row) : ?>
                         <div class="image">
                             <img src="<?= $row['founders-image']; ?>" alt="image">
                             <div class="placeholder"><?= $row['placeholder']; ?></div>
