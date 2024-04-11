@@ -436,18 +436,19 @@
 
   .tablet-container {
 
-
-    @media screen and (min-width: 576px) and (max-width: 726px) {
-      padding: 0 28px;
+    @media screen and (max-width: $tablet2) {
+      overflow: hidden;
     }
 
     @media screen and (min-width: 727px) and (max-width: 767px) {
       padding: 0 24px;
     }
 
-    @media screen and (max-width: $tablet2) {
-      overflow: hidden;
+
+    @media screen and (min-width: 576px) and (max-width: 726px) {
+      padding: 0 28px;
     }
+
 
     @media screen and (max-width: $mobile) {
       padding: 0 8px;
@@ -503,12 +504,6 @@
         @media screen and (max-width: $tablet2) {
           display: flex;
           column-gap: 0;
-          margin-bottom: 16px;
-        }
-
-
-        @media screen and (max-width: $mobile) {
-          margin-bottom: 27px;
         }
 
 
@@ -526,7 +521,6 @@
 
             @media screen and (max-width: $mobile) {
               gap: 12px;
-              height: 368px;
             }
 
 
@@ -543,18 +537,8 @@
                 border-radius: $small-border-radius;
 
 
-                @media screen and (min-width: 768px) and (max-width: 799px) {
-                  max-height: 425px;
-                }
-
-                @media screen and (min-width: 800px) and (max-width: 991px) {
-                  height: auto;
-                }
-
-
                 @media screen and (max-width: $mobile) {
                   width: 288px;
-                  max-height: 368px;
                 }
 
 
@@ -573,7 +557,7 @@
                   position: absolute;
                   transform: rotate(0deg);
                   bottom: 0;
-                  padding: 0 40px;
+                  padding: 40px;
                   display: flex;
                   align-items: center;
                   font-family: $secondary-font;
@@ -588,13 +572,12 @@
 
                   @media screen and (max-width: $tablet2) {
                     font-size: 14px;
-                    padding: 125px 40px;
                     top: 6px;
                     line-height: 1.6;
                   }
 
                   @media screen and (max-width: $mobile) {
-                    padding: 70px 24px;
+                    padding: 24px;
                     line-height: 1.6;
                     bottom: 0;
                   }
@@ -626,6 +609,7 @@
 
 
               // button show-info arrows
+
               .show-info {
                 position: absolute;
                 top: 20px;
@@ -635,6 +619,10 @@
 
                 @media screen and (max-width: $tablet2) {
                   display: block;
+                }
+
+                & svg{
+                  pointer-events: none;
                 }
 
               }
@@ -656,9 +644,6 @@
               }
 
             }
-
-
-
 
 
             // flip-card
