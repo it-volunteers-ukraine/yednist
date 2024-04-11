@@ -138,92 +138,36 @@
   &__appeal-text-1 {
     grid-area: a;
     background-color: $lavender;
-    padding: 41px 40px;
-    @media screen and (max-width: $desktop) {
-      padding: 44px 24px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 17px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 16px 16px;
-    }
+    padding: 24px;
   }
 
   &__appeal-text-2 {
     grid-area: b;
     background-color: $pink;
-    padding: 40px 34px;
-    @media screen and (max-width: $desktop) {
-      padding: 25px 24px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 24px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 16px 16px;
-    }
+    padding: 24px;
   }
 
   &__appeal-text-3 {
     grid-area: c;
     background-color: $yellow;
-    padding: 40px 24px;
-    @media screen and (max-width: $desktop) {
-      padding: 40px 24px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 37px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 16px 16px;
-      background-color: $pink;
-    }
+    padding: 24px;
   }
 
   &__appeal-text-4 {
     grid-area: d;
     background-color: $lavender;
-    padding: 40px 40px;
-    @media screen and (max-width: $desktop) {
-      padding: 24px 24px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 43px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      background-color: $yellow;
-      padding: 16px 16px;
-    }
+    padding: 24px;
   }
 
   &__appeal-text-5 {
     grid-area: e;
     background-color: $lavender;
-    padding: 42px 40px;
-    @media screen and (max-width: $desktop) {
-      padding: 40px 24px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 16px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 16px 16px;
-    }
+    padding: 24px;
   }
   &__appeal-text-6 {
     grid-area: f;
     background-color: $yellow;
-    padding: 30px 40px;
-    @media screen and (max-width: $desktop) {
-      padding: 36px 40px;
-    }
-    @media screen and (max-width: $tablet2) {
-      padding: 24px 24px;
-    }
-    @media screen and (max-width: $mobile) {
-      padding: 16px 12px;
-    }
+    padding: 24px;
   }
 
   //project section
