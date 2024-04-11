@@ -139,35 +139,53 @@
     grid-area: a;
     background-color: $lavender;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
 
   &__appeal-text-2 {
     grid-area: b;
     background-color: $pink;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
 
   &__appeal-text-3 {
     grid-area: c;
     background-color: $yellow;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
 
   &__appeal-text-4 {
     grid-area: d;
     background-color: $lavender;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
 
   &__appeal-text-5 {
     grid-area: e;
     background-color: $lavender;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
   &__appeal-text-6 {
     grid-area: f;
     background-color: $yellow;
     padding: 24px;
+    @media screen and (max-width: $mobile) {
+      padding: 16px;
+    }
   }
 
   //project section
