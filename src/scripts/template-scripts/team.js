@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll('.show-info');
+const cardContainer = document.getElementById('cards-container')
 
 
 let teamSwiper = null;
@@ -37,7 +37,7 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                speed: 650,
+                autoHeight: true,
                 effect: 'opacity',
                 fadeEffect: {
                     crossFade: true
@@ -57,7 +57,6 @@ function swiperMode() {
                     el: '.swiper-custom-pagination',
                     clickable: true,
                 },
-                speed: 800,
                 slidesPerView: 1,
                 spaceBetween: 12,
                 grid: {
@@ -80,7 +79,6 @@ function swiperMode() {
             }
 
             teamSwiper = new Swiper('.team_slider', {
-                speed: 800,
                 effect: 'opacity',
                 fadeEffect: {
                     crossFade: true
@@ -140,38 +138,25 @@ function addColorForCards() {
 
 addColorForCards()
 
+
 function showInfo(event) {
 
-    const targetButton = event.currentTarget;
+    const targetButton = event.target;
 
-    const flipCard = targetButton.closest('.flip-card');
-
-    const infoByButton = flipCard.querySelector('.flip-card-back');
-
-    const flipInner = flipCard.querySelector('.flip-card-inner')
+    const flipInner = targetButton.nextElementSibling;
 
     const isMobile = window.innerWidth < 991.98;
 
 
-    if (isMobile) {
-        flipInner.classList.add('flipped');
+    if (isMobile && targetButton.classList.contains('show-info')) {
+        flipInner.classList.toggle('flipped');
     }
 
-
-    infoByButton.addEventListener('click', function () {
-        if (isMobile) {
-            flipInner.classList.remove('flipped');
-        }
-    })
 
 }
 
 
-buttons.forEach(function (button) {
-    button.addEventListener("click", function (event) {
-        showInfo(event);
-    })
-})
+cardContainer.addEventListener("click", showInfo)
 
 
 
