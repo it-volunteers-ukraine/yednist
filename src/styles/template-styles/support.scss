@@ -113,6 +113,10 @@
       border: 1px solid $black;
       background: $lavender;
     }
+    @media screen and (max-width: $mobile) {
+      padding-right: 18px;
+      padding-left: 18px;
+    }
   }
 
   & .moneysupport__block {
@@ -250,13 +254,13 @@
         line-height: 1.6;
       }
       @media screen and (max-width: $mobile) {
+        gap: 4px;
       }
 
       & .icon_copy {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 20px;
+        height: 20px;
         & svg {
           stroke: $black;
           stroke-width: 1.33px;
@@ -270,9 +274,10 @@
       & .hidden-checkmark {
         display: none;
         position: absolute;
-        top: 0;
-        right: -12px;
-        fill: green;
+        top: 50%;
+        left: 40%;
+        transform: translateY(-50%);
+        fill: rgb(4, 172, 4);
 
         &.checked {
           display: block;

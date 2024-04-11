@@ -85,7 +85,7 @@ get_header();
                     <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-copy_doc">
                     </use>
                   </svg>
-                  <svg class="hidden-checkmark copy_current_account-js" width="12px" height="12px">
+                  <svg class="hidden-checkmark copy_current_account-js" width="8px" height="8px">
                     <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon-checkmark">
                     </use>
                   </svg>
