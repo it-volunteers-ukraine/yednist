@@ -234,7 +234,6 @@
         }
 
 
-
         @media screen and (max-width: $mobile) {
           font-style: italic;
           font-family: $primary-font;
@@ -621,7 +620,7 @@
                   display: block;
                 }
 
-                & svg{
+                & svg {
                   pointer-events: none;
                 }
 
@@ -631,11 +630,6 @@
               .flip-card-inner {
                 transform-style: preserve-3d;
                 transition: transform .5s;
-
-                @media screen and (max-width: $tablet2) {
-                  transition: opacity .5s linear;
-                  transform: none;
-                }
 
                 .flip-card-front, .flip-card-back {
                   backface-visibility: hidden;
@@ -661,17 +655,11 @@
             }
 
 
-
-
             .flip-card {
               .flip-card-inner.flipped {
                 transform: rotateY(180deg);
-                .show-info{
-                  opacity: 0;
-                }
               }
             }
-
 
 
             .size-block {
