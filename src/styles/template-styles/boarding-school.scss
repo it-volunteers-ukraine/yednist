@@ -73,15 +73,21 @@
           }
         }
       }
-      &__video {
-        height: max-content;
-        &-main {
-          width: 100%;
-          height: 100%;
-          border-radius: $bid-border-radius;
-          @media screen and (max-width: $tablet2) {
-            border-radius: $small-border-radius;
-          }
+      &__video-main {
+        max-height: 805px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: $bid-border-radius;
+        @media screen and (max-width: $desktop) {
+          max-height: 600px;
+        }
+        @media screen and (max-width: $tablet2) {
+          border-radius: $small-border-radius;
+          max-height: 387px;
+        }
+        @media screen and (max-width: $mobile) {
+          max-height: 200px;
+          min-height: 200px;
         }
       }
     }
