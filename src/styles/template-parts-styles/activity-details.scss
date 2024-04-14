@@ -259,6 +259,7 @@
   width: 12px;
   height: 6px;
   margin-left: 12px;
+  pointer-events: none;
   &.active svg {
     transform: rotate(-180deg);
   }
