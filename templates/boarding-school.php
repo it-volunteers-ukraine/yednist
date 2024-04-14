@@ -16,11 +16,15 @@ get_header();
           $quotation_text = get_field("quotation_text"); 
           $video_link = get_field('video_link'); 
         ?>
-        <div class="main__section__content__video">
-        <video class="main__section__content__video-main" controls controlsList="nodownload" disablePictureInPicture>
+ <div class="main__section__content__video">
+    <img id="image" src="<?php echo $main_photo['url']; ?>" alt="Image">
+    <button id="playButton"><svg class="main__section__content__quotation__icon">
+            <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-youtube"></use>
+          </svg></button>
+</div>
+<video id='video' class="main__section__content__video-main" controls controlsList="nodownload" disablePictureInPicture>
         <source src="<?php echo $video_link['url']; ?>" type="video/mp4">
     </video>
-        </div>
         <div class="main__section__content__quotation">
           <svg class="main__section__content__quotation__icon">
             <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#icon-bi_quote"></use>

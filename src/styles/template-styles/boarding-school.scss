@@ -73,21 +73,60 @@
           }
         }
       }
-      &__video-main {
-        max-height: 805px;
-        width: 100%;
-        object-fit: cover;
-        border-radius: $bid-border-radius;
-        @media screen and (max-width: $desktop) {
-          max-height: 600px;
+      &__video {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+        #image {
+          max-height: 805px;
+          width: 100%;
+          object-fit: cover;
+          border-radius: $bid-border-radius;
+          @media screen and (max-width: $desktop) {
+            max-height: 600px;
+          }
+          @media screen and (max-width: $tablet2) {
+            border-radius: $small-border-radius;
+            max-height: 387px;
+          }
+          @media screen and (max-width: $mobile) {
+            max-height: 200px;
+            min-height: 200px;
+          }
         }
-        @media screen and (max-width: $tablet2) {
-          border-radius: $small-border-radius;
-          max-height: 387px;
+        #playButton {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          svg {
+            width: 200px;
+            height: 200px;
+            fill: #f7f7fc;
+          }
+          &:hover {
+            svg {
+              transform: scale(1.1);
+              transition: all $transition-function;
+            }
+          }
         }
-        @media screen and (max-width: $mobile) {
-          max-height: 200px;
-          min-height: 200px;
+        &-main {
+          max-height: 805px;
+          width: 100%;
+          object-fit: cover;
+          border-radius: $bid-border-radius;
+          @media screen and (max-width: $desktop) {
+            max-height: 600px;
+          }
+          @media screen and (max-width: $tablet2) {
+            border-radius: $small-border-radius;
+            max-height: 387px;
+          }
+          @media screen and (max-width: $mobile) {
+            max-height: 200px;
+            min-height: 200px;
+          }
         }
       }
     }
