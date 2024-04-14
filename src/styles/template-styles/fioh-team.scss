@@ -656,10 +656,12 @@
 
   &__btn-exit {
     position: absolute;
-    top: -40px;
+    top: -8px;
     right: 0px;
     pointer-events: none;
-
+    @media screen and (max-width: $tablet2) {
+      top: -40px;
+    }
     @media screen and (max-width: $mobile) {
       display: none;
     }
