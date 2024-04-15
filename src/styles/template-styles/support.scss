@@ -265,6 +265,8 @@
 
       & .icon_copy {
         position: relative;
+        display: flex;
+        align-items: center;
         width: 20px;
         height: 20px;
         & svg {
