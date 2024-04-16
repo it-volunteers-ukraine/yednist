@@ -659,3 +659,5 @@ function custom_textarea_confirmation_validation_filter($result, $tag)
 
     return $result;
 }
+
+add_theme_support( 'post-thumbnails' );
