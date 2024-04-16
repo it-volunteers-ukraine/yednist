@@ -91,16 +91,14 @@ global $post;
               <?php get_template_part( 'template-parts/gallery-section' ); ?>
               <div class="about__gallery-album">
                 <div class="about__gallery-img"><img src="<?php the_field('about-img-album'); ?>" alt="album"></div>
-                <a href="<?php the_field('about-gallery-link'); ?>" class="about__gallery-link"
-                  target="_blank"><?php the_field('about-gallery-photo'); ?></a>
+                <a href="<?php the_field('about-gallery-link'); ?>" class="about__gallery-link"><?php the_field('about-gallery-photo'); ?></a>
               </div>
             </div>
           </div>
           <div class="gallery-mobile">
             <?php get_template_part( 'template-parts/gallery-mobile' ); ?>
             <div class="gallery__body">
-              <a href="<?php the_field('about-gallery-link'); ?>" class="about__gallery-link"
-                target="_blank"><?php the_field('about-gallery-photo'); ?></a>
+              <a href="<?php the_field('about-gallery-link'); ?>" class="about__gallery-link"><?php the_field('about-gallery-photo'); ?></a>
             </div>
           </div>
         </div>

@@ -8,24 +8,23 @@
       margin-bottom: 16px;
     }
   }
-  &__img {
-    overflow: hidden;
-    transition: opacity 0.8s ease 0s;
+  &__img {    
     margin-bottom: 40px;
     border-radius: $bid-border-radius;
     @media (max-width: $tablet2) {
       margin-bottom: 16px;
       border-radius: $small-border-radius;
     }
-    img {
-      transition: transform 0.8s ease 0s;
+    img {   
+      object-fit: cover;  
+      border-radius: $bid-border-radius;
       @media (max-width: $tablet2) {
         border-radius: $small-border-radius;
-      }
-      &:hover {
-        transition: ease 0.7s;
-        transform: scale(1.1);
-      }
+        height: 480px;
+      }    
+      @media (max-width: $mobile) {
+        height: 200px;        
+      }   
     }
   }
   &__purpose {
@@ -207,18 +206,18 @@
     &-album {
       border: 1px solid $violet-grey;
       border-radius: $small-border-radius;
-      padding: 22% 20.5%;
+      padding: 22% 17.1%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       gap: 50px;
       @media (max-width: $desktop) {
-        padding: 20% 23.5%;
+        padding: 20% 20.8%;
       }
       @media (max-width: $tablet2) {
         max-width: 425px;
-        padding: 87px 72px;
+        padding: 87px 64.5px;
       }
       @media (max-width: $tablet1) {
         padding: 27% 23.5%;
@@ -251,6 +250,7 @@
       &:hover {
         text-decoration: underline;
         transition: ease 0.7s;
+        box-shadow: 0px 4px 4px 0px #1D20873B;        
       }
     }
     .gallery-mobile {
@@ -325,25 +325,7 @@
         }
         @media (max-width: $tablet2) {
         }
-      }
-      /*.about__documents-text {
-                @media (max-width: $desktop) {    
-                    max-width: 170px;                
-                    height: 78px;
-                    overflow: hidden;  
-                }
-                @media (max-width: $tablet2) {
-                    max-width: 124px;
-                    height: 52px;
-                } 
-                p {
-                    @media (max-width: $desktop) {
-                        white-space: nowrap; 
-                        overflow: hidden; 
-                        text-overflow: ellipsis; 
-                    }
-                } 
-            }*/
+      }      
     }
     &-button {
       margin: 0 auto;
@@ -367,6 +349,10 @@
       }
       @media (max-width: $mobile) {
         width: 100%;
+      }
+      &:hover {        
+        transition: ease 0.7s;
+        box-shadow: 0px 4px 4px 0px #1D20873B;        
       }
       img {
         width: 16px;
