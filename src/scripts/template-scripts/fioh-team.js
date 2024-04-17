@@ -147,9 +147,11 @@ Array.from(list).forEach((el) => {
 
     video.src += "?enablejsapi=1";
     document.body.classList.add("modal-open");
-
     modal.style.display = "block";
-    if (e.target.classList.contains("fioh-team__modal_background")) {
+    if (
+      e.target.classList.contains("fioh-team__modal_background") ||
+      e.target.classList.contains("fioh-team__btn-exit")
+    ) {
       modal.style.display = "none";
       document.body.classList.remove("modal-open");
       video.contentWindow.postMessage(
