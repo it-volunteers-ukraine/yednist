@@ -16,8 +16,10 @@
     @media screen and (max-width: $desktop) {
       font-size: 40px;
     }
-    @media screen and (max-width: $mobile) {
+    @media screen and (max-width: 650px) {
       font-size: 28px;
+    }
+    @media screen and (max-width: $mobile) {
       margin-bottom: 16px;
     }
   }
