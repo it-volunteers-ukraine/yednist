@@ -33,13 +33,11 @@
                 $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
 $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
 
-// Отримання батьківської сторінки "Проєкти"
 $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
 $parent_page = get_page_by_path($parent_slug);
 
-// Отримання дочірніх сторінок під сторінкою "Проєкти"
 $child_pages = get_pages(array(
-    'child_of' => $parent_page->ID, // Отримуємо дочірні сторінки під батьківською сторінкою
+    'child_of' => $parent_page->ID,
     'sort_column' => 'post_date',
     'sort_order' => 'DESC'
 ));
@@ -50,17 +48,13 @@ foreach ($menu_left as $index => $menu_item) {
     $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
 
     if ($menu_item->title === $projects_title) {
-        // Виведення посилання на батьківську сторінку "Проєкти"
         echo '<li class="header__menu__projects ' . esc_attr($current_class) . '"><div class="header__projects__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__projects__icon"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use></svg></div><ul class="header__projects__menu"><li class="header__projects__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' <span class="header__projects__menu__item__text">' . esc_html($menu_item->title) . '</span></a></li>';
-        
-        // Виведення посилань на дочірні сторінки під сторінкою "Проєкти"
         foreach ($child_pages as $child_page) {
             echo '<li class="header__projects__menu__item"><a href="' . esc_url(get_permalink($child_page->ID)) . '">' . esc_html($child_page->post_title) . '</a></li>';
         }
         
         echo '</ul></li>';
     } else {
-        // Виведення посилання на інші сторінки
         echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
     }
 }
