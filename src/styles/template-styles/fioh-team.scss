@@ -269,6 +269,9 @@
     @media screen and (max-width: $desktop) {
       height: 261px;
     }
+    @media screen and (max-width: $tablet2) {
+      height: 236px;
+    }
     @media screen and (max-width: $mobile) {
       height: 229px;
     }
@@ -282,6 +285,9 @@
     object-fit: cover;
     @media screen and (max-width: $desktop) {
       height: 261px;
+    }
+    @media screen and (max-width: $tablet2) {
+      height: 236px;
     }
     @media screen and (max-width: $mobile) {
       height: 229px;
@@ -626,7 +632,6 @@
 
   &__modal_window {
     position: fixed;
-
     width: 84%;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -637,18 +642,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     max-width: 1464px;
-
     @media screen and (max-width: $desktop) {
       max-width: 1096px;
     }
-
     @media screen and (max-width: $tablet2) {
       width: 100%;
     }
     @media screen and (max-width: $mobile) {
       padding: 0 16px;
+    }
+  }
+
+  &__btn-exit {
+    position: absolute;
+    top: -8px;
+    right: 0px;
+
+    & use {
+      pointer-events: none;
+    }
+
+    @media screen and (max-width: $tablet2) {
+      top: -40px;
+    }
+    @media screen and (max-width: $mobile) {
+      display: none;
     }
   }
 

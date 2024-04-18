@@ -33,9 +33,7 @@
         }
     }
     &-image { 
-        border-radius: $bid-border-radius;
-        overflow: hidden;   
-        transition: opacity 0.8s ease 0s;
+        border-radius: $bid-border-radius;        
         margin-bottom: 20px;
         @media (max-width: $desktop) {
             margin-bottom: 16px;
@@ -50,8 +48,7 @@
             width: 574px;
             height: 353px;
             object-fit: cover;
-            border-radius: $bid-border-radius;
-            transition: transform 0.8s ease 0s;
+            border-radius: $bid-border-radius;            
             @media (max-width: $desktop) {
                 width: 427px;
                 height: 263px;
@@ -63,11 +60,7 @@
             @media (max-width: $tablet1) {
                 width: 220px;
                 height: auto;
-            } 
-            &:hover {               
-                transition: ease 0.7s;
-                transform: scale(1.1);
-            }                       
+            }                                 
         }
     }
     &-adress {
@@ -322,14 +315,11 @@
             line-height: 140%; 
         }   
         a {
-            color: $blue;
-            transition: all $transition-function;
-            &:hover {
-                color: $black              
-            }
+            color: $blue;            
         }
     }
     #contactForm input[id="submit-btn"] {
+        font-family: $primary-font;
         width: 277px;
         padding: 12px;
         border-radius: $bid-border-radius; 
@@ -341,7 +331,11 @@
         }  
         @media (max-width: $mobile) {
             width: 100%;
-        }     
+        }  
+        &:hover {        
+            transition: ease 0.7s;
+            box-shadow: 0px 4px 4px 0px #1D20873B;        
+        }   
     }    
     .wpcf7-response-output {
         display: none;

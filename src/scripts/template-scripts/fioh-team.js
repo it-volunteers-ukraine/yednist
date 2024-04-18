@@ -3,6 +3,7 @@ new Swiper(".fioh-team__appeal-wrapper-mobile", {
   loop: true,
   slidesPerView: 1,
   spaceBetween: 30,
+  autoHeight: true,
   pagination: {
     el: ".swiper-pagination",
     type: "bullets",
@@ -136,6 +137,8 @@ function getItemsCount() {
   }
 }
 
+//modal
+
 const list = document.querySelectorAll(".fioh-team__project__item");
 Array.from(list).forEach((el) => {
   el.addEventListener("click", (e) => {
@@ -143,10 +146,14 @@ Array.from(list).forEach((el) => {
     const video = modal.querySelector("iframe");
 
     video.src += "?enablejsapi=1";
-
+    document.body.classList.add("modal-open");
     modal.style.display = "block";
-    if (e.target.classList.contains("fioh-team__modal_background")) {
+    if (
+      e.target.classList.contains("fioh-team__modal_background") ||
+      e.target.classList.contains("fioh-team__btn-exit")
+    ) {
       modal.style.display = "none";
+      document.body.classList.remove("modal-open");
       video.contentWindow.postMessage(
         '{"event":"command","func":"' + "stopVideo" + '","args":""}',
         "*"

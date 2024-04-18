@@ -13,9 +13,13 @@
   }
 
   & .support__section--title {
-    font-size: 40px;
-    @media screen and (max-width: $mobile) {
+    @media screen and (max-width: $desktop) {
+      font-size: 40px;
+    }
+    @media screen and (max-width: 650px) {
       font-size: 28px;
+    }
+    @media screen and (max-width: $mobile) {
       margin-bottom: 16px;
     }
   }
@@ -228,6 +232,9 @@
       display: block;
       font-size: 14px;
     }
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     & .moneysupport__name {
       min-width: 277px;
@@ -244,6 +251,7 @@
     & .current_account {
       min-width: 507px;
       display: flex;
+      align-items: center;
       gap: 16px;
       @media screen and (max-width: $desktop) {
         min-width: 460px;
@@ -259,6 +267,8 @@
 
       & .icon_copy {
         position: relative;
+        display: flex;
+        align-items: center;
         width: 20px;
         height: 20px;
         & svg {
