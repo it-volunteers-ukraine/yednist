@@ -73,8 +73,8 @@
                     }
                     ?>
                 </div>
+                <ul class="header__second__list">
                 <?php
-                echo '<ul class="header__second__list">';
                 foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {
                         $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
@@ -105,7 +105,6 @@
                         echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     }
                 }
-                echo '</ul>';
               ?>
               </ul>
             </div>
