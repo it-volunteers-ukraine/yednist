@@ -21,6 +21,7 @@
                   <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#close"></use>
                 </svg>
               </div>
+              <ul class="header__first__list">
               <?php
                 $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
                 $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu-ukrainian' : 'header-menu-polski');
@@ -29,8 +30,6 @@
                 $menu_left = array_slice($menu_items, 0, $middle_index);
                 $menu_right = array_slice($menu_items, $middle_index);
                 $inside_projects = false;
-
-                echo '<ul class="header__first__list">';
 
                 foreach ($menu_left as $index => $menu_item) {
                     $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
@@ -45,7 +44,6 @@
                         'sort_column' => 'post_date',
                         'sort_order' => 'DESC'
                     ));
-
                   if ($menu_item->title === $gallery_title) {
                     if(is_category(($current_language == 'EN') ? 'gallery-en' : (($current_language == 'УКР') ? 'gallery' : 'gallery-pl'))){
                       $current_class .= ' header__current__page';
@@ -57,17 +55,17 @@
                   if ($menu_item->title === $projects_title) {
                     echo '<li class="header__menu__projects ' . esc_attr($current_class) . '"><div class="header__projects__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__projects__icon"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use></svg></div><ul class="header__projects__menu"><li class="header__projects__menu__item ' . esc_attr((is_page($menu_item->object_id)) ? ' header__current__page' : '') . '"><a href="' . esc_url($menu_item->url) . '">' . (($current_language == 'EN') ? 'All' : (($current_language == 'УКР') ? 'Усі' : 'Wszystkie')) . ' <span class="header__projects__menu__item__text">' . esc_html($menu_item->title) . '</span></a></li>';
                     foreach ($child_pages as $child_page) {
-                      echo '<li class="header__projects__menu__item"><a href="' . esc_url(get_permalink($child_page->ID)) . '">' . esc_html($child_page->post_title) . '</a></li>';
+                      $child_current_class = (is_page($child_page->ID)) ? ' header__current__page' : '';
+                      echo '<li class="header__projects__menu__item' . esc_attr($child_current_class) . '"><a href="' . esc_url(get_permalink($child_page->ID)) . '">' . esc_html($child_page->post_title) . '</a></li>';
                     }
-  
                     echo '</ul></li>';
                   } else {
                     echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                   }
                 }
 
-                echo '</ul>';
                 ?>
+                </ul>
                 <div class="header__logo">
                     <?php
                     if (has_custom_logo()) {
