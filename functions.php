@@ -656,3 +656,8 @@ function custom_textarea_confirmation_validation_filter($result, $tag)
 }
 
 add_theme_support( 'post-thumbnails' );
+
+
+if ( class_exists( 'WooCommerce' ) ) {
+require_once(get_template_directory() . '/woo-c.php');
+}
