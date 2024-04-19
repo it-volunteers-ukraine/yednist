@@ -109,7 +109,11 @@ get_header();
                                 <div class="fioh-team__modal">
                                     <div class="fioh-team__modal_background">
                                         <div class="fioh-team__modal_window">
+                                            <svg class="fioh-team__btn-exit" width="40" height="40">
+                <use href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#close"></use>
+            </svg>
                                             <div class="fioh-team__modal_player">
+                                                
                                                 <?php echo $link; ?>
                                             </div>
                                         </div>

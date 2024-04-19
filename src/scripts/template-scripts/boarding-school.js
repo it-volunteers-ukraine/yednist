@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const image = document.getElementsByClassName(
+    "main__section__content__video"
+  );
+  const playButton = document.getElementById("playButton");
+  const video = document.getElementById("video");
+  video.style.display = "none";
+  playButton.addEventListener("click", function () {
+    image[0].style.display = "none";
+    video.style.display = "block";
+    video.play();
+  });
   const screenWidth575 = window.matchMedia("(max-width: 575.98px)");
 
   function initSwiper() {
