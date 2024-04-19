@@ -242,6 +242,10 @@
       }
     }
 
+    & .fioh-team__project__name {
+      transition: $transition-function;
+    }
+
     &:nth-child(3n + 1) {
       .fioh-team__project__name {
         background-color: $lavender;
@@ -283,6 +287,7 @@
     height: 300px;
     max-width: 100%;
     object-fit: cover;
+    transition: $transition-function;
     @media screen and (max-width: $desktop) {
       height: 261px;
     }
@@ -380,7 +385,7 @@
 
   &__team-repeater-img {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-shrink: 0;
     border-radius: $small-border-radius;
