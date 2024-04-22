@@ -53,13 +53,14 @@
       @media screen and (max-width: $mobile) {
         padding: 11px 40px;
       }
+
+      img{
+        transition: transform 0.5s ease;
+      }
     }
 
     img:hover {
-      @media screen and (max-width: $desktop) {
         cursor: zoom-in;
-        transform: scale(150%);
-        transition: 0.5s;
-      }
+        transform: scale(1.5);
     }
   }
