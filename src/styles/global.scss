@@ -27,7 +27,7 @@
     max-width: 1352px;
   }
 
-  @media screen and (max-width: $tablet1) {
+  @media screen and (max-width: 768px) {
     max-width: 720px;
   }
 
@@ -58,12 +58,15 @@
   padding: 12px 24px;
   width: fit-content;
   min-width: 277px;
+  height: 54px;
   border-radius: $bid-border-radius;
   text-transform: uppercase;
   transition: all $transition-function;
 
   @media screen and (max-width: $desktop) {
     min-width: 203px;
+    height: 48px;
+    font-size: 16px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;
@@ -118,9 +121,8 @@
   }
   @media screen and (max-width: $tablet2) {
     gap: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-size: 20px;
-    line-height: 1.5;
   }
   @media screen and (max-width: $mobile) {
     font-size: 18px;
@@ -132,7 +134,7 @@
     height: 2px;
     display: block;
     background-color: $violet-grey;
-    @media screen and (max-width: $desktop) {
+    @media screen and (max-width: $tablet2) {
       height: 1px;
     }
   }
@@ -150,4 +152,18 @@
   &::after {
     flex: 1 1 auto;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

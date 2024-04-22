@@ -88,7 +88,49 @@ jQuery(document).ready(function ($) {
     updatePaginationButtons();
   });
 
+  $(".feedback-section__wrapper").swipe({
+    swipeLeft: function (e) {
+      // Обробка свайпу вліво
+      if (currentPage < totalPages) {
+        currentPage++;
+        loadPosts(currentPage);
+        updateCurrentPage();
+      }
+    },
+    swipeRight: function (e) {
+      // Обробка свайпу вправо
+      if (currentPage > 1) {
+        currentPage--;
+        loadPosts(currentPage);
+        updateCurrentPage();
+      }
+    },
+    threshold: 75, // Мінімальна відстань, яка вважається свайпом
+  });
+
   // Початкове завантаження постів
   loadPosts(currentPage);
   updateCurrentPage();
+
+  // hide & show comments
+  const hide_btn = myAjax.hide_btn;
+  const read_btn = myAjax.read_btn;
+
+  document.addEventListener("click", (e) => {
+    const readBtn = e.target;
+    if (readBtn.className === "feedback-open__btn") {
+      const fullText = readBtn.nextElementSibling;
+      const shortText = readBtn.previousElementSibling;
+
+      if (fullText.classList.contains("hidden")) {
+        readBtn.innerHTML = `${hide_btn}`;
+        fullText.classList.remove("hidden");
+        shortText.classList.add("hidden");
+      } else {
+        readBtn.innerHTML = `${read_btn}`;
+        fullText.classList.add("hidden");
+        shortText.classList.remove("hidden");
+      }
+    }
+  });
 });

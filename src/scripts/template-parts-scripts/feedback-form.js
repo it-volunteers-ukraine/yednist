@@ -7,35 +7,35 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const feedbackBackdrop = document.getElementById("js-feedback-form");
   const feedbackModalEl = document.querySelector(".feedback-modal");
+  let containerHeight = parseInt(getComputedStyle(feedbackModalEl).height);
+
+  function screenOrientation(containerHeight, height) {
+    if (containerHeight > height) {
+      feedbackModalEl.classList.add("horizontal");
+    } else {
+      feedbackModalEl.classList.remove("horizontal");
+    }
+  }
 
   //open-close modal
   if (openFeedbackFormButton) {
     openFeedbackFormButton.addEventListener("click", showForm);
 
     let screenHeight = window.innerHeight;
-    const computedStyle = getComputedStyle(feedbackModalEl);
-    const containerHeight = parseInt(computedStyle.height);
 
     function lookForSizeChanges() {
       screenHeight = window.innerHeight;
-      screenOrientation(screenHeight);
-    }
-
-    function screenOrientation(height) {
-      if (containerHeight > height) {
-        feedbackModalEl.classList.add("horizontal");
-      } else {
-        feedbackModalEl.classList.remove("horizontal");
-      }
+      screenOrientation(containerHeight, screenHeight);
     }
 
     function showForm() {
       const windowScrollY = window.scrollY;
-      document.documentElement.style.scrollBehavior = "auto";
+      //document.documentElement.style.scrollBehavior = "auto";
       feedbackBackdrop.classList.remove("is-hidden");
-      screenOrientation(screenHeight);
+      screenOrientation(containerHeight, screenHeight);
+      window.addEventListener("resize", lookForSizeChanges);
       closeFeedbackFormButton.addEventListener("click", hideForm);
-      feedbackBackdrop.addEventListener("click", closeByBgdClick);
+      feedbackBackdrop.addEventListener("mousedown", closeByBgdClick);
       window.addEventListener("keydown", closeByPressEscape);
       window.addEventListener("resize", lookForSizeChanges);
 
@@ -46,13 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideForm() {
       feedbackBackdrop.classList.add("is-hidden");
       closeFeedbackFormButton.removeEventListener("click", hideForm);
-      feedbackBackdrop.removeEventListener("click", closeByBgdClick);
+      feedbackBackdrop.removeEventListener("mousedown", closeByBgdClick);
       feedbackModalEl.classList.remove("horizontal");
+      window.removeEventListener("resize", lookForSizeChanges);
 
       const scrollY = parseInt(document.documentElement.style.top || "0");
       document.documentElement.classList.remove("modal__opened");
       window.scrollTo(0, -scrollY);
-      document.documentElement.style.scrollBehavior = "smooth";
+      //document.documentElement.style.scrollBehavior = "smooth";
     }
 
     function closeByBgdClick(e) {
@@ -102,6 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (event.detail.choice.id === choicesLength) {
           additionalField.classList.add("shown");
+          let screenHeight = window.innerHeight;
+
+          function lookForSizeChanges() {
+            feedbackModalEl.classList.remove("horizontal");
+            containerHeight = feedbackModalEl.offsetHeight;
+            screenOrientation(containerHeight, screenHeight);
+          }
+
+          lookForSizeChanges();
         } else additionalField.classList.remove("shown");
       },
       false
@@ -149,6 +159,15 @@ document.addEventListener("DOMContentLoaded", function () {
           inputEl.classList.add("valid");
           inputEl.classList.remove("invalid");
         }
+
+        if (inputEl === inputReviewEl) {
+          const textareaBox = $(".textarea-box");
+          if (!check || inputEl.classList.contains("invalid")) {
+            textareaBox.addClass("invalid").removeClass("valid");
+          } else {
+            textareaBox.addClass("valid").removeClass("invalid");
+          }
+        }
       }
 
       inputNameEl.addEventListener("keyup", validateInput);
@@ -181,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(".feedback-backdrop").addClass("is-hidden");
             notificationBox.removeClass("is-hidden");
             $(window).on("keydown", escHandler);
-            notificationBox.on("click", closeBgdClick);
+            notificationBox.on("mousedown", closeBgdClick);
             timerId = setTimeout(closeNotification, 5000);
             notificationBtn.on("click", closeNotification);
           });
@@ -191,11 +210,11 @@ document.addEventListener("DOMContentLoaded", function () {
           const scrollY = $("html").css("top");
           clearTimeout(timerId);
           notificationBox.addClass("is-hidden");
-          notificationBox.off("click", closeBgdClick);
+          notificationBox.off("mousedown", closeBgdClick);
           $("html").removeClass("modal__opened");
           window.scrollTo(0, parseInt(scrollY || "0") * -1);
           $(window).off("keydown", escHandler);
-          $("html").css("scrollBehavior", "smooth");
+          //$("html").css("scrollBehavior", "smooth");
         }
 
         //form validation
@@ -210,6 +229,20 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!inputEl.value.trim() || inputEl.classList.contains("invalid")) {
             inputEl.classList.add("invalid");
             $(".feedback-alert").removeClass("hidden");
+
+            let screenHeight = window.innerHeight;
+            let containerHeight = parseInt(
+              getComputedStyle(feedbackModalEl).height
+            );
+
+            function lookForSizeChanges() {
+              screenHeight = window.innerHeight;
+              screenOrientation(containerHeight, screenHeight);
+            }
+
+            lookForSizeChanges();
+
+            $(window).resize(lookForSizeChanges);
             isFormValid = false;
           }
         });

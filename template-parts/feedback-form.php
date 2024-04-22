@@ -22,11 +22,13 @@
           <div class="feedback-name-email__wrapper">
 
             <div class="feedback-input__wrapper"><label for="title"><?php the_field('feedback_your_name'); ?></label>
-              <input type="text" id="title" value="" tabindex="1" size="20" name="title" class="input-name" />
+              <input type="text" id="title" value="" size="20" name="title" class="input-name" maxlength="50"
+                placeholder="<?php the_field('feedback_name_placeholder'); ?>" />
             </div>
 
             <div class="feedback-input__wrapper"><label for="email"><?php the_field('feedback_your_email'); ?></label>
-              <input type="text" id="email" value="" tabindex="1" size="20" name="email" class="input-email" />
+              <input type="text" id="email" value="" size="20" name="email" class="input-email" maxlength="50"
+                placeholder="<?php the_field('feedback_email_placeholder'); ?>" />
             </div>
 
           </div>
@@ -57,8 +59,8 @@
           <div class="feedback-case" id="case-js">
 
             <label for="case"><?php the_field('feedback_your_case'); ?></label>
-            <input type="text" id="case" value="" tabindex="1" size="20" name="case" maxlength="350"
-              class="input-case" />
+            <input type="text" id="case" value="" size="20" name="case" maxlength="150" class="input-case"
+              placeholder="<?php the_field('feedback_case_placeholder'); ?>" />
 
           </div>
 
@@ -66,8 +68,10 @@
           <div>
 
             <label for="description"><?php the_field('feedback_your_review'); ?></label>
-            <textarea class="input-review" id="description" tabindex="3" name="description" cols="50" rows="6"
-              maxlength="1000" placeholder="Введіть текст"></textarea>
+            <div class="textarea-box">
+              <textarea class="input-review" id="description" name="description" cols="50" rows="6" maxlength="1000"
+                placeholder=" <?php the_field('feedback_review_placeholder'); ?>"></textarea>
+            </div>
 
           </div>
 
@@ -77,8 +81,18 @@
 
           <label class="feedback-privacy__label">
             <input class="feedback-check" type="checkbox" name="privacy" required>
-            <span><?php the_field('feedback_policy_text'); ?><a class="feedback-privacy__link"
-                href="<?php the_field("policy", "options"); ?>"><?php the_field('feedback_policy_name'); ?></a>*
+            <span><?php the_field('feedback_policy_text'); ?>
+              <?php
+                    $link = get_field('policy', 'option');
+                    if ($link):
+                        $link_url = $link['url'];
+                        $link_target = $link['target'] ? $link['target'] : '_self';
+                        ?>
+              <a class="feedback-privacy__link" href="<?php echo esc_url($link_url); ?>"
+                target="<?php echo esc_attr($link_target); ?>" rel="noopener noreferrer">
+                <?php the_field('feedback_policy_name'); ?>*
+              </a>*
+              <?php endif; ?>
             </span>
           </label>
 
@@ -87,8 +101,8 @@
 
         <div class="feedback__btn--wrap">
           <div class="feedback-alert hidden"><?php the_field('feedback_alert'); ?></div>
-          <input type="submit" value="<?php the_field('send_btn', 'options'); ?>" tabindex="6" id="submit" name="submit"
-            class="button primary-button" />
+          <input type="submit" value="<?php the_field('send_btn', 'options'); ?>" id="submit" name="submit"
+            class="button primary-button form__submit-btn" />
         </div>
 
         <input type="hidden" name="action" value="do_insert" />

@@ -1,0 +1,303 @@
+@import "../variables";
+
+.support__section {
+  & .support__section--container {
+    display: grid;
+    grid-template-columns: 51% auto;
+    @media screen and (max-width: $tablet2) {
+      grid-template-columns: 51.5% auto;
+    }
+    @media screen and (max-width: $mobile) {
+      display: block;
+    }
+  }
+
+  & .support__section--title {
+    @media screen and (max-width: $desktop) {
+      font-size: 40px;
+    }
+    @media screen and (max-width: 650px) {
+      font-size: 28px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 16px;
+    }
+  }
+
+  & .support__section--text {
+    font-family: $secondary-font;
+    @media screen and (max-width: $desktop) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: $tablet2) {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+}
+
+.moneysupport__section {
+  & .moneysupport__section--tabs {
+    display: flex;
+    padding: 16px 32px;
+    justify-content: space-between;
+    border-radius: $bid-border-radius;
+    background: $white;
+    box-shadow: 0px 4px 7px 0px $header-box-shadow;
+    margin-bottom: 60px;
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+    & .support__tab {
+      display: flex;
+      padding: 8px 32px;
+      min-width: 258px;
+      justify-content: center;
+      align-items: center;
+      border-radius: $bid-border-radius;
+      color: $blue;
+      font-size: 24px;
+      @media screen and (max-width: $desktop) {
+        min-width: 225px;
+        font-size: 20px;
+      }
+      @media screen and (max-width: 1200px) {
+        min-width: auto;
+      }
+      &.active {
+        background: $lavender;
+      }
+    }
+  }
+
+  // descktop + full
+  & .moneysupport__block_desktop {
+    padding: 60px;
+    border-radius: $bid-border-radius;
+    background: $white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    &.loading-overlay {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 122px 40px rgba(255, 255, 255, 0.6);
+        z-index: 999;
+      }
+    }
+    @media screen and (max-width: $tablet2) {
+      display: none;
+    }
+
+    &.first_tab .current_account,
+    &.first_tab .moneysupport__button--second {
+      min-width: 374px;
+      @media screen and (max-width: $desktop) {
+        min-width: 340px;
+      }
+      @media screen and (max-width: $tablet2) {
+        min-width: auto;
+      }
+    }
+  }
+
+  // tablet + mobile
+
+  & .moneysupport__section--list {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: block;
+      padding: 20px;
+      border-radius: $small-border-radius;
+      border: 1px solid $black;
+      background: $lavender;
+    }
+    @media screen and (max-width: $mobile) {
+      padding-right: 18px;
+      padding-left: 18px;
+    }
+  }
+
+  & .moneysupport__block {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      display: block;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $violet-grey;
+      }
+    }
+  }
+
+  & .moneysupport_accordion {
+    display: none;
+    @media screen and (max-width: $tablet2) {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $violet-grey;
+      }
+    }
+
+    & .moneysupport__type {
+      font-size: 18px;
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  & .plus-icon,
+  & .minus-icon {
+    min-width: 40px;
+    min-height: 40px;
+    transition: all $transition-function;
+    @media screen and (max-width: $tablet2) {
+      min-width: 24px;
+      min-height: 24px;
+    }
+    @media screen and (max-width: $mobile) {
+      min-width: 20px;
+      min-height: 20px;
+    }
+  }
+
+  & .panel {
+    @media screen and (max-width: $tablet2) {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height $transition-function;
+    }
+  }
+
+  & .minus-icon {
+    display: none;
+  }
+
+  & .moneysupport_accordion.active {
+    padding-bottom: 16px;
+    &::after {
+      content: none;
+    }
+    & .moneysupport__type {
+      color: $blue;
+    }
+    & .minus-icon {
+      display: block;
+    }
+    & .plus-icon {
+      display: none;
+    }
+  }
+
+  & .moneysupport__name-value {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    font-family: $secondary-font;
+    margin-bottom: 8px;
+    @media screen and (max-width: $desktop) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: $tablet2) {
+      justify-content: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 10px;
+      display: block;
+      font-size: 14px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & .moneysupport__name {
+      min-width: 277px;
+      color: $blue;
+      @media screen and (max-width: $desktop) {
+        min-width: 203px;
+      }
+      @media screen and (max-width: $tablet2) {
+        font: $primary-font;
+        min-width: auto;
+      }
+    }
+
+    & .current_account {
+      min-width: 507px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      @media screen and (max-width: $desktop) {
+        min-width: 460px;
+      }
+      @media screen and (max-width: $tablet2) {
+        gap: 8px;
+        min-width: auto;
+        line-height: 1.6;
+      }
+      @media screen and (max-width: $mobile) {
+        gap: 4px;
+      }
+
+      & .icon_copy {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        & svg {
+          stroke: $black;
+          stroke-width: 1.33px;
+          pointer-events: none;
+          & use {
+            pointer-events: none;
+          }
+        }
+      }
+
+      & .hidden-checkmark {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translateY(-50%);
+        fill: rgb(4, 172, 4);
+
+        &.checked {
+          display: block;
+        }
+      }
+    }
+  }
+
+  & .icon_copy {
+    stroke: $black;
+    fill: $white;
+  }
+}

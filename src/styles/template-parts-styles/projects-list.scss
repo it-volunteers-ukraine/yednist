@@ -1,0 +1,30 @@
+@import "../variables.scss";
+.projects {
+  &__section {
+    &__title.page-title {
+      margin-bottom: 40px;
+      @media screen and (max-width: $tablet2) {
+        margin-bottom: 16px;
+      }
+    }
+    &__swiper {
+      display: flex;
+      flex-direction: column;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 40px;
+      @media screen and (max-width: $tablet2) {
+        margin-bottom: 32px;
+      }
+      @media screen and (max-width: $mobile) {
+        margin-bottom: 16px;
+      }
+    }
+    & .swiper-autoheight .swiper-wrapper {
+      transition-property: none;
+    }
+    .swiper-wrapper {
+      max-height: fit-content;
+    }
+  }
+}

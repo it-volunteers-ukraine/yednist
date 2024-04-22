@@ -1,126 +1,180 @@
-jQuery(document).ready(function ($) {
-  // Початок показу лоадера
-  function showLoader() {
-    $(".loader").show();
+document.addEventListener("DOMContentLoaded", function () {
+  // accordion
+  const acc = document.getElementsByClassName("schedule-accordion");
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+
+      if (this.classList.contains("active")) {
+        this.setAttribute("aria-expanded", "true");
+      } else this.setAttribute("aria-expanded", "false");
+
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   }
 
-  // Кінець показу лоадера
-  function hideLoader() {
-    $(".loader").hide();
+  //slider
+
+  const allActivityCardsArray = document.querySelectorAll(".one-activity-js");
+  const allActivityCards = allActivityCardsArray.length;
+  const activitiesWrapper = document.querySelector(".activities__wrapper");
+  let currentPage = 1;
+
+  function changeJustifyContent() {
+    if (window.innerWidth > 1220 && allActivityCards < 3) {
+      activitiesWrapper.style.justifyContent = "center";
+      activitiesWrapper.style.gap = "80px";
+    }
   }
 
-  // Отримання nonce
-  function getActivitiesNonce() {
-    return activities.nonce;
+  function cardsPerPage() {
+    let cardPerPage = 3;
+    if (window.innerWidth < 1220) {
+      cardPerPage = 2;
+    }
+    if (window.innerWidth < 768) {
+      cardPerPage = 1;
+    }
+    return cardPerPage;
   }
+
+  let totalPages = Math.ceil(allActivityCards / cardsPerPage());
 
   function isPagination() {
-    var paginationBox = $(".activities-pagination__block");
+    const paginationBox = document.querySelector(
+      ".activities-pagination__block"
+    );
 
     if (totalPages === 1) {
-      paginationBox.addClass("hidden");
-    }
+      paginationBox.classList.add("hidden");
+    } else paginationBox.classList.remove("hidden");
   }
 
   // Оновлення кнопок пагінації
   function updatePaginationButtons() {
-    if (totalPages === 1) {
-      return;
-    }
-    var prevButton = $(".activities-prev");
-    var nextButton = $(".activities-next");
+    const prevButton = document.querySelector(".activities-prev");
+    const nextButton = document.querySelector(".activities-next");
 
-    // Встановлення стану кнопки "Prev"
-    prevButton.prop("disabled", currentPage === 1);
-
-    // Встановлення стану кнопки "Next"
-    nextButton.prop("disabled", currentPage === totalPages);
-  }
-
-  function countBullets() {
-    var bulletsBox = $(".bullets");
-    bulletsBox.empty();
-    if (totalPages > 1) {
-      for (let i = 1; i <= totalPages; i++) {
-        bulletsBox.append('<div class="one-bullet"></div>');
-      }
-    }
-  }
-
-  // Завантаження постів
-  function loadPosts(page) {
-    var data = {
-      action: "load_activities",
-      nonce: getActivitiesNonce(),
-      width: viewportWidth,
-      page: page,
-    };
-
-    $.ajax({
-      url: activities.ajaxUrl,
-      type: "post",
-      data: data,
-      beforeSend: showLoader,
-      success: function (response) {
-        hideLoader();
-        totalPages = response.totalPages;
-        totalPageEl.html(totalPages);
-        $(".activities__wrapper").html(response.html);
-        isPagination();
-        updatePaginationButtons();
-        countBullets();
-      },
-      error: function (xhr, status, error) {
-        hideLoader();
-        console.error("Request failed: " + error);
-      },
-    });
-  }
-
-  // Початок скрипту
-  var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  var currentPageEl = $(".current-page");
-  var totalPageEl = $(".total-pages");
-  var currentPage = 1;
-  var totalPages = 1;
-
-  // Оновлення поточної сторінки
-  function updateCurrentPage() {
-    currentPageEl.html(currentPage);
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
   }
 
   // Підсвічення активного bullet
   function currentBullet() {
-    var childrenArray = $(".bullets").children().toArray();
-    console.log(childrenArray[0].addClass("active"));
-    // childrenArray[currentPage - 1].addClass("active");
+    const bulletArray = document.querySelector(".bullets").children;
+
+    const activeIndex = currentPage - 1;
+    const activeBullet = bulletArray[activeIndex];
+    if (activeBullet) {
+      for (let i = 0; i < bulletArray.length; i++) {
+        bulletArray[i].classList.remove("active");
+      }
+
+      activeBullet.classList.add("active");
+    }
   }
 
-  // Обробник кліку на кнопку "Next"
-  $(".activities-next").click(function () {
+  function countBullets() {
+    const bulletsBox = document.querySelector(".bullets");
+    bulletsBox.innerHTML = "";
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        const bullet = document.createElement("div");
+        bullet.classList.add("one-bullet");
+        bulletsBox.appendChild(bullet);
+      }
+      currentBullet();
+    }
+  }
+  function funcForRisizeChanges() {
+    updateSlider();
+    changeJustifyContent();
+    totalPages = Math.ceil(allActivityCards / cardsPerPage());
+    currentPage = 1;
+    isPagination();
+    updatePaginationButtons();
+    countBullets();
+    currentBullet();
+  }
+
+  if (allActivityCards > 0) {
+    funcForRisizeChanges();
+    window.addEventListener("resize", throttle(funcForRisizeChanges, 200));
+  }
+  // slider update
+  function updateSlider() {
+    allActivityCardsArray.forEach((slide, index) => {
+      if (
+        index >= (currentPage - 1) * cardsPerPage() &&
+        index < currentPage * cardsPerPage()
+      ) {
+        slide.style.display = "block";
+        showSlider();
+      } else {
+        slide.style.display = "none";
+      }
+    });
+  }
+
+  function showSlider() {
+    activitiesWrapper.classList.remove("is-hidden");
+  }
+
+  const nextButton = document.querySelector(".activities-next");
+  const prevButton = document.querySelector(".activities-prev");
+
+  // "Next"
+  nextButton.addEventListener("click", function () {
     currentPage++;
     if (currentPage > totalPages) {
       currentPage = totalPages;
     }
-    loadPosts(currentPage);
-    updateCurrentPage();
-    updatePaginationButtons();
+    updateSlider();
     currentBullet();
+    updatePaginationButtons();
   });
 
-  // Обробник кліку на кнопку "Prev"
-  $(".activities-prev").click(function () {
+  // "Prev"
+  prevButton.addEventListener("click", function () {
     currentPage--;
     if (currentPage < 1) {
       currentPage = 1;
     }
-    loadPosts(currentPage);
-    updateCurrentPage();
-    updatePaginationButtons();
+    updateSlider();
     currentBullet();
+    updatePaginationButtons();
   });
 
-  // Початкове завантаження постів
-  loadPosts(currentPage);
-  updateCurrentPage();
+  // Обробник кліку на bullet
+  document
+    .querySelector(".bullets")
+    .addEventListener("click", function (event) {
+      if (event.target.classList.contains("one-bullet")) {
+        document.querySelector(".one-bullet.active").classList.remove("active");
+        const index = Array.from(this.children).indexOf(event.target);
+        currentPage = index + 1;
+        updateSlider();
+        updatePaginationButtons();
+        currentBullet();
+      }
+    });
+
+  // sort select
+  const lastnewsSelect = document.querySelector(".lastnews_select");
+
+  if (lastnewsSelect) {
+    const lastNewsSelect = new Choices(lastnewsSelect, {
+      searchEnabled: false,
+      allowHTML: false,
+      shouldSort: false,
+      position: "bottom",
+      itemSelectText: "",
+    });
+  }
 });

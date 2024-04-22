@@ -2,14 +2,13 @@
 
 .feedback-pagination__block {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto 100px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 30px;
   @media screen and (max-width: $tablet1) {
     padding: 0;
     margin-top: 10px;
-    display: flex;
     flex-direction: column-reverse;
   }
 }
@@ -23,28 +22,29 @@
 .numbers-pagination {
   font-size: 40px;
   font-weight: 300;
-  letter-spacing: -5px;
+  letter-spacing: -3px;
   @media screen and (max-width: $tablet1) {
-    margin-bottom: 16px;
     text-align: center;
     font-size: 24px;
     font-weight: 400;
-    letter-spacing: -3px;
+  }
+  & span {
+    letter-spacing: -1px;
   }
 }
 
 .feedback-navigation__box {
-  position: absolute;
-  bottom: 50px;
-  right: 40px;
   display: flex;
-  justify-content: space-between;
-  width: 158px;
+  align-items: center;
   @media screen and (max-width: $tablet1) {
-    left: 0;
-    bottom: 68px;
+    justify-content: space-between;
+    margin-bottom: 16px;
     width: 100%;
   }
+}
+
+.feedback-navigation__item:not(:last-child) {
+  margin-right: 24px;
 }
 
 .feedback-navigation__box .custom-button-next,

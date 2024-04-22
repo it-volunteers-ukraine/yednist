@@ -18,15 +18,18 @@
 
 //hero-section
 .hero-section {
-  padding-top: 82px;
+  padding-top: 276px;
   padding-bottom: 182px;
   @media screen and (max-width: $desktop) {
-    padding-top: 60px;
+    padding-top: 156px;
     padding-bottom: 200px;
   }
   @media screen and (max-width: $tablet2) {
-    padding-top: 0;
+    padding-top: 104px;
     padding-bottom: 60px;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-top: 76px;
   }
 }
 
@@ -109,10 +112,8 @@
   @media screen and (max-width: $tablet2) {
     max-width: 75%;
   }
-  @media screen and (max-width: $tablet1) {
-    max-width: 100%;
-  }
   @media screen and (max-width: $mobile) {
+    max-width: 100%;
     margin-bottom: 24px;
     font-size: 18px;
   }
@@ -132,8 +133,16 @@
 
 .hero-button {
   padding: 16px 24px;
+  height: 68px;
+  font-size: 24px;
+  text-align: center;
   @media screen and (max-width: 1600px) {
+    height: 56px;
     padding: 12px 24px;
+    font-size: 16px;
+  }
+  @media screen and (max-width: $tablet2) {
+    height: 48px;
   }
 }
 
@@ -177,6 +186,7 @@
   margin: 0 auto;
   margin-bottom: 20px;
   width: fit-content;
+  font-weight: 300;
   @media screen and (max-width: $desktop) {
     margin-bottom: 12px;
   }
@@ -287,6 +297,10 @@
   @media screen and (max-width: $mobile) {
     max-width: 203px;
   }
+  & .custom-button-next,
+  & .custom-button-prev {
+    display: none;
+  }
 }
 
 .digits-section__wrapper {
@@ -337,6 +351,10 @@
     height: 2px;
     background-color: $blue;
     transition: width 2s ease-in-out;
+    max-width: 200px;
+    @media screen and (max-width: 1260px) {
+      max-width: 140px;
+    }
   }
 
   @media screen and (max-width: 1500px) {
@@ -375,29 +393,6 @@
   }
   @media screen and (max-width: $mobile) {
     font-size: 16px;
-  }
-}
-
-//moments section
-
-.moments-section__slider {
-  position: relative;
-}
-
-.moments-section__wrapper {
-  margin-bottom: 20px;
-  @media screen and (max-width: $tablet2) {
-    margin-bottom: 12px;
-  }
-  @media screen and (max-width: $mobile) {
-    margin-bottom: 0;
-  }
-}
-
-.moments-section__image {
-  padding-bottom: 81%;
-  @media screen and (max-width: $mobile) {
-    padding-bottom: 78%;
   }
 }
 
@@ -450,7 +445,7 @@
     width: 315px;
   }
   @media screen and (max-width: $tablet2) {
-    width: 334px;
+    width: 246px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;

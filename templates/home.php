@@ -2,7 +2,6 @@
 /*
 Template Name: home
 */
-acf_form_head();
 get_header();
 
 ?>
@@ -61,7 +60,7 @@ get_header();
           </div>
           <?php endif; ?>
 
-          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
+          <?php get_template_part( 'template-parts/swiper-navigation'); ?>
         </div>
 
         <div class="values-section__flex">
@@ -114,7 +113,7 @@ get_header();
             <?php endwhile; ?>
           </div>
           <?php endif; ?>
-          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
+          <?php get_template_part( 'template-parts/swiper-navigation'); ?>
         </div>
       </div>
     </div>
@@ -125,24 +124,8 @@ get_header();
       <h2 class="section-title"><?php the_field('moments_title'); ?></h2>
       <div class="inner-container">
 
-        <?php $images = get_field('moments_gallery'); ?>
-        <div class="swiper moments-section__slider">
-          <?php if( $images ): ?>
-          <div class="swiper-wrapper moments-section__wrapper">
-            <?php foreach( $images as $image ): ?>
-            <div class="swiper-slide moments-section__photo">
-              <div class="image-wrapper moments-section__image">
-                <img class="swiper-lazy" loading="lazy" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
-                  alt="<?php echo esc_attr($image['alt']); ?>">
-              </div>
-            </div>
-            <?php endforeach; ?>
-          </div>
-          <?php endif; ?>
+        <?php get_template_part( 'template-parts/slider'); ?>
 
-          <?php get_template_part( 'template-parts/swiper-pagination'); ?>
-          <?php get_template_part( 'template-parts/swiper-navigation'); ?>
-        </div>
       </div>
     </div>
   </section>
@@ -159,7 +142,8 @@ get_header();
             <?php foreach( $images as $image ): ?>
             <div class="swiper-slide our-partners-section__photo">
               <div class="our-partners-section__image">
-                <img class="our-partners-section__img" src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
+                <img class="swiper-lazy our-partners-section__img" loading="lazy"
+                  src="<?php echo esc_url($image['sizes']['medium_large']); ?>"
                   alt="<?php echo esc_attr($image['alt']); ?>">
               </div>
             </div>

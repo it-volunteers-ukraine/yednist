@@ -1,0 +1,256 @@
+@import "../variables.scss";
+
+.about-history-swiper {
+    .about-history-slide {
+        border-radius: $bid-border-radius;
+        padding: 40px;
+        min-height: 512px;        
+        margin-bottom: 32px;
+        display: flex;
+        @media (max-width: $desktop) {
+            margin-bottom: 20px;
+        }
+        @media (max-width: $tablet2) {
+            border-radius: $small-border-radius;
+            padding: 32px 40px;             
+            margin-bottom: 20px;
+            min-height: 440px;  
+        }
+        @media (max-width: $mobile) {
+            margin-bottom: 0px;
+            padding: 16px;  
+            min-height: 360px;  
+        }
+        &:hover {
+            box-shadow: 0px 4px 4px 0px #00000040;
+            color: $blue;
+            img {
+                transition: ease 0.7s;
+                transform: scale(1.05);
+            }
+        }
+        a {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            @media (max-width: $tablet2) {
+                gap: 8px;
+            }
+        }
+        &:nth-child(odd) {
+            background-color: $pink;
+            .about-history-img-first {
+                transform: rotate(-8deg);  
+                margin-bottom: 50px;
+                width: 324px;                 
+                @media (max-width: $desktop) {
+                    width: 259px;                                      
+                } 
+                @media (max-width: $tablet2) {
+                    width: 294px; 
+                }   
+                @media (max-width: $mobile) {
+                    width: 166px;
+                }
+            }
+            .about-history-img-second { 
+                transform: rotate(6deg); 
+                position: absolute;                 
+                right: 10px;
+                bottom: 12px;  
+                width: 295px;                                      
+                @media (max-width: $desktop) {                    
+                    right: 10px;
+                    bottom: 12px;
+                    width: 264px;
+                } 
+                @media (max-width: $tablet2) {                    
+                    width: 297px;
+                } 
+                @media (max-width: $mobile) {
+                    width: 168px;
+                }  
+            }
+        }            
+        &:nth-child(even) {
+            background-color: $yellow;
+            .about-history-img-first {                
+                transform: rotate(-4deg); 
+                width: 320px;  
+                margin: 58px 0px 0px 28px; 
+                @media (max-width: $desktop) {
+                    width: 268px;
+                    margin: 103px 0px 0px 0px;                                      
+                }    
+                @media (max-width: $tablet2) {
+                    width: 306px; 
+                    margin: 53px 0px 0px 0px; 
+                } 
+                @media (max-width: $mobile) {
+                    width: 172px;
+                }             
+            }
+            .about-history-img-second {
+                transform: rotate(5deg); 
+                position: absolute;                 
+                right: 15px;
+                top: 30px; 
+                width: 274px;  
+                @media (max-width: $desktop) {                    
+                    top: 15px;
+                    width: 263px;
+                }    
+                @media (max-width: $tablet2) {                    
+                    width: 303px;
+                } 
+                @media (max-width: $mobile) {
+                    width: 171px;
+                }     
+            }
+        }
+        &:nth-child(3n) {
+            background-color: $lavender;
+            .about-history-img-first {
+                transform: rotate(-6deg);  
+                width: 328px;                
+                margin: 62px 0px 0px 12px;  
+                @media (max-width: $desktop) {
+                    width: 263px;
+                    margin: 103px 0px 0px 0px;                                      
+                }   
+                @media (max-width: $tablet2) {
+                    width: 300px; 
+                    margin: 60px 0px 0px 0px; 
+                }   
+                @media (max-width: $mobile) {
+                    width: 172px;
+                }            
+            }
+            .about-history-img-second {                
+                transform: rotate(4deg);
+                position: absolute;                 
+                right: 15px;
+                top: 30px; 
+                width: 300px; 
+                @media (max-width: $desktop) {                    
+                    top: 15px;
+                    width: 268px;
+                }
+                @media (max-width: $tablet2) {                    
+                    width: 306px;
+                } 
+                @media (max-width: $mobile) {
+                    width: 172px;
+                } 
+            }
+        }  
+        &:nth-child(4) {
+            background-color: $pink;
+            .about-history-img-first {
+                transform: rotate(-6deg); 
+                width: 152px;
+                margin: 0px 0px 108px 118px;  
+                @media (max-width: $desktop) {
+                    width: 174px;
+                    margin: 0px 0px 108px 42px; 
+                }  
+                @media (max-width: $tablet2) {
+                    transform: rotate(-6deg); 
+                    width: 188px;
+                    margin: 0px 0px 0px 95px;
+                } 
+                @media (max-width: $mobile) {
+                    width: 105px;
+                    margin: 30px 0px 0px 15px;
+                }          
+            }
+            .about-history-img-second {               
+                transform: rotate(8deg);
+                position: absolute;                 
+                right: 128px;
+                top: 20px; 
+                width: 176px;
+                @media (max-width: $desktop) {                    
+                    right: 42px;
+                    width: 187px;
+                } 
+                @media (max-width: $tablet2) {
+                    transform: rotate(6deg);
+                    right: 95px;
+                }
+                @media (max-width: $mobile) {
+                    width: 105px;
+                    top: 15px; 
+                    right: 15px;
+                }  
+            }
+        }    
+        &:nth-child(5) {
+            background-color: $yellow;            
+        }   
+    }    
+    .about-history-title {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 48px;
+        text-align: center;
+        margin-bottom: 16px;
+        height: 96px;
+        position: relative;
+        z-index: 1;
+        @media (max-width: $desktop) {
+            font-size: 32px;
+            line-height: 38px;
+            height: 78px;
+        }  
+        @media (max-width: $tablet2) {
+            font-size: 20px;
+            line-height: 30px;
+            height: 30px;
+            margin-bottom: 0px;
+            text-transform: uppercase;
+        }      
+        @media (max-width: $mobile) {
+            font-size: 18px;
+            line-height: 27px;
+            height: 80px;  
+        }
+    }
+    .about-history-img {
+        flex: 1 1 auto;
+        display: flex;
+        padding: 15px;
+        max-height: 320px;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        img {
+            border-radius: $small-border-radius; 
+            transition: transform 0.8s ease 0s;   
+            object-fit: cover;
+            object-position: top;
+        }  
+        @media (max-width: $tablet2) {
+            height: 306px;
+        }  
+        @media (max-width: $mobile) {
+            height: 211px;
+        }     
+    }
+    .about-history-btn {
+        display: none;
+        @media (max-width: $tablet2) {
+            display: block;           
+            color: $blue;
+            text-transform: uppercase;
+            pointer-events: none;
+            font-size: 16px;
+            line-height: 24px;   
+        }
+        @media (max-width: $mobile) {
+            font-size: 14px;
+            line-height: 21px; 
+        }
+    }
+}

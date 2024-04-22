@@ -1,23 +1,55 @@
 @import "../variables";
 
-.custom-button-next,
-.custom-button-prev {
-  position: absolute;
-  bottom: 0;
-  transform: translateX(-50%);
-  left: 41%;
-  @media screen and (max-width: 1200px) {
-    left: 38%;
+.swiper__nav--box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  & .swiper-pagination {
+    position: static;
+    width: fit-content;
+    padding-top: 4px;
+    @media screen and (max-width: $tablet2) {
+      padding-top: 0;
+    }
   }
-  @media screen and (max-width: $tablet2) {
-    display: none;
+
+  & .swiper-pagination-bullet {
+    opacity: 1;
+    border: 1px solid $violet-grey;
+    background: none;
+    width: 16px;
+    height: 16px;
+    @media screen and (max-width: $tablet2) {
+      width: 12px;
+      height: 12px;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  & .swiper-custom-pagination .swiper-pagination-bullet:not(:last-child) {
+    margin-right: 12px;
+    @media screen and (max-width: $tablet2) {
+      margin-right: 8px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin-right: 4px;
+    }
+  }
+
+  & .swiper-pagination-bullet-active {
+    background-color: $violet-grey;
   }
 }
 
-.custom-button-next {
-  left: 59%;
-  @media screen and (max-width: 1200px) {
-    left: 62%;
+.custom-button-next,
+.custom-button-prev {
+  @media screen and (max-width: $tablet2) {
+    display: none;
   }
 }
 

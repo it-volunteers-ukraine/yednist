@@ -15,22 +15,7 @@
     <?php if ($excerptMobileLength < $fullContentLength) { ?>
     <div class="feedback-post__excerpt"><?php echo $contentMobile; ?></div>
 
-    <button id="read-more-js" class='feedback-open__btn' type='button' onclick='
-
-      const fullText = this.nextElementSibling;
-      const shortText = this.previousElementSibling;
-
-      if(fullText.classList.contains("hidden")){
-        this.innerHTML = `<?php the_field("hide_btn", "option"); ?>`;
-        fullText.classList.remove("hidden");
-        shortText.classList.add("hidden");
-      } else {
-        this.innerHTML = `<?php the_field("read_more_btn", "option"); ?>`;
-        fullText.classList.add("hidden");
-        shortText.classList.remove("hidden");
-      }
-
-      '><?php the_field('read_more_btn', 'option'); ?></button>
+    <button id="" class='feedback-open__btn' type='button'><?php the_field('read_more_btn', 'option'); ?></button>
 
     <div class="feedback-post__content hidden">
       <?php if($fullContent) echo $fullContent; ?>
@@ -48,22 +33,8 @@
     <?php if ($excerptDesktopLength < $fullContentLength) { ?>
     <div class="feedback-post__excerpt"><?php echo $contentDesktop; ?></div>
 
-    <button id="read-more-js" class='feedback-open__btn' type='button' onclick='
-
-      const fullText = this.nextElementSibling;
-      const shortText = this.previousElementSibling;
-
-      if(fullText.classList.contains("hidden")){
-        this.innerHTML = `<?php the_field("hide_btn", "option"); ?>`;
-        fullText.classList.remove("hidden");
-        shortText.classList.add("hidden");
-      } else {
-        this.innerHTML = `<?php the_field("read_more_btn", "option"); ?>`;
-        fullText.classList.add("hidden");
-        shortText.classList.remove("hidden");
-      }
-
-      '><?php the_field('read_more_btn', 'option'); ?></button>
+    <button id="read-more-js" class='feedback-open__btn'
+      type='button'><?php the_field('read_more_btn', 'option'); ?></button>
 
     <div class="feedback-post__content hidden">
       <?php if($fullContent) echo $fullContent; ?>

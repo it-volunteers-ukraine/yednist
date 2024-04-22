@@ -14,13 +14,14 @@ $dark-grey: #7d7e8a;
 $main-dark: rgba(13, 13, 13, 0.3);
 $header-box-shadow: rgba(140, 142, 208, 0.2);
 $header-burger-background: rgba(0, 0, 0, 0.5);
+$boarding-school-box-shadow: #00000040;
 $invalid-input: #dc1414;
 
 $primary-font: "Fira Sans Extra Condensed", sans-serif;
 $secondary-font: "Fira Sans", sans-serif;
 
 $mobile: 575.98px; //320-575
-$tablet1: 768px;
+$tablet1: 767.98px;
 $tablet2: 991.98px; //576-991
 $desktop1: 1150px;
 $desktop: 1440px; //992-1440
@@ -29,4 +30,4 @@ $full: 1920px; //1441-1920
 $bid-border-radius: 40px;
 $small-border-radius: 24px;
 
-$transition-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-function: 300ms cubic-bezier(0.4, 0, 0.2, 1);

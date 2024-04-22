@@ -1,20 +1,6 @@
-@import "../global.scss";
 @import "../variables.scss";
 
-.icon {
-    fill: $blue;    
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    transition: transform 0.8s ease 0s;   
-    &:hover {
-        fill:$black;
-        transition: ease 0.7s;
-        transform: scale(1.1);  
-    }
-}
-
-.contacts__page {    
+.contacts__page { 
     &-body {
         display: flex;
         justify-content: space-between;
@@ -35,18 +21,19 @@
     }   
     &-title {
         font-family: "Fira Sans Extra Condensed";
-        margin-bottom: 20px;
+        margin: 28px 0 20px;        
         @media (max-width: $desktop) {
-            margin-bottom: 16px;
+            margin: 20px 0 16px;             
+        }
+        @media (max-width: $tablet2) {
+            margin: 4px 0 16px;             
         }
         @media (max-width: $mobile) {
-            margin-bottom: 8px;
+            margin: 30px 0 8px;            
         }
     }
     &-image { 
-        border-radius: $bid-border-radius;
-        overflow: hidden;   
-        transition: opacity 0.8s ease 0s;
+        border-radius: $bid-border-radius;        
         margin-bottom: 20px;
         @media (max-width: $desktop) {
             margin-bottom: 16px;
@@ -61,8 +48,7 @@
             width: 574px;
             height: 353px;
             object-fit: cover;
-            border-radius: $bid-border-radius;
-            transition: transform 0.8s ease 0s;
+            border-radius: $bid-border-radius;            
             @media (max-width: $desktop) {
                 width: 427px;
                 height: 263px;
@@ -74,11 +60,7 @@
             @media (max-width: $tablet1) {
                 width: 220px;
                 height: auto;
-            } 
-            &:hover {               
-                transition: ease 0.7s;
-                transform: scale(1.1);
-            }                       
+            }                                 
         }
     }
     &-adress {
@@ -130,6 +112,18 @@
         }                 
     }
     &-social {
+        display: flex;
+        gap: 30%;
+        @media (max-width: $desktop) {
+            gap: 34%;
+        }
+        @media (max-width: $tablet2) {
+            flex-direction: column;
+            gap: 18px;
+        }
+        @media (max-width: $mobile) {
+            gap: 16px;
+        }
         &-list {
             display: flex;  
             flex-direction: column;          
@@ -157,7 +151,19 @@
                 color: $blue;
                 transition: ease 0.7s;                
             }
-        }             
+        } 
+        .icon {
+            fill: $blue;    
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            transition: transform 0.8s ease 0s;   
+            &:hover {
+                fill:$black;
+                transition: ease 0.7s;
+                transform: scale(1.1);  
+            }
+        }
     }       
 }
 
@@ -173,15 +179,18 @@
             font-size: 14px;
         }
     }    
-    #contactForm input[type="text"], #contactForm input[type="tel"],
-    #contactForm input[type="email"], #contactForm input[type="email"], 
+    #contactForm input[type="text"], 
+    #contactForm input[type="tel"],
+    #contactForm input[type="email"], 
     #contactForm textarea[id="message"] {
         border-radius: $bid-border-radius;
         border: 1px solid $lavender;
         background: $white;
         width: 100%;
         padding: 12px 32px;
-        margin-bottom: 24px;        
+        margin-bottom: 24px;    
+        resize: none;   
+        cursor: text; 
         @media (max-width: $desktop) {             
             font-size: 18px;
         }
@@ -189,6 +198,22 @@
             font-size: 14px;
             margin-bottom: 20px;   
         }
+    }
+    &-country {
+        margin-bottom: 24px;
+        @media (max-width: $tablet2) {           
+            margin-bottom: 20px;   
+        }
+        .wpcf7-not-valid-tip { 
+            margin-top: 20px;   
+        }
+    }
+    &-phone {
+        color: rgb(90, 88, 88);
+        padding: 12px 80px!important;        
+    }
+    .intl-tel-input .flag-container  {        
+        padding: 0 0 0 32px;
     }
     #contactForm textarea[id="message"] {            
         height: 228px;
@@ -221,8 +246,24 @@
             font-size: 14px;            
         }
     }  
-    .choices[data-type*=select-one]::after {
-        right: 24px;
+    .choices::after {
+        top: 20%;
+        right: 24px;       
+        background-image: url(../../../assets/images/check-mark-down.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-origin: border-box;
+        border: none;
+        height: 40px;
+        width: 40px;
+    }
+    .choices.is-open::after {
+        background-image: url(../../../assets/images/check-mark-up.svg);
+        top: 35%;
+    }    
+    .choices__list--dropdown .choices__item--selectable.is-highlighted, 
+    .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+        background-color: #EAECFD;         
     }
     .is-open .choices__inner {
         border-bottom-left-radius: 0;
@@ -240,7 +281,10 @@
         @media (max-width: $tablet2) {
             font-size: 14px;
         }
-    }  
+        & .choices__item:first-child { 
+            display: none; 
+        }
+    } 
     .privacy__container p {
         display: flex;
         align-items: flex-start;
@@ -271,108 +315,106 @@
             line-height: 140%; 
         }   
         a {
-            color: $blue;
-            transition: all $transition-function;
-            &:hover {
-                color: $black              
-            }
+            color: $blue;            
         }
     }
     #contactForm input[id="submit-btn"] {
-        padding: 12px 87px;
+        font-family: $primary-font;
+        width: 277px;
+        padding: 12px;
         border-radius: $bid-border-radius; 
-        text-transform: uppercase;
+        text-transform: uppercase;    
+        text-align: center;    
         @media (max-width: $desktop) {
+            width: 203px;            
             font-size: 16px;            
         }  
         @media (max-width: $mobile) {
             width: 100%;
-        }     
-    }    
-}
-
-.wpcf7-response-output {
-    display: none;
-}
-
-.wpcf7-not-valid-tip, .error-phone {    
-    font-size: 14px; 
-    color: #DC1414;
-    margin-bottom: 15px;    
-}
-
-.wpcf7-not-valid {
-    border: 1px solid #DC1414!important;        
-}
-
-.error-phone {
-    display: none;    
-}
-
-/*Popup=======================*/
-.popup {
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;     
-    &__container{
-        color: $blue;
-        text-align: center;
-        font-family: "Fira Sans Extra Condensed";
-        position: absolute;
-        top: 50%;
-        left: 50%;    
-        transform: translate(-50%, -50%);   
-        width: 1167px;
-        padding: 92px 70px 95px 70px;
-        border-radius: $bid-border-radius;
-        border-radius: 40px;
-        background: $yellow;
-        box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);   
-        @media (max-width: $desktop) {
-            width: 900px;
-            padding: 70px 20px;
-        }       
-        @media (max-width: 991.98px) {
-            width: 600px;           
-        }
-        @media (max-width: 767.98px) {
-            width: 90%;
         }  
+        &:hover {        
+            transition: ease 0.7s;
+            box-shadow: 0px 4px 4px 0px #1D20873B;        
+        }   
     }    
-    &__close {
-        position: absolute;
-        top: 10px;
-        right: 24px;
-        background: none;
-        border: none;
-        font-size: 42px;
-        padding: 0;  
-        cursor: pointer;      
+    .wpcf7-response-output {
+        display: none;
     }
-    &__title {        
-        font-size: 64px;       
-        font-weight: 275;       
-        text-transform: uppercase;
-        margin-bottom: 40px;
-        @media (max-width: 991.98px) {
-            font-size: 36px;
-        }       
+    
+    .wpcf7-not-valid-tip {    
+        font-size: 14px; 
+        color: #DC1414;
+        margin-bottom: 15px;   
     }
-    &__text {    
-        font-size: 40px;
-        font-weight: 300;
-        @media (max-width: 991.98px) {
-            font-size: 18px;
-        }
-    }  
-}
-
-.closen {
-    display: none;
-}
-.opened {
-    display: block;
+    
+    .wpcf7-not-valid {
+        border: 1px solid #DC1414!important;        
+    }
+    
+    /*Popup=======================*/
+    .popup {
+       position: fixed;
+       z-index: 10;
+       top: 0;
+       right: 0;
+       bottom: 0;
+       left: 0;     
+       &__container{
+           color: $blue;
+           text-align: center;
+           font-family: "Fira Sans Extra Condensed";
+           position: absolute;
+           top: 50%;
+           left: 50%;    
+           transform: translate(-50%, -50%);   
+           width: 1167px;
+           padding: 92px 70px 95px 70px;
+           border-radius: $bid-border-radius;
+           border-radius: 40px;
+           background: $yellow;
+           box-shadow: 0px 4px 122px 40px rgba(0, 0, 0, 0.25);   
+           @media (max-width: $desktop) {
+               width: 900px;
+               padding: 70px 20px;
+           }       
+           @media (max-width: 991.98px) {
+               width: 600px;           
+           }
+           @media (max-width: 767.98px) {
+               width: 90%;
+           }  
+       }    
+       &__close {
+           position: absolute;
+           top: 10px;
+           right: 24px;
+           background: none;
+           border: none;
+           font-size: 42px;
+           padding: 0;  
+           cursor: pointer;      
+       }
+       &__title {        
+           font-size: 64px;       
+           font-weight: 275;       
+           text-transform: uppercase;
+           margin-bottom: 40px;
+           @media (max-width: 991.98px) {
+               font-size: 36px;
+           }       
+       }
+       &__text {    
+           font-size: 40px;
+           font-weight: 300;
+           @media (max-width: 991.98px) {
+               font-size: 18px;
+           }
+       }  
+    }    
+    .closen {
+       display: none;
+    }
+    .opened {
+       display: block;
+    }
 }
