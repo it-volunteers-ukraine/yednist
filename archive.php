@@ -32,9 +32,15 @@ get_header();
               $gallery_post_date = get_field('gallery-post-date', $post);
               ?>
               <div class="gallery__item">
-                <a href="<?php echo $gallery_post_link ?>">                  
-                  <div class="gallery__post-img"><img src="<?php echo $gallery_post_img ?>" alt="<?php echo $gallery_img_alt ?>"></div> 
-                  <div class="gallery__post-content">
+                <a href="<?php echo $gallery_post_link ?>">  
+                
+                <?php if (has_post_thumbnail()): ?>
+                  <div class="gallery__post-img"><?php echo get_the_post_thumbnail() ?></div>
+                  <?php else: ?>
+                    <div class="gallery__post-img"><img src="<?php echo $gallery_post_img ?>" alt="<?php echo $gallery_img_alt ?>"></div>
+                <?php endif; ?>
+ 
+                <div class="gallery__post-content">
                     <div class="gallery__post-block">
                       <p class="gallery__post-cat"><?php echo $gallery_post_folder ?></p>
                       <p class="gallery__post-title"><?php echo $gallery_post_title ?></p>
