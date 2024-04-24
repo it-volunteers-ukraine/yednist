@@ -25,7 +25,11 @@
             <div class="gallery-mobile-slide swiper-slide">
                 <div class=" gallery-mobile-item">
                     <a href="<?php echo $gallery_post_link ?>">                  
-                        <div class="gallery__post-img"><img src="<?php echo $gallery_post_img ?>" alt="<?php echo $gallery_img_alt ?>"></div> 
+                        <?php if (has_post_thumbnail()): ?>
+                            <div class="gallery__post-img"><?php echo get_the_post_thumbnail() ?></div>
+                            <?php else: ?>
+                                <div class="gallery__post-img"><img src="<?php echo $gallery_post_img ?>" alt="<?php echo $gallery_img_alt ?>"></div>
+                        <?php endif; ?>
                         <div class="gallery__post-content">
                            <div class="gallery__post-block">
                                <p class="gallery__post-cat"><?php echo $gallery_post_folder ?></p>
