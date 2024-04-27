@@ -1,7 +1,7 @@
 ### FUNDACJA "JEDNOŚĆ"
 
 <div style="display: flex; justify-content: center; align-items: center;">
-<img src="./src/images/screenshot.png" alt="скріншот сайту">
+<img src="./screenshot.webp" alt="скріншот сайту">
 </div>
 
 ### Developers team 🚀

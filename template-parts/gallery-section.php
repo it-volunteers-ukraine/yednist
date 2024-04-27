@@ -6,7 +6,8 @@
 $posts_per_page =  (int) get_field('gallery-post-amount');
 $params = array(
     'category_name' => 'gallery',    
-    'posts_per_page' => 4,      
+    'posts_per_page' => 4,
+    'orderby' => 'date',    
     // 'posts_per_page' => $posts_per_page,  
     // 'numberposts' => -1, 
 );

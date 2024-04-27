@@ -10,7 +10,8 @@
         $posts_per_page =  (int) get_field('gallery-post-amount');
         $params = array(
             'category_name' => 'gallery',    
-            'posts_per_page' => 4,    
+            'posts_per_page' => 4,
+            'orderby' => 'date',    
         );
         $my_posts = get_posts($params);
 
