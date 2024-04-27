@@ -18,7 +18,7 @@ get_header();
             $posts_per_page =  (int) get_field('gallery-post-amount');
             $params = array(
                 'category_name' => 'gallery',
-                'posts_per_page' => 1,    
+                'posts_per_page' => 6,    
                 'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,   
             );
             $my_query = new WP_Query($params);
