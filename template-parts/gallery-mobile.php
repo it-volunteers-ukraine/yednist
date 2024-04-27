@@ -16,8 +16,9 @@
 
         foreach ($my_posts as $post) : ?>
 
-    <?php get_template_part( 'template-parts/gallery-item' );?>
-
+    <div class="gallery-mobile-slide swiper-slide">
+      <?php get_template_part( 'template-parts/gallery-item' );?>
+    </div>
     <?php wp_reset_postdata(); endforeach ?>
   </div>
   <div class="gallery-mobile-pagination swiper-pagination"></div>
