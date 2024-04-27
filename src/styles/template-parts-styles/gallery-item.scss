@@ -1,0 +1,118 @@
+@import "../variables.scss";
+
+.gallery {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    max-width: 425px;
+    @media (max-width: $mobile) {
+      max-width: 100%;
+    }
+    &:hover {
+      color: $blue;
+      .gallery__post-img,
+      .gallery__post-content {
+        border-radius: $bid-border-radius;
+        transform: scale(1.01);
+      }
+    }
+    a {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      transition: 0.8s ease;
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+    &:nth-child(odd) {
+      .gallery__post-content {
+        background-color: $lavender;
+      }
+    }
+    &:nth-child(even) {
+      .gallery__post-content {
+        background-color: $yellow;
+      }
+    }
+    &:nth-child(3n) {
+      .gallery__post-content {
+        background-color: $pink;
+      }
+    }
+  }
+  &__post-img {
+    overflow: hidden;
+    transition: 0.8s ease;
+    img {
+      border-radius: $small-border-radius $small-border-radius 0 0;
+      object-fit: cover;
+      object-position: top;
+      max-width: 425px;
+      height: 300px;
+      @media (max-width: $desktop) {
+        height: 260px;
+      }
+      @media (max-width: $tablet2) {
+        height: 206px;
+      }
+      @media (max-width: $mobile) {
+        max-width: 100%;
+      }
+    }
+  }
+  &__post-content {
+    border-radius: 0 0 $small-border-radius $small-border-radius;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 16px 24px;
+    transition: 0.8s ease;
+    @media (max-width: $desktop) {
+      padding: 12px 16px;
+    }
+    @media (max-width: $tablet2) {
+      padding: 12px;
+    }
+  }
+  &__post-cat {
+    font-family: $secondary-font;
+    font-size: 16px;
+    line-height: 26px;
+    color: $dark-grey;
+    @media (max-width: $desktop) {
+      font-size: 14px;
+      line-height: 22px;
+    }
+    &:hover {
+      color: $blue;
+    }
+  }
+  &__post-title {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 16px;
+    @media (max-width: $desktop) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    @media (max-width: $tablet2) {
+      font-size: 18px;
+      line-height: 27px;
+    }
+    @media (max-width: $mobile) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  &__post-date {
+    font-family: $secondary-font;
+    font-size: 16px;
+    line-height: 26px;
+    @media (max-width: $desktop) {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+}
