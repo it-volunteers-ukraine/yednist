@@ -19,7 +19,8 @@ get_header();
             $params = array(
                 'category_name' => 'gallery',
                 'posts_per_page' => 6,    
-                'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,   
+                'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+                'orderby'        => 'date',
             );
             $my_query = new WP_Query($params);
 

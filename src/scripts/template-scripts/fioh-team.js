@@ -16,6 +16,12 @@ const teamSwiper = new Swiper(".fioh-team__team-repeater", {
   slidesPerView: 1,
   spaceBetween: 30,
   direction: "horizontal",
+  preloadImages: false,
+  lazy: {
+    loadOnTransitionStart: true,
+    loadPrevNext: true,
+  },
+  lazyPreloadPrevNext: 1,
   navigation: {
     nextEl: ".fioh-team__team-repeater-item-btn-circle",
   },

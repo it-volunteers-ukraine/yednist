@@ -12,7 +12,8 @@
               <?php              
               $params = array(
                 'category_name' => 'history',    
-                'numberposts' => -1,    
+                'numberposts' => -1,
+                'orderby' => 'date',  
               );
               $my_posts = get_posts($params);
               foreach ($my_posts as $post) :                 
