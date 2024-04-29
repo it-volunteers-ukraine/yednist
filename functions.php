@@ -686,8 +686,6 @@ function my_breadcrumb_url_changer($url, $type, $id)
                 $url = get_permalink($page->ID); 
             } 
         } 
-    } else { 
-        $url = get_home_url(); 
-    } 
+    }
     return $url; 
 }
