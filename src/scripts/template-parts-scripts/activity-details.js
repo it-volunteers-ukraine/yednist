@@ -68,24 +68,22 @@ function showModal() {
   document.documentElement.classList.add("modal__opened");
   screenOrientation(screenHeight);
   window.addEventListener("resize", lookForSizeChanges);
-  document.documentElement.style.scrollBehavior = "auto";
-  activityBackdrop.addEventListener("mousedown", closeByBgdClick);
+  activityBackdrop.addEventListener("mousedown", closeByBgdClickActivity);
   window.addEventListener("keydown", closeByPressEscape);
   document.documentElement.style.top = `-${windowScrollY}px`;
 }
 
 function hideModal() {
   activityBackdrop.classList.add("is-hidden");
-  activityBackdrop.removeEventListener("mousedown", closeByBgdClick);
+  activityBackdrop.removeEventListener("mousedown", closeByBgdClickActivity);
 
   const scrollY = parseInt(document.documentElement.style.top || "0");
   document.documentElement.classList.remove("modal__opened");
   activityModalEl.classList.remove("horizontal");
   window.scrollTo(0, -scrollY);
-  document.documentElement.style.scrollBehavior = "smooth";
 }
 
-function closeByBgdClick(e) {
+function closeByBgdClickActivity(e) {
   if (e.target === activityBackdrop) {
     hideModal();
   }

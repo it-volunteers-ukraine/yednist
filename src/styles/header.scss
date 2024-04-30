@@ -19,7 +19,7 @@
     border-radius: 0px 0px $small-border-radius $small-border-radius;
     padding: 12px 20px;
   }
-  @media screen and (max-width: $tablet1) {
+  @media screen and (max-width: 768px) {
     max-width: 688px;
   }
   @media screen and (max-width: $mobile) {
@@ -126,6 +126,7 @@
         transition: all $transition-function;
         position: relative;
         & a {
+          display: block;
           color: $black;
         }
         &.header__current__page a {
@@ -164,6 +165,7 @@
           border-bottom: 1px solid $violet-grey;
           &:hover {
             .header__projects__menu & a {
+              display: block;
               color: $blue;
             }
             padding-bottom: 11px;
@@ -189,12 +191,10 @@
       width: 100%;
       &.open {
         position: fixed;
-        display: flex;
         height: 100vh;
         width: 100vw;
         padding: 0;
         top: 0;
-        left: -16px;
         opacity: 1;
         z-index: 50;
         background: $header-burger-background;
@@ -285,6 +285,9 @@
       &:hover,
       &:focus {
         color: $blue;
+      }
+      & a {
+        display: block;
       }
     }
     &__projects {
