@@ -9,7 +9,7 @@
   <title>It-volunteers</title>
 </head>
 
-<body>
+<body <?php body_class(); ?>>
   <div class="wrapper">
     <header class="header">
       <div class="header__container">
@@ -22,7 +22,7 @@
                 </svg>
               </div>
               <ul class="header__first__list">
-              <?php
+                <?php
                 $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
                 $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu-ukrainian' : 'header-menu-polski');
                 $menu_items = wp_get_nav_menu_items($menu_id);
@@ -65,15 +65,15 @@
                 }
 
                 ?>
-                </ul>
-                <div class="header__logo">
-                    <?php
+              </ul>
+              <div class="header__logo">
+                <?php
                     if (has_custom_logo()) {
                         echo get_custom_logo();
                     }
                     ?>
-                </div>
-                <ul class="header__second__list">
+              </div>
+              <ul class="header__second__list">
                 <?php
                 foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {

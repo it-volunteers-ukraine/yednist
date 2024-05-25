@@ -1,0 +1,13 @@
+{
+  "require": {
+    "symfony/var-dumper": "^5.4"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}

@@ -33,8 +33,7 @@
     <?php if ($excerptDesktopLength < $fullContentLength) { ?>
     <div class="feedback-post__excerpt"><?php echo $contentDesktop; ?></div>
 
-    <button id="read-more-js" class='feedback-open__btn'
-      type='button'><?php the_field('read_more_btn', 'option'); ?></button>
+    <button id="" class='feedback-open__btn' type='button'><?php the_field('read_more_btn', 'option'); ?></button>
 
     <div class="feedback-post__content hidden">
       <?php if($fullContent) echo $fullContent; ?>
