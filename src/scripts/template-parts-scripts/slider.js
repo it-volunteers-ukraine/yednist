@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       loadOnTransitionStart: true,
       loadPrevNext: true,
     },
-    lazyPreloadPrevNext: 1,
+    lazyPreloadPrevNext: 2,
     breakpoints: {
       576: {
         slidesPerView: 2,

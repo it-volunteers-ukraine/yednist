@@ -17,12 +17,19 @@ const projectsIcon = document.querySelector(".header__projects__icon");
 // Burger menu
 openButton.addEventListener("click", function () {
   menu.classList.toggle("open");
-  //document.documentElement.style.scrollBehavior = "auto";
+  changeMobileMenuPosition();
   document.documentElement.style.overflow = "hidden";
   button.style.display = "none";
   menu.addEventListener("click", closeByBgdClick);
   closeButton.addEventListener("click", hideMenu);
 });
+
+function changeMobileMenuPosition() {
+  if (window.innerWidth > 724 && window.innerWidth < 769) {
+    const left = (window.innerWidth - 688) / 2;
+    menu.style.left = `-${left}px`;
+  } else menu.style.left = "-16px";
+}
 
 // Language menu
 if (languageDropdown) {
@@ -88,8 +95,7 @@ function hideMenu() {
   openProjects.classList.remove("open");
   projects.classList.remove("open");
   projectsMenu.style.display = "none";
-  document.documentElement.style.overflow = "hidden auto";
-  //document.documentElement.style.scrollBehavior = "smooth";
+  document.documentElement.style.overflow = "auto";
 }
 function closeByBgdClick(e) {
   if (e.target === menu) {
