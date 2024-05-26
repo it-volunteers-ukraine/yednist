@@ -725,12 +725,3 @@ if (! function_exists('show_all_hooks')) {
         return $wp_filter[$filter];
     }
 }
-
-//donation button
-function payu_donation_button() {
-    $form = '<form action="' . esc_url(home_url('/create-order.php')) . '" method="post">
-                <button type="submit">Donate</button>
-             </form>';
-    return $form;
-}
-add_shortcode('payu_donation', 'payu_donation_button');
