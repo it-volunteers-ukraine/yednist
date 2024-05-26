@@ -4,4 +4,5 @@
       <use href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#icon_PayU">
       </use>
     </svg></a>
+  <?php echo do_shortcode( "[payu_donation]" ) ?>
 </div>
