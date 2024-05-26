@@ -3,17 +3,25 @@
 .moneysupport__buttons--box {
   margin: 0 auto;
   width: 687px;
-  margin-top: 28px;
   @media screen and (max-width: $desktop) {
     width: 579px;
   }
   @media screen and (max-width: $tablet2) {
     margin: 0;
     width: fit-content;
-    margin-top: 16px;
   }
   @media screen and (max-width: $mobile) {
     width: 100%;
+  }
+
+  & input.current_account {
+    display: block;
+    padding-left: 12px;
+    border: 1px solid $lavender;
+    border-radius: 4px;
+    @media screen and (max-width: $tablet2) {
+      border-color: $violet-grey;
+    }
   }
 
   & svg {
@@ -28,5 +36,9 @@
   & .moneysupport__button {
     border: 1px solid $blue;
     background: $white;
+    margin-top: 28px;
+    @media screen and (max-width: $tablet2) {
+      margin-top: 16px;
+    }
   }
 }
