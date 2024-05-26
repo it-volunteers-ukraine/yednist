@@ -123,18 +123,18 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'new-project-style', get_template_directory_uri() . '/assets/styles/template-styles/new-project.css', array('main') );
     }
     
-    // if (is_shop() ) {
-    //   wp_enqueue_style( 'shop-style', get_template_directory_uri() . '/assets/styles/template-styles/shop.css', array('main') );
-    // }
-    // if (is_cart() ) {
-    //   wp_enqueue_style( 'woo-cart-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-cart.css', array('main') );
-    // }
-    // if (is_checkout() ) {
-    //   wp_enqueue_style( 'woo-checkout-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-checkout.css', array('main') );
-    // }
-    // if (is_product() ) {
-    //   wp_enqueue_style( 'woo-product-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-product.css', array('main') );
-    // }
+    if (is_shop() ) {
+      wp_enqueue_style( 'shop-style', get_template_directory_uri() . '/assets/styles/template-styles/shop.css', array('main') );
+    }
+    if (is_cart() ) {
+      wp_enqueue_style( 'woo-cart-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-cart.css', array('main') );
+    }
+    if (is_checkout() ) {
+      wp_enqueue_style( 'woo-checkout-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-checkout.css', array('main') );
+    }
+    if (is_product() ) {
+      wp_enqueue_style( 'woo-product-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-product.css', array('main') );
+    }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
     wp_enqueue_style('swiper-navigation-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/swiper-navigation.css', array('main'));
