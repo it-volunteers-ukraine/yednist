@@ -1,13 +1,16 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
 
+    
+
 function getAccessToken() {
     $clientId = get_field('oauth_protocol_-_client_id', 'options');
     $clientSecret = get_field('oauth_protocol_-_client_secret', 'options');
+    $authorizationUrl = get_field('authorization_url', 'options');
     
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, "https://secure.snd.payu.com/pl/standard/user/oauth/authorize");
+    curl_setopt($ch, CURLOPT_URL, $authorizationUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
@@ -38,12 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $donationAmount = floatval($_POST['donation_amount']) * 100;
-        $merchantPosId = get_field("pos_id_pos_id", "options"); 
+        $merchantPosId = get_field("pos_id_pos_id", "options");
+        $notifyUrl = the_field("after_payment_adress", "options");
         $accessToken = getAccessToken();
-        $url = 'https://secure.snd.payu.com/api/v2_1/orders';
+        $url = get_field('donation_url', 'options');
+
 
         $orderData = array(
-            'notifyUrl' => 'https://yednist.it-volunteers.com/',
+            'notifyUrl' => $notifyUrl,
             'customerIp' => $_SERVER['REMOTE_ADDR'],
             'merchantPosId' => $merchantPosId,
             'description' => 'Donation',
@@ -60,9 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ),
             // 'buyer' => array(
             //     'email' => 'john.doe@example.com',
-            //     'phone' => '654111654',
-            //     'firstName' => 'John',
-            //     'lastName' => 'Doe'
             // )
         );
 
