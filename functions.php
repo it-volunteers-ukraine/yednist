@@ -123,6 +123,7 @@ function wp_it_volunteers_scripts() {
       wp_enqueue_style( 'new-project-style', get_template_directory_uri() . '/assets/styles/template-styles/new-project.css', array('main') );
     }
     
+    if ( class_exists( 'WooCommerce' ) ) {
     if (is_shop() ) {
       wp_enqueue_style( 'shop-style', get_template_directory_uri() . '/assets/styles/template-styles/shop.css', array('main') );
     }
@@ -135,6 +136,7 @@ function wp_it_volunteers_scripts() {
     if (is_product() ) {
       wp_enqueue_style( 'woo-product-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-product.css', array('main') );
     }
+  }
 
     if (is_singular() && locate_template('template-parts/swiper-navigation.php')) {
     wp_enqueue_style('swiper-navigation-style', get_template_directory_uri() . '/assets/styles/template-parts-styles/swiper-navigation.css', array('main'));
@@ -723,3 +725,12 @@ if (! function_exists('show_all_hooks')) {
         return $wp_filter[$filter];
     }
 }
+
+//donation button
+function payu_donation_button() {
+    $form = '<form action="' . esc_url(home_url('/create-order.php')) . '" method="post">
+                <button type="submit">Donate</button>
+             </form>';
+    return $form;
+}
+add_shortcode('payu_donation', 'payu_donation_button');
