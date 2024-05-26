@@ -31,9 +31,8 @@
     padding-left: 12px;
     cursor: auto;
     border: 1px solid $lavender;
-    border-radius: $bid-border-radius;
+    border-radius: $small-border-radius;
     @media screen and (max-width: $tablet2) {
-      border-radius: $small-border-radius;
       border-color: $violet-grey;
     }
   }
