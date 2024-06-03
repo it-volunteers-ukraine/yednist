@@ -68,7 +68,6 @@ if (openProjects) {
     });
     closeButton.addEventListener("click", function (event) {
       if (!openProjects.contains(event.target)) {
-        menu.addEventListener("click", closeByBgdClick);
         projectsMenu.style.display = "none";
         projectsIcon.classList.remove("open");
         projects.classList.remove("open");
@@ -86,8 +85,7 @@ if (openProjects) {
         aboutUsMenu.style.display === "flex" ? "none" : "flex";
     });
     closeButton.addEventListener("click", function (event) {
-      if (!openProjects.contains(event.target)) {
-        menu.addEventListener("click", closeByBgdClick);
+      if (!openAboutUs.contains(event.target)) {
         aboutUsMenu.style.display = "none";
         aboutUsIcon.classList.remove("open");
         aboutUs.classList.remove("open");
@@ -100,6 +98,12 @@ if (openProjects) {
         projectsMenu.style.display = "none";
         projectsIcon.classList.remove("open");
         projects.classList.remove("open");
+      }
+      if (!openAboutUs.contains(event.target)) {
+        menu.addEventListener("click", closeByBgdClick);
+        aboutUsMenu.style.display = "none";
+        aboutUsIcon.classList.remove("open");
+        aboutUs.classList.remove("open");
       }
     });
   });
