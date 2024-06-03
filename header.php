@@ -91,11 +91,15 @@
               </div>
               <ul class="header__second__list">
                 <?php
+                  $menu_right_count = count($menu_right);
+
                   foreach ($menu_right as $index => $menu_item) {
-                    if ($index !== 2) {
-                        $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
-                        echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
-                    } else {
+                      $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
+                      if ($index === 3) {
+                        echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                    } else if ($index !== 2){
+                        echo '<li class="header__menu__item s' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                      } else if($index === 2) {
                         if (function_exists('pll_the_languages')) {
                             $languages = pll_the_languages(array('show_names' => 1, 'show_flags' => 1, 'raw' => 1));
                             echo '<li class="language__dropdown">';
@@ -108,7 +112,7 @@
                                 echo '<div class="language__dropdown__content">';
                                 foreach ($languages as $language) {
                                     if ($current_language === $language['name']) {
-                                        echo '<div class="language__wrapper current""><input class="language__input" type="radio" checked /><label class="language__label">' . esc_html($language['name']) . ' ' . $language['flag'] . '</label></div>';
+                                        echo '<div class="language__wrapper current"><input class="language__input" type="radio" checked /><label class="language__label">' . esc_html($language['name']) . ' ' . $language['flag'] . '</label></div>';
                                     } else {
                                         echo '<a href="' . esc_url($language['url']) . '" class="language__wrapper"><input class="language__input" type="radio" onchange="redirectToPage(\'' . esc_url($language['url']) . '\')"/><label class="language__label">' . esc_html($language['name']) . ' ' . $language['flag'] . '</label></a>';
                                     }
@@ -117,8 +121,9 @@
                             }
                             echo '</li>';
                         }
-                        echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                        echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                       }
+                    
                   }
               ?>
               </ul>
