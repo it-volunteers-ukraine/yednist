@@ -27,14 +27,17 @@
   }
   .header__menu__item.header__current__page {
     color: $blue;
-    .header__projects__content {
+    .header__projects__content,
+    .header__about__content {
       color: $blue;
-      .header__projects__icon {
+      .header__projects__icon,
+      .header__about__icon {
         stroke: $blue;
       }
     }
   }
-  &__projects {
+  &__projects,
+  &__about {
     &__content {
       position: relative;
       display: flex;
@@ -56,7 +59,8 @@
       &:hover,
       &:focus {
         color: $blue;
-        & .header__projects__icon {
+        & .header__projects__icon,
+        .header__about__icon {
           stroke: $blue;
         }
       }
@@ -133,7 +137,8 @@
           color: $blue;
         }
         &:hover {
-          .header__projects__menu & a {
+          .header__projects__menu & a,
+          .header__about__menu & a {
             color: $blue;
           }
           &::before {
@@ -151,7 +156,8 @@
           line-height: 1.5;
           &:focus {
             background-color: $lavender;
-            .header__projects__menu & a {
+            .header__projects__menu & a,
+            .header__about__menu & a {
               color: $blue;
             }
           }
@@ -164,7 +170,8 @@
           padding: 12px 8px 11px;
           border-bottom: 1px solid $violet-grey;
           &:hover {
-            .header__projects__menu & a {
+            .header__projects__menu & a,
+            .header__about__menu & a {
               display: block;
               color: $blue;
             }
@@ -290,7 +297,8 @@
         display: block;
       }
     }
-    &__projects {
+    &__projects,
+    &__about {
       position: relative;
       display: flex;
       align-items: center;
@@ -300,10 +308,12 @@
       cursor: pointer;
       gap: 8px;
       &:has(.header__current__page) {
-        .header__projects__content {
+        .header__projects__content,
+        .header__about__content {
           color: $blue;
         }
-        .header__projects__icon {
+        .header__projects__icon,
+        .header__about__icon {
           stroke: $blue;
         }
       }
@@ -311,7 +321,8 @@
         font-size: 16px;
         line-height: 1.5;
         &.open {
-          .header__projects__content {
+          .header__projects__content,
+          .header__about__content {
             color: $blue;
           }
         }
@@ -337,7 +348,8 @@
           padding: 80px 40px 40px;
           height: 688px;
           z-index: 2;
-          & .header__projects__content {
+          & .header__projects__content,
+          .header__about__content {
             position: absolute;
             top: 28px;
             left: 40px;
@@ -345,7 +357,8 @@
             flex-direction: row-reverse;
             justify-content: flex-end;
             color: $blue;
-            & .header__projects__icon {
+            & .header__projects__icon,
+            .header__about__icon {
               stroke: $blue;
             }
           }
@@ -357,7 +370,8 @@
           border-radius: 0px $small-border-radius $small-border-radius 0px;
           padding: 60px 16px 16px;
           max-height: 541px;
-          & .header__projects__content {
+          & .header__projects__content,
+          .header__about__content {
             top: 24px;
             left: 16px;
             width: 100%;
@@ -367,7 +381,8 @@
       &:hover,
       &:focus {
         color: $blue;
-        & .header__projects__icon {
+        & .header__projects__icon,
+        .header__about__icon {
           stroke: $blue;
         }
       }

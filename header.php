@@ -26,16 +26,17 @@
                 $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
                 $menu_id = ($current_language == 'EN') ? 'header-menu-english' : (($current_language == 'УКР') ? 'header-menu-ukrainian' : 'header-menu-polski');
                 $menu_items = wp_get_nav_menu_items($menu_id);
-                $middle_index = ceil(5);
+                $middle_index = ceil(6);
                 $menu_left = array_slice($menu_items, 0, $middle_index);
                 $menu_right = array_slice($menu_items, $middle_index);
-                $inside_projects = false;
 
                 foreach ($menu_left as $index => $menu_item) {
                     $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
                     $current_post_id = get_queried_object_id();
                     $gallery_title = ($current_language == 'EN') ? 'Gallery' : (($current_language == 'УКР') ? 'Галерея' : 'Galeria');
                     $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
+                    $aboutus_title = ($current_language == 'EN') ? 'About us' : (($current_language == 'УКР') ? 'Про нас' : 'O nas');
+                    $team_title = ($current_language == 'EN') ? 'Team' : (($current_language == 'УКР') ? 'Команда' : 'Zespół');
 
                     $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
                     $parent_page = get_page_by_path($parent_slug);
@@ -59,6 +60,21 @@
                       echo '<li class="header__projects__menu__item' . esc_attr($child_current_class) . '"><a href="' . esc_url(get_permalink($child_page->ID)) . '">' . esc_html($child_page->post_title) . '</a></li>';
                     }
                     echo '</ul></li>';
+                  } else if($index >= 1 && $index <= 3){
+                    if($menu_item->title === $aboutus_title){
+                      echo '<li class="header__menu__about ' . esc_attr($current_class) . '"><div class="header__about__content"><p>' . esc_html($menu_item->title) . '</p><svg class="header__about__icon"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-down"></use></svg></div>';
+                    }
+                    if ($index >= 1 && $index <= 3) {
+                      echo '<ul class="header__about__menu">';
+                      foreach ($menu_items as $sub_menu_item) {
+                          if ($sub_menu_item->title === $team_title || $sub_menu_item->title === $gallery_title || $sub_menu_item->title === $aboutus_title) {
+                              $current_sub_class = (is_page($sub_menu_item->object_id)) ? ' header__current__page' : '';
+                              echo '<li class="header__about__menu__item ' . esc_attr($current_sub_class) . '"><a href="' . esc_url($sub_menu_item->url) . '">' . esc_html($sub_menu_item->title) . '</a></li>';
+                          }
+                      }
+                      echo '</ul>';
+                  }
+                    echo '</li>';
                   } else {
                     echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                   }
@@ -75,7 +91,7 @@
               </div>
               <ul class="header__second__list">
                 <?php
-                foreach ($menu_right as $index => $menu_item) {
+                  foreach ($menu_right as $index => $menu_item) {
                     if ($index !== 2) {
                         $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
                         echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
@@ -101,10 +117,9 @@
                             }
                             echo '</li>';
                         }
-
                         echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
-                    }
-                }
+                      }
+                  }
               ?>
               </ul>
             </div>
