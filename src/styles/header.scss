@@ -455,6 +455,11 @@
   &__container {
     width: 100%;
   }
+  &__about__menu__item {
+    &:first-child {
+      order: 3;
+    }
+  }
 }
 
 .burger {
