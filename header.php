@@ -96,6 +96,10 @@
                   foreach ($menu_right as $index => $menu_item) {
                       $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
                       if ($index === 3) {
+                        if ( class_exists( 'WooCommerce' ) ) {
+                          echo '<li class="header__menu__item cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" ><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg><span class="header__menu__item__cart-count ' . (WC()->cart->get_cart_contents_count() > 0 ? 'visible' : '') . '">' . WC()->cart->get_cart_contents_count() . '</span></a>
+                         </li>';
+                        }
                         echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     } else if ($index !== 2){
                         echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
@@ -120,10 +124,6 @@
                                 echo '</div>';
                             }
                             echo '</li>';
-                        }
-                        if ( class_exists( 'WooCommerce' ) ) {
-                          echo '<li class="header__menu__item cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" ><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg><span class="header__menu__item__cart-count ' . (WC()->cart->get_cart_contents_count() > 0 ? 'visible' : '') . '">' . WC()->cart->get_cart_contents_count() . '</span></a>
-                         </li>';
                         }
                     }
                     
