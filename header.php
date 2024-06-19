@@ -76,7 +76,7 @@
                   }
                     echo '</li>';
                   } else {
-                    echo '<li class="header__menu__item ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                    echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                   }
                 }
 
@@ -98,7 +98,7 @@
                       if ($index === 3) {
                         echo '<li class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                     } else if ($index !== 2){
-                        echo '<li class="header__menu__item s' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                        echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
                       } else if($index === 2) {
                         if (function_exists('pll_the_languages')) {
                             $languages = pll_the_languages(array('show_names' => 1, 'show_flags' => 1, 'raw' => 1));
@@ -121,8 +121,12 @@
                             }
                             echo '</li>';
                         }
-                        echo '<li class="header__menu__item' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></li>';
+                        if ( class_exists( 'WooCommerce' ) ) {
+                        echo '<li class="header__menu__item woocommerce-mini-cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" title="' . esc_attr__( 'View your shopping cart', 'your-theme-slug' ) . '"><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg></a>
+                       </li>';
+                     
                       }
+                    }
                     
                   }
               ?>
