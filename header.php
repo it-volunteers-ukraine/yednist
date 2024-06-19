@@ -122,10 +122,9 @@
                             echo '</li>';
                         }
                         if ( class_exists( 'WooCommerce' ) ) {
-                        echo '<li class="header__menu__item woocommerce-mini-cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" title="' . esc_attr__( 'View your shopping cart', 'your-theme-slug' ) . '"><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg></a>
-                       </li>';
-                     
-                      }
+                          echo '<li class="header__menu__item cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" ><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg><span class="header__menu__item__cart-count ' . (WC()->cart->get_cart_contents_count() > 0 ? 'visible' : '') . '">' . WC()->cart->get_cart_contents_count() . '</span></a>
+                         </li>';
+                        }
                     }
                     
                   }

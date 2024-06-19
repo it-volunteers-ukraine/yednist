@@ -296,9 +296,38 @@
       & a {
         display: block;
       }
+      &.cart {
+        position: relative;
+        a {
+          height: 32px;
+        }
+      }
       &__cart {
         width: 32px;
         height: 32px;
+        &-count {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          position: absolute;
+          top: -8px;
+          right: -12px;
+
+          width: 20px;
+          height: 20px;
+          background: $blue;
+          border-radius: $bid-border-radius;
+
+          color: $white;
+          font-size: 16px;
+          line-height: 16px;
+          opacity: 0;
+          &.visible {
+            opacity: 10;
+          }
+        }
       }
     }
     &__projects,
