@@ -224,7 +224,8 @@
       width: 100%;
       justify-content: space-evenly;
       display: grid;
-      grid-template-columns: repeat(1, 40.95%) 21.38% repeat(1, 37.67%);
+      justify-content: space-between;
+      grid-template-columns: repeat(1, 33.8%) auto repeat(1, 41.19%);
       @media screen and (max-width: $desktop) {
         grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
       }
@@ -301,6 +302,12 @@
         a {
           height: 32px;
         }
+      }
+      &__shop {
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
       }
       &__cart {
         width: 32px;
@@ -544,7 +551,7 @@
 .header__logo .custom-logo {
   width: 60px;
   height: 60px;
-  margin-left: 33.98%;
+  margin-left: 90%;
   @media screen and (max-width: $desktop) {
     width: 48px;
     height: 48px;
