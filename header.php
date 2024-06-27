@@ -13,7 +13,7 @@
   <div class="wrapper">
     <header class="header">
       <div class="header__container">
-        <div class="header__body" id="">
+        <div class="header__body">
           <div class="header__menu__container">
             <div class="header__menu__content">
               <div class="header__menu__close-button">
@@ -134,17 +134,31 @@
               </ul>
             </div>
           </div>
-          <div class="header__burger__logo">
-            <?php
-              if (has_custom_logo()) {
-                echo get_custom_logo();
-               }
-             ?>
 
-          </div>
           <div class="burger">
             <span></span>
           </div>
+
+          <div class="header__burger__wrapper">
+            <div class="header__menu__item cart menu-burger">
+              <a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+                <svg class="header__menu__item__cart">
+                    <use href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-shopping-bag"></use>
+                </svg>
+                <span class="header__menu__item__cart-count <?php echo ( WC()->cart->get_cart_contents_count() > 0 ) ? 'visible' : ''; ?>">
+                    <?php echo WC()->cart->get_cart_contents_count(); ?>
+                </span>
+              </a>
+            </div>
+            <div class="header__burger__logo">
+              <?php
+                if (has_custom_logo()) {
+                  echo get_custom_logo();
+                }
+              ?>
+            </div>
+          </div>
+
         </div>
       </div>
     </header>

@@ -189,7 +189,7 @@
     display: flex;
     justify-content: space-between;
     @media screen and (max-width: $desktop1) {
-      flex-direction: row-reverse;
+      flex-direction: row;
       align-items: center;
     }
   }
@@ -227,7 +227,7 @@
       justify-content: space-between;
       grid-template-columns: repeat(1, 33.8%) auto repeat(1, 41.19%);
       @media screen and (max-width: $desktop) {
-        grid-template-columns: repeat(1, 43.7%) 15.3% repeat(1, 41%);
+        grid-template-columns: repeat(1, 36.53%) auto repeat(1, 44.83%);
       }
       @media screen and (max-width: $desktop1) {
         display: flex;
@@ -299,6 +299,16 @@
       }
       &.cart {
         position: relative;
+        @media screen and (max-width: $desktop1) {
+          border-bottom: 0;
+          display: none;
+        }
+        &.menu-burger {
+          display: none;
+          @media screen and (max-width: $desktop1) {
+            display: block;
+          }
+        }
         a {
           height: 32px;
         }
@@ -308,6 +318,9 @@
         gap: 32px;
         justify-content: center;
         align-items: center;
+        @media screen and (max-width: $desktop) {
+          gap: 20px;
+        }
       }
       &__cart {
         width: 32px;
@@ -434,10 +447,18 @@
       display: none;
     }
   }
-  &__burger__logo {
-    display: none;
-    @media screen and (max-width: $desktop1) {
-      display: block;
+  &__burger {
+    &__wrapper {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+    &__logo {
+      display: none;
+      @media screen and (max-width: $desktop1) {
+        display: block;
+      }
     }
   }
   &__content {
@@ -459,6 +480,7 @@
     align-items: center;
     @media screen and (max-width: $desktop1) {
       flex-direction: column;
+      align-items: baseline;
       order: 3;
       height: 100%;
     }
