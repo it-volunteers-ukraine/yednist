@@ -33,6 +33,9 @@
     &:last-child > span {
       color: $black;
     }
+    &.current_breadcrumb {
+      color: $black;
+    }
     @media screen and (max-width: $desktop) {
       font-size: 14px;
     }

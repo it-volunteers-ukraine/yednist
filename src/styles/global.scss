@@ -51,10 +51,18 @@
 }
 
 //buttons
-.button {
+.button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce input[type="submit"],
+.woocommerce .single_add_to_cart_button.button,
+.woocommerce .return-to-shop a.button,
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
   padding: 12px 24px;
   width: fit-content;
   min-width: 277px;
@@ -62,6 +70,8 @@
   border-radius: $bid-border-radius;
   text-transform: uppercase;
   transition: all $transition-function;
+  font-weight: 400;
+  font-size: 20px;
 
   @media screen and (max-width: $desktop) {
     min-width: 203px;
@@ -75,11 +85,32 @@
   &:focus {
     box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
   }
+  &:disabled[disabled] {
+    color: $white;
+  }
 }
 
-.primary-button {
+.woocommerce ul.products li.product .button {
+  display: flex;
+}
+
+.primary-button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce input[type="submit"],
+.woocommerce .single_add_to_cart_button.button,
+.woocommerce .return-to-shop a.button,
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
+  a.button {
   background-color: $blue;
   color: $white;
+  &:hover,
+  &:focus {
+    background-color: $blue;
+    color: $white;
+  }
 }
 
 .secondary-button {
