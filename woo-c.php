@@ -112,6 +112,12 @@ function catalog_wrapper_end() {
       </div>
     </section>';
 }
+
+// remove add to cart message on the top of the page
+add_filter( 'wc_add_to_cart_message_html', 'tb_remove_added_to_cart_message' );
+function tb_remove_added_to_cart_message( $message ){
+ return '';
+}
                  
 //remove sort
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
@@ -140,21 +146,33 @@ function display_product_tags() {
 }
 
 // custom button text
-add_filter( 'woocommerce_product_single_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2 );
-add_filter( 'woocommerce_product_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2 );
+add_filter('woocommerce_product_single_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2);
+add_filter('woocommerce_product_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2);
 
-function filter_woocommerce_product_single_add_to_cart_text( $text, $instance ) {
+function filter_woocommerce_product_single_add_to_cart_text($text, $instance) {
     global $product;
 
-    $tags = wp_get_post_terms( $product->get_id(), 'product_tag' );
-
-    if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) {
-        $tag_slug = $tags[0]->slug;
+    if (!$product) {
+        if ($instance && is_a($instance, 'WC_Product')) {
+            $product = $instance;
+        } else {
+            return $text;
+        }
     }
 
-    if ($tag_slug=='in_progress') {
-      $text = get_field('order_button', 'options');
-    } else $text = get_field('buy_button', 'options');
+    $tags = wp_get_post_terms($product->get_id(), 'product_tag');
+
+    if (!empty($tags) && !is_wp_error($tags)) {
+        $tag_slug = $tags[0]->slug;
+    } else {
+        $tag_slug = '';
+    }
+
+    if ($tag_slug == 'in_progress') {
+        $text = get_field('order_button', 'options');
+    } else {
+        $text = get_field('buy_button', 'options');
+    }
 
     return $text;
-};
+}
