@@ -30,21 +30,131 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
+
 add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
-
 function my_theme_wrapper_start() {
+  echo '<main>';
+}
+function my_theme_wrapper_end() {
+  echo '
+  <section class="about__documents section">
+    <div class="container">
+      <h2 class="section-title">';
+      the_field('shop_documents_title', 'options');
+      echo '</h2>
+      <div class="inner-container">
+        <div class="about__documents-body">
+          <div class="about__documents-part">
+            <div class="about__documents-content">';
+            $rows = get_field('shop_documents', 'options');                            
+            if (!empty($rows)) : 
+                foreach ($rows as $row):
+                    $name = $row['doc__link__name'];
+                    $file = $row['doc__file'];
+                    $image = $row['doc__img'];
+                    if(!empty($file)):
+              echo '<a target="_blank" href="';
+              echo $file['url'];
+              echo '" >
+                <div class="about__documents-name">
+                  <div class="about__documents-img">';
+                  echo wp_get_attachment_image( $image, 'full' );
+                  echo '</div>
+                  <div class="about__documents-text">
+                    <p>';
+                    echo wp_html_excerpt( $name, 25, '...' );
+                    echo '</p>
+                  </div>
+                </div>
+              </a>';
+              endif;
+              endforeach;
+              endif;
+            echo '</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>';
+}
+
+// add custom page title
+add_action('woocommerce_show_page_title', 'custom_title_woocommerce', 10);
+
+function custom_title_woocommerce() {
+    echo '
+    <div class="container">
+      <div class="inner-container">';
+        echo '
+        <h1 class="page-title">';
+        the_field('shop_title', 'option');
+        echo '</h1>
+      </div>
+    </div>';
+}
+
+// add container
+add_action('woocommerce_before_shop_loop', 'catalog_wrapper_start', 10);
+add_action('woocommerce_after_shop_loop', 'catalog_wrapper_end', 10);
+
+function catalog_wrapper_start() {
     echo '
     <section class="section shop-section">
-
-    <div class="container">
-
-      <div class="inner-container">';
+      <div class="container">
+        <div class="inner-container">';
 }
 
-function my_theme_wrapper_end() {
+function catalog_wrapper_end() {
     echo '
-    </div>
-    </div>
-  </section>';
+        </div>
+      </div>
+    </section>';
 }
+                 
+//remove sort
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+//remove items count
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+remove_action('woocommerce_after_shop_loop', 'woocommerce_result_count', 20);
+
+// display product tags
+add_action( 'woocommerce_after_shop_loop_item_title', 'display_product_tags', 15 );
+
+function display_product_tags() {
+    global $product;
+
+    $tags = wp_get_post_terms( $product->get_id(), 'product_tag' );
+
+    if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) {
+        $tag_slug = $tags[0]->slug;
+
+        $tag_names = wp_list_pluck( $tags, 'name' );
+        $tag_list = implode( ', ', $tag_names );
+        echo '<span class="product-tag ';
+        if($tag_slug=='in_progress') echo "in-progress";
+        echo '">' . esc_html( $tag_list ) . '</span>';
+    }
+}
+
+// custom button text
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2 );
+add_filter( 'woocommerce_product_add_to_cart_text', 'filter_woocommerce_product_single_add_to_cart_text', 10, 2 );
+
+function filter_woocommerce_product_single_add_to_cart_text( $text, $instance ) {
+    global $product;
+
+    $tags = wp_get_post_terms( $product->get_id(), 'product_tag' );
+
+    if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) {
+        $tag_slug = $tags[0]->slug;
+    }
+
+    if ($tag_slug=='in_progress') {
+      $text = get_field('order_button', 'options');
+    } else $text = get_field('buy_button', 'options');
+
+    return $text;
+};

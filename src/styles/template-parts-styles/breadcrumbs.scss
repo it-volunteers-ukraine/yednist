@@ -21,6 +21,10 @@
       height: 1px;
     }
   }
+  & .breadcrumbs {
+    font-size: initial;
+    line-height: 1;
+  }
 
   & .breadcrumbs span {
     font-family: $secondary-font;
@@ -29,8 +33,14 @@
     font-size: 16px;
     &:not(:last-child) {
       margin-right: 4px;
+      @media screen and (max-width: $mobile) {
+        margin-right: 0;
+      }
     }
     &:last-child > span {
+      color: $black;
+    }
+    &.current_breadcrumb {
       color: $black;
     }
     @media screen and (max-width: $desktop) {
