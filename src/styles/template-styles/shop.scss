@@ -5,6 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 6.4%;
   row-gap: 60px;
+  margin: 0;
   &::before {
     content: none;
   }
@@ -24,6 +25,7 @@
 .woocommerce ul.products.columns-3 li.product,
 .woocommerce-page ul.products.columns-3 li.product {
   width: auto;
+  margin: 0;
 }
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
@@ -61,9 +63,6 @@
   }
   & .price {
     margin-bottom: 12px;
-    @media screen and (max-width: $mobile) {
-      margin-bottom: 30px;
-    }
   }
   & .button {
     position: relative;

@@ -58,7 +58,8 @@
 .woocommerce input[type="submit"],
 .woocommerce .single_add_to_cart_button.button,
 .woocommerce .return-to-shop a.button,
-.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+.lmp_load_more_button.br_lmp_button_settings .lmp_button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,6 +88,21 @@
   }
   &:disabled[disabled] {
     color: $white;
+  }
+}
+
+.lmp_load_more_button.br_lmp_button_settings .lmp_button {
+  margin: -20px auto 0;
+  min-width: 425px;
+  @media screen and (max-width: $desktop) {
+    min-width: 315px;
+  }
+  @media screen and (max-width: $tablet2) {
+    margin-top: 0;
+    min-width: 246px;
+  }
+  @media screen and (max-width: $mobile) {
+    min-width: 100%;
   }
 }
 

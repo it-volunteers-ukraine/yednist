@@ -37,7 +37,47 @@ function my_theme_wrapper_start() {
   echo '<main>';
 }
 function my_theme_wrapper_end() {
-  echo '</main>';
+  echo '
+  <section class="about__documents section">
+    <div class="container">
+      <h2 class="section-title">';
+      the_field('shop_documents_title', 'options');
+      echo '</h2>
+      <div class="inner-container">
+        <div class="about__documents-body">
+          <div class="about__documents-part">
+            <div class="about__documents-content">';
+            $rows = get_field('shop_documents', 'options');                            
+            if (!empty($rows)) : 
+                foreach ($rows as $row):
+                    $name = $row['doc__link__name'];
+                    $file = $row['doc__file'];
+                    $image = $row['doc__img'];
+                    if(!empty($file)):
+              echo '<a target="_blank" href="';
+              echo $file['url'];
+              echo '" >
+                <div class="about__documents-name">
+                  <div class="about__documents-img">';
+                  echo wp_get_attachment_image( $image, 'full' );
+                  echo '</div>
+                  <div class="about__documents-text">
+                    <p>';
+                    echo wp_html_excerpt( $name, 25, '...' );
+                    echo '</p>
+                  </div>
+                </div>
+              </a>';
+              endif;
+              endforeach;
+              endif;
+            echo '</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>';
 }
 
 // add custom page title
