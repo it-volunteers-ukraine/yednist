@@ -20,34 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! empty( $breadcrumb ) ) {
-
-	echo '<section class="breadcrumbs__section">
-  <div class="container">
-    <div class="breadcrumbs__line"></div>
-    <div class="inner-container">
-    <div class="breadcrumbs">';
-
-	foreach ( $breadcrumb as $key => $crumb ) {
-
-		echo $before;
-
-		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
-			echo '<span><a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a></span>';
-		} else {
-			echo '<span><span>' .esc_html( $crumb[0] ) . '</span></span>';
-		}
-
-		echo $after;
-
-		if ( sizeof( $breadcrumb ) !== $key + 1 ) {
-			echo '<span>' . $delimiter . '</span>';
-		}
-	}
-
-	echo ' </div>
-  </div>
-  </div>
-</section>';
-
-}
+ get_template_part( 'template-parts/breadcrumbs' ); ?>
