@@ -140,7 +140,7 @@ function display_product_tags() {
         $tag_names = wp_list_pluck( $tags, 'name' );
         $tag_list = implode( ', ', $tag_names );
         echo '<span class="product-tag ';
-        if($tag_slug=='in_progress') echo "in-progress";
+        if($tag_slug == 'in_progress-uk' || $tag_slug == 'in_progress-en' || $tag_slug == 'in_progress-pl') echo "in-progress";
         echo '">' . esc_html( $tag_list ) . '</span>';
     }
 }
@@ -168,7 +168,7 @@ function filter_woocommerce_product_single_add_to_cart_text($text, $instance) {
         $tag_slug = '';
     }
 
-    if ($tag_slug == 'in_progress') {
+    if ($tag_slug == 'in_progress-uk' || $tag_slug == 'in_progress-en' || $tag_slug == 'in_progress-pl') {
         $text = get_field('order_button', 'options');
     } else {
         $text = get_field('buy_button', 'options');
