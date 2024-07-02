@@ -304,6 +304,7 @@
           display: none;
         }
         &.menu-burger {
+          padding: 0;
           display: none;
           @media screen and (max-width: $desktop1) {
             display: block;
