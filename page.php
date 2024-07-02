@@ -14,14 +14,7 @@
 
 get_header();?>
 
-<section class="section" style="margin-top: 120px;">
-  <div class="container">
-    <div class="inner-container">
-
-      <?php the_content();
+<?php the_content();
 //get_sidebar(); ?>
 
-    </div>
-  </div>
-</section>
 <?php get_footer();

@@ -41,6 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $donationAmount = floatval($_POST['donation_amount']) * 100;
+        $donationName = $_POST['donation_name'];
+        $donationSurname = $_POST['donation_surname'];
+        $donationEmail = $_POST['donation_email'];
         $merchantPosId = get_field("pos_id_pos_id", "options");
         $notifyUrl = the_field("after_payment_adress", "options");
         $accessToken = getAccessToken();
@@ -63,9 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'quantity' => '1'
                 )
             ),
-            // 'buyer' => array(
-            //     'email' => 'john.doe@example.com',
-            // )
+            'buyer' => array(
+              "firstName"=> strval($donationName),
+              "lastName"=> strval($donationSurname),
+              "email"=> strval($donationEmail),
+            )
         );
 
         $ch = curl_init($url);
