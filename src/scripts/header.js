@@ -14,6 +14,12 @@ const projects = document.querySelector(".header__menu__projects");
 const projectsMenu = document.querySelector(".header__projects__menu");
 const projectsIcon = document.querySelector(".header__projects__icon");
 
+//About us menu
+const openAboutUs = document.querySelector(".header__about__content");
+const aboutUs = document.querySelector(".header__menu__about");
+const aboutUsMenu = document.querySelector(".header__about__menu");
+const aboutUsIcon = document.querySelector(".header__about__icon");
+
 // Burger menu
 openButton.addEventListener("click", function () {
   menu.classList.toggle("open");
@@ -62,18 +68,42 @@ if (openProjects) {
     });
     closeButton.addEventListener("click", function (event) {
       if (!openProjects.contains(event.target)) {
-        menu.addEventListener("click", closeByBgdClick);
         projectsMenu.style.display = "none";
         projectsIcon.classList.remove("open");
         projects.classList.remove("open");
       }
     });
+
+    openAboutUs.addEventListener("click", function () {
+      aboutUs.classList.contains("open")
+        ? aboutUs.classList.remove("open")
+        : aboutUs.classList.add("open");
+      aboutUsIcon.classList.contains("open")
+        ? aboutUsIcon.classList.remove("open")
+        : aboutUsIcon.classList.add("open");
+      aboutUsMenu.style.display =
+        aboutUsMenu.style.display === "flex" ? "none" : "flex";
+    });
+    closeButton.addEventListener("click", function (event) {
+      if (!openAboutUs.contains(event.target)) {
+        aboutUsMenu.style.display = "none";
+        aboutUsIcon.classList.remove("open");
+        aboutUs.classList.remove("open");
+      }
+    });
+
     document.addEventListener("click", function (event) {
       if (!openProjects.contains(event.target)) {
         menu.addEventListener("click", closeByBgdClick);
         projectsMenu.style.display = "none";
         projectsIcon.classList.remove("open");
         projects.classList.remove("open");
+      }
+      if (!openAboutUs.contains(event.target)) {
+        menu.addEventListener("click", closeByBgdClick);
+        aboutUsMenu.style.display = "none";
+        aboutUsIcon.classList.remove("open");
+        aboutUs.classList.remove("open");
       }
     });
   });
