@@ -111,20 +111,6 @@
   margin-top: 120px;
 }
 .woocommerce div.product {
-  max-width: 1464px;
-  margin: 0 auto;
-
-  @media screen and (max-width: $desktop) {
-    max-width: 1352px;
-  }
-
-  @media screen and (max-width: 768px) {
-    max-width: 720px;
-  }
-
-  @media screen and (max-width: $mobile) {
-    max-width: none;
-  }
   .woocommerce-tabs {
     float: right;
     width: 58%;
