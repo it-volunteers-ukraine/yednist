@@ -176,3 +176,54 @@ function filter_woocommerce_product_single_add_to_cart_text($text, $instance) {
 
     return $text;
 }
+
+function add_contact_us_button() {
+  $current_language = pll_current_language();
+
+  if ( $current_language == 'uk' ) {
+      // UKR ver
+      $contact_page_url = get_permalink( get_page_by_path( 'contacts-uk' ) );
+      $button_text = 'Зв\'язатися з нами';
+  } elseif ( $current_language == 'en' ) {
+      // English ver
+      $contact_page_url = get_permalink( get_page_by_path( 'contacts-pl' ) );
+      $button_text = 'Contact Us';
+  } elseif ( $current_language == 'pl' ) {
+      // Polish ver
+      $contact_page_url = get_permalink( get_page_by_path( 'contacts-pl' ) );
+      $button_text = 'Skontaktuj się z nami';
+  }
+
+  echo '<a href="' . esc_url( $contact_page_url ) . '" class="contact-us-button">' . esc_html( $button_text ) . '</a>';
+}
+
+// Contact us button
+add_action( 'woocommerce_after_add_to_cart_button', 'add_contact_us_button', 20 );
+
+function custom_contact_us_button_styles() {
+  echo '
+  <style>
+      .contact-us-button {
+          margin-left: 10px;
+          background-color: #0071a1;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          cursor: pointer;
+      }
+
+      .contact-us-button:hover {
+          background-color: #005885;
+      }
+  </style>';
+}
+add_action( 'wp_head', 'custom_contact_us_button_styles' );
+
+// Price AFTER short description
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 25 );
