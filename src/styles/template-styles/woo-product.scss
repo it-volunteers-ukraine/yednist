@@ -7,6 +7,14 @@
     @media screen and (max-width: $desktop) {
       grid-gap: 60px 20px;
     }
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @media screen and (max-width: $mobile) {
+      gap: 16px;
+    }
     .summary {
       gap: 12px;
       display: flex;
@@ -14,6 +22,9 @@
       grid-column: 2 / 3;
       grid-row: 1;
       width: 100%;
+      @media screen and (max-width: 768px) {
+        gap: 8px;
+      }
       form.cart {
         .quantity {
           display: none !important;
@@ -97,9 +108,7 @@
           border: 1px solid $lavender;
           font-family: $secondary-font;
           font-size: 20px;
-          font-weight: 400;
           line-height: 30px;
-          text-align: left;
           @media screen and (max-width: $desktop) {
             max-width: 203px;
           }
@@ -137,7 +146,27 @@
           max-width: 92px;
           gap: 16px;
         }
+        @media screen and (max-width: 768px) {
+          display: flex;
+          flex-direction: row;
+          max-width: none;
+          justify-content: center;
+          width: 100%;
+        }
         li {
+          @media screen and (max-width: 768px) {
+            border: 1px solid #8c8ed0;
+            background: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            img {
+              display: none;
+            }
+          }
+          &:has(.flex-active) {
+            background-color: #8c8ed0;
+          }
           img {
             &.flex-active {
               border: 1px solid $violet-grey;
@@ -169,6 +198,15 @@
       @media screen and (max-width: $desktop) {
         gap: 19px;
       }
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .woocommerce-product-gallery__trigger {
+          display: none;
+        }
+      }
       .flex-viewport {
         @media screen and (max-width: $desktop) {
           max-width: 315px;
@@ -178,6 +216,19 @@
     .woocommerce-tabs div.panel {
       display: none;
       margin: 0;
+      p {
+        font-family: $secondary-font;
+        font-size: 20px;
+        line-height: 30px;
+        @media screen and (max-width: $desktop) {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
       h2 {
         display: none;
       }
@@ -203,6 +254,10 @@
         border-radius: 0;
         padding: 0;
         margin: 0;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+          line-height: 30px;
+        }
         @media screen and (max-width: $desktop) {
           font-size: 20px;
           line-height: 30px;
@@ -238,6 +293,10 @@
     font-weight: 300;
     line-height: 48px;
   }
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+    line-height: 34px;
+  }
 }
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price,
 .woocommerce:where(body:not(.woocommerce-uses-block-theme))
@@ -253,6 +312,11 @@
     line-height: 38px;
     margin-bottom: 12px;
   }
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 16px;
+  }
 }
 .woocommerce-product-details__short-description p {
   font-family: $secondary-font;
@@ -262,6 +326,10 @@
   @media screen and (max-width: $desktop) {
     font-size: 18px;
     line-height: 30px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    line-height: 22px;
   }
 }
 .shop-section {
@@ -276,6 +344,12 @@
 .woocommerce-page div.product div.summary {
   width: 100%;
   margin-bottom: 0px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 28px;
+  }
+  @media screen and (max-width: $mobile) {
+    margin-bottom: 24px;
+  }
 }
 .shop-section {
   .container {
@@ -325,6 +399,11 @@
             @media screen and (max-width: $desktop) {
               font-size: 18px;
               line-height: 27px;
+            }
+            @media screen and (max-width: 768px) {
+              font-size: 28px;
+              font-weight: 300;
+              line-height: 33.6px;
             }
           }
           .button {
