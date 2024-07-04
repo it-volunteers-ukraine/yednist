@@ -36,7 +36,7 @@
                     $gallery_title = ($current_language == 'EN') ? 'Gallery' : (($current_language == 'УКР') ? 'Галерея' : 'Galeria');
                     $projects_title = ($current_language == 'EN') ? 'Projects' : (($current_language == 'УКР') ? 'Проєкти' : 'Projekty');
                     $aboutus_title = ($current_language == 'EN') ? 'About us' : (($current_language == 'УКР') ? 'Про нас' : 'O nas');
-                    $team_title = ($current_language == 'EN') ? 'Team' : (($current_language == 'УКР') ? 'Команда' : 'Zespół');
+                    $team_title = ($current_language == 'EN') ? 'Team' : (($current_language == 'УКР') ? 'Наша команда' : 'Zespół');
 
                     $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
                     $parent_page = get_page_by_path($parent_slug);

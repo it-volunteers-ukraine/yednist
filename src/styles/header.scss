@@ -308,6 +308,7 @@
           display: none;
           @media screen and (max-width: $desktop1) {
             display: block;
+            width: auto;
           }
         }
         a {
