@@ -44,6 +44,7 @@
           text-transform: uppercase;
           transition: all $transition-function;
           font-size: 20px;
+          line-height: 1.5;
           border: 1px solid $blue;
           background-color: $white;
           color: $blue;
@@ -56,7 +57,7 @@
           }
           @media screen and (max-width: $desktop) {
             font-size: 16px;
-            line-height: 24px;
+            line-height: 1.5;
             min-width: 203px;
           }
           @media screen and (max-width: $mobile) {
@@ -66,10 +67,9 @@
         .button {
           background: $blue;
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
           @media screen and (max-width: $desktop) {
             font-size: 16px;
-            line-height: 24px;
           }
         }
         .woocommerce-variation-add-to-cart {
@@ -110,13 +110,13 @@
           border: 1px solid $lavender;
           font-family: $secondary-font;
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
           @media screen and (max-width: $desktop) {
             max-width: 203px;
           }
           @media screen and (max-width: $mobile) {
             font-size: 14px;
-            line-height: 22px;
+            line-height: 1.571;
             max-width: none;
             padding: 13px 16px;
           }
@@ -235,14 +235,13 @@
       p {
         font-family: $secondary-font;
         font-size: 20px;
-        line-height: 30px;
         @media screen and (max-width: $desktop) {
           font-size: 18px;
-          line-height: 27px;
+          line-height: 1.5;
         }
         @media screen and (max-width: $mobile) {
           font-size: 14px;
-          line-height: 22px;
+          line-height: 1.571;
         }
       }
       h2 {
@@ -261,7 +260,7 @@
         width: 50%;
         background-color: transparent;
         font-size: 24px;
-        line-height: 36px;
+        line-height: 1.5;
         border-top: 3px solid $grey;
         text-transform: uppercase;
         border-left: 0px;
@@ -272,11 +271,11 @@
         margin: 0;
         @media screen and (max-width: $desktop) {
           font-size: 20px;
-          line-height: 30px;
+          line-height: 1.5;
         }
         @media screen and (max-width: $mobile) {
           font-size: 16px;
-          line-height: 24px;
+          line-height: 1.5;
         }
         &.active {
           a {
@@ -307,17 +306,17 @@
 .product_title {
   font-size: 64px;
   font-weight: 275;
-  line-height: 76.8px;
+  line-height: 1.203;
   color: $blue;
   text-transform: uppercase;
   @media screen and (max-width: $desktop) {
     font-size: 40px;
     font-weight: 300;
-    line-height: 48px;
+    line-height: 1.2;
   }
   @media screen and (max-width: 768px) {
     font-size: 28px;
-    line-height: 34px;
+    line-height: 1.214;
   }
 }
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price,
@@ -326,36 +325,36 @@
   span.price {
   font-size: 40px;
   font-weight: 300;
-  line-height: 48px;
+  line-height: 1.2;
   color: $black;
   margin-bottom: 20px;
   @media screen and (max-width: $desktop) {
     font-size: 32px;
-    line-height: 38px;
+    line-height: 1.1875;
     margin-bottom: 12px;
   }
   @media screen and (max-width: 768px) {
     font-size: 28px;
-    line-height: 34px;
+    line-height: 1.214;
     margin-bottom: 16px;
   }
 }
 .woocommerce-product-details__short-description p {
   font-family: $secondary-font;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 1.5;
   color: $grey;
   @media screen and (max-width: $desktop) {
     font-size: 18px;
-    line-height: 30px;
+    line-height: 1.6666;
   }
   @media screen and (max-width: 768px) {
     font-size: 14px;
-    line-height: 22px;
+    line-height: 1.571;
   }
   @media screen and (max-width: $mobile) {
     font-size: 12px;
-    line-height: 20px;
+    line-height: 1.666;
     margin-bottom: 4px;
   }
 }
@@ -415,11 +414,11 @@
           .woocommerce-loop-product__title {
             padding: 0;
             font-size: 24px;
-            line-height: 36px;
+            line-height: 1.5;
             margin-bottom: 4px;
             @media screen and (max-width: $desktop) {
               font-size: 20px;
-              line-height: 30px;
+              line-height: 1.5;
             }
           }
           img {
@@ -433,16 +432,16 @@
           .price {
             font-family: $secondary-font;
             font-size: 20px;
-            line-height: 30px;
+            line-height: 1.5;
             color: $black;
             margin-bottom: 12px;
             @media screen and (max-width: $desktop) {
               font-size: 18px;
-              line-height: 27px;
+              line-height: 1.5;
             }
             @media screen and (max-width: $mobile) {
               font-size: 14px;
-              line-height: 22px;
+              line-height: 1.571;
             }
           }
           .button {
