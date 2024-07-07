@@ -7,7 +7,7 @@
     @media screen and (max-width: $desktop) {
       grid-gap: 60px 20px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: $tablet1) {
       display: flex;
       flex-direction: column;
       gap: 32px;
@@ -22,7 +22,7 @@
       grid-column: 2 / 3;
       grid-row: 1;
       width: 100%;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: $tablet1) {
         gap: 8px;
       }
       form.cart {
@@ -79,7 +79,7 @@
             gap: 20px;
           }
 
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: $tablet1) {
             gap: 40px;
           }
 
@@ -157,7 +157,7 @@
           max-width: 92px;
           gap: 16px;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $tablet1) {
           display: flex;
           flex-direction: row;
           max-width: none;
@@ -165,7 +165,7 @@
           width: 100%;
         }
         li {
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: $tablet1) {
             border: 1px solid $violet-grey;
             background: none;
             width: 16px;
@@ -211,7 +211,7 @@
       @media screen and (max-width: $desktop) {
         gap: 19px;
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: $tablet1) {
         max-width: 100%;
         display: flex;
         flex-direction: column;
@@ -314,7 +314,7 @@
     font-weight: 300;
     line-height: 1.2;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $tablet1) {
     font-size: 28px;
     line-height: 1.214;
   }
@@ -333,7 +333,7 @@
     line-height: 1.1875;
     margin-bottom: 12px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $tablet1) {
     font-size: 28px;
     line-height: 1.214;
     margin-bottom: 16px;
@@ -348,7 +348,7 @@
     font-size: 18px;
     line-height: 1.6666;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $tablet1) {
     font-size: 14px;
     line-height: 1.571;
   }
@@ -370,7 +370,7 @@
 .woocommerce-page div.product div.summary {
   width: 100%;
   margin-bottom: 0px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $tablet1) {
     margin-bottom: 28px;
   }
   @media screen and (max-width: $mobile) {
@@ -388,7 +388,7 @@
         @media screen and (max-width: $desktop) {
           gap: 68px;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $tablet1) {
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
@@ -405,7 +405,7 @@
           width: calc(100% / 3);
           margin: 0;
           text-align: center;
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: $tablet1) {
             width: calc(100% / 2 - 24px);
           }
           @media screen and (max-width: $mobile) {
