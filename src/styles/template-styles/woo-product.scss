@@ -59,6 +59,9 @@
             line-height: 24px;
             min-width: 203px;
           }
+          @media screen and (max-width: $mobile) {
+            min-width: 100%;
+          }
         }
         .button {
           background: $blue;
@@ -103,7 +106,6 @@
           padding: 12px 16px;
           gap: 10px;
           border-radius: $bid-border-radius;
-          border: 1px;
           background: $white;
           border: 1px solid $lavender;
           font-family: $secondary-font;
@@ -111,6 +113,12 @@
           line-height: 30px;
           @media screen and (max-width: $desktop) {
             max-width: 203px;
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 14px;
+            line-height: 22px;
+            max-width: none;
+            padding: 13px 16px;
           }
         }
       }
@@ -132,6 +140,9 @@
           @media screen and (max-width: $desktop) {
             width: 315px;
             height: 444px;
+          }
+          @media screen and (max-width: $mobile) {
+            height: auto;
           }
         }
       }
@@ -155,7 +166,7 @@
         }
         li {
           @media screen and (max-width: 768px) {
-            border: 1px solid #8c8ed0;
+            border: 1px solid $violet-grey;
             background: none;
             width: 16px;
             height: 16px;
@@ -165,7 +176,9 @@
             }
           }
           &:has(.flex-active) {
-            background-color: #8c8ed0;
+            @media screen and (max-width: $desktop) {
+              background-color: $violet-grey;
+            }
           }
           img {
             &.flex-active {
@@ -210,6 +223,9 @@
       .flex-viewport {
         @media screen and (max-width: $desktop) {
           max-width: 315px;
+        }
+        @media screen and (max-width: $mobile) {
+          max-height: 406px;
         }
       }
     }
@@ -258,9 +274,9 @@
           font-size: 20px;
           line-height: 30px;
         }
-        @media screen and (max-width: $desktop) {
-          font-size: 20px;
-          line-height: 30px;
+        @media screen and (max-width: $mobile) {
+          font-size: 16px;
+          line-height: 24px;
         }
         &.active {
           a {
@@ -268,12 +284,18 @@
           }
           border-top: 3px solid $blue;
           background-color: transparent;
+          @media screen and (max-width: $mobile) {
+            border-top: 2px solid $blue;
+          }
         }
         a {
           color: $grey;
           width: 100%;
           text-align: center;
           padding: 5px 0 0 0;
+          @media screen and (max-width: $mobile) {
+            padding: 7px 0 0 0;
+          }
         }
       }
     }
@@ -331,6 +353,11 @@
     font-size: 14px;
     line-height: 22px;
   }
+  @media screen and (max-width: $mobile) {
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
 }
 .shop-section {
   margin-top: 120px;
@@ -348,6 +375,7 @@
     margin-bottom: 28px;
   }
   @media screen and (max-width: $mobile) {
+    gap: 4px;
     margin-bottom: 24px;
   }
 }
@@ -381,6 +409,9 @@
           @media screen and (max-width: 768px) {
             width: calc(100% / 2 - 24px);
           }
+          @media screen and (max-width: $mobile) {
+            width: 100%;
+          }
           .woocommerce-loop-product__title {
             padding: 0;
             font-size: 24px;
@@ -409,10 +440,9 @@
               font-size: 18px;
               line-height: 27px;
             }
-            @media screen and (max-width: 768px) {
-              font-size: 28px;
-              font-weight: 300;
-              line-height: 33.6px;
+            @media screen and (max-width: $mobile) {
+              font-size: 14px;
+              line-height: 22px;
             }
           }
           .button {
