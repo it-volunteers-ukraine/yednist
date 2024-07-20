@@ -149,7 +149,12 @@ function display_product_tags() {
         $tag_names = wp_list_pluck( $tags, 'name' );
         $tag_list = implode( ', ', $tag_names );
         echo '<span class="product-tag ';
-        if($tag_slug == 'in_progress-uk' || $tag_slug == 'in_progress-en' || $tag_slug == 'in_progress-pl') echo "in-progress";
+        if($tag_slug == 'in_progress-uk' || $tag_slug == 'in_progress-en' || $tag_slug == 'in_progress-pl') {
+          echo "in-progress";
+        }
+        if($tag_slug == 'not_available-uk' || $tag_slug == 'not_available-en' || $tag_slug == 'not_available-pl') {
+          echo "not-available";
+        }
         echo '">' . esc_html( $tag_list ) . '</span>';
     }
 }
@@ -179,6 +184,8 @@ function filter_woocommerce_product_single_add_to_cart_text($text, $instance) {
 
     if ($tag_slug == 'in_progress-uk' || $tag_slug == 'in_progress-en' || $tag_slug == 'in_progress-pl') {
         $text = get_field('order_button', 'options');
+    } else if ($tag_slug == 'not_available-uk' || $tag_slug == 'not_available-en' || $tag_slug == 'not_available-pl') {
+        $text = get_field('not_available_button', 'options');
     } else {
         $text = get_field('buy_button', 'options');
     }
@@ -271,3 +278,19 @@ function custom_upsell_products_output() {
       wp_reset_postdata();
   }
 }
+
+
+// disable add to cart button
+function custom_manage_stock_status_shop_page() {
+    ?>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  var outOfStockProducts = document.querySelectorAll('.product.outofstock a.button');
+  outOfStockProducts.forEach(function(button) {
+    button.classList.add('disabled');
+  });
+});
+</script>
+<?php
+}
+add_action('wp_head', 'custom_manage_stock_status_shop_page');

@@ -15,7 +15,7 @@
   @media screen and (max-width: $tablet2) {
     grid-template-columns: 1fr 1fr;
     column-gap: 6.9%;
-    row-gap: 20px;
+    row-gap: 40px;
   }
   @media screen and (max-width: $mobile) {
     column-gap: 5.55%;
@@ -26,6 +26,9 @@
 .woocommerce-page ul.products.columns-3 li.product {
   width: auto;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
@@ -80,6 +83,17 @@
       height: 40px;
       font-size: 14px;
     }
+    &.disabled {
+      background-color: $grey;
+      color: $white;
+      opacity: 1;
+      &:hover,
+      &:focus {
+        box-shadow: none;
+        background-color: $grey;
+        color: $white;
+      }
+    }
   }
   & .product-tag {
     position: absolute;
@@ -103,6 +117,10 @@
     }
     &.in-progress {
       background-color: $yellow;
+    }
+    &.not-available {
+      background-color: $dark-grey;
+      color: $white;
     }
   }
 }

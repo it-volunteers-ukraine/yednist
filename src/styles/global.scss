@@ -59,7 +59,8 @@
 .woocommerce .single_add_to_cart_button.button,
 .woocommerce .return-to-shop a.button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
-.lmp_load_more_button.br_lmp_button_settings .lmp_button {
+.lmp_load_more_button.br_lmp_button_settings .lmp_button,
+a.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,9 +71,11 @@
   height: 54px;
   border-radius: $bid-border-radius;
   text-transform: uppercase;
+  text-align: center;
   transition: all $transition-function;
   font-weight: 400;
   font-size: 20px;
+  line-height: normal;
 
   @media screen and (max-width: $desktop) {
     min-width: 203px;
@@ -87,7 +90,15 @@
     box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
   }
   &:disabled[disabled] {
+    background-color: $grey;
     color: $white;
+    opacity: 1;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      background-color: $grey;
+      color: $white;
+    }
   }
 }
 
@@ -98,11 +109,10 @@
     min-width: 315px;
   }
   @media screen and (max-width: $tablet2) {
-    margin-top: 20px;
+    margin-top: 0;
     min-width: 246px;
   }
   @media screen and (max-width: $mobile) {
-    margin-top: 32px;
     min-width: 100%;
   }
 }
