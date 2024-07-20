@@ -286,9 +286,8 @@ function custom_manage_stock_status_shop_page() {
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
   var outOfStockProducts = document.querySelectorAll('.product.outofstock a.button');
-  console.log(outOfStockProducts);
   outOfStockProducts.forEach(function(button) {
-    // button.classList.add('disabled');
+    button.classList.add('disabled');
   });
 });
 </script>

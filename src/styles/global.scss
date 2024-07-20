@@ -71,6 +71,7 @@ a.button {
   height: 54px;
   border-radius: $bid-border-radius;
   text-transform: uppercase;
+  text-align: center;
   transition: all $transition-function;
   font-weight: 400;
   font-size: 20px;
@@ -108,11 +109,10 @@ a.button {
     min-width: 315px;
   }
   @media screen and (max-width: $tablet2) {
-    margin-top: 20px;
+    margin-top: 0;
     min-width: 246px;
   }
   @media screen and (max-width: $mobile) {
-    margin-top: 32px;
     min-width: 100%;
   }
 }
