@@ -80,6 +80,17 @@
       height: 40px;
       font-size: 14px;
     }
+    &.disabled {
+      background-color: $grey;
+      color: $white;
+      opacity: 1;
+      &:hover,
+      &:focus {
+        box-shadow: none;
+        background-color: $grey;
+        color: $white;
+      }
+    }
   }
   & .product-tag {
     position: absolute;
@@ -103,6 +114,10 @@
     }
     &.in-progress {
       background-color: $yellow;
+    }
+    &.not-available {
+      background-color: $dark-grey;
+      color: $white;
     }
   }
 }
