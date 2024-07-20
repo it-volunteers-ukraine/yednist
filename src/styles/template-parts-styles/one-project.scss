@@ -173,18 +173,25 @@
     position: absolute;
     width: 100%;
     max-width: 290px;
+    min-height: 290px;
+    border-radius: $small-border-radius;
+    object-fit: cover;
     @media screen and (max-width: $desktop) {
       max-width: 260px;
+      min-height: 260px;
     }
     @media screen and (max-width: $tablet2) {
       max-width: 180px;
+      min-height: 180px;
     }
     @media screen and (max-width: $mobile) {
       max-width: 130px;
+      min-height: 130px;
     }
     &:first-child {
       top: 16px;
       left: 17px;
+      transform: rotate(-2deg);
       @media screen and (max-width: $desktop) {
         top: 14px;
         left: 14px;
@@ -200,6 +207,7 @@
     &:last-child {
       bottom: 20px;
       right: 20px;
+      transform: rotate(8deg);
       @media screen and (max-width: $desktop) {
         bottom: 14px;
         right: 14px;

@@ -1,5 +1,454 @@
 @import "../variables.scss";
 
+.woocommerce {
+  div.product {
+    display: grid;
+    grid-gap: 80px 40px;
+    @media screen and (max-width: $desktop) {
+      grid-gap: 60px 20px;
+    }
+    @media screen and (max-width: $tablet1) {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @media screen and (max-width: $mobile) {
+      gap: 16px;
+    }
+    .summary {
+      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      grid-column: 2 / 3;
+      grid-row: 1;
+      width: 100%;
+      @media screen and (max-width: $tablet1) {
+        gap: 8px;
+      }
+      form.cart {
+        .quantity {
+          display: none !important;
+        }
+        .variations {
+          margin-bottom: 24px;
+        }
+        .contact-us-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          padding: 11px 24px;
+          width: fit-content;
+          min-width: 277px;
+          border-radius: $bid-border-radius;
+          text-transform: uppercase;
+          transition: all $transition-function;
+          font-size: 20px;
+          line-height: 1.5;
+          border: 1px solid $blue;
+          background-color: $white;
+          color: $blue;
+          &:hover,
+          &:focus {
+            box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
+          }
+          &:disabled[disabled] {
+            color: $white;
+          }
+          @media screen and (max-width: $desktop) {
+            font-size: 16px;
+            line-height: 1.5;
+            min-width: 203px;
+          }
+          @media screen and (max-width: $mobile) {
+            min-width: 100%;
+          }
+        }
+        .button {
+          background: $blue;
+          font-size: 20px;
+          line-height: 1.5;
+          @media screen and (max-width: $desktop) {
+            font-size: 16px;
+          }
+        }
+        .woocommerce-variation-add-to-cart {
+          display: flex;
+          gap: 40px;
+          @media screen and (max-width: $desktop) {
+            gap: 20px;
+          }
+
+          @media screen and (max-width: $tablet1) {
+            gap: 40px;
+          }
+
+          @media screen and (max-width: $mobile) {
+            gap: 16px;
+            flex-direction: column;
+          }
+        }
+        margin-bottom: 0;
+      }
+    }
+    form.cart .variations {
+      .label {
+        display: none;
+      }
+      .value {
+        a {
+          display: none !important;
+        }
+        select {
+          width: 100%;
+          max-width: 277px;
+          min-width: auto;
+          padding: 12px 16px;
+          gap: 10px;
+          border-radius: $bid-border-radius;
+          background: $white;
+          border: 1px solid $lavender;
+          font-family: $secondary-font;
+          font-size: 20px;
+          line-height: 1.5;
+          @media screen and (max-width: $desktop) {
+            max-width: 203px;
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 14px;
+            line-height: 1.571;
+            max-width: none;
+            padding: 13px 16px;
+          }
+        }
+      }
+    }
+    .woocommerce-tabs {
+      float: right;
+      width: 58%;
+      clear: none;
+      grid-column: 2;
+      grid-row: 2;
+      width: 100%;
+    }
+    div.images {
+      .woocommerce-product-gallery__wrapper {
+        img {
+          border-radius: $bid-border-radius;
+          height: 600px;
+          width: 425px;
+          @media screen and (max-width: $desktop) {
+            width: 315px;
+            height: 444px;
+          }
+          @media screen and (max-width: $mobile) {
+            height: auto;
+          }
+        }
+      }
+      .flex-control-nav.flex-control-thumbs {
+        display: flex;
+        flex-direction: column;
+        width: -webkit-fill-available;
+        max-width: 120px;
+        gap: 32.5px;
+        height: fit-content;
+        @media screen and (max-width: $desktop) {
+          max-width: 92px;
+          gap: 16px;
+        }
+        @media screen and (max-width: $tablet1) {
+          display: flex;
+          flex-direction: row;
+          max-width: none;
+          justify-content: center;
+          width: 100%;
+        }
+        li {
+          @media screen and (max-width: $tablet1) {
+            border: 1px solid $violet-grey;
+            background: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            img {
+              display: none;
+            }
+          }
+          &:has(.flex-active) {
+            @media screen and (max-width: $desktop) {
+              background-color: $violet-grey;
+            }
+          }
+          img {
+            &.flex-active {
+              border: 1px solid $violet-grey;
+            }
+            padding: 8px;
+            width: 104px;
+            height: 104px;
+            max-width: none;
+            border-radius: 8px;
+            opacity: 10;
+            @media screen and (max-width: $desktop) {
+              width: 92px;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+    div.images.woocommerce-product-gallery {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 29px;
+      max-width: 574px;
+      grid-column: 1;
+      grid-row: 1 / 3;
+      width: 100%;
+      height: fit-content;
+      margin-bottom: 0px;
+      @media screen and (max-width: $desktop) {
+        gap: 19px;
+      }
+      @media screen and (max-width: $tablet1) {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .woocommerce-product-gallery__trigger {
+          display: none;
+        }
+      }
+      .flex-viewport {
+        @media screen and (max-width: $desktop) {
+          max-width: 315px;
+        }
+        @media screen and (max-width: $mobile) {
+          max-height: 406px;
+        }
+      }
+    }
+    .woocommerce-tabs div.panel {
+      display: none;
+      margin: 0;
+      p {
+        font-family: $secondary-font;
+        font-size: 20px;
+        @media screen and (max-width: $desktop) {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 14px;
+          line-height: 1.571;
+        }
+      }
+      h2 {
+        display: none;
+      }
+    }
+    .woocommerce-tabs ul.tabs::before {
+      display: none;
+    }
+    .woocommerce-tabs ul.tabs {
+      width: 100%;
+      display: flex;
+      padding: 0;
+      margin-bottom: 24px;
+      li {
+        width: 50%;
+        background-color: transparent;
+        font-size: 24px;
+        line-height: 1.5;
+        border-top: 3px solid $grey;
+        text-transform: uppercase;
+        border-left: 0px;
+        border-right: 0px;
+        border-bottom: 0px;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        @media screen and (max-width: $desktop) {
+          font-size: 20px;
+          line-height: 1.5;
+        }
+        @media screen and (max-width: $mobile) {
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        &.active {
+          a {
+            color: $black;
+          }
+          border-top: 3px solid $blue;
+          background-color: transparent;
+          @media screen and (max-width: $mobile) {
+            border-top: 2px solid $blue;
+          }
+        }
+        a {
+          color: $grey;
+          width: 100%;
+          text-align: center;
+          padding: 5px 0 0 0;
+          @media screen and (max-width: $mobile) {
+            padding: 7px 0 0 0;
+          }
+        }
+      }
+    }
+  }
+}
+.product_meta {
+  display: none;
+}
+.product_title {
+  font-size: 64px;
+  font-weight: 275;
+  line-height: 1.203;
+  color: $blue;
+  text-transform: uppercase;
+  @media screen and (max-width: $desktop) {
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  @media screen and (max-width: $tablet1) {
+    font-size: 28px;
+    line-height: 1.214;
+  }
+}
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price,
+.woocommerce:where(body:not(.woocommerce-uses-block-theme))
+  div.product
+  span.price {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: $black;
+  margin-bottom: 20px;
+  @media screen and (max-width: $desktop) {
+    font-size: 32px;
+    line-height: 1.1875;
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: $tablet1) {
+    font-size: 28px;
+    line-height: 1.214;
+    margin-bottom: 16px;
+  }
+}
+.woocommerce-product-details__short-description p {
+  font-family: $secondary-font;
+  font-size: 20px;
+  line-height: 1.5;
+  color: $grey;
+  @media screen and (max-width: $desktop) {
+    font-size: 18px;
+    line-height: 1.6666;
+  }
+  @media screen and (max-width: $tablet1) {
+    font-size: 14px;
+    line-height: 1.571;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 12px;
+    line-height: 1.666;
+    margin-bottom: 4px;
+  }
+}
 .shop-section {
   margin-top: 120px;
+}
+.about__documents {
+  display: none;
+}
+.woocommerce #content div.product div.summary,
+.woocommerce div.product div.summary,
+.woocommerce-page #content div.product div.summary,
+.woocommerce-page div.product div.summary {
+  width: 100%;
+  margin-bottom: 0px;
+  @media screen and (max-width: $tablet1) {
+    margin-bottom: 28px;
+  }
+  @media screen and (max-width: $mobile) {
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+}
+.shop-section {
+  .container {
+    .inner-container {
+      .products {
+        display: flex;
+        gap: 94px;
+        align-items: center;
+        @media screen and (max-width: $desktop) {
+          gap: 68px;
+        }
+        @media screen and (max-width: $tablet1) {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 30px 48px;
+        }
+        &::after,
+        &::before {
+          display: none;
+        }
+        .product {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: calc(100% / 3);
+          margin: 0;
+          text-align: center;
+          @media screen and (max-width: $tablet1) {
+            width: calc(100% / 2 - 24px);
+          }
+          @media screen and (max-width: $mobile) {
+            width: 100%;
+          }
+          .woocommerce-loop-product__title {
+            padding: 0;
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 4px;
+            @media screen and (max-width: $desktop) {
+              font-size: 20px;
+              line-height: 1.5;
+            }
+          }
+          img {
+            border-radius: $small-border-radius;
+            min-height: 425px;
+            margin-bottom: 12px;
+            @media screen and (max-width: $desktop) {
+              min-height: auto;
+            }
+          }
+          .price {
+            font-family: $secondary-font;
+            font-size: 20px;
+            line-height: 1.5;
+            color: $black;
+            margin-bottom: 12px;
+            @media screen and (max-width: $desktop) {
+              font-size: 18px;
+              line-height: 1.5;
+            }
+            @media screen and (max-width: $mobile) {
+              font-size: 14px;
+              line-height: 1.571;
+            }
+          }
+          .button {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
 }
