@@ -34,7 +34,7 @@ if (isset($args['parent_page'])) {
             echo '<div class="projects__section__swiper__item__photo__wrapper"><img class="single-image" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"></div>';
           } else {
             foreach ($project_images as $index => $image) {
-              echo '<img class="projects__section__swiper__item__photo" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '">';
+              echo '<div class="projects__section__swiper__item__photo__wrappers"><img class="projects__section__swiper__item__photo" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"></div>';
             }
           }
           echo '</div>';
