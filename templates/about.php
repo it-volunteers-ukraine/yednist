@@ -50,33 +50,25 @@ global $post;
     <div class="container">
       <h2 class="section-title"><?php the_field('about_projects'); ?></h2>
       <div class="inner-container">
-
         <div>
           <?php
-    $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
-    $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
-    $parent_page = get_page_by_path($parent_slug);
-    $pages = get_pages(array(
-        'parent' => $parent_page->ID,
-        'number' => 3,
-        'sort_column' => 'post_date',
-        'sort_order' => 'DESC'
-      ));
-    $children = get_page_children($parent_page->ID, $pages);?>
-
+          $current_language = (function_exists('pll_current_language')) ? pll_current_language('name') : '';
+          $parent_slug = ($current_language == 'EN') ? 'projects-en' : (($current_language == 'УКР') ? 'projects-uk' : 'projects-pl');
+          $parent_page = get_page_by_path($parent_slug);
+          $pages = get_pages(array(
+              'parent' => $parent_page->ID,
+              'number' => 3,
+              'sort_column' => 'post_date',
+              'sort_order' => 'DESC'
+            ));
+          $children = get_page_children($parent_page->ID, $pages);?>
           <?php foreach ($children as $child) { 
-      if (have_rows('projects_descriptions', $parent_page->ID)) {
-        the_row();
-          
-        get_template_part( 'template-parts/one-project', null, array('child' => $child, 'parent_page' => $parent_page));
-
-       } ?>
-          <?php } ?>
+            get_template_part( 'template-parts/one-project', null, array('child' => $child, 'parent_page' => $parent_page));
+          } ?>
         </div>
-
         <a class="button primary-button about__projects--btn"
-          href="<?php echo esc_attr(get_field('about_projects_btn_url') ); ?>"><?php the_field('about_projects_btn'); ?></a>
-
+          href="<?php echo esc_attr(get_field('about_projects_btn_url') ); ?>"><?php the_field('about_projects_btn'); ?>
+        </a>
       </div>
     </div>
   </section>
