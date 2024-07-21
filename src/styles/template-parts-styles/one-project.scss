@@ -170,11 +170,10 @@
     }
   }
   &__photo {
-    position: absolute;
     width: 100%;
     max-width: 290px;
     min-height: 290px;
-    border-radius: $small-border-radius;
+
     object-fit: cover;
     @media screen and (max-width: $desktop) {
       max-width: 260px;
@@ -188,38 +187,49 @@
       max-width: 130px;
       min-height: 130px;
     }
-    &:first-child {
-      top: 16px;
-      left: 17px;
-      transform: rotate(-2deg);
-      @media screen and (max-width: $desktop) {
-        top: 14px;
-        left: 14px;
+
+    &__wrappers {
+      aspect-ratio: 1;
+      position: absolute;
+
+      img {
+        border-radius: $small-border-radius;
       }
-      @media screen and (max-width: $tablet2) {
-        top: 13px;
-        left: 11px;
+
+      &:first-child {
+        top: 16px;
+        left: 17px;
+        transform: rotate(-2deg);
+        @media screen and (max-width: $desktop) {
+          top: 14px;
+          left: 14px;
+        }
+        @media screen and (max-width: $tablet2) {
+          top: 13px;
+          left: 11px;
+        }
+        @media screen and (max-width: $mobile) {
+          left: 10px;
+        }
       }
-      @media screen and (max-width: $mobile) {
-        left: 10px;
+      &:last-child {
+        bottom: 20px;
+        right: 20px;
+        transform: rotate(8deg);
+        @media screen and (max-width: $desktop) {
+          bottom: 14px;
+          right: 14px;
+        }
+        @media screen and (max-width: $tablet2) {
+          bottom: 12px;
+          right: 10px;
+        }
+        @media screen and (max-width: $mobile) {
+          right: 22px;
+        }
       }
     }
-    &:last-child {
-      bottom: 20px;
-      right: 20px;
-      transform: rotate(8deg);
-      @media screen and (max-width: $desktop) {
-        bottom: 14px;
-        right: 14px;
-      }
-      @media screen and (max-width: $tablet2) {
-        bottom: 12px;
-        right: 10px;
-      }
-      @media screen and (max-width: $mobile) {
-        right: 22px;
-      }
-    }
+
     &__wrapper {
       width: 100%;
       overflow: hidden;
