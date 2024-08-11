@@ -1,1 +1,415 @@
 @import "../variables.scss";
+
+.breadcrumbs__section.-cart {
+  margin-bottom: 40px;
+
+  @media screen and (max-width: $desktop) {
+    margin-bottom: 32px;
+  }
+}
+
+.cart-section {
+  &--title {
+    margin-bottom: 60px;
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .woocommerce-cart-form {
+    margin-bottom: 48px;
+
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 40px;
+    }
+
+    .shop_table {
+      table-layout: fixed;
+      width: 100%;
+      border: none;
+      margin-bottom: 0;
+
+      thead {
+        th {
+          padding: 16px 0;
+          border-top: 1px solid $violet-grey;
+          border-bottom: 1px solid $violet-grey;
+          color: $blue;
+          font-size: 40px;
+          line-height: 120%;
+          font-weight: 300;
+
+          @media screen and (max-width: $desktop) {
+            font-size: 32px;
+          }
+          @media screen and (max-width: $tablet2) {
+            font-size: 24px;
+          }
+
+          &:nth-child(1) {
+            width: 7%;
+          }
+          &:nth-child(2) {
+            width: 43%;
+          }
+          &:nth-child(3) {
+            width: 15%;
+          }
+          &:nth-child(4) {
+            width: 17.7%;
+          }
+          &:nth-child(5) {
+            width: 15%;
+            @media screen and (max-width: $tablet2) {
+              width: 12.7%;
+            }
+          }
+          &:nth-child(6) {
+            width: 2.7%;
+            @media screen and (max-width: $tablet2) {
+              width: 5%;
+            }
+          }
+        }
+      }
+
+      tbody {
+        position: relative;
+        .blockUI.blockOverlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        }
+
+        tr:nth-child(2n) td {
+          background-color: transparent;
+        }
+
+        td {
+          padding: 32px 0;
+          border: none;
+          border-bottom: 1px solid $violet-grey;
+          font-size: 24px;
+          vertical-align: top;
+
+          @media screen and (max-width: $desktop1) {
+            padding: 8px 0;
+            font-size: 20px;
+          }
+          @media screen and (max-width: $tablet1) {
+            border: none;
+
+            &:before {
+              font-weight: 300;
+              color: $blue;
+            }
+          }
+
+          &.actions {
+            display: none;
+          }
+        }
+
+        .product-thumbnail {
+          a {
+            display: block;
+            width: fit-content;
+            height: fit-content;
+
+            img {
+              width: 100px;
+              border-radius: 16px;
+
+              @media screen and (max-width: $desktop) {
+                border-radius: 12px;
+              }
+            }
+          }
+
+          @media screen and (max-width: $tablet1) {
+            display: inline-block;
+            width: 25%;
+
+            &::before {
+              content: none;
+            }
+          }
+        }
+
+        .product-name {
+          padding-left: 40px;
+          padding-right: 40px;
+          color: $blue;
+
+          @media screen and (max-width: $tablet2) {
+            padding-left: 24px;
+            padding-right: 24px;
+          }
+          @media screen and (max-width: $tablet1) {
+            display: inline-block;
+            padding-left: 0;
+            padding-right: 0;
+            width: 70%;
+            float: right;
+
+            &::before {
+              content: none;
+            }
+          }
+          @media screen and (max-width: $mobile) {
+            font-size: 18px;
+            line-height: 120%;
+          }
+        }
+
+        .product-quantity .quantity-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          @media screen and (max-width: $desktop) {
+            gap: 8px;
+          }
+          @media screen and (max-width: $tablet1) {
+            justify-content: end;
+          }
+
+          .quantity input {
+            border: 1px solid $violet-grey;
+            border-radius: 16px;
+            width: 40px;
+            height: 40px;
+            font-size: 32px;
+            line-height: 120%;
+            font-weight: 300;
+            color: $blue;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+
+            @media screen and (max-width: $desktop) {
+              width: 32px;
+              height: 32px;
+              border-radius: 12px;
+              font-size: 24px;
+            }
+          }
+
+          button {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            @media screen and (max-width: $desktop) {
+              width: 20px;
+              height: 20px;
+            }
+
+            &.minus,
+            &.plus {
+              width: 20px;
+              height: 20px;
+
+              &:after {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                content: "";
+                display: block;
+                width: 20px;
+                height: 20px;
+                background: $background url("../../images/plus.svg") no-repeat
+                  center / contain;
+              }
+            }
+            &.minus:after {
+              background: $background url("../../images/minus.svg") no-repeat
+                center / contain;
+            }
+          }
+        }
+
+        .product-remove {
+          @media screen and (max-width: $tablet1) {
+            border-bottom: 1px solid $violet-grey;
+            &:not(:last-child) {
+              margin-bottom: 16px;
+            }
+          }
+          a.remove {
+            color: transparent !important;
+            position: relative;
+
+            @media screen and (max-width: $tablet1) {
+              margin-left: auto;
+            }
+
+            &:after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              display: block;
+              width: 40px;
+              height: 40px;
+              background: $background url("../../images/delete.png") no-repeat
+                center / contain;
+
+              @media screen and (max-width: $desktop) {
+                width: 24px;
+                height: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cart-collaterals {
+    position: relative;
+    .cart_link {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      border: 1px solid $blue;
+      background-color: $white;
+      color: $blue;
+
+      &:hover,
+      &:focus {
+        color: $blue;
+        border: 1px solid $blue;
+        background-color: $white;
+      }
+
+      @media screen and (max-width: $mobile) {
+        position: static;
+        margin-top: 16px;
+      }
+    }
+    .cart_totals {
+      h2 {
+        display: none;
+      }
+      .shop_table {
+        table-layout: fixed;
+        width: 100%;
+        border: none;
+        margin-bottom: 48px;
+
+        @media screen and (max-width: $desktop) {
+          margin-bottom: 40px;
+        }
+
+        .order-total {
+          td,
+          th {
+            padding: 0;
+            border: none;
+            text-align: end;
+            font-size: 40px;
+            line-height: 120%;
+            font-weight: 300;
+            color: $blue;
+
+            @media screen and (max-width: $desktop) {
+              font-size: 32px;
+            }
+            @media screen and (max-width: $tablet2) {
+              font-size: 24px;
+            }
+          }
+          td {
+            width: 14%;
+
+            @media screen and (max-width: $tablet1) {
+              width: 100%;
+              background-color: transparent;
+
+              &:before {
+                font-weight: 300;
+              }
+            }
+
+            bdi {
+              color: $black;
+              font-weight: 300;
+            }
+          }
+        }
+
+        .cart-subtotal,
+        .woocommerce-shipping-totals {
+          display: none;
+        }
+      }
+      .wc-proceed-to-checkout {
+        padding: 0;
+        a {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  .woocommerce-message {
+    display: none;
+  }
+  .cart-empty {
+    border: none;
+    margin-top: 140px;
+    margin-bottom: 80px;
+    padding: 0;
+    text-align: center;
+    font-size: 40px;
+    line-height: 120%;
+    font-weight: 300;
+    color: $blue;
+
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 60px;
+      font-size: 32px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-top: 100px;
+      margin-bottom: 40px;
+      font-size: 20px;
+      line-height: 150%;
+      text-transform: uppercase;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+
+  .return-to-shop {
+    margin-bottom: 140px;
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 100px;
+    }
+    .button.wc-backward {
+      margin: 0 auto;
+      min-width: 425px;
+      @media screen and (max-width: $desktop) {
+        min-width: 315px;
+      }
+      @media screen and (max-width: $tablet2) {
+        min-width: 246px;
+      }
+    }
+  }
+}
+
+.woocommerce .woocommerce-message {
+  display: none;
+}

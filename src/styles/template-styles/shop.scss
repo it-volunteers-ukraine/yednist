@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
@@ -147,13 +148,18 @@
 }
 
 .woocommerce a.added_to_cart {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
   display: block;
   margin: 0 auto;
-  width: fit-content;
+  width: max-content;
   @media screen and (max-width: $desktop) {
     font-size: 20px;
   }
   @media screen and (max-width: $mobile) {
+    bottom: -20px;
     font-size: 12px;
   }
 }

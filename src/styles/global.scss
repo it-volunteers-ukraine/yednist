@@ -60,7 +60,10 @@
 .woocommerce .return-to-shop a.button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
 .lmp_load_more_button.br_lmp_button_settings .lmp_button,
-a.button {
+a.button,
+:where(body:not(.woocommerce-block-theme-has-button-styles))
+  .woocommerce
+  button.button.alt {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,13 +106,12 @@ a.button {
 }
 
 .lmp_load_more_button.br_lmp_button_settings .lmp_button {
-  margin: -20px auto 0;
+  margin: 0 auto;
   min-width: 425px;
   @media screen and (max-width: $desktop) {
     min-width: 315px;
   }
   @media screen and (max-width: $tablet2) {
-    margin-top: 0;
     min-width: 246px;
   }
   @media screen and (max-width: $mobile) {
@@ -130,7 +132,10 @@ a.button {
 .woocommerce .return-to-shop a.button,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
-  a.button {
+  a.button,
+:where(body:not(.woocommerce-block-theme-has-button-styles))
+  .woocommerce
+  button.button.alt {
   background-color: $blue;
   color: $white;
   &:hover,

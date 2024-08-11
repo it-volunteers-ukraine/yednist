@@ -122,6 +122,10 @@ function wp_it_volunteers_scripts() {
     if ( is_page_template('templates/new-project.php') ) {
       wp_enqueue_style( 'new-project-style', get_template_directory_uri() . '/assets/styles/template-styles/new-project.css', array('main') );
     }
+
+    if ( is_page_template('templates/thank-you.php') ) {
+      wp_enqueue_style( 'thank-you-style', get_template_directory_uri() . '/assets/styles/template-styles/thank-you.css', array('main') );
+    }
     
     if ( class_exists( 'WooCommerce' ) ) {
     if (is_shop() ) {
@@ -130,9 +134,11 @@ function wp_it_volunteers_scripts() {
     }
     if (is_cart() ) {
       wp_enqueue_style( 'woo-cart-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-cart.css', array('main') );
+      wp_enqueue_script( 'woo-cart-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/cart.js', array(), false, true );
     }
     if (is_checkout() ) {
       wp_enqueue_style( 'woo-checkout-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-checkout.css', array('main') );
+      wp_enqueue_script( 'woo-checkout-scripts', get_template_directory_uri() . '/assets/scripts/template-scripts/checkout.js', array(), false, true );
     }
     if (is_product() ) {
       wp_enqueue_style( 'woo-product-style', get_template_directory_uri() . '/assets/styles/template-styles/woo-product.css', array('main') );
@@ -255,7 +261,7 @@ function wp_it_volunteers_scripts() {
 }
 /** add fonts */
 function add_google_fonts() {
-  wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;900&family=Fira+Sans+Extra+Condensed:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap', [], null );
+  wp_enqueue_style( 'google_web_fonts', 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;900&family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,400&display=swap', [], null );
 }
 
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
@@ -287,6 +293,12 @@ if( function_exists('acf_add_options_page') ) {
     acf_add_options_sub_page(array(
         'page_title'    => 'PayU Donation Settings',
         'menu_title'    => 'PayU Donation Settings',
+        'parent_slug'   => 'theme-general-settings',
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Shop Settings',
+        'menu_title'    => 'Shop Settings',
         'parent_slug'   => 'theme-general-settings',
     ));
 
