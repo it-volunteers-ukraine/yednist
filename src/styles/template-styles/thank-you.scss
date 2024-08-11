@@ -1,0 +1,49 @@
+@import "../variables.scss";
+
+.thank__section {
+  margin: 200px 0;
+
+  @media screen and (max-width: $tablet2) {
+    margin: 156px 0;
+  }
+  @media screen and (max-width: $mobile) {
+    margin: 140px 0;
+  }
+
+  &--text {
+    margin: 0 auto 80px;
+    max-width: 1027px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 120%;
+    font-weight: 300;
+    color: $blue;
+
+    @media screen and (max-width: $desktop) {
+      margin-bottom: 60px;
+      font-size: 32px;
+    }
+    @media screen and (max-width: $tablet2) {
+      margin-bottom: 40px;
+      font-size: 20px;
+      line-height: 150%;
+      text-transform: uppercase;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: none;
+    }
+  }
+
+  a.thank__section--button {
+    margin: 0 auto;
+    min-width: 425px;
+    @media screen and (max-width: $desktop) {
+      min-width: 315px;
+    }
+    @media screen and (max-width: $tablet2) {
+      min-width: 246px;
+    }
+  }
+}

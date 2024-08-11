@@ -1,0 +1,1 @@
+jQuery((function(e){var o,n;o=e(".form-row.place-order"),n=e(".woocommerce-checkout-review-order"),o.length&&n.length&&o.appendTo(n).show()})),document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelector(".woo-custom-shipping-container");e&&e.childNodes[2]&&(e.childNodes[2].textContent="")}));
