@@ -85,6 +85,12 @@
           background-color: transparent;
         }
 
+        tr:not(:last-child) {
+          @media screen and (max-width: $tablet1) {
+            margin-bottom: 16px;
+          }
+        }
+
         td {
           padding: 32px 0;
           border: none;
@@ -234,9 +240,6 @@
         .product-remove {
           @media screen and (max-width: $tablet1) {
             border-bottom: 1px solid $violet-grey;
-            &:not(:last-child) {
-              margin-bottom: 16px;
-            }
           }
           a.remove {
             color: transparent !important;

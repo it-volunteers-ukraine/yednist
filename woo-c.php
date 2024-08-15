@@ -484,21 +484,58 @@ jQuery(document).ready(function($) {
   }
 add_action('wp_footer', 'toggle_shipping_fields');
 
-// texts change
-function change_checkout_texts($translated_text, $text, $domain) {
-    switch ($text) {
-        case 'Ship to a different address?':
-            $translated_text = get_field('address_for_shipping', 'options');
-            break;
-        case 'Total':
-          if(is_checkout()) {
-            $translated_text = get_field('order_total', 'options');
-          }
-            break;
+function change_woocommerce_texts($translated_text, $text, $domain) {
+    if ($domain === 'woocommerce') {
+        switch (strtolower($text)) {
+            case 'product':
+            case 'products':
+                $translated_text = '';
+                break;
+            case 'subtotal':
+                $translated_text = get_field('cart_order_total', 'options');
+                break;
+            case 'proceed to checkout':
+                $translated_text = get_field('cart_checkout_btn', 'options');
+                break;
+            case 'ship to a different address?':
+                $translated_text = get_field('address_for_shipping', 'options');
+                break;
+            case 'total':
+                if (is_checkout()) {
+                    $translated_text = get_field('order_total', 'options');
+                }
+                break;
+        }
     }
     return $translated_text;
 }
-add_filter('gettext', 'change_checkout_texts', 20, 3);
+add_filter('gettext', 'change_woocommerce_texts', 20, 3);
+
+function custom_update_labels_after_ajax() {
+    if (is_checkout()) {
+        ?>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  function updateShippingAndPaymentLabels() {
+    $('label[for^="shipping_method_"]').each(function() {
+      if ($(this).text().trim().toLowerCase() === 'самовивіз') {
+        $(this).text('<?php echo esc_js(get_field("self_shipping", "options")); ?>');
+      }
+    });
+    $('label[for^="payment_method_cod"]').each(function() {
+      $(this).text('<?php echo esc_js(get_field("payment_per_picking_up", "options")); ?>');
+    });
+  }
+  updateShippingAndPaymentLabels();
+  $(document.body).on('updated_checkout', function() {
+    updateShippingAndPaymentLabels();
+  });
+});
+</script>
+<?php
+    }
+}
+add_action('wp_footer', 'custom_update_labels_after_ajax');
 
 function customize_woocommerce_shipping_fields($fields) {
   // placeholders
@@ -598,23 +635,38 @@ function after_cart() {
 }
 add_action('woocommerce_after_cart', 'after_cart', 10);
 
-function change_cart_table_headings($translated_text, $text, $domain) {
-    if ($domain === 'woocommerce') {
-      if (strtolower($text) === 'product') {
-            $translated_text = '';
-        } elseif (strtolower($text) === 'products') {
-            $translated_text = '';
-        }
-        if (strtolower($text) === 'subtotal') {
-            $translated_text = get_field('cart_order_total', 'options');
-        }
-        if (strtolower($text) === 'proceed to checkout') {
-            $translated_text = get_field('cart_checkout_btn', 'options');
-        }
-    }
-    return $translated_text;
-}
-add_filter('gettext', 'change_cart_table_headings', 20, 3);
+// function change_cart_table_headings($translated_text, $text, $domain) {
+//     if ($domain === 'woocommerce') {
+//       if (strtolower($text) === 'product') {
+//             $translated_text = '';
+//         } elseif (strtolower($text) === 'products') {
+//             $translated_text = '';
+//         }
+//         if (strtolower($text) === 'subtotal') {
+//             $translated_text = get_field('cart_order_total', 'options');
+//         }
+//         if (strtolower($text) === 'proceed to checkout') {
+//             $translated_text = get_field('cart_checkout_btn', 'options');
+//         }
+//     }
+//     return $translated_text;
+// }
+// add_filter('gettext', 'change_cart_table_headings', 20, 3);
+// texts change
+// function change_checkout_texts($translated_text, $text, $domain) {
+//     switch ($text) {
+//         case 'Ship to a different address?':
+//             $translated_text = get_field('address_for_shipping', 'options');
+//             break;
+//         case 'Total':
+//           if(is_checkout()) {
+//             $translated_text = get_field('order_total', 'options');
+//           }
+//             break;
+//     }
+//     return $translated_text;
+// }
+// add_filter('gettext', 'change_checkout_texts', 20, 3);
 
 
 function custom_quantity_buttons($product_quantity, $cart_item_key, $cart_item) {
