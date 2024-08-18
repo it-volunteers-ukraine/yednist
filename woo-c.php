@@ -338,7 +338,6 @@ function custom_upsell_products_output() {
 }
 
 //==============Checkout page==============//
-
 // add necessary containers
 function add_content_before_checkout_form() {
     echo '<main>';
@@ -500,31 +499,25 @@ function change_woocommerce_texts($translated_text, $text, $domain) {
             case 'ship to a different address?':
                 $translated_text = get_field('address_for_shipping', 'options');
                 break;
-            case 'total':
-                if (is_checkout()) {
-                    $translated_text = get_field('order_total', 'options');
-                }
-                break;
         }
     }
     return $translated_text;
 }
 add_filter('gettext', 'change_woocommerce_texts', 20, 3);
-
+// update labels translations after ajax
 function custom_update_labels_after_ajax() {
     if (is_checkout()) {
         ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
   function updateShippingAndPaymentLabels() {
-    $('label[for^="shipping_method_"]').each(function() {
-      if ($(this).text().trim().toLowerCase() === 'самовивіз') {
-        $(this).text('<?php echo esc_js(get_field("self_shipping", "options")); ?>');
-      }
+    $('label[for^="shipping_method_0_local_pickup"]').each(function() {
+      $(this).text('<?php echo esc_js(get_field("self_shipping", "options")); ?>');
     });
     $('label[for^="payment_method_cod"]').each(function() {
       $(this).text('<?php echo esc_js(get_field("payment_per_picking_up", "options")); ?>');
     });
+    $('.order-total th').text('<?php echo esc_js(get_field("order_total", "options")); ?>');
   }
   updateShippingAndPaymentLabels();
   $(document.body).on('updated_checkout', function() {
@@ -559,7 +552,6 @@ function customize_woocommerce_shipping_fields($fields) {
 }
 add_filter('woocommerce_checkout_fields', 'customize_woocommerce_shipping_fields');
 
-
 function add_custom_heading_before_order_review() {
   echo '<div class="checkout_order_title--wrap"><h2 class="page-title checkout_order_title">';
   the_field('cart_block_title', 'options');
@@ -571,7 +563,6 @@ function add_custom_heading_before_order_review() {
 }
 add_action('woocommerce_checkout_order_review', 'add_custom_heading_before_order_review');
 
-
 function add_product_image_to_checkout($product_name, $cart_item, $cart_item_key) {
   $product = $cart_item['data'];
   $thumbnail = $product->get_image(array(100, 100));
@@ -582,23 +573,20 @@ function add_product_image_to_checkout($product_name, $cart_item, $cart_item_key
   return $product_name;
 }
 add_filter('woocommerce_cart_item_name', 'add_product_image_to_checkout', 10, 3);
-
-
-function store_checkout_language_in_session($order_id) {
-  $current_language = pll_current_language();
-  error_log('Language from session: ' . $current_language);
-  WC()->session->set('checkout_language', $current_language);
+// get current language on checkout page
+function set_checkout_language_in_session($checkout) {
+    $current_language = pll_current_language();
+    WC()->session->set('custom_checkout_language', $current_language);
+    error_log('Language from session: ' . $current_language);
 }
-add_action('woocommerce_checkout_order_processed', 'store_checkout_language_in_session', 10, 1);
-
-
+add_action('woocommerce_before_checkout_form', 'set_checkout_language_in_session', 10);
+// redirect to a new thank-you-page
 function redirect_to_thank_you($thank_you_url, $order) {
   if ($order->has_status('failed')) {
     return $thank_you_url;
   }
-  $current_language = WC()->session->get('checkout_language');
-  error_log('Language from session: ' . $current_language);
-  
+  $current_language = WC()->session->get('custom_checkout_language');
+
   if ($current_language == 'en') {
     $thank_you_page_url = site_url('/thank-you-en/');
   } else if ($current_language == 'pl') {
@@ -606,7 +594,6 @@ function redirect_to_thank_you($thank_you_url, $order) {
   } else {
     $thank_you_page_url = site_url('/thank-you-uk/');
   }
-  
   return $thank_you_page_url;
 }
 add_action('woocommerce_get_return_url', 'redirect_to_thank_you', 90, 2);
@@ -626,7 +613,6 @@ function before_cart() {
   echo '</h1>';
 }
 add_action('woocommerce_before_cart', 'before_cart', 10);
-
 function after_cart() {
   echo '
   </div>
@@ -634,41 +620,7 @@ function after_cart() {
   </section>';
 }
 add_action('woocommerce_after_cart', 'after_cart', 10);
-
-// function change_cart_table_headings($translated_text, $text, $domain) {
-//     if ($domain === 'woocommerce') {
-//       if (strtolower($text) === 'product') {
-//             $translated_text = '';
-//         } elseif (strtolower($text) === 'products') {
-//             $translated_text = '';
-//         }
-//         if (strtolower($text) === 'subtotal') {
-//             $translated_text = get_field('cart_order_total', 'options');
-//         }
-//         if (strtolower($text) === 'proceed to checkout') {
-//             $translated_text = get_field('cart_checkout_btn', 'options');
-//         }
-//     }
-//     return $translated_text;
-// }
-// add_filter('gettext', 'change_cart_table_headings', 20, 3);
-// texts change
-// function change_checkout_texts($translated_text, $text, $domain) {
-//     switch ($text) {
-//         case 'Ship to a different address?':
-//             $translated_text = get_field('address_for_shipping', 'options');
-//             break;
-//         case 'Total':
-//           if(is_checkout()) {
-//             $translated_text = get_field('order_total', 'options');
-//           }
-//             break;
-//     }
-//     return $translated_text;
-// }
-// add_filter('gettext', 'change_checkout_texts', 20, 3);
-
-
+// add plus and minus buttons
 function custom_quantity_buttons($product_quantity, $cart_item_key, $cart_item) {
     $_product = $cart_item['data'];
     $product_quantity = '<div class="quantity-wrapper">';
@@ -686,7 +638,7 @@ function custom_quantity_buttons($product_quantity, $cart_item_key, $cart_item) 
     return $product_quantity;
 }
 add_filter('woocommerce_cart_item_quantity', 'custom_quantity_buttons', 10, 3);
-
+// update items quantity in the cart
 function update_cart_item_quantity() {
     if ( !isset($_POST['product_id']) || !isset($_POST['quantity']) ) {
         wp_send_json_error('Недостаточно данных');
@@ -725,9 +677,28 @@ function update_cart_item_quantity() {
 }
 add_action('wp_ajax_update_cart_item_quantity', 'update_cart_item_quantity');
 add_action('wp_ajax_nopriv_update_cart_item_quantity', 'update_cart_item_quantity');
-
+// redirect to a checkout page according to a site language
 function change_checkout_url_based_on_language($url) {
     $url = get_field('cart_checkout_btn_link', 'options');
     return $url;
 }
 add_filter('woocommerce_get_checkout_url', 'change_checkout_url_based_on_language');
+// redirect to a shop page according to a site language
+function custom_redirect_wc_backward_button() {
+    if (is_cart() && WC()->cart->is_empty()) {
+        $current_language = pll_current_language();
+        
+        if ($current_language == 'en') {
+            $redirect_url = site_url('/en/shop/');
+        } elseif ($current_language == 'pl') {
+            $redirect_url = site_url('/pl/shop/');
+        } else {
+            $redirect_url = site_url('/shop/');
+        }
+
+        add_filter('woocommerce_return_to_shop_redirect', function() use ($redirect_url) {
+            return $redirect_url;
+        });
+    }
+}
+add_action('template_redirect', 'custom_redirect_wc_backward_button');
