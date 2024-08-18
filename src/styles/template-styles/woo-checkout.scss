@@ -100,6 +100,7 @@
         font-size: 16px;
         line-height: 1.6;
         font-weight: 400;
+        transition: $transition-function;
         @media screen and (max-width: $desktop) {
           padding: 12px 24px;
           font-size: 14px;
@@ -117,6 +118,11 @@
           @media screen and (max-width: $desktop) {
             font-size: 14px;
           }
+        }
+
+        &:hover,
+        &:focus {
+          box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
         }
       }
 
@@ -394,6 +400,7 @@
         border: 1px solid $lavender;
         background-color: $white;
         resize: none;
+        transition: $transition-function;
 
         @media screen and (max-width: $desktop) {
           padding: 12px 24px;
@@ -402,6 +409,11 @@
         @media screen and (max-width: $mobile) {
           padding: 8px 16px;
           border-radius: $small-border-radius;
+        }
+
+        &:hover,
+        &:focus {
+          box-shadow: 0px 4px 4px 0px rgba(29, 32, 135, 0.23);
         }
 
         &::-webkit-scrollbar {
@@ -627,5 +639,30 @@
         margin: 0 auto;
       }
     }
+  }
+
+  /* fields validation */
+  .woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  form .form-row.woocommerce-invalid {
+    label {
+      color: $black;
+
+      .required {
+        color: $black;
+      }
+    }
+    input.input-text {
+      border-color: $invalid-input;
+    }
+  }
+
+  form .form-row.woocommerce-validated input.input-text {
+    border-color: $violet-grey;
   }
 }
