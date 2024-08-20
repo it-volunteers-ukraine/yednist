@@ -410,7 +410,6 @@ function custom_override_checkout_fields_order($fields) {
     $fields['billing']['billing_email']['label'] = get_field('email_input', 'options');
     $fields['billing']['billing_company']['label'] = get_field('company_name_input', 'options');
 
-    unset( $fields[ 'billing' ][ 'billing_email' ][ 'validate' ] );
     return $fields;
 }
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields_order');
@@ -549,7 +548,6 @@ function customize_woocommerce_shipping_fields($fields) {
   $fields['shipping']['shipping_address_2']['required'] = true;
   // hide field
   unset($fields['shipping']['shipping_company']);
-  unset( $fields[ 'shipping' ][ 'shipping_email' ][ 'validate' ] );
   return $fields;
 }
 add_filter('woocommerce_checkout_fields', 'customize_woocommerce_shipping_fields');
