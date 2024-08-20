@@ -552,6 +552,78 @@ function customize_woocommerce_shipping_fields($fields) {
 }
 add_filter('woocommerce_checkout_fields', 'customize_woocommerce_shipping_fields');
 
+// checkout validation
+function custom_checkout_validation_scripts() {
+    if (is_checkout()) {
+        ?>
+<script type="text/javascript">
+jQuery(function($) {
+  // Phone number validation on input
+  $('#billing_phone').mask("+48 (99) 999-99-99");
+  $('#billing_phone').on('keyup', function() {
+    var $this = $(this);
+    var value = $this.val();
+    var errorMessage = '<?php the_field('phone_validation_checkout', 'options') ?>';
+    value = value.replace(/[^+\d]/g, '');
+
+    if (!/^\+\d{11,}$/.test(value)) {
+      $this.addClass('woocommerce-invalid');
+      if ($this.next('.custom-error').length === 0) {
+        $this.after('<div class="custom-error woocommerce-error">' + errorMessage + '</div>');
+      }
+    } else {
+      $this.removeClass('woocommerce-invalid');
+      $this.next('.custom-error').remove();
+    }
+  });
+  // Email validation on input
+  $('#billing_email').on('input', function() {
+    var value = $(this).val();
+    var errorMessage = '<?php the_field('email_validation_checkout', 'options') ?>';
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      $(this).addClass('woocommerce-invalid');
+      if ($(this).next('.custom-error').length === 0) {
+        $(this).after('<div class="custom-error woocommerce-error">' + errorMessage + '</div>');
+      }
+    } else {
+      $(this).removeClass('woocommerce-invalid');
+      $(this).next('.custom-error').remove();
+    }
+  });
+
+  // Custom validation logic for checkout errors
+  $(document.body).on('checkout_error', function() {
+    $('.woocommerce-invalid').next('.woocommerce-error').remove();
+
+    $('.woocommerce-error li').each(function() {
+      var errorMessage = $(this).text();
+      var fieldID = $(this).attr('data-id');
+      var fieldWrapperID;
+
+      if (fieldID) {
+        fieldWrapperID = '#' + fieldID + '_field';
+      } else if (errorMessage.includes('email')) {
+        fieldWrapperID = '#billing_email_field';
+      } else {
+        return;
+      }
+
+      var field = $(fieldWrapperID);
+
+      if (field.length && !field.find('.woocommerce-error:contains("' + errorMessage + '")').length) {
+        field.addClass('woocommerce-invalid').append('<div class="woocommerce-error">' + errorMessage +
+          '</div>');
+      }
+    });
+  });
+});
+</script>
+<?php
+    }
+}
+add_action('wp_footer', 'custom_checkout_validation_scripts');
+
 function add_custom_heading_before_order_review() {
   echo '<div class="checkout_order_title--wrap"><h2 class="page-title checkout_order_title">';
   the_field('cart_block_title', 'options');
@@ -577,7 +649,6 @@ add_filter('woocommerce_cart_item_name', 'add_product_image_to_checkout', 10, 3)
 function set_checkout_language_in_session($checkout) {
     $current_language = pll_current_language();
     WC()->session->set('custom_checkout_language', $current_language);
-    error_log('Language from session: ' . $current_language);
 }
 add_action('woocommerce_before_checkout_form', 'set_checkout_language_in_session', 10);
 // redirect to a new thank-you-page
