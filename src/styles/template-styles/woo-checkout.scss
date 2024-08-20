@@ -147,9 +147,8 @@
           width: 20px;
           height: 13px;
           box-shadow: 0 0 1px 0 #888;
-          top: 50%;
+          top: 14.5px;
           left: 40px;
-          transform: translateY(-50%);
           @media screen and (max-width: $desktop) {
             left: 24px;
           }
@@ -164,7 +163,7 @@
           width: 20px;
           height: 6.5px;
           background-color: $invalid-input;
-          top: 50%;
+          top: 21px;
           left: 40px;
           @media screen and (max-width: $desktop) {
             left: 24px;
