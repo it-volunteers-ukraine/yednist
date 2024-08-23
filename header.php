@@ -143,10 +143,12 @@
             <div class="header__menu__item cart menu-burger">
               <a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
                 <svg class="header__menu__item__cart">
-                    <use href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-shopping-bag"></use>
+                  <use href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-shopping-bag">
+                  </use>
                 </svg>
-                <span class="header__menu__item__cart-count <?php echo ( WC()->cart->get_cart_contents_count() > 0 ) ? 'visible' : ''; ?>">
-                    <?php echo WC()->cart->get_cart_contents_count(); ?>
+                <span
+                  class="header__menu__item__cart-count <?php echo ( WC()->cart->get_cart_contents_count() > 0 ) ? 'visible' : ''; ?>">
+                  <?php echo WC()->cart->get_cart_contents_count(); ?>
                 </span>
               </a>
             </div>
