@@ -1,5 +1,11 @@
 // ajax header cart
 jQuery(document).ready(function ($) {
+  function showCountLoading() {
+    $(".header__menu__item__cart-count").css("opacity", "0.5");
+  }
+  function hideCountLoading() {
+    $(".header__menu__item__cart-count").css("opacity", "1");
+  }
   function updateCartCount() {
     $.ajax({
       url: cart_count_params.url,
@@ -8,7 +14,9 @@ jQuery(document).ready(function ($) {
         action: "update_cart_count",
         nonce: cart_count_params.nonce,
       },
+      beforeSend: showCountLoading,
       success: function (response) {
+        hideCountLoading();
         if (response.count !== undefined) {
           $(".header__menu__item__cart-count").text(response.count);
           if (response.count > 0) {
