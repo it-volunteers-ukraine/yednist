@@ -341,7 +341,7 @@ function custom_upsell_products_output() {
 // add necessary containers
 function add_content_before_checkout_form() {
     echo '<main>';
-    echo '<section class="breadcrumbs__section">
+    echo '<section class="breadcrumbs__section -checkout">
     <div class="container">
     <div class="breadcrumbs__line"></div>
     </div>
