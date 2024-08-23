@@ -30,6 +30,11 @@ function wp_it_volunteers_scripts() {
   wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10.0.0/swiper-bundle.min.js', array(), false, true);
   wp_enqueue_script( 'wp-it-volunteers-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), false, true );  
   wp_enqueue_script('choices-scripts', 'https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js', array(), false, true);
+  wp_enqueue_script( 'cart-count-ajax', get_template_directory_uri() . '/assets/scripts/template-parts-scripts/cart-count-ajax.js', array( 'jquery' ), null, true );
+  wp_localize_script( 'cart-count-ajax', 'cart_count_params', array(
+    'url' => admin_url( 'admin-ajax.php' ),
+    'nonce' => wp_create_nonce('nonce'),
+    ) );
   //wp_enqueue_script('imask-scripts', 'https://unpkg.com/imask', array(), false, true);
 
     if ( is_page_template('templates/home.php') ) {

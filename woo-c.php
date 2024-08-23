@@ -27,24 +27,16 @@ function yednist_add_woocommerce_support() {
 
 add_action( 'after_setup_theme', 'yednist_add_woocommerce_support' );
 
-// shipping method title
-function custom_rename_local_pickup_label($rates, $package) {
-  foreach ($rates as $rate_id => $rate) {
-    if ($rate->get_method_id() === 'local_pickup') {
-      $rate->label = get_field('self_shipping', 'options');
+// register ajax header cart
+function update_cart_count() {
+  if (!isset($_POST["nonce"]) || !wp_verify_nonce($_POST["nonce"], "nonce")) {
+        exit;
     }
-  }
-  return $rates;
+    $count = WC()->cart->get_cart_contents_count();
+    wp_send_json( array( 'count' => $count ) );
 }
-add_filter('woocommerce_package_rates', 'custom_rename_local_pickup_label', 10, 2);
-// payment method title
-function custom_rename_payment_gateways($available_gateways) {
-  if (isset($available_gateways['cod'])) {
-    $available_gateways['cod']->title = get_field('payment_per_picking_up', 'options');
-  }
-  return $available_gateways;
-}
-add_filter('woocommerce_available_payment_gateways', 'custom_rename_payment_gateways');
+add_action( 'wp_ajax_update_cart_count', 'update_cart_count' );
+add_action( 'wp_ajax_nopriv_update_cart_count', 'update_cart_count' );
 
 
 add_action('woocommerce_before_single_product', 'my_theme_product_wrapper_start', 5);
