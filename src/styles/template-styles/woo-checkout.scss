@@ -1,5 +1,12 @@
 @import "../variables.scss";
 
+.breadcrumbs__section.-checkout {
+  margin-bottom: 40px;
+  @media screen and (max-width: $tablet2) {
+    margin-bottom: 16px;
+  }
+}
+
 .checkout-section {
   &__title {
     margin-bottom: 40px;
@@ -11,7 +18,7 @@
 
   .woocommerce-checkout {
     display: grid;
-    grid-template-columns: 50% auto;
+    grid-template-columns: 49.3% auto;
     column-gap: 168px;
 
     @media screen and (max-width: $desktop) {
@@ -147,23 +154,8 @@
           width: 20px;
           height: 13px;
           box-shadow: 0 0 1px 0 #888;
+          border-bottom: 6.5px solid $invalid-input;
           top: 14.5px;
-          left: 40px;
-          @media screen and (max-width: $desktop) {
-            left: 24px;
-          }
-          @media screen and (max-width: $mobile) {
-            left: 16px;
-          }
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          display: block;
-          width: 20px;
-          height: 6.5px;
-          background-color: $invalid-input;
-          top: 21px;
           left: 40px;
           @media screen and (max-width: $desktop) {
             left: 24px;
@@ -542,6 +534,7 @@
         }
       }
       &_link {
+        color: $blue;
         @media screen and (max-width: $desktop) {
           font-size: 16px;
         }
