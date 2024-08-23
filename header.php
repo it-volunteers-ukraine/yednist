@@ -94,11 +94,11 @@
                   $menu_right_count = count($menu_right);
 
                   foreach ($menu_right as $index => $menu_item) {
-                      $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
-                      if ($index === 3) {
+                    $current_class = (is_page($menu_item->object_id)) ? ' header__current__page' : '';
+                    if ($index === 3) {
                        echo '<li class="header__menu__item__shop">';
                         if ( class_exists( 'WooCommerce' ) ) {
-                          echo '<div class="header__menu__item cart"><a class="cart-contents" href="' . esc_url( wc_get_cart_url() ) . '" ><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg><span class="header__menu__item__cart-count ' . (WC()->cart->get_cart_contents_count() > 0 ? 'visible' : '') . '">' . WC()->cart->get_cart_contents_count() . '</span></a>
+                          echo '<div class="header__menu__item cart"><a class="cart-contents" href="' . $menu_right[2]->url . '" ><svg class="header__menu__item__cart"><use href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-shopping-bag"></use></svg><span class="header__menu__item__cart-count ' . (WC()->cart->get_cart_contents_count() > 0 ? 'visible' : '') . '">' . WC()->cart->get_cart_contents_count() . '</span></a>
                         </div>';
                         }
                         echo '<div class="button primary-button header__button ' . esc_attr($current_class) . '"><a href="' . esc_url($menu_item->url) . '">' . esc_html($menu_item->title) . '</a></div>';
@@ -141,7 +141,7 @@
 
           <div class="header__burger__wrapper">
             <div class="header__menu__item cart menu-burger">
-              <a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+              <a class="cart-contents" href="<?php echo $menu_right[2]->url; ?>">
                 <svg class="header__menu__item__cart">
                   <use href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-shopping-bag">
                   </use>

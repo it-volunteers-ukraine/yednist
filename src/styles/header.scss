@@ -345,8 +345,9 @@
           color: $white;
           font-size: 16px;
           opacity: 0;
+
           &.visible {
-            opacity: 10;
+            opacity: 1;
           }
         }
       }
