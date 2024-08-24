@@ -95,4 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     true
   );
+
+  document.addEventListener("keydown", function (event) {
+    if (event.target.classList.contains("qty") && event.key === "Enter") {
+      updateCartQuantity(event.target);
+    }
+  });
 });
