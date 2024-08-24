@@ -33,7 +33,6 @@
     font-family: $secondary-font;
     padding: 15px 19px;
     flex-direction: column-reverse;
-    min-height: 588px;
     gap: 8px;
   }
   &:nth-child(3n + 1) {
@@ -189,11 +188,12 @@
     }
 
     &__wrappers {
-      aspect-ratio: 1;
+      aspect-ratio: 1/1;
       position: absolute;
+      overflow: hidden;
+      border-radius: $small-border-radius;
 
       img {
-        border-radius: $small-border-radius;
       }
 
       &:first-child {
@@ -272,7 +272,6 @@
     &__container {
       width: 100%;
       height: 100%;
-      overflow: hidden;
       position: relative;
       max-width: 546px;
       min-height: 484px;
