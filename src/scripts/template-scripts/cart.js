@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("keydown", function (event) {
     if (event.target.classList.contains("qty") && event.key === "Enter") {
+      event.preventDefault();
       updateCartQuantity(event.target);
     }
   });

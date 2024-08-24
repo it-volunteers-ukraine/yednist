@@ -72,6 +72,8 @@
     position: relative;
     margin: 0 auto;
     min-width: 277px;
+    flex-direction: row-reverse;
+    gap: 3px;
     @media screen and (max-width: 1200px) {
       min-width: 100%;
     }
@@ -135,10 +137,12 @@
 
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   a.button.added::after {
-  @media screen and (max-width: $mobile) {
-    position: absolute;
-    right: 6px;
-  }
+  margin-left: 0;
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../../images/check-outline.svg") no-repeat center / contain;
 }
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   a.button.loading::after {
@@ -152,14 +156,25 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: -30px;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 0 auto;
   width: max-content;
-  @media screen and (max-width: $desktop) {
-    font-size: 20px;
-  }
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.35;
+  color: $blue;
   @media screen and (max-width: $mobile) {
     bottom: -20px;
     font-size: 12px;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url("../../images/cart_blue.svg") no-repeat center / contain;
   }
 }
