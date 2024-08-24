@@ -210,6 +210,64 @@ function filter_woocommerce_product_single_add_to_cart_text($text, $instance) {
     }
     return $text;
 }
+// button text if product is already added to cart
+add_filter( 'woocommerce_product_add_to_cart_text', 'product_btn_text', 20, 2 );
+function product_btn_text( $text, $product ) {
+	if( WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id($product->get_id()))) {
+		$text = get_field('already_in_cart_button', 'options');
+	}
+	return $text;
+}
+// button text after adding to cart
+function change_button_text_on_add_to_cart() {
+    ?>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  jQuery(document).on('click', '.add_to_cart_button', function() {
+    var button = jQuery(this);
+
+    jQuery(document).on('added_to_cart', function() {
+      var newText = "<?php echo esc_js(get_field('already_in_cart_button', 'options')); ?>";
+      button.text(newText);
+    });
+  });
+});
+</script>
+<?php
+}
+add_action('wp_footer', 'change_button_text_on_add_to_cart');
+
+// go to cart link
+function custom_change_added_to_cart_text() {
+    ?>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("add_to_cart_button")) {
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && node.classList.contains("added_to_cart")) {
+              node.textContent = "<?php the_field('go_to_cart_link_title', 'options') ?>";
+            }
+          });
+        });
+      });
+
+      const catalogContainer = document.querySelector(".products");
+      if (catalogContainer) {
+        observer.observe(catalogContainer, {
+          childList: true,
+          subtree: true
+        });
+      }
+    }
+  });
+});
+</script>
+<?php
+}
+add_action('wp_footer', 'custom_change_added_to_cart_text');
 
 // redirect to different lang cart from catalog page
 function custom_add_to_cart_redirect($url) {
