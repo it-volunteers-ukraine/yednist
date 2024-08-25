@@ -3,8 +3,10 @@
 .woocommerce {
   div.product {
     display: grid;
+    grid-template-columns: auto 58.9%;
     grid-gap: 80px 40px;
     @media screen and (max-width: $desktop) {
+      grid-template-columns: auto 59.3%;
       grid-gap: 60px 20px;
     }
     @media screen and (max-width: $tablet1) {
@@ -133,17 +135,26 @@
     }
     div.images {
       .woocommerce-product-gallery__wrapper {
-        img {
+        a {
+          display: block;
           border-radius: $bid-border-radius;
-          height: 600px;
-          width: 425px;
+          aspect-ratio: 17/24;
+          overflow: hidden;
           @media screen and (max-width: $desktop) {
-            width: 315px;
-            height: 444px;
+            aspect-ratio: 315/444;
+          }
+          @media screen and (max-width: $tablet2) {
+            max-width: 315px;
           }
           @media screen and (max-width: $mobile) {
-            height: auto;
+            aspect-ratio: 144/203;
+            max-width: 100%;
           }
+        }
+        img {
+          object-fit: cover;
+          min-width: 100%;
+          min-height: 100%;
         }
       }
       .flex-control-nav.flex-control-thumbs {

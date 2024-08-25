@@ -285,26 +285,6 @@ function custom_add_to_cart_redirect($url) {
 }
 add_filter('woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect');
 
-function add_contact_us_button() {
-    $current_language = pll_current_language();
-
-    if ($current_language == 'uk') {
-        // UKR ver
-        $contact_page_url = get_permalink(get_page_by_path('contacts-uk'));
-        $button_text = 'Зв\'язатися з нами';
-    } elseif ($current_language == 'en') {
-        // English ver
-        $contact_page_url = get_permalink(get_page_by_path('contacts-en'));
-        $button_text = 'Contact Us';
-    } elseif ($current_language == 'pl') {
-        // Polish ver
-        $contact_page_url = get_permalink(get_page_by_path('contacts-pl'));
-        $button_text = 'Skontaktuj się z nami';
-    }
-
-    echo '<a href="' . esc_url($contact_page_url) . '" class="contact-us-button">' . esc_html($button_text) . '</a>';
-}
-
 // disable add to cart button
 function custom_manage_stock_status_shop_page() {
     ?>
@@ -322,6 +302,9 @@ add_action('wp_head', 'custom_manage_stock_status_shop_page');
 
 //===========product page==================/
 // contact us button
+function add_contact_us_button() {
+    echo '<a href="' . get_field('contact_us_button_link', 'options') . '" class="contact-us-button">' . get_field('contact_us_button', 'options') . '</a>';
+}
 add_action('woocommerce_after_add_to_cart_button', 'add_contact_us_button', 20);
 
 // price AFTER short description
@@ -741,6 +724,25 @@ function after_cart() {
   </section>';
 }
 add_action('woocommerce_after_cart', 'after_cart', 10);
+
+// add variation id to products
+add_filter('woocommerce_cart_item_name', function($product_name, $cart_item, $cart_item_key) {
+    if (isset($cart_item['variation_id']) && $cart_item['variation_id']) {
+        $variation_id = esc_attr($cart_item['variation_id']);
+        $product_name = sprintf('<span data-variation_id="%s">%s</span>', $variation_id, $product_name);
+    }
+    return $product_name;
+}, 10, 3);
+
+// change button text for variable products
+add_filter( 'woocommerce_product_add_to_cart_text', 'variable_button_text', 25 );
+function variable_button_text( $text ) {
+	global $product;
+	if ( $product->is_type( 'variable' ) ) {
+		$text = $product->is_purchasable() ? get_field('choose_btn_text', 'options') : 'Choose';
+	}
+	return $text;
+}
 // add plus and minus buttons
 function custom_quantity_buttons($product_quantity, $cart_item_key, $cart_item) {
     $_product = $cart_item['data'];
@@ -762,22 +764,24 @@ add_filter('woocommerce_cart_item_quantity', 'custom_quantity_buttons', 10, 3);
 // update items quantity in the cart
 function update_cart_item_quantity() {
     if ( !isset($_POST['product_id']) || !isset($_POST['quantity']) ) {
-        wp_send_json_error('Недостаточно данных');
+        wp_send_json_error('Not enough data');
     }
     $product_id = intval($_POST['product_id']);
+    $variation_id = isset($_POST['variation_id']) ? intval($_POST['variation_id']) : 0;
     $quantity = intval($_POST['quantity']);
     if ( $quantity < 0 ) {
         $quantity = 0;
     }
     $cart_item_key = null;
     foreach (WC()->cart->get_cart() as $key => $cart_item) {
-        if ($cart_item['product_id'] === $product_id) {
+        if ($cart_item['product_id'] === $product_id && ($variation_id === 0 || $cart_item['variation_id'] === $variation_id)) {
+          error_log(print_r($cart_item, true));
             $cart_item_key = $key;
             break;
         }
     }
     if ($cart_item_key === null) {
-        wp_send_json_error('Товар не найден в корзине');
+        wp_send_json_error('No such item in the cart');
     }
     WC()->cart->set_quantity($cart_item_key, $quantity);
 
