@@ -10,6 +10,22 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("product_id", productId);
     formData.append("quantity", qtyInput.value);
 
+    const variationId = qtyInput
+      .closest("tr")
+      .querySelector("[data-variation_id]")
+      ?.getAttribute("data-variation_id");
+
+    if (variationId) {
+      formData.append("variation_id", variationId);
+    }
+
+    const variationInputs = qtyInput
+      .closest("tr")
+      .querySelectorAll("[name^='attribute_']");
+    variationInputs.forEach((input) => {
+      formData.append(input.name, input.value);
+    });
+
     document.body.classList.add("woocommerce-processing");
     document.querySelector("tbody").classList.add("processing");
     document.querySelector("tbody").style.opacity = "0.5";
@@ -23,10 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        document.querySelector(".woocommerce-cart-form").innerHTML =
-          data.fragments[".woocommerce-cart-form"];
-        document.querySelector(".cart-collaterals").innerHTML =
-          data.fragments[".cart-totals"];
+        if (data.fragments && data.fragments[".woocommerce-cart-form"]) {
+          document.querySelector(".woocommerce-cart-form").innerHTML =
+            data.fragments[".woocommerce-cart-form"];
+        }
+        if (data.fragments && data.fragments[".cart-totals"]) {
+          document.querySelector(".cart-collaterals").innerHTML =
+            data.fragments[".cart-totals"];
+        }
         document
           .querySelector("body")
           .dispatchEvent(new Event("wc_cart_updated"));
@@ -35,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.remove("woocommerce-processing");
         document.querySelector("tbody").style.opacity = "1";
         document.querySelector("tbody").classList.remove("processing");
-        var overlay = document.querySelector(".blockUI.blockOverlay");
+        const overlay = document.querySelector(".blockUI.blockOverlay");
         if (overlay) {
           overlay.remove();
         }
