@@ -38,18 +38,6 @@ function update_cart_count() {
 add_action( 'wp_ajax_update_cart_count', 'update_cart_count' );
 add_action( 'wp_ajax_nopriv_update_cart_count', 'update_cart_count' );
 
-
-add_action('woocommerce_before_single_product', 'my_theme_product_wrapper_start', 5);
-add_action('woocommerce_after_single_product', 'my_theme_product_wrapper_end', 5);
-
-function my_theme_product_wrapper_start() {
-    echo '<section class="section"><div class="container"><div class="inner-container">';
-}
-
-function my_theme_product_wrapper_end() {
-    echo '</div></div></section>';
-}
-
 //============Catalog page==============//
 add_action('wp', 'shop_remove_shop_wrappers');
 
@@ -301,11 +289,29 @@ document.addEventListener('DOMContentLoaded', function() {
 add_action('wp_head', 'custom_manage_stock_status_shop_page');
 
 //===========product page==================/
+add_action('woocommerce_before_single_product', 'my_theme_product_wrapper_start', 5);
+add_action('woocommerce_after_single_product', 'my_theme_product_wrapper_end', 5);
+
+function my_theme_product_wrapper_start() {
+    echo '<section class="section single-product__section"><div class="container"><div class="inner-container">';
+}
+
+function my_theme_product_wrapper_end() {
+    echo '</div></div></section>';
+}
 // contact us button
 function add_contact_us_button() {
-    echo '<a href="' . get_field('contact_us_button_link', 'options') . '" class="contact-us-button">' . get_field('contact_us_button', 'options') . '</a>';
+    echo '<a href="' . get_field('contact_us_button_link', 'options') . '" class="button contact-us-button">' . get_field('contact_us_button', 'options') . '</a>';
 }
 add_action('woocommerce_after_add_to_cart_button', 'add_contact_us_button', 20);
+
+// add_filter('woocommerce_get_image_size_single', function($size) {
+//     return array(
+//         'width'  => 768, // Width for medium_large
+//         'height' => 0,   // 0 means unlimited height
+//         'crop'   => 0    // No cropping
+//     );
+// });
 
 // price AFTER short description
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
@@ -351,17 +357,17 @@ function custom_upsell_products_output() {
      
       echo '<section class="section shop-section">';
       echo '<div class="container">';
-      echo '<h2 class="section-title">'.__(get_field('similar_products_title')).'</h2>';
-      echo '<div class="inner-container">';
+      echo '<h2 class="section-title">'.get_field('similar_products_title', 'options').'</h2>';
+      echo '<div class="inner-container"><div class="shop-section__slider">';
 
-      echo '<ul class="products columns-4">';
+      echo '<ul class="products swiper-wrapper">';
       foreach ($upsell_ids as $upsell_id) {
           $post_object = get_post($upsell_id);
           setup_postdata($GLOBALS['post'] =& $post_object);
           wc_get_template_part('content', 'product');
       }
-      echo '</ul>';
-      
+      echo '</ul></div>';
+      echo '<ul class="shop-section__bullets"></ul>';
       echo '</div>';
       echo '</div>';
       echo '</section>';
