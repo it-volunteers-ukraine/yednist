@@ -14,8 +14,7 @@
         );
         $my_posts = get_posts($params);
 
-        foreach ($my_posts as $post) :                 
-            $gallery_post_title = get_field('gallery-post-title', $post);    
+        foreach ($my_posts as $post) :
             $gallery_post_link = $post->guid;   
             $gallery_post_img = get_field('gallery-post-image', $post)[0]['sizes']['medium_large'];
             $gallery_post_img_two = get_field('gallery-post-image', $post)[1]['sizes']['medium_large'];
@@ -24,7 +23,7 @@
             ?>
     <div class="about-history-slide swiper-slide">
       <a href="<?php echo $gallery_post_link ?>">
-        <h3 class="about-history-title"><?php echo $gallery_post_title ?></h3>
+        <h3 class="about-history-title"><?php the_title(); ?></h3>
         <div class="about-history-img">
           <div class="about-history-img-first"><img src="<?php echo $gallery_post_img ?>"
               alt="<?php echo $gallery_img_alt ?>"></div>

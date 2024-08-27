@@ -157,6 +157,7 @@
       border: none;
       height: 10px;
       width: 16px;
+      transition: $transition-function;
       @media screen and (max-width: $desktop) {
         right: 10%;
       }
@@ -170,7 +171,7 @@
     }
 
     &.is-open::after {
-      background-image: url(../../../assets/images/arrow-up-blue.svg);
+      transform: translateY(-50%) rotate(-180deg);
     }
 
     &.is-open.is-focused {

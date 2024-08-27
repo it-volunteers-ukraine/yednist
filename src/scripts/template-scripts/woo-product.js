@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // linked products
   const allProductsArray = document.querySelectorAll(".shop-section .product");
   if (allProductsArray) {
     allProductsArray.forEach((product) => {
@@ -30,6 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
           spaceBetween: 94,
         },
       },
+    });
+  }
+
+  // select
+  const variationsSelect = document.querySelector(".variations select");
+
+  if (variationsSelect) {
+    const variationSelect = new Choices(variationsSelect, {
+      searchEnabled: false,
+      allowHTML: false,
+      shouldSort: false,
+      position: "bottom",
+      itemSelectText: "",
     });
   }
 });
