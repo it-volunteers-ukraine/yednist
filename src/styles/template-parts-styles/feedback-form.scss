@@ -273,6 +273,7 @@
       border: none;
       height: 40px;
       width: 40px;
+      transition: $transition-function;
       @media screen and (max-width: $desktop) {
         top: 12%;
         right: 24px;
@@ -284,9 +285,10 @@
       }
     }
     .choices.is-open::after {
-      background-image: url(../../../assets/images/check-mark-up.svg);
+      transform: rotate(-180deg);
       top: 35%;
       @media screen and (max-width: $mobile) {
+        transform: translateY(-50%) rotate(-180deg);
         top: 65%;
       }
     }
