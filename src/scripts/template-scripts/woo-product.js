@@ -45,5 +45,17 @@ document.addEventListener("DOMContentLoaded", function () {
       position: "bottom",
       itemSelectText: "",
     });
+
+    // Listen for when a new choice is made
+    variationSelect.passedElement.element.addEventListener(
+      "choice",
+      selectedElement
+    );
+
+    function selectedElement(e) {
+      let chosenOptionIndex = e.detail.id - 1;
+      variationsSelect.selectedIndex = chosenOptionIndex;
+      variationsSelect.dispatchEvent(new Event("change"));
+    }
   }
 });

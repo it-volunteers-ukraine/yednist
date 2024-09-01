@@ -38,6 +38,8 @@
   & a img {
     margin-bottom: 12px;
     border-radius: $small-border-radius;
+    aspect-ratio: 1;
+    object-fit: cover;
     @media screen and (max-width: $desktop) {
       margin-bottom: 8px;
     }
@@ -93,6 +95,7 @@
       background-color: $grey;
       color: $white;
       opacity: 1;
+      cursor: pointer;
       &:hover,
       &:focus {
         box-shadow: none;
