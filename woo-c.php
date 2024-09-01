@@ -4,7 +4,6 @@
 add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
 add_theme_support( 'woocommerce' );
-add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
 }
@@ -37,6 +36,34 @@ function update_cart_count() {
 }
 add_action( 'wp_ajax_update_cart_count', 'update_cart_count' );
 add_action( 'wp_ajax_nopriv_update_cart_count', 'update_cart_count' );
+
+//==============images size =====================//
+// Adjust image size for single product pages
+add_filter('woocommerce_get_image_size_single', function($size) {
+    return array(
+        'width'  => 500,
+        'height' => 500, 
+        'crop'   => 0 
+    );
+});
+
+// Adjust image size for shop (product archive) pages
+add_filter('woocommerce_get_image_size_shop_catalog', function($size) {
+    return array(
+        'width'  => 300,
+        'height' => 300,
+        'crop'   => 0
+    );
+});
+
+// Adjust image size for related products and thumbnails
+add_filter('woocommerce_get_image_size_thumbnail', function($size) {
+    return array(
+        'width'  => 300,
+        'height' => 300,
+        'crop'   => 0
+    );
+});
 
 //============Catalog page==============//
 add_action('wp', 'shop_remove_shop_wrappers');
@@ -299,19 +326,22 @@ function my_theme_product_wrapper_start() {
 function my_theme_product_wrapper_end() {
     echo '</div></div></section>';
 }
+
+add_filter('bcn_breadcrumb_title', 'woo_breadcrumb_archive_title_changer', 10, 3); 
+function woo_breadcrumb_archive_title_changer($title, $type, $id) 
+{ 
+    if (in_array('archive', $type)) { 
+        $title =  get_field('shop_title_breadcrumbs', 'options');
+}
+return $title;
+}
+
 // contact us button
 function add_contact_us_button() {
-    echo '<a href="' . get_field('contact_us_button_link', 'options') . '" class="button contact-us-button">' . get_field('contact_us_button', 'options') . '</a>';
+echo '<a href="' . get_field('contact_us_button_link', 'options') . '" class="button contact-us-button">' .
+  get_field('contact_us_button', 'options') . '</a>';
 }
 add_action('woocommerce_after_add_to_cart_button', 'add_contact_us_button', 20);
-
-// add_filter('woocommerce_get_image_size_single', function($size) {
-//     return array(
-//         'width'  => 768, // Width for medium_large
-//         'height' => 0,   // 0 means unlimited height
-//         'crop'   => 0    // No cropping
-//     );
-// });
 
 // price AFTER short description
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
@@ -320,25 +350,25 @@ add_action('woocommerce_single_product_summary', 'woocommerce_template_single_pr
 // remove Additional Information
 add_filter('woocommerce_product_tabs', 'remove_product_tabs', 98);
 function remove_product_tabs($tabs) {
-    unset($tabs['additional_information']);
-    return $tabs;
+unset($tabs['additional_information']);
+return $tabs;
 }
 
 add_filter('woocommerce_product_tabs', 'custom_shipping_payment_tab');
 function custom_shipping_payment_tab($tabs) {
 
-    $title = get_field('shipping_payment_title');
-    $tabs['shipping_payment'] = array(
-        'title'    => ($title),
-        'priority' => 50,
-        'callback' => 'custom_shipping_payment_tab_content'
-    );
+$title = get_field('shipping_payment_title');
+$tabs['shipping_payment'] = array(
+'title' => ($title),
+'priority' => 50,
+'callback' => 'custom_shipping_payment_tab_content'
+);
 
-    return $tabs;
+return $tabs;
 }
 
 function custom_shipping_payment_tab_content() {
-    echo '<p>'.get_field('shipping_payment_info').'</p>';
+echo '<p>'.get_field('shipping_payment_info').'</p>';
 }
 
 // related products
@@ -349,148 +379,153 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_r
 add_action('woocommerce_after_single_product', 'custom_upsell_products_output', 20);
 
 function custom_upsell_products_output() {
-  global $product;
+global $product;
 
-  $upsell_ids = $product->get_upsell_ids();
+$upsell_ids = $product->get_upsell_ids();
 
-  if ($upsell_ids) {
-     
-      echo '<section class="section shop-section">';
-      echo '<div class="container">';
-      echo '<h2 class="section-title">'.get_field('similar_products_title', 'options').'</h2>';
-      echo '<div class="inner-container"><div class="shop-section__slider">';
+if ($upsell_ids) {
 
-      echo '<ul class="products swiper-wrapper">';
-      foreach ($upsell_ids as $upsell_id) {
+echo '<section class="section shop-section">';
+  echo '<div class="container">';
+    echo '<h2 class="section-title">'.get_field('similar_products_title', 'options').'</h2>';
+    echo '<div class="inner-container">
+      <div class="shop-section__slider">';
+
+        echo '<ul class="products swiper-wrapper">';
+          foreach ($upsell_ids as $upsell_id) {
           $post_object = get_post($upsell_id);
           setup_postdata($GLOBALS['post'] =& $post_object);
           wc_get_template_part('content', 'product');
-      }
-      echo '</ul></div>';
+          }
+          echo '</ul>
+      </div>';
       echo '<ul class="shop-section__bullets"></ul>';
-      echo '</div>';
-      echo '</div>';
-      echo '</section>';
+      echo '
+    </div>';
+    echo '</div>';
+  echo '</section>';
 
-      wp_reset_postdata();
-  }
+wp_reset_postdata();
+}
 }
 
 //==============Checkout page==============//
 // add necessary containers
 function add_content_before_checkout_form() {
-    echo '<main>';
-    echo '<section class="breadcrumbs__section -checkout">
+echo '<main>';
+  echo '<section class="breadcrumbs__section -checkout">
     <div class="container">
-    <div class="breadcrumbs__line"></div>
+      <div class="breadcrumbs__line"></div>
     </div>
-    </section>';
-    echo '<section class="section checkout-section">
+  </section>';
+  echo '<section class="section checkout-section">
     <div class="container">
-    <div class="inner-container">
-    <h1 class="page-title checkout-section__title">';
-    echo the_title();
-    echo '</h1>';
-}
-add_action('woocommerce_before_checkout_form', 'add_content_before_checkout_form', 5);
+      <div class="inner-container">
+        <h1 class="page-title checkout-section__title">';
+          echo the_title();
+          echo '</h1>';
+        }
+        add_action('woocommerce_before_checkout_form', 'add_content_before_checkout_form', 5);
 
-function add_content_after_checkout_form() {
-echo '</div>
-</div>
-</section>
+        function add_content_after_checkout_form() {
+        echo '
+      </div>
+    </div>
+  </section>
 </main>';
 }
 add_action('woocommerce_after_checkout_form', 'add_content_after_checkout_form', 5);
 
 function checkout_before_customer_details() {
 echo '<div>';
-}
-add_action('woocommerce_checkout_before_customer_details', 'checkout_before_customer_details', 5);
+  }
+  add_action('woocommerce_checkout_before_customer_details', 'checkout_before_customer_details', 5);
 
-function checkout_before_order_review_heading() {
-  echo '</div><div>';
-}
-add_action('woocommerce_checkout_before_order_review_heading', 'checkout_before_order_review_heading', 5);
+  function checkout_before_order_review_heading() {
+  echo '</div>
+<div>';
+  }
+  add_action('woocommerce_checkout_before_order_review_heading', 'checkout_before_order_review_heading', 5);
 
-function review_order_before_order_total() {
-echo '</div>';
+  function review_order_before_order_total() {
+  echo '</div>';
 }
 add_action('woocommerce_review_order_before_order_total', 'review_order_before_order_total', 5);
 
 
 // add new field and change order, labels and placeholders of form fields
 function custom_override_checkout_fields_order($fields) {
-    // new fields
-    $fields['billing']['billing_nip'] = array(
-        'label'       => get_field('nip_input', 'options'),
-        'class'       => array('form-row-wide'),
-    );
-    $fields['billing']['billing_address_3'] = array(
-        'label'       => get_field('apartments_input', 'options'),
-        'class'       => array('form-row-wide'),
+// new fields
+$fields['billing']['billing_nip'] = array(
+'label' => get_field('nip_input', 'options'),
+'class' => array('form-row-wide'),
+);
+$fields['billing']['billing_address_3'] = array(
+'label' => get_field('apartments_input', 'options'),
+'class' => array('form-row-wide'),
 
-    );
-    // priority
-    $fields['billing']['billing_first_name']['priority'] = 10;
-    $fields['billing']['billing_last_name']['priority'] = 20;
-    $fields['billing']['billing_phone']['priority'] = 30;
-    $fields['billing']['billing_email']['priority'] = 40;
-    $fields['billing']['billing_company']['priority'] = 50;
-    $fields['billing']['billing_nip']['priority'] = 51;
-    //placeholders
-    $fields['billing']['billing_first_name']['placeholder'] = get_field('name_placeholder', 'options');
-    $fields['billing']['billing_last_name']['placeholder'] = get_field('last_name_placeholder', 'options');
-    $fields['billing']['billing_email']['placeholder'] = get_field('email_placeholder', 'options');
-    $fields['billing']['billing_phone']['placeholder'] = get_field('phone_placeholder', 'options');
-    //labels
-    $fields['billing']['billing_first_name']['label'] = get_field('name_input', 'options');
-    $fields['billing']['billing_last_name']['label'] = get_field('last_name_input', 'options');
-    $fields['billing']['billing_phone']['label'] = get_field('phone_input', 'options');
-    $fields['billing']['billing_email']['label'] = get_field('email_input', 'options');
-    $fields['billing']['billing_company']['label'] = get_field('company_name_input', 'options');
+);
+// priority
+$fields['billing']['billing_first_name']['priority'] = 10;
+$fields['billing']['billing_last_name']['priority'] = 20;
+$fields['billing']['billing_phone']['priority'] = 30;
+$fields['billing']['billing_email']['priority'] = 40;
+$fields['billing']['billing_company']['priority'] = 50;
+$fields['billing']['billing_nip']['priority'] = 51;
+//placeholders
+$fields['billing']['billing_first_name']['placeholder'] = get_field('name_placeholder', 'options');
+$fields['billing']['billing_last_name']['placeholder'] = get_field('last_name_placeholder', 'options');
+$fields['billing']['billing_email']['placeholder'] = get_field('email_placeholder', 'options');
+$fields['billing']['billing_phone']['placeholder'] = get_field('phone_placeholder', 'options');
+//labels
+$fields['billing']['billing_first_name']['label'] = get_field('name_input', 'options');
+$fields['billing']['billing_last_name']['label'] = get_field('last_name_input', 'options');
+$fields['billing']['billing_phone']['label'] = get_field('phone_input', 'options');
+$fields['billing']['billing_email']['label'] = get_field('email_input', 'options');
+$fields['billing']['billing_company']['label'] = get_field('company_name_input', 'options');
 
-    return $fields;
+return $fields;
 }
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields_order');
 
 // change address fields
 function custom_override_default_address_fields( $address_fields ) {
-    // labels
-    $address_fields['city']['label'] = get_field('city_input', 'options');
-    $address_fields['address_1']['label'] = get_field('street_input', 'options');
-    $address_fields['address_2']['label'] = get_field('house_number_input', 'options');
-    $address_fields['postcode']['label'] = get_field('post_index_input', 'options');
-    // placeholders
-    $address_fields['address_1']['placeholder'] = '';
-    $address_fields['address_2']['placeholder'] = '';
-    // requirement
-    $address_fields['address_2']['required'] = true;
-    // priority
-    $address_fields['country']['priority'] = 52;
-    $address_fields['city']['priority'] = 54;
-    $address_fields['address_1']['priority'] = 56;
-    $address_fields['address_2']['priority'] = 58;
-    $address_fields['address_3']['priority'] = 60;
-    $address_fields['postcode']['priority'] = 65;
+// labels
+$address_fields['city']['label'] = get_field('city_input', 'options');
+$address_fields['address_1']['label'] = get_field('street_input', 'options');
+$address_fields['address_2']['label'] = get_field('house_number_input', 'options');
+$address_fields['postcode']['label'] = get_field('post_index_input', 'options');
+// placeholders
+$address_fields['address_1']['placeholder'] = '';
+$address_fields['address_2']['placeholder'] = '';
+// requirement
+$address_fields['address_2']['required'] = true;
+// priority
+$address_fields['country']['priority'] = 52;
+$address_fields['city']['priority'] = 54;
+$address_fields['address_1']['priority'] = 56;
+$address_fields['address_2']['priority'] = 58;
+$address_fields['address_3']['priority'] = 60;
+$address_fields['postcode']['priority'] = 65;
 
-    return $address_fields;
+return $address_fields;
 }
 add_filter('woocommerce_default_address_fields', 'custom_override_default_address_fields');
 
 // change paiment choices placement
 function custom_reorder_checkout_sections() {
-    remove_action('woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20);
-    add_action('woocommerce_after_checkout_billing_form', 'woocommerce_checkout_payment', 20);
+remove_action('woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20);
+add_action('woocommerce_after_checkout_billing_form', 'woocommerce_checkout_payment', 20);
 }
 add_action('wp_loaded', 'custom_reorder_checkout_sections');
 
 function custom_checkout_payment_title() {
-  echo '<p>'.the_field('payment_method', 'options').'</p>';
+echo '<p>'.the_field('payment_method', 'options').'</p>';
 }
 add_action('woocommerce_review_order_before_payment', 'custom_checkout_payment_title', 10);
 
 function custom_woocommerce_order_button_text( $button_text ) {
-    return get_field('payment_button', 'options');
+return get_field('payment_button', 'options');
 }
 add_filter( 'woocommerce_order_button_text', 'custom_woocommerce_order_button_text' );
 
@@ -498,8 +533,8 @@ add_filter('woocommerce_ship_to_different_address_checked', '__return_false');
 
 // toggle shipping address
 function toggle_shipping_fields() {
-  if (is_checkout()) {
-    ?>
+if (is_checkout()) {
+?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
   function toggleShippingAddress() {
