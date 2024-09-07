@@ -94,7 +94,8 @@
 
       & input,
       & .woocommerce-input-wrapper strong {
-        display: block;
+        display: flex;
+        align-items: center;
         border: 1px solid $lavender;
         border-radius: $bid-border-radius;
         padding: 8px 32px;
