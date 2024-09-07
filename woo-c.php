@@ -286,16 +286,7 @@ add_action('wp_footer', 'custom_change_added_to_cart_text');
 
 // redirect to different lang cart from catalog page
 function custom_add_to_cart_redirect($url) {
-    $current_language = pll_current_language();
-    
-    if ($current_language == 'en') {
-        $cart_url = site_url('/cart-en/');
-    } elseif ($current_language == 'pl') {
-        $cart_url = site_url('/cart-pl/');
-    } else {
-        $cart_url = wc_get_cart_url();
-    }
-    
+    $cart_url = get_field('cart_link', 'options');
     return $cart_url;
 }
 add_filter('woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect');
@@ -743,6 +734,17 @@ function redirect_to_thank_you($thank_you_url, $order) {
 }
 add_action('woocommerce_get_return_url', 'redirect_to_thank_you', 90, 2);
 
+add_action('template_redirect', 'redirect_empty_cart_to_cart_page');
+
+// redirect from checkout if the cart is empty
+function redirect_empty_cart_to_cart_page() {
+    if (is_checkout()) {
+        if (WC()->cart->is_empty()) {
+            wp_safe_redirect(get_field('cart_link', 'options'));
+            exit;
+        }
+    }
+}
 //============== cart page ===========//
 function before_cart() {
   echo '<section class="breadcrumbs__section -cart">
