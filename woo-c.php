@@ -633,7 +633,7 @@ function custom_checkout_validation_scripts() {
 <script type="text/javascript">
 jQuery(function($) {
   // Phone number validation on input
-  $('#billing_phone').mask("+48 (99) 999-99-99");
+  $('#billing_phone').mask("+48999999999");
   $('#billing_phone').on('keyup', function() {
     var $this = $(this);
     var value = $this.val();
