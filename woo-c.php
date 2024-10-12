@@ -37,6 +37,25 @@ function update_cart_count() {
 add_action( 'wp_ajax_update_cart_count', 'update_cart_count' );
 add_action( 'wp_ajax_nopriv_update_cart_count', 'update_cart_count' );
 
+//brouser shop title
+function custom_shop_page_seo_title($title) {
+    if (is_shop()) {
+        if (function_exists('pll_current_language')) {
+            $current_language = pll_current_language();
+            if ($current_language == 'en') {
+                $title = 'Shop - Jedność';
+            } elseif ($current_language == 'pl') {
+                $title = 'Sklep - Jedność';
+            } else {
+                $title = 'Магазин - Jedność';
+            }
+        }
+    }
+    return $title;
+}
+add_filter('wpseo_title', 'custom_shop_page_seo_title', 20);
+
+
 //==============images size =====================//
 // Adjust image size for single product pages
 add_filter('woocommerce_get_image_size_single', function($size) {
