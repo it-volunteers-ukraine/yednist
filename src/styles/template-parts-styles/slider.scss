@@ -1,17 +1,17 @@
 @import "../variables";
 
 //image-wrapper
-.image-wrapper {
+.moments-section__photo {
   border-radius: $bid-border-radius;
-  height: 0;
+  aspect-ratio: 712/576;
   overflow: hidden;
   @media screen and (max-width: $tablet2) {
     border-radius: $small-border-radius;
   }
 }
 
-.image-wrapper img {
-  max-width: 100%;
+.moments-section__photo img {
+  min-width: 100%;
   min-height: 100%;
   object-fit: cover;
 }
