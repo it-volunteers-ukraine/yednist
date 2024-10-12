@@ -33,8 +33,12 @@
 }
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
-  position: relative;
+  width: auto !important;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
   & a img {
     margin-bottom: 12px;
     border-radius: $small-border-radius;
