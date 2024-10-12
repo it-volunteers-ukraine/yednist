@@ -2,11 +2,13 @@ jQuery(document).ready(function ($) {
   // Початок показу лоадера
   function showLoader() {
     $(".lastnews__section .loader").show();
+    $(".lastnews__wrapper").addClass("load");
   }
 
   // Кінець показу лоадера
   function hideLoader() {
     $(".lastnews__section .loader").hide();
+    $(".lastnews__wrapper").removeClass("load");
   }
 
   hideLoader();
