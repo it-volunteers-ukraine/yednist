@@ -22,8 +22,8 @@
     row-gap: 32px;
   }
 }
-.woocommerce ul.products.columns-3 li.product,
-.woocommerce-page ul.products.columns-3 li.product {
+.woocommerce ul.products[class*="columns-"] li.product,
+.woocommerce-page ul.products[class*="columns-"] li.product {
   width: auto;
   margin: 0;
   display: flex;
@@ -34,7 +34,7 @@
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
   width: auto !important;
-  margin: 0;
+  margin: 0 !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
