@@ -14,10 +14,8 @@ if (moneysupport_acc) {
 
       const panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
-        panel.style.paddingBottom = "0";
         panel.style.maxHeight = null;
       } else {
-        panel.style.paddingBottom = "24px";
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });
