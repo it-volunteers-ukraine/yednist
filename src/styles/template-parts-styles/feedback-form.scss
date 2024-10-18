@@ -410,6 +410,7 @@
     font-family: $secondary-font;
     font-size: 16px;
     line-height: 1.6;
+    cursor: pointer;
     @media screen and (max-width: $desktop) {
       font-size: 14px;
     }
