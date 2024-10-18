@@ -432,6 +432,7 @@
 
 .our-partners-section__img {
   max-height: 120px;
+  width: auto;
   @media screen and (max-width: $desktop) {
     max-height: 100px;
   }
