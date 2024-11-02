@@ -680,20 +680,39 @@ add_action('wp_footer', 'custom_update_labels_after_ajax');
 
 function customize_woocommerce_shipping_fields($fields)
 {
+    $has_virtual_product = false;
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        $product = $cart_item['data'];
+        if ($product->is_virtual()) {
+            $has_virtual_product = true;
+            break;
+        }
+    }
+    if ($has_virtual_product) {
+        $fields['order']['accept_virtual_content'] = array(
+            'type'      => 'checkbox',
+            'label'     => get_field('checkout_accept_virtual_content', 'options'),
+            'required'  => true,
+            'class'     => array('form-row-wide'),
+            'priority'  => 350,
+        );
+    }
+
     $fields['order']['privacy_policy'] = array(
         'type'      => 'checkbox',
         'label'     => get_field('checkout_accept_conditions', 'options'),
         'required'  => true,
         'class'     => array('form-row-wide'),
-        'priority'  => 350,
+        'priority'  => 400,
     );
+
 
     $fields['order']['terms_conditions'] = array(
         'type'      => 'checkbox',
         'label'     => get_field('checkout_accept_politics', 'options'),
         'required'  => true,
         'class'     => array('form-row-wide'),
-        'priority'  => 400,
+        'priority'  => 450,
     );
     // placeholders
     $fields['shipping']['shipping_first_name']['placeholder'] = get_field('shipping_name_placeholder', 'options');
