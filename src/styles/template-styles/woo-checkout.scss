@@ -384,6 +384,10 @@
         cursor: pointer;
       }
 
+      span {
+        line-height: 1.6;
+      }
+
       input {
         position: relative;
         visibility: hidden;
@@ -527,7 +531,7 @@
           width: 20px;
           min-height: 26px;
 
-          @media screen and(max-width: $tablet2) {
+          @media screen and (max-width: $tablet2) {
             margin-right: 0;
           }
 
